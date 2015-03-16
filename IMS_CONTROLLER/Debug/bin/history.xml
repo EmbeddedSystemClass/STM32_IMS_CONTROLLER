@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="4.7.2 -mcpu=cortex-m4 -mthumb -g -nostartfiles -Map=IMS_CONTROLLER.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\IMS_CONTROLLER -TC:\CooCox\CoIDE\configuration\ProgramData\IMS_CONTROLLER/link.ld -g">
+      <target file="IMS_CONTROLLER.elf" lastModified="14c22b98707">
+         <source file="..\obj\mbport.o" lastModified="14c22b77195"/>
+         <source file="..\obj\mb.o" lastModified="14c22b546b6"/>
+         <source file="..\obj\protocol.o" lastModified="14c22b5481d"/>
+         <source file="..\obj\mbfuncdisc.o" lastModified="14c22b54937"/>
+         <source file="..\obj\portevent.o" lastModified="14c22b982a2"/>
+         <source file="..\obj\mbfuncother.o" lastModified="14c22b54b98"/>
+         <source file="..\obj\stm32f4xx_usart.o" lastModified="14c22b54cd0"/>
+         <source file="..\obj\stm32f4xx_pwr.o" lastModified="14c22b54d9c"/>
+         <source file="..\obj\rtc.o" lastModified="14c22b54f90"/>
+         <source file="..\obj\mbutils.o" lastModified="14c22b550f7"/>
+         <source file="..\obj\startup_stm32f4xx.o" lastModified="14c22b55174"/>
+         <source file="..\obj\backup_sram.o" lastModified="14c22b55220"/>
+         <source file="..\obj\stm32f4xx_iwdg.o" lastModified="14c22b552db"/>
+         <source file="..\obj\ADS1120.o" lastModified="14c22b55414"/>
+         <source file="..\obj\mbfuncholding.o" lastModified="14c22b6ba5b"/>
+         <source file="..\obj\main.o" lastModified="14c22b55637"/>
+         <source file="..\obj\mbcrc.o" lastModified="14c22b556a4"/>
+         <source file="..\obj\stm32f4xx_rcc.o" lastModified="14c22b557cd"/>
+         <source file="..\obj\timers.o" lastModified="14c22b55869"/>
+         <source file="..\obj\mbfuncinput.o" lastModified="14c22b55973"/>
+         <source file="..\obj\watchdog.o" lastModified="14c22b55a7c"/>
+         <source file="..\obj\mbfuncdiag.o" lastModified="14c22b55b57"/>
+         <source file="..\obj\tasks.o" lastModified="14c22b55c90"/>
+         <source file="..\obj\stm32f4xx_gpio.o" lastModified="14c22b55d0d"/>
+         <source file="..\obj\porttimer.o" lastModified="14c22b9836d"/>
+         <source file="..\obj\mbrtu.o" lastModified="14c22b6bf1d"/>
+         <source file="..\obj\list.o" lastModified="14c22b56058"/>
+         <source file="..\obj\system_stm32f4xx.o" lastModified="14c22b56143"/>
+         <source file="..\obj\port.o" lastModified="14c22b561ef"/>
+         <source file="..\obj\queue.o" lastModified="14c22b56375"/>
+         <source file="..\obj\portserial.o" lastModified="14c22b98448"/>
+         <source file="..\obj\croutine.o" lastModified="14c22b566b1"/>
+         <source file="..\obj\stm32f4xx_spi.o" lastModified="14c22b568b5"/>
+         <source file="..\obj\mbfunccoils.o" lastModified="14c22b5699f"/>
+         <source file="..\obj\event_groups.o" lastModified="14c22b56a5b"/>
+         <source file="..\obj\stm32f4xx_exti.o" lastModified="14c22b56ac8"/>
+         <source file="..\obj\misc.o" lastModified="14c22b56b36"/>
+         <source file="..\obj\stm32f4xx_rtc.o" lastModified="14c22b56c3f"/>
+         <source file="..\obj\heap_2.o" lastModified="14c22b56c9d"/>
+         <source file="..\obj\stm32f4xx_tim.o" lastModified="14c22b56dd6"/>
+         <source file="..\obj\power_detector.o" lastModified="14c22b56e33"/>
+      </target>
+   </processor>
+</history>
