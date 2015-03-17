@@ -10,6 +10,14 @@
 
 #include "watchdog.h"
 
+#include "stdio.h"
+#include "errno.h"
+
+#include "stm32f4xx_gpio.h"
+#include "stm32f4xx_rcc.h"
+#include "stm32f4xx_tim.h"
+#include "stm32f4xx_usart.h"
+#include "misc.h"
 extern struct task_watch task_watches[];
 
 static void Modbus_Task(void *pvParameters);
@@ -33,6 +41,7 @@ static void Modbus_Task(void *pvParameters)
     for( ;; )
     {
         eMBPoll();
+
         vTaskDelay(10);
         task_watches[PROTO_TASK].counter++;
     }

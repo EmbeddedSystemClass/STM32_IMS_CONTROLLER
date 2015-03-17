@@ -183,11 +183,11 @@ void GPIO_Init(GPIO_TypeDef* GPIOx, GPIO_InitTypeDef* GPIO_InitStruct)
 {
   uint32_t pinpos = 0x00, pos = 0x00 , currentpin = 0x00;
 
-  /* Check the parameters */
-  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
-  assert_param(IS_GPIO_PIN(GPIO_InitStruct->GPIO_Pin));
-  assert_param(IS_GPIO_MODE(GPIO_InitStruct->GPIO_Mode));
-  assert_param(IS_GPIO_PUPD(GPIO_InitStruct->GPIO_PuPd));
+//  /* Check the parameters */
+//  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+//  assert_param(IS_GPIO_PIN(GPIO_InitStruct->GPIO_Pin));
+//  assert_param(IS_GPIO_MODE(GPIO_InitStruct->GPIO_Mode));
+//  assert_param(IS_GPIO_PUPD(GPIO_InitStruct->GPIO_PuPd));
 
   /* -------------------------Configure the port pins---------------- */
   /*-- GPIO Mode Configuration --*/
@@ -531,10 +531,10 @@ void GPIO_PinAFConfig(GPIO_TypeDef* GPIOx, uint16_t GPIO_PinSource, uint8_t GPIO
   uint32_t temp = 0x00;
   uint32_t temp_2 = 0x00;
   
-  /* Check the parameters */
-  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
-  assert_param(IS_GPIO_PIN_SOURCE(GPIO_PinSource));
-  assert_param(IS_GPIO_AF(GPIO_AF));
+//  /* Check the parameters */
+//  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+//  assert_param(IS_GPIO_PIN_SOURCE(GPIO_PinSource));
+//  assert_param(IS_GPIO_AF(GPIO_AF));
   
   temp = ((uint32_t)(GPIO_AF) << ((uint32_t)((uint32_t)GPIO_PinSource & (uint32_t)0x07) * 4)) ;
   GPIOx->AFR[GPIO_PinSource >> 0x03] &= ~((uint32_t)0xF << ((uint32_t)((uint32_t)GPIO_PinSource & (uint32_t)0x07) * 4)) ;

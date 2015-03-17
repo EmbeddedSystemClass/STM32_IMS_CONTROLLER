@@ -26,24 +26,18 @@ eMBErrorCode
 eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
 {
 	eMBErrorCode    eStatus = MB_ENOERR;
-//	int             iRegIndex;
-//    uint16_t i=0;
-//
-//    REG_INPUT_NREGS=(DRYING_CHANNELS_NUM+2)*2+1;
-//
-//    for(i=0;i<DRYING_CHANNELS_NUM;i++)
-//    {
-//    	((float*)usRegInputBuf)[i] = uks_channels.drying_channel_list[i].temperature;
-//    }
-//
-//    ((float*)usRegInputBuf)[DRYING_CHANNELS_NUM] = uks_channels.heater_temperature;
-//    ((float*)usRegInputBuf)[DRYING_CHANNELS_NUM+1] = uks_channels.heater_temperature_current_setting;
-//
-//    usRegInputBuf[(DRYING_CHANNELS_NUM+2)*2] = uks_channels.power_value;
-//
-//
-//    if( ( usAddress >= REG_INPUT_START )&& ( usAddress + usNRegs <= REG_INPUT_START + REG_INPUT_NREGS ) )
-//    {
+	int             iRegIndex;
+    uint16_t i=0;
+
+    REG_INPUT_NREGS=16;
+
+    for(i=0;i<(usNRegs/2);i++)
+    {
+    	((float*)usRegInputBuf)[i] = 123.45;
+    }
+
+    if( ( usAddress >= REG_INPUT_START )&& ( usAddress + usNRegs <= REG_INPUT_START + REG_INPUT_NREGS ) )
+    {
 //        iRegIndex = ( int )( usAddress - usRegInputStart );
 //        while( usNRegs > 0 )
 //        {
@@ -54,11 +48,11 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
 //            iRegIndex++;
 //            usNRegs--;
 //        }
-//    }
-//    else
-//    {
-//        eStatus = MB_ENOREG;
-//    }
+    }
+    else
+    {
+        eStatus = MB_ENOREG;
+    }
 
     return eStatus;
 }

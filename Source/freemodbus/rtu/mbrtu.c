@@ -98,7 +98,7 @@ eMBRTUInit( UCHAR ucSlaveAddress, UCHAR ucPort, ULONG ulBaudRate, eMBParity ePar
          */
         if( ulBaudRate > 19200 )
         {
-            usTimerT35_50us = 100;//35;       /* 1800us. */
+            usTimerT35_50us = 35;       /* 1800us. */
         }
         else
         {
@@ -302,11 +302,9 @@ xMBRTUTransmitFSM( void )
         /* check if we are finished. */
         if( usSndBufferCount != 0 )
         {
-//            xMBPortSerialPutByte( ( CHAR )*pucSndBufferCur );
-//            pucSndBufferCur++;  /* next byte in sendbuffer. */
-//            usSndBufferCount--;
-        	VCP_DataTx(pucSndBufferCur,usSndBufferCount);
-        	usSndBufferCount=0;
+            xMBPortSerialPutByte( ( CHAR )*pucSndBufferCur );
+            pucSndBufferCur++;  /* next byte in sendbuffer. */
+            usSndBufferCount--;
         }
         else
         {

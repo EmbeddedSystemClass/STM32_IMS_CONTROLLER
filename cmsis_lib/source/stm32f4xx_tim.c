@@ -283,10 +283,10 @@ void TIM_TimeBaseInit(TIM_TypeDef* TIMx, TIM_TimeBaseInitTypeDef* TIM_TimeBaseIn
 {
   uint16_t tmpcr1 = 0;
 
-  /* Check the parameters */
-  assert_param(IS_TIM_ALL_PERIPH(TIMx)); 
-  assert_param(IS_TIM_COUNTER_MODE(TIM_TimeBaseInitStruct->TIM_CounterMode));
-  assert_param(IS_TIM_CKD_DIV(TIM_TimeBaseInitStruct->TIM_ClockDivision));
+//  /* Check the parameters */
+//  assert_param(IS_TIM_ALL_PERIPH(TIMx));
+//  assert_param(IS_TIM_COUNTER_MODE(TIM_TimeBaseInitStruct->TIM_CounterMode));
+//  assert_param(IS_TIM_CKD_DIV(TIM_TimeBaseInitStruct->TIM_ClockDivision));
 
   tmpcr1 = TIMx->CR1;  
 
@@ -586,8 +586,8 @@ void TIM_SetClockDivision(TIM_TypeDef* TIMx, uint16_t TIM_CKD)
 void TIM_Cmd(TIM_TypeDef* TIMx, FunctionalState NewState)
 {
   /* Check the parameters */
-  assert_param(IS_TIM_ALL_PERIPH(TIMx)); 
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//  assert_param(IS_TIM_ALL_PERIPH(TIMx));
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
   
   if (NewState != DISABLE)
   {
@@ -1889,12 +1889,12 @@ void TIM_CCxNCmd(TIM_TypeDef* TIMx, uint16_t TIM_Channel, uint16_t TIM_CCxN)
   */
 void TIM_ICInit(TIM_TypeDef* TIMx, TIM_ICInitTypeDef* TIM_ICInitStruct)
 {
-  /* Check the parameters */
-  assert_param(IS_TIM_LIST1_PERIPH(TIMx));
-  assert_param(IS_TIM_IC_POLARITY(TIM_ICInitStruct->TIM_ICPolarity));
-  assert_param(IS_TIM_IC_SELECTION(TIM_ICInitStruct->TIM_ICSelection));
-  assert_param(IS_TIM_IC_PRESCALER(TIM_ICInitStruct->TIM_ICPrescaler));
-  assert_param(IS_TIM_IC_FILTER(TIM_ICInitStruct->TIM_ICFilter));
+//  /* Check the parameters */
+//  assert_param(IS_TIM_LIST1_PERIPH(TIMx));
+//  assert_param(IS_TIM_IC_POLARITY(TIM_ICInitStruct->TIM_ICPolarity));
+//  assert_param(IS_TIM_IC_SELECTION(TIM_ICInitStruct->TIM_ICSelection));
+//  assert_param(IS_TIM_IC_PRESCALER(TIM_ICInitStruct->TIM_ICPrescaler));
+//  assert_param(IS_TIM_IC_FILTER(TIM_ICInitStruct->TIM_ICFilter));
   
   if (TIM_ICInitStruct->TIM_Channel == TIM_Channel_1)
   {
@@ -1908,7 +1908,7 @@ void TIM_ICInit(TIM_TypeDef* TIMx, TIM_ICInitTypeDef* TIM_ICInitStruct)
   else if (TIM_ICInitStruct->TIM_Channel == TIM_Channel_2)
   {
     /* TI2 Configuration */
-    assert_param(IS_TIM_LIST2_PERIPH(TIMx));
+//    assert_param(IS_TIM_LIST2_PERIPH(TIMx));
     TI2_Config(TIMx, TIM_ICInitStruct->TIM_ICPolarity,
                TIM_ICInitStruct->TIM_ICSelection,
                TIM_ICInitStruct->TIM_ICFilter);
@@ -1918,7 +1918,7 @@ void TIM_ICInit(TIM_TypeDef* TIMx, TIM_ICInitTypeDef* TIM_ICInitStruct)
   else if (TIM_ICInitStruct->TIM_Channel == TIM_Channel_3)
   {
     /* TI3 Configuration */
-    assert_param(IS_TIM_LIST3_PERIPH(TIMx));
+//    assert_param(IS_TIM_LIST3_PERIPH(TIMx));
     TI3_Config(TIMx,  TIM_ICInitStruct->TIM_ICPolarity,
                TIM_ICInitStruct->TIM_ICSelection,
                TIM_ICInitStruct->TIM_ICFilter);
@@ -1928,7 +1928,7 @@ void TIM_ICInit(TIM_TypeDef* TIMx, TIM_ICInitTypeDef* TIM_ICInitStruct)
   else
   {
     /* TI4 Configuration */
-    assert_param(IS_TIM_LIST3_PERIPH(TIMx));
+//    assert_param(IS_TIM_LIST3_PERIPH(TIMx));
     TI4_Config(TIMx, TIM_ICInitStruct->TIM_ICPolarity,
                TIM_ICInitStruct->TIM_ICSelection,
                TIM_ICInitStruct->TIM_ICFilter);
@@ -2085,8 +2085,8 @@ uint32_t TIM_GetCapture4(TIM_TypeDef* TIMx)
 void TIM_SetIC1Prescaler(TIM_TypeDef* TIMx, uint16_t TIM_ICPSC)
 {
   /* Check the parameters */
-  assert_param(IS_TIM_LIST1_PERIPH(TIMx));
-  assert_param(IS_TIM_IC_PRESCALER(TIM_ICPSC));
+//  assert_param(IS_TIM_LIST1_PERIPH(TIMx));
+//  assert_param(IS_TIM_IC_PRESCALER(TIM_ICPSC));
 
   /* Reset the IC1PSC Bits */
   TIMx->CCMR1 &= (uint16_t)~TIM_CCMR1_IC1PSC;
@@ -2362,9 +2362,9 @@ void TIM_CCPreloadControl(TIM_TypeDef* TIMx, FunctionalState NewState)
 void TIM_ITConfig(TIM_TypeDef* TIMx, uint16_t TIM_IT, FunctionalState NewState)
 {  
   /* Check the parameters */
-  assert_param(IS_TIM_ALL_PERIPH(TIMx));
-  assert_param(IS_TIM_IT(TIM_IT));
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//  assert_param(IS_TIM_ALL_PERIPH(TIMx));
+//  assert_param(IS_TIM_IT(TIM_IT));
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
   
   if (NewState != DISABLE)
   {
@@ -2544,7 +2544,7 @@ ITStatus TIM_GetITStatus(TIM_TypeDef* TIMx, uint16_t TIM_IT)
 void TIM_ClearITPendingBit(TIM_TypeDef* TIMx, uint16_t TIM_IT)
 {
   /* Check the parameters */
-  assert_param(IS_TIM_ALL_PERIPH(TIMx));
+//  assert_param(IS_TIM_ALL_PERIPH(TIMx));
 
   /* Clear the IT pending Bit */
   TIMx->SR = (uint16_t)~TIM_IT;
@@ -3062,10 +3062,10 @@ void TIM_EncoderInterfaceConfig(TIM_TypeDef* TIMx, uint16_t TIM_EncoderMode,
   uint16_t tmpccer = 0;
     
   /* Check the parameters */
-  assert_param(IS_TIM_LIST2_PERIPH(TIMx));
-  assert_param(IS_TIM_ENCODER_MODE(TIM_EncoderMode));
-  assert_param(IS_TIM_IC_POLARITY(TIM_IC1Polarity));
-  assert_param(IS_TIM_IC_POLARITY(TIM_IC2Polarity));
+//  assert_param(IS_TIM_LIST2_PERIPH(TIMx));
+//  assert_param(IS_TIM_ENCODER_MODE(TIM_EncoderMode));
+//  assert_param(IS_TIM_IC_POLARITY(TIM_IC1Polarity));
+//  assert_param(IS_TIM_IC_POLARITY(TIM_IC2Polarity));
 
   /* Get the TIMx SMCR register value */
   tmpsmcr = TIMx->SMCR;

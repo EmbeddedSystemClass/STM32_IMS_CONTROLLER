@@ -12,25 +12,20 @@
 #include "task.h"
 #include "queue.h"
 #include "semphr.h"
+#include "protocol.h"
 
-static void test_task(void *pvParameters);
+
 int main(void)
 {
 	SystemInit();
 
-	xTaskCreate(test_task,(signed char*)"test",128,NULL, tskIDLE_PRIORITY + 1, NULL);
+	Protocol_Init();
     vTaskStartScheduler();
 
     while(1);
 }
 
-static void test_task(void *pvParameters)
-{
-	while(1)
-	{
-		vTaskDelay(10);
-	}
-}
+
 //---------------------------------------------------------------------------------------
 
 void vApplicationTickHook( void )

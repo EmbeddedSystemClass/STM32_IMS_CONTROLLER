@@ -20,8 +20,6 @@
  */
 
 #include "mbport.h"
-
-/* ----------------------- Modbus includes ----------------------------------*/
 #include "mb.h"
 #include "mbport.h"
 
@@ -30,50 +28,123 @@
 #include "queue.h"
 #include "semphr.h"
 
+#include "stm32f4xx_gpio.h"
+#include "stm32f4xx_rcc.h"
+#include "stm32f4xx_tim.h"
+#include "stm32f4xx_usart.h"
+#include "misc.h"
 
 
-static void Serial_Task(void *pvParameters);
-static volatile uint8_t temp_char;
+#define USART_RS485 			USART3
+#define GPIO_AF_USART_RS485 	GPIO_AF_USART3
+#define USART_RS485_IRQn		USART3_IRQn
+#define RCC_USART_RS485 		RCC_APB1Periph_USART3
+#define USART_RS485_IRQHandler  USART3_IRQHandler
+
+#define RCC_USART_RS485_GPIO 	RCC_AHB1Periph_GPIOB
+
+#define USART_RS485_GPIO 	GPIOB
+
+#define USART_RS485_TXD	GPIO_Pin_10
+#define USART_RS485_RXD	GPIO_Pin_11
+
+#define USART_RS485_TXD_PIN_SOURCE GPIO_PinSource10
+#define USART_RS485_RXD_PIN_SOURCE GPIO_PinSource11
+
+#define USART_RS485_DE	GPIO_Pin_1
+#define USART_RS485_RE	GPIO_Pin_2
+
+#define RS_485_RECEIVE  USART_RS485_GPIO->BSRRH|=USART_RS485_DE; USART_RS485_GPIO->BSRRH|=USART_RS485_RE;
+#define RS_485_TRANSMIT USART_RS485_GPIO->BSRRL|=USART_RS485_DE; USART_RS485_GPIO->BSRRL|=USART_RS485_RE;
+
+
 /* ----------------------- Start implementation -----------------------------*/
 void
 vMBPortSerialEnable( BOOL xRxEnable, BOOL xTxEnable )
 {
 	if(TRUE==xRxEnable)
 	{
-		//USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
+		USART_ITConfig(USART_RS485, USART_IT_RXNE, ENABLE);
+		RS_485_RECEIVE;
 	}
 	else
 	{
-		//USART_ITConfig(USART1, USART_IT_RXNE, DISABLE);
+		USART_ITConfig(USART_RS485, USART_IT_RXNE, DISABLE);
+		RS_485_TRANSMIT;
 	}
 
 	if(TRUE==xTxEnable)
 	{
-		//USART_ITConfig(USART1, USART_IT_TXE, ENABLE);
+		USART_ITConfig(USART_RS485, USART_IT_TXE, ENABLE);
+		RS_485_TRANSMIT;
 		pxMBFrameCBTransmitterEmpty();
 	}
 	else
 	{
-	   //USART_ITConfig(USART1, USART_IT_TXE, DISABLE);
+	   USART_ITConfig(USART_RS485, USART_IT_TXE, DISABLE);
+	   RS_485_RECEIVE;
 	}
 }
-/**********************************************************************************/
+
 BOOL 
 xMBPortSerialInit( UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity eParity )
 {
-	//USBD_Init(&USB_OTG_dev,USB_OTG_FS_CORE_ID,&USR_desc,&USBD_CDC_cb,&USR_cb);
-	xTaskCreate(Serial_Task,(signed char*)"Serial",64,NULL, tskIDLE_PRIORITY + 1, NULL);
-	return TRUE;
+		GPIO_InitTypeDef GPIO_InitStruct;
+		USART_InitTypeDef USART_InitStruct;
+		NVIC_InitTypeDef NVIC_InitStructure;
+
+		RCC_APB1PeriphClockCmd(RCC_USART_RS485, ENABLE);
+		RCC_AHB1PeriphClockCmd(RCC_USART_RS485_GPIO, ENABLE);
+
+		GPIO_InitStruct.GPIO_Pin = USART_RS485_TXD | USART_RS485_RXD;
+		GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
+		GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+		GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+		GPIO_Init(USART_RS485_GPIO, &GPIO_InitStruct);
+
+		GPIO_PinAFConfig(USART_RS485_GPIO, USART_RS485_TXD_PIN_SOURCE, GPIO_AF_USART_RS485);
+		GPIO_PinAFConfig(USART_RS485_GPIO, USART_RS485_RXD_PIN_SOURCE, GPIO_AF_USART_RS485);
+
+		USART_InitStruct.USART_BaudRate = ulBaudRate;
+		USART_InitStruct.USART_WordLength = USART_WordLength_8b;
+		USART_InitStruct.USART_StopBits = USART_StopBits_1;
+		USART_InitStruct.USART_Parity = USART_Parity_No;
+		USART_InitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+		USART_InitStruct.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
+		USART_Init(USART_RS485, &USART_InitStruct);
+
+		GPIO_InitStruct.GPIO_Pin   = USART_RS485_DE|USART_RS485_RE;
+		GPIO_InitStruct.GPIO_Mode  = GPIO_Mode_OUT;
+		GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+		GPIO_InitStruct.GPIO_PuPd =  GPIO_PuPd_NOPULL;
+		GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_Init(USART_RS485_GPIO, &GPIO_InitStruct);
+
+		USART_ClearFlag(USART_RS485,  USART_FLAG_TXE  | USART_FLAG_RXNE );
+
+		USART_Cmd(USART_RS485, ENABLE);
+
+		NVIC_PriorityGroupConfig( NVIC_PriorityGroup_4 );
+
+		NVIC_InitStructure.NVIC_IRQChannel = USART_RS485_IRQn;
+		NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
+		NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+		NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+		NVIC_Init(&NVIC_InitStructure);
+
+		NVIC_EnableIRQ(USART_RS485_IRQn);
+
+		vMBPortSerialEnable(TRUE,FALSE);
+
+		return TRUE;
 }
 
 
 BOOL
 xMBPortSerialPutByte( CHAR ucByte )
 {
-	if(VCP_DataTx(&ucByte,1)==0)
-	{
-		pxMBFrameCBTransmitterEmpty();
-	}
+	USART_RS485->DR=ucByte;
     return TRUE;
 }
 
@@ -81,40 +152,27 @@ xMBPortSerialPutByte( CHAR ucByte )
 BOOL
 xMBPortSerialGetByte( CHAR * pucByte )
 {
-	*pucByte=temp_char;
-//	VCP_get_char(pucByte);
+	*pucByte=USART_RS485->DR;
     return TRUE;
 }
 
-/* Create an interrupt handler for the transmit buffer empty interrupt
- * (or an equivalent) for your target processor. This function should then
- * call pxMBFrameCBTransmitterEmpty( ) which tells the protocol stack that
- * a new character can be sent. The protocol stack will then call 
- * xMBPortSerialPutByte( ) to send the character.
- */
- void prvvUARTTxReadyISR( void )
+void USART_RS485_IRQHandler(void)
 {
-    pxMBFrameCBTransmitterEmpty(  );
+ 	static portBASE_TYPE xHigherPriorityTaskWoken;
+ 	xHigherPriorityTaskWoken = pdFALSE;
+
+ 	if(USART_GetITStatus(USART_RS485, USART_IT_RXNE) != RESET)
+   	{
+ 		USART_ClearITPendingBit(USART_RS485, USART_IT_RXNE);
+ 		pxMBFrameCBByteReceived();
+   	}
+
+   	if(USART_GetITStatus(USART_RS485, USART_IT_TXE) != RESET)
+   	{
+   		USART_ClearITPendingBit(USART_RS485, USART_IT_TXE);
+   		pxMBFrameCBTransmitterEmpty(  );
+   	}
+
+   	portEND_SWITCHING_ISR( xHigherPriorityTaskWoken );
 }
 
-/* Create an interrupt handler for the receive interrupt for your target
- * processor. This function should then call pxMBFrameCBByteReceived( ). The
- * protocol stack will then call xMBPortSerialGetByte( ) to retrieve the
- * character.
- */
-void prvvUARTRxISR( void )
-{
-     pxMBFrameCBByteReceived();
-}
-
-static void Serial_Task(void *pvParameters)
-{
-	while(1)
-	{
-//		if(VCP_get_char(&temp_char))
-//		{
-//			pxMBFrameCBByteReceived();
-//		}
-		 //vTaskDelay(1);
-	}
-}

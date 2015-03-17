@@ -111,8 +111,8 @@
   */
 void NVIC_PriorityGroupConfig(uint32_t NVIC_PriorityGroup)
 {
-  /* Check the parameters */
-  assert_param(IS_NVIC_PRIORITY_GROUP(NVIC_PriorityGroup));
+//  /* Check the parameters */
+//  assert_param(IS_NVIC_PRIORITY_GROUP(NVIC_PriorityGroup));
   
   /* Set the PRIGROUP[10:8] bits according to NVIC_PriorityGroup value */
   SCB->AIRCR = AIRCR_VECTKEY_MASK | NVIC_PriorityGroup;
@@ -131,10 +131,10 @@ void NVIC_Init(NVIC_InitTypeDef* NVIC_InitStruct)
 {
   uint8_t tmppriority = 0x00, tmppre = 0x00, tmpsub = 0x0F;
   
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NVIC_InitStruct->NVIC_IRQChannelCmd));
-  assert_param(IS_NVIC_PREEMPTION_PRIORITY(NVIC_InitStruct->NVIC_IRQChannelPreemptionPriority));  
-  assert_param(IS_NVIC_SUB_PRIORITY(NVIC_InitStruct->NVIC_IRQChannelSubPriority));
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NVIC_InitStruct->NVIC_IRQChannelCmd));
+//  assert_param(IS_NVIC_PREEMPTION_PRIORITY(NVIC_InitStruct->NVIC_IRQChannelPreemptionPriority));
+//  assert_param(IS_NVIC_SUB_PRIORITY(NVIC_InitStruct->NVIC_IRQChannelSubPriority));
     
   if (NVIC_InitStruct->NVIC_IRQChannelCmd != DISABLE)
   {

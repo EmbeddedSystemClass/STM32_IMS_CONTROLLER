@@ -1084,10 +1084,10 @@ void RCC_I2SCLKConfig(uint32_t RCC_I2SCLKSource)
   */
 void RCC_AHB1PeriphClockCmd(uint32_t RCC_AHB1Periph, FunctionalState NewState)
 {
-  /* Check the parameters */
-  assert_param(IS_RCC_AHB1_CLOCK_PERIPH(RCC_AHB1Periph));
-
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//  /* Check the parameters */
+//  assert_param(IS_RCC_AHB1_CLOCK_PERIPH(RCC_AHB1Periph));
+//
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
   if (NewState != DISABLE)
   {
     RCC->AHB1ENR |= RCC_AHB1Periph;

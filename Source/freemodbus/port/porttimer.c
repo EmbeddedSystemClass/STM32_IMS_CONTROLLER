@@ -33,17 +33,15 @@
 
 /* ----------------------- Start implementation -----------------------------*/
 BOOL
-xMBPortTimersInit( USHORT usTim1Timerout50us ) //配置50us时钟
+xMBPortTimersInit( USHORT usTim1Timerout50us )
 {
 	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
 	uint16_t PrescalerValue = 0;
 
-	/* TIM4 clock enable */
+
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
-	/* Compute the prescaler value */
 	PrescalerValue = (uint16_t) (SystemCoreClock / 20000) - 1; // 1/20000=50us
-	/* Time base configuration */
 	TIM_TimeBaseStructure.TIM_Period = (uint16_t) usTim1Timerout50us;
 	TIM_TimeBaseStructure.TIM_Prescaler = PrescalerValue;
 	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
@@ -52,9 +50,8 @@ xMBPortTimersInit( USHORT usTim1Timerout50us ) //配置50us时钟
 
 	TIM_ARRPreloadConfig(TIM4, ENABLE);
 
-	/* Configure one bit for preemption priority */
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
-	/* Enable the TIM4 Interrupt */
+
 	NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
@@ -62,16 +59,16 @@ xMBPortTimersInit( USHORT usTim1Timerout50us ) //配置50us时钟
 
 	NVIC_Init(&NVIC_InitStructure);
 
-	/* TIM IT DISABLE */
+
 	TIM_ClearITPendingBit(TIM4,TIM_IT_Update);
 	TIM_ITConfig(TIM4, TIM_IT_Update, DISABLE);
-	/* TIM4 DISABLE counter */
+
 	TIM_Cmd(TIM4,  DISABLE);
 	return TRUE;;
 }
 
 
-void vMBPortTimersEnable(  ) //打开时钟
+void vMBPortTimersEnable(  )
 {
 	TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
 	TIM_ITConfig(TIM4, TIM_IT_Update, ENABLE);
@@ -79,7 +76,7 @@ void vMBPortTimersEnable(  ) //打开时钟
 	TIM_Cmd(TIM4, ENABLE);
 }
 
-void vMBPortTimersDisable(  ) //关闭时钟
+void vMBPortTimersDisable(  )
 {
 	TIM_Cmd(TIM4, DISABLE);
 	TIM_SetCounter(TIM4,0x0000);

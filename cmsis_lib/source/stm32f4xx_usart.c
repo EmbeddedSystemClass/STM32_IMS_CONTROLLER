@@ -1209,16 +1209,16 @@ void USART_ITConfig(USART_TypeDef* USARTx, uint16_t USART_IT, FunctionalState Ne
 {
   uint32_t usartreg = 0x00, itpos = 0x00, itmask = 0x00;
   uint32_t usartxbase = 0x00;
-  /* Check the parameters */
-  assert_param(IS_USART_ALL_PERIPH(USARTx));
-  assert_param(IS_USART_CONFIG_IT(USART_IT));
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  /* The CTS interrupt is not available for UART4 and UART5 */
-  if (USART_IT == USART_IT_CTS)
-  {
-    assert_param(IS_USART_1236_PERIPH(USARTx));
-  } 
+//  /* Check the parameters */
+//  assert_param(IS_USART_ALL_PERIPH(USARTx));
+//  assert_param(IS_USART_CONFIG_IT(USART_IT));
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  /* The CTS interrupt is not available for UART4 and UART5 */
+//  if (USART_IT == USART_IT_CTS)
+//  {
+//    assert_param(IS_USART_1236_PERIPH(USARTx));
+//  }
     
   usartxbase = (uint32_t)USARTx;
 
@@ -1356,15 +1356,15 @@ ITStatus USART_GetITStatus(USART_TypeDef* USARTx, uint16_t USART_IT)
 {
   uint32_t bitpos = 0x00, itmask = 0x00, usartreg = 0x00;
   ITStatus bitstatus = RESET;
-  /* Check the parameters */
-  assert_param(IS_USART_ALL_PERIPH(USARTx));
-  assert_param(IS_USART_GET_IT(USART_IT)); 
-
-  /* The CTS interrupt is not available for UART4 and UART5 */ 
-  if (USART_IT == USART_IT_CTS)
-  {
-    assert_param(IS_USART_1236_PERIPH(USARTx));
-  } 
+//  /* Check the parameters */
+//  assert_param(IS_USART_ALL_PERIPH(USARTx));
+//  assert_param(IS_USART_GET_IT(USART_IT));
+//
+//  /* The CTS interrupt is not available for UART4 and UART5 */
+//  if (USART_IT == USART_IT_CTS)
+//  {
+//    assert_param(IS_USART_1236_PERIPH(USARTx));
+//  }
     
   /* Get the USART register index */
   usartreg = (((uint8_t)USART_IT) >> 0x05);
@@ -1429,15 +1429,15 @@ ITStatus USART_GetITStatus(USART_TypeDef* USARTx, uint16_t USART_IT)
 void USART_ClearITPendingBit(USART_TypeDef* USARTx, uint16_t USART_IT)
 {
   uint16_t bitpos = 0x00, itmask = 0x00;
-  /* Check the parameters */
-  assert_param(IS_USART_ALL_PERIPH(USARTx));
-  assert_param(IS_USART_CLEAR_IT(USART_IT)); 
-
-  /* The CTS interrupt is not available for UART4 and UART5 */
-  if (USART_IT == USART_IT_CTS)
-  {
-    assert_param(IS_USART_1236_PERIPH(USARTx));
-  } 
+//  /* Check the parameters */
+//  assert_param(IS_USART_ALL_PERIPH(USARTx));
+//  assert_param(IS_USART_CLEAR_IT(USART_IT));
+//
+//  /* The CTS interrupt is not available for UART4 and UART5 */
+//  if (USART_IT == USART_IT_CTS)
+//  {
+//    assert_param(IS_USART_1236_PERIPH(USARTx));
+//  }
     
   bitpos = USART_IT >> 0x08;
   itmask = ((uint16_t)0x01 << (uint16_t)bitpos);
