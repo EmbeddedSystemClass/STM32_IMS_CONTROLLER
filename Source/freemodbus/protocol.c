@@ -37,12 +37,13 @@ void Protocol_Init(void)
 static void Modbus_RS485_Task(void *pvParameters)
 {
     portTickType    xLastWakeTime;
+    stMBPoll stPoll_RS485;
 
     eMBEnable();
     task_watches[PROTO_TASK].task_status=TASK_ACTIVE;
     for( ;; )
     {
-        eMBPoll();
+        eMBPoll(&stPoll_RS485);
 
         vTaskDelay(10);
         task_watches[PROTO_TASK].counter++;

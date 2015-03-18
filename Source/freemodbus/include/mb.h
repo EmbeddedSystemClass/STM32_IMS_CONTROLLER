@@ -120,6 +120,14 @@ typedef enum
     MB_ETIMEDOUT                /*!< timeout error occurred. */
 } eMBErrorCode;
 
+typedef struct
+{
+	UCHAR   		*ucMBFrame;
+    UCHAR    		ucRcvAddress;
+    UCHAR    		ucFunctionCode;
+    USHORT   		usLength;
+    eMBException 	eException;
+} stMBPoll;
 
 /* ----------------------- Function prototypes ------------------------------*/
 /*! \ingroup modbus
@@ -217,7 +225,7 @@ eMBErrorCode    eMBDisable( void );
  *   returns eMBErrorCode::MB_EILLSTATE. Otherwise it returns 
  *   eMBErrorCode::MB_ENOERR.
  */
-eMBErrorCode    eMBPoll( void );
+eMBErrorCode    eMBPoll( stMBPoll *stPoll );
 
 /*! \ingroup modbus
  * \brief Configure the slave id of the device.

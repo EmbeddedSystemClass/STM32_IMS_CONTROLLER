@@ -328,14 +328,16 @@ eMBDisable( void )
     return eStatus;
 }
 
+
+
 eMBErrorCode
-eMBPoll( void )
+eMBPoll( stMBPoll *stPoll )
 {
-	static UCHAR   *ucMBFrame;
-    static UCHAR    ucRcvAddress;
-    static UCHAR    ucFunctionCode;
-    static USHORT   usLength;
-    static eMBException eException;
+//	static UCHAR   *stPoll->ucMBFrame;
+//    static UCHAR    stPoll->ucRcvAddress;
+//    static UCHAR    stPoll->ucFunctionCode;
+//    static USHORT   stPoll->usLength;
+//    static eMBException stPoll->eException;
 
     int             i;
     eMBErrorCode    eStatus = MB_ENOERR;
@@ -357,11 +359,11 @@ eMBPoll( void )
             break;
 
         case EV_FRAME_RECEIVED:
-            eStatus = peMBFrameReceiveCur( &ucRcvAddress, &ucMBFrame, &usLength );
+            eStatus = peMBFrameReceiveCur( &stPoll->ucRcvAddress, &stPoll->ucMBFrame, &stPoll->usLength );
             if( eStatus == MB_ENOERR )
             {
                 /* Check if the frame is for us. If not ignore the frame. */
-                if( ( ucRcvAddress == ucMBAddress ) || ( ucRcvAddress == MB_ADDRESS_BROADCAST ) )
+                if( ( stPoll->ucRcvAddress == ucMBAddress ) || ( stPoll->ucRcvAddress == MB_ADDRESS_BROADCAST ) )
                 {
                     ( void )xMBPortEventPost( EV_EXECUTE );
                 }
@@ -369,8 +371,8 @@ eMBPoll( void )
             break;
 
         case EV_EXECUTE:
-            ucFunctionCode = ucMBFrame[MB_PDU_FUNC_OFF];
-            eException = MB_EX_ILLEGAL_FUNCTION;
+            stPoll->ucFunctionCode = stPoll->ucMBFrame[MB_PDU_FUNC_OFF];
+            stPoll->eException = MB_EX_ILLEGAL_FUNCTION;
             for( i = 0; i < MB_FUNC_HANDLERS_MAX; i++ )
             {
                 /* No more function handlers registered. Abort. */
@@ -378,29 +380,29 @@ eMBPoll( void )
                 {
                     break;
                 }
-                else if( xFuncHandlers[i].ucFunctionCode == ucFunctionCode )
+                else if( xFuncHandlers[i].ucFunctionCode == stPoll->ucFunctionCode )
                 {
-                    eException = xFuncHandlers[i].pxHandler( ucMBFrame, &usLength );
+                    stPoll->eException = xFuncHandlers[i].pxHandler( stPoll->ucMBFrame, &stPoll->usLength );
                     break;
                 }
             }
 
             /* If the request was not sent to the broadcast address we
              * return a reply. */
-            if( ucRcvAddress != MB_ADDRESS_BROADCAST )
+            if( stPoll->ucRcvAddress != MB_ADDRESS_BROADCAST )
             {
-                if( eException != MB_EX_NONE )
+                if( stPoll->eException != MB_EX_NONE )
                 {
                     /* An exception occured. Build an error frame. */
-                    usLength = 0;
-                    ucMBFrame[usLength++] = ( UCHAR )( ucFunctionCode | MB_FUNC_ERROR );
-                    ucMBFrame[usLength++] = eException;
+                    stPoll->usLength = 0;
+                    stPoll->ucMBFrame[stPoll->usLength++] = ( UCHAR )( stPoll->ucFunctionCode | MB_FUNC_ERROR );
+                    stPoll->ucMBFrame[stPoll->usLength++] = stPoll->eException;
                 }
                 if( ( eMBCurrentMode == MB_ASCII ) && MB_ASCII_TIMEOUT_WAIT_BEFORE_SEND_MS )
                 {
                     vMBPortTimersDelay( MB_ASCII_TIMEOUT_WAIT_BEFORE_SEND_MS );
                 }                
-                eStatus = peMBFrameSendCur( ucMBAddress, ucMBFrame, usLength );
+                eStatus = peMBFrameSendCur( ucMBAddress, stPoll->ucMBFrame, stPoll->usLength );
             }
             break;
 
