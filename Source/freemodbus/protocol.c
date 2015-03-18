@@ -20,19 +20,21 @@
 #include "misc.h"
 extern struct task_watch task_watches[];
 
-static void Modbus_Task(void *pvParameters);
+static void Modbus_RS485_Task(void *pvParameters);
+static void Modbus_RS232_Task(void *pvParameters);
 
 void Protocol_Init(void)
 {
 	eMBErrorCode    eStatus;
 
 	eStatus = eMBInit( MB_RTU, 0x0A, 0, 57600, 0 );
-	xTaskCreate(Modbus_Task,(signed char*)"Modbus",256,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(Modbus_RS485_Task,(signed char*)"Modbus RS485",256,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(Modbus_RS232_Task,(signed char*)"Modbus RS232",256,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 
 
 
-static void Modbus_Task(void *pvParameters)
+static void Modbus_RS485_Task(void *pvParameters)
 {
     portTickType    xLastWakeTime;
 
@@ -45,4 +47,13 @@ static void Modbus_Task(void *pvParameters)
         vTaskDelay(10);
         task_watches[PROTO_TASK].counter++;
     }
+}
+
+static void Modbus_RS232_Task(void *pvParameters)
+{
+    for( ;; )
+    {
+    	vTaskDelay(10);
+    }
+
 }

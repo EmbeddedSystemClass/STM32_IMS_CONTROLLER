@@ -38,16 +38,16 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
 
     if( ( usAddress >= REG_INPUT_START )&& ( usAddress + usNRegs <= REG_INPUT_START + REG_INPUT_NREGS ) )
     {
-//        iRegIndex = ( int )( usAddress - usRegInputStart );
-//        while( usNRegs > 0 )
-//        {
-//            *pucRegBuffer++ =
-//                ( unsigned char )( usRegInputBuf[iRegIndex] >> 8 );
-//            *pucRegBuffer++ =
-//                ( unsigned char )( usRegInputBuf[iRegIndex] & 0xFF );
-//            iRegIndex++;
-//            usNRegs--;
-//        }
+        iRegIndex = ( int )( usAddress - usRegInputStart );
+        while( usNRegs > 0 )
+        {
+            *pucRegBuffer++ =
+                ( unsigned char )( usRegInputBuf[iRegIndex] >> 8 );
+            *pucRegBuffer++ =
+                ( unsigned char )( usRegInputBuf[iRegIndex] & 0xFF );
+            iRegIndex++;
+            usNRegs--;
+        }
     }
     else
     {

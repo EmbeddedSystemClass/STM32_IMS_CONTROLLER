@@ -144,9 +144,6 @@ xMBPortSerialInit( UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity e
 BOOL
 xMBPortSerialPutByte( CHAR ucByte )
 {
-//	USART_RS485->DR=ucByte;
-//    return TRUE;
-
 	USART_SendData(USART_RS485, ucByte);
 	while(USART_GetFlagStatus(USART_RS485, USART_FLAG_TXE) == 0);
 
@@ -157,9 +154,6 @@ xMBPortSerialPutByte( CHAR ucByte )
 BOOL
 xMBPortSerialGetByte( CHAR * pucByte )
 {
-//	*pucByte=USART_RS485->DR;
-//    return TRUE;
-
     USART_ClearFlag(USART_RS485, USART_IT_RXNE) ;
 
     *pucByte = (u8)USART_ReceiveData(USART_RS485);
@@ -170,18 +164,6 @@ void USART_RS485_IRQHandler(void)
 {
  	static portBASE_TYPE xHigherPriorityTaskWoken;
  	xHigherPriorityTaskWoken = pdFALSE;
-
-// 	if(USART_GetITStatus(USART_RS485, USART_IT_RXNE) != RESET)
-//   	{
-// 		USART_ClearITPendingBit(USART_RS485, USART_IT_RXNE);
-// 		pxMBFrameCBByteReceived();
-//   	}
-//
-//   	if(USART_GetITStatus(USART_RS485, USART_IT_TC) != RESET)
-//   	{
-//   		USART_ClearITPendingBit(USART_RS485, USART_IT_TC);
-//   		pxMBFrameCBTransmitterEmpty(  );
-//   	}
 
  	if(USART_GetITStatus(USART_RS485,USART_IT_TC))
  	{

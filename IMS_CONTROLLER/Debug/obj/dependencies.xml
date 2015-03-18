@@ -29,14 +29,6 @@
          <include file="..\..\..\Source\freemodbus\include\mbproto.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\Source\devices\power_detector.c" lastModified="1492d8a4b76">
-         <include file="..\..\..\Source\devices\power_detector.h"/>
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_pwr.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_exti.h"/>
-         <include file="..\..\..\cmsis_lib\include\misc.h"/>
-      </source>
       <source file="..\..\..\Source\devices\watchdog.c" lastModified="14b2fdb598d">
          <include file="..\..\..\Source\devices\watchdog.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h"/>
@@ -147,7 +139,7 @@
          <include file="..\..\..\Source\freemodbus\include\mbproto.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\Source\devices\power_detector.c" lastModified="1492d8a4b76">
+      <source file="..\..\..\Source\devices\power_detector.c" lastModified="14c2bcc22eb">
          <include file="..\..\..\Source\devices\power_detector.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
@@ -178,21 +170,6 @@
          <include file="..\..\..\Source\FreeRTOS\Source\include\list.h"/>
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\mpu_wrappers.h" lastModified="14af2c4fa14">
-      </source>
-      <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14c2b8befad">
-         <include file="..\..\..\Source\freemodbus\protocol.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\semphr.h"/>
-         <include file="..\..\..\Source\freemodbus\include\mb.h"/>
-         <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
-         <include file="..\..\..\Source\devices\watchdog.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_usart.h"/>
-         <include file="..\..\..\cmsis_lib\include\misc.h"/>
       </source>
       <source file="..\..\..\Source\freemodbus\functions\mbfuncdiag.c" lastModified="10f5ec0d910">
       </source>
@@ -265,6 +242,20 @@
       </source>
       <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="1428e3c1104">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14c2b9b087c">
+         <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
+         <include file="..\..\..\Source\freemodbus\include\mb.h"/>
+         <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
+         <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
+         <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
+         <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
+         <include file="..\..\..\Source\FreeRTOS\Source\include\semphr.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_usart.h"/>
+         <include file="..\..\..\cmsis_lib\include\misc.h"/>
       </source>
       <source file="..\..\..\Source\freemodbus\functions\mbfuncholding.c" lastModified="14c22b6b2d9">
          <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
@@ -370,6 +361,8 @@
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="14835c0baaa">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
+      <source file="..\..\..\Source\devices\frequency.c" lastModified="14c2bcac9b4">
+      </source>
       <source file="..\..\..\Source\FreeRTOS\Source\timers.c" lastModified="14af2c59968">
          <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
@@ -384,15 +377,15 @@
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\portmacro.h" lastModified="14af2c519ed">
       </source>
+      <source file="..\..\..\Source\FreeRTOS\Source\include\task.h" lastModified="14af2c130a3">
+         <include file="..\..\..\Source\FreeRTOS\Source\include\list.h"/>
+      </source>
       <source file="..\..\..\Source\freemodbus\functions\mbfuncdisc.c" lastModified="14c22750280">
          <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
          <include file="..\..\..\Source\freemodbus\include\mb.h"/>
          <include file="..\..\..\Source\freemodbus\include\mbframe.h"/>
          <include file="..\..\..\Source\freemodbus\include\mbproto.h"/>
          <include file="..\..\..\Source\freemodbus\include\mbconfig.h"/>
-      </source>
-      <source file="..\..\..\Source\FreeRTOS\Source\include\task.h" lastModified="14af2c130a3">
-         <include file="..\..\..\Source\FreeRTOS\Source\include\list.h"/>
       </source>
       <source file="..\..\..\cmsis\core_cm4_simd.h" lastModified="14125d7ed9e">
       </source>
@@ -445,7 +438,7 @@
          <include file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\portmacro.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\portmacro.h"/>
       </source>
-      <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14c27e2949b">
+      <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14c2b9d15b1">
          <include file="..\..\..\Source\freemodbus\include\mb.h"/>
          <include file="..\..\..\Source\devices\backup_sram.h"/>
       </source>
@@ -498,14 +491,6 @@
       <source file="..\..\..\Source\devices\watchdog.h" lastModified="14b2fda7150">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\Source\devices\power_detector.c" lastModified="1492d8a4b76">
-         <include file="..\..\..\Source\devices\power_detector.h"/>
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_pwr.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_exti.h"/>
-         <include file="..\..\..\cmsis_lib\include\misc.h"/>
-      </source>
       <source file="..\..\..\Source\devices\watchdog.c" lastModified="14b2fdb598d">
          <include file="..\..\..\Source\devices\watchdog.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h"/>
@@ -551,14 +536,6 @@
          <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
          <include file="..\..\..\Source\freemodbus\include\mbproto.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-      </source>
-      <source file="..\..\..\Source\devices\power_detector.c" lastModified="1492d8a4b76">
-         <include file="..\..\..\Source\devices\power_detector.h"/>
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_pwr.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_exti.h"/>
-         <include file="..\..\..\cmsis_lib\include\misc.h"/>
       </source>
       <source file="..\..\..\Source\devices\watchdog.c" lastModified="14b2fdb598d">
          <include file="..\..\..\Source\devices\watchdog.h"/>

@@ -46,11 +46,11 @@
       <target file="mbascii.o" lastModified="14c2b8c82c6">
          <source file="..\..\..\Source\freemodbus\ascii\mbascii.c" lastModified="14c26d2e219"/>
       </target>
-      <target file="mbport.o" lastModified="14c27e2a2f2">
-         <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14c27e2949b"/>
+      <target file="mbport.o" lastModified="14c2b9d2438">
+         <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14c2b9d15b1"/>
       </target>
-      <target file="portserial.o" lastModified="14c2b97cbdf">
-         <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14c2b97c25a"/>
+      <target file="portserial.o" lastModified="14c2b9b5218">
+         <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14c2b9b087c"/>
       </target>
       <target file="mbfuncother.o" lastModified="14c2b8c7fd8">
          <source file="..\..\..\Source\freemodbus\functions\mbfuncother.c" lastModified="14c226627f3"/>
@@ -100,8 +100,8 @@
       <target file="portevent.o" lastModified="14c26d2a1c5">
          <source file="..\..\..\Source\freemodbus\port\portevent.c" lastModified="13703e72120"/>
       </target>
-      <target file="power_detector.o" lastModified="14c26d2c20e">
-         <source file="..\..\..\Source\devices\power_detector.c" lastModified="1492d8a4b76"/>
+      <target file="power_detector.o" lastModified="14c2bcf54f9">
+         <source file="..\..\..\Source\devices\power_detector.c" lastModified="14c2bcc22eb"/>
       </target>
       <target file="printf.o" lastModified="14c274f02a6">
          <source file="..\..\..\stdio\printf.c" lastModified="14c274eee15"/>
@@ -118,14 +118,17 @@
       <target file="mbfuncdisc.o" lastModified="14c2b8c7f3b">
          <source file="..\..\..\Source\freemodbus\functions\mbfuncdisc.c" lastModified="14c2274fab0"/>
       </target>
+      <target file="frequency.o" lastModified="14c2bcf543e">
+         <source file="..\..\..\Source\devices\frequency.c" lastModified="14c2bcac9b4"/>
+      </target>
       <target file="stm32f4xx_spi.o" lastModified="14c274b8e8e">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="14a0a9197dd"/>
       </target>
+      <target file="protocol.o" lastModified="14c2bdb2709">
+         <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14c2bdb1d07"/>
+      </target>
       <target file="ADS1120.o" lastModified="14c26d2aa41">
          <source file="..\..\..\Source\devices\ADS1120.c" lastModified="14c2226703e"/>
-      </target>
-      <target file="protocol.o" lastModified="14c2b8c7e90">
-         <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14c2b8be7dd"/>
       </target>
       <target file="main.o" lastModified="14c26d2ac73">
          <source file="..\..\..\main.c" lastModified="14c269245e1"/>

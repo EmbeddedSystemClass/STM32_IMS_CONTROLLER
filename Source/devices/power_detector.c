@@ -38,9 +38,9 @@ void Power_Detector_Init(void)
 
 void PVD_IRQHandler(void) {
     // voltage dropping too low
-    if (EXTI_GetITStatus(EXTI_Line16) != RESET) {
-        // shut everything down
-    	NVIC_SystemReset();
+    if (EXTI_GetITStatus(EXTI_Line16) != RESET)
+    {
         EXTI_ClearITPendingBit(EXTI_Line16);
+        NVIC_SystemReset();
     }
 }

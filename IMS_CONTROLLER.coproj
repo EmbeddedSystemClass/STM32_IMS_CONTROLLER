@@ -132,6 +132,7 @@
     <File name="FreeRTOS/Source/include/deprecated_definitions.h" path="Source/FreeRTOS/Source/include/deprecated_definitions.h" type="1"/>
     <File name="freemodbus" path="" type="2"/>
     <File name="cmsis" path="" type="2"/>
+    <File name="devices/frequency.c" path="Source/devices/frequency.c" type="1"/>
     <File name="cmsis_lib" path="" type="2"/>
     <File name="freemodbus/functions/mbfuncholding.c" path="Source/freemodbus/functions/mbfuncholding.c" type="1"/>
     <File name="freemodbus/include/mb.h" path="Source/freemodbus/include/mb.h" type="1"/>
@@ -169,6 +170,7 @@
     <File name="cmsis_boot/stm32f4xx_conf.h" path="cmsis_boot/stm32f4xx_conf.h" type="1"/>
     <File name="cmsis_boot/system_stm32f4xx.h" path="cmsis_boot/system_stm32f4xx.h" type="1"/>
     <File name="freemodbus/port" path="" type="2"/>
+    <File name="devices/frequency.h" path="Source/devices/frequency.h" type="1"/>
     <File name="FreeRTOS/Source/portable/GCC/ARM_CM3/port.c" path="Source/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c" type="1"/>
     <File name="freemodbus/include/mbport.h" path="Source/freemodbus/include/mbport.h" type="1"/>
     <File name="FreeRTOS/Source" path="" type="2"/>
