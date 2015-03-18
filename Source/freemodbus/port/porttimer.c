@@ -33,7 +33,7 @@
 
 /* ----------------------- Start implementation -----------------------------*/
 BOOL
-xMBPortTimersInit( USHORT usTim1Timerout50us )
+RS485TimersInit( USHORT usTim1Timerout50us )
 {
 	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
@@ -68,7 +68,7 @@ xMBPortTimersInit( USHORT usTim1Timerout50us )
 }
 
 
-void vMBPortTimersEnable(  )
+void RS485TimersEnable(  )
 {
 	TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
 	TIM_ITConfig(TIM4, TIM_IT_Update, ENABLE);
@@ -76,7 +76,7 @@ void vMBPortTimersEnable(  )
 	TIM_Cmd(TIM4, ENABLE);
 }
 
-void vMBPortTimersDisable(  )
+void RS485TimersDisable(  )
 {
 	TIM_Cmd(TIM4, DISABLE);
 	TIM_SetCounter(TIM4,0x0000);
@@ -91,6 +91,6 @@ void vMBPortTimersDisable(  )
 void TIM4_IRQHandler( void ) //
 {
 	TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
-    ( void )pxMBPortCBTimerExpired(  );
+   /* ( void )pxMBPortCBTimerExpired(  );*///!!!
 }
 

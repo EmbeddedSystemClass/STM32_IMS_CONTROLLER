@@ -60,7 +60,7 @@
 
 /* ----------------------- Start implementation -----------------------------*/
 void
-vMBPortSerialEnable( BOOL xRxEnable, BOOL xTxEnable )
+RS485SerialEnable( BOOL xRxEnable, BOOL xTxEnable )
 {
 	if(TRUE==xRxEnable)
 	{
@@ -87,7 +87,7 @@ vMBPortSerialEnable( BOOL xRxEnable, BOOL xTxEnable )
 }
 
 BOOL 
-xMBPortSerialInit( UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity eParity )
+RS485SerialInit( UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity eParity )
 {
 		GPIO_InitTypeDef GPIO_InitStruct;
 		USART_InitTypeDef USART_InitStruct;
@@ -142,7 +142,7 @@ xMBPortSerialInit( UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity e
 
 
 BOOL
-xMBPortSerialPutByte( CHAR ucByte )
+RS485SerialPutByte( CHAR ucByte )
 {
 	USART_SendData(USART_RS485, ucByte);
 	while(USART_GetFlagStatus(USART_RS485, USART_FLAG_TXE) == 0);
@@ -152,7 +152,7 @@ xMBPortSerialPutByte( CHAR ucByte )
 
 
 BOOL
-xMBPortSerialGetByte( CHAR * pucByte )
+RS485SerialGetByte( CHAR * pucByte )
 {
     USART_ClearFlag(USART_RS485, USART_IT_RXNE) ;
 
@@ -167,7 +167,7 @@ void USART_RS485_IRQHandler(void)
 
  	if(USART_GetITStatus(USART_RS485,USART_IT_TC))
  	{
- 	        pxMBFrameCBTransmitterEmpty(  );
+ 		pxMBFrameCBTransmitterEmpty(  );
  	}
  	else if(USART_GetITStatus(USART_RS485,USART_IT_RXNE))
  	{

@@ -60,6 +60,19 @@ PR_BEGIN_EXTERN_C
  * </code>
  */
 
+typedef enum
+{
+    MB_ENOERR,                  /*!< no error. */
+    MB_ENOREG,                  /*!< illegal register address. */
+    MB_EINVAL,                  /*!< illegal argument. */
+    MB_EPORTERR,                /*!< porting layer error. */
+    MB_ENORES,                  /*!< insufficient resources. */
+    MB_EIO,                     /*!< I/O error. */
+    MB_EILLSTATE,               /*!< protocol stack in illegal state. */
+    MB_ETIMEDOUT                /*!< timeout error occurred. */
+} eMBErrorCode;
+
+
 /* ----------------------- Defines ------------------------------------------*/
 #define MB_PDU_SIZE_MAX     253 /*!< Maximum size of a PDU. */
 #define MB_PDU_SIZE_MIN     1   /*!< Function Code */

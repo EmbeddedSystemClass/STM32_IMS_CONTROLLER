@@ -23,11 +23,13 @@ extern struct task_watch task_watches[];
 static void Modbus_RS485_Task(void *pvParameters);
 static void Modbus_RS232_Task(void *pvParameters);
 
+stMBContext stContext_RS485;
+
 void Protocol_Init(void)
 {
 	eMBErrorCode    eStatus;
 
-	eStatus = eMBInit( MB_RTU, 0x0A, 0, 57600, 0 );
+	eStatus = eMBInit(&stContext_RS485, MB_RTU, 0x0A, 0, 57600, 0 );
 	xTaskCreate(Modbus_RS485_Task,(signed char*)"Modbus RS485",256,NULL, tskIDLE_PRIORITY + 1, NULL);
 	xTaskCreate(Modbus_RS232_Task,(signed char*)"Modbus RS232",256,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
@@ -37,13 +39,13 @@ void Protocol_Init(void)
 static void Modbus_RS485_Task(void *pvParameters)
 {
     portTickType    xLastWakeTime;
-    stMBPoll stPoll_RS485;
 
-    eMBEnable();
+
+    eMBEnable(&stContext_RS485);
     task_watches[PROTO_TASK].task_status=TASK_ACTIVE;
     for( ;; )
     {
-        eMBPoll(&stPoll_RS485);
+        eMBPoll(&stContext_RS485);
 
         vTaskDelay(10);
         task_watches[PROTO_TASK].counter++;

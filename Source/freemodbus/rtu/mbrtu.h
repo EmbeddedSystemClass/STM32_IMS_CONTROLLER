@@ -34,6 +34,42 @@
 #ifdef __cplusplus
 PR_BEGIN_EXTERN_C
 #endif
+
+/* ----------------------- Defines ------------------------------------------*/
+#define MB_SER_PDU_SIZE_MIN     4       /*!< Minimum size of a Modbus RTU frame. */
+#define MB_SER_PDU_SIZE_MAX     256     /*!< Maximum size of a Modbus RTU frame. */
+#define MB_SER_PDU_SIZE_CRC     2       /*!< Size of CRC field in PDU. */
+#define MB_SER_PDU_ADDR_OFF     0       /*!< Offset of slave address in Ser-PDU. */
+#define MB_SER_PDU_PDU_OFF      1       /*!< Offset of Modbus-PDU in Ser-PDU. */
+
+/* ----------------------- Type definitions ---------------------------------*/
+typedef enum
+{
+    STATE_RX_INIT,              /*!< Receiver is in initial state. */
+    STATE_RX_IDLE,              /*!< Receiver is in idle state. */
+    STATE_RX_RCV,               /*!< Frame is beeing received. */
+    STATE_RX_ERROR              /*!< If the frame is invalid. */
+} eMBRcvState;
+
+typedef enum
+{
+    STATE_TX_IDLE,              /*!< Transmitter is in idle state. */
+    STATE_TX_XMIT               /*!< Transmitter is in transfer state. */
+} eMBSndState;
+
+typedef struct
+{
+	volatile eMBSndState eSndState;
+	volatile eMBRcvState eRcvState;
+
+	volatile UCHAR  ucRTUBuf[MB_SER_PDU_SIZE_MAX];
+
+	volatile UCHAR *pucSndBufferCur;
+	volatile USHORT usSndBufferCount;
+
+	volatile USHORT usRcvBufferPos;
+} stMBRTUContext;
+
     eMBErrorCode eMBRTUInit( UCHAR slaveAddress, UCHAR ucPort, ULONG ulBaudRate,
                              eMBParity eParity );
 void            eMBRTUStart( void );

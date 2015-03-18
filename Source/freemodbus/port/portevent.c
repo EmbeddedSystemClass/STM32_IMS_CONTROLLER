@@ -24,34 +24,34 @@
 #include "mbport.h"
 
 /* ----------------------- Variables ----------------------------------------*/
-static eMBEventType eQueuedEvent;
-static BOOL     xEventInQueue;
+//static eMBEventType eQueuedEvent;
+//static BOOL     xEventInQueue;
 
 /* ----------------------- Start implementation -----------------------------*/
 BOOL
-xMBPortEventInit( void )
+xMBPortEventInit( stMBEvent *stEvent )
 {
     xEventInQueue = FALSE;
     return TRUE;
 }
 
 BOOL
-xMBPortEventPost( eMBEventType eEvent )
+xMBPortEventPost(stMBEvent *stEvent, eMBEventType eEvent )
 {
-    xEventInQueue = TRUE;
-    eQueuedEvent = eEvent;
+	stEvent->xEventInQueue = TRUE;
+	stEvent->eQueuedEvent = eEvent;
     return TRUE;
 }
 
 BOOL
-xMBPortEventGet( eMBEventType * eEvent )
+xMBPortEventGet(stMBEvent *stEvent, eMBEventType * eEvent )
 {
     BOOL            xEventHappened = FALSE;
 
     if( xEventInQueue )
     {
         *eEvent = eQueuedEvent;
-        xEventInQueue = FALSE;
+        stEvent->xEventInQueue = FALSE;
         xEventHappened = TRUE;
     }
     return xEventHappened;

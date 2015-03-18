@@ -80,12 +80,40 @@ typedef enum
     MB_PAR_EVEN                 /*!< Even parity. */
 } eMBParity;
 
+
+typedef struct
+{
+	void ( *vMBPortSerialEnable )( BOOL xRxEnable, BOOL xTxEnable );
+	BOOL ( *xMBPortSerialInit )( UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity eParity );
+	BOOL ( *xMBPortSerialPutByte )( CHAR ucByte );
+	BOOL ( *xMBPortSerialGetByte )( CHAR * pucByte );
+
+}stMBCommunication;
+
+
+
+typedef struct
+{
+	BOOL            ( *xMBPortTimersInit)( USHORT usTimeOut50us );
+	void            ( *xMBPortTimersClose)( void );
+	void            ( *vMBPortTimersEnable)( void );
+	void            ( *vMBPortTimersDisable)( void );
+	void            ( *vMBPortTimersDelay)( USHORT usTimeOutMS );
+
+}stMBTimer;
+
+typedef struct
+{
+	eMBEventType eQueuedEvent;
+	BOOL     xEventInQueue;
+}stMBEvent;
+
 /* ----------------------- Supporting functions -----------------------------*/
-BOOL            xMBPortEventInit( void );
+BOOL            xMBPortEventInit( stMBEvent *stEvent );
 
-BOOL            xMBPortEventPost( eMBEventType eEvent );
+BOOL            xMBPortEventPost(stMBEvent *stEvent, eMBEventType eEvent );
 
-BOOL            xMBPortEventGet(  /*@out@ */ eMBEventType * eEvent );
+BOOL            xMBPortEventGet(stMBEvent *stEvent,  /*@out@ */ eMBEventType * eEvent );
 
 /* ----------------------- Serial port functions ----------------------------*/
 

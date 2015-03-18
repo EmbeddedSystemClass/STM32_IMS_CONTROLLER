@@ -38,6 +38,7 @@ PR_BEGIN_EXTERN_C
 
 #include "mbport.h"
 #include "mbproto.h"
+#include "mbframe.h"
 #include "stm32f4xx.h"
 /*! \defgroup modbus Modbus
  * \code #include "mb.h" \endcode
@@ -108,17 +109,35 @@ typedef enum
 /*! \ingroup modbus
  * \brief Errorcodes used by all function in the protocol stack.
  */
+//typedef enum
+//{
+//    MB_ENOERR,                  /*!< no error. */
+//    MB_ENOREG,                  /*!< illegal register address. */
+//    MB_EINVAL,                  /*!< illegal argument. */
+//    MB_EPORTERR,                /*!< porting layer error. */
+//    MB_ENORES,                  /*!< insufficient resources. */
+//    MB_EIO,                     /*!< I/O error. */
+//    MB_EILLSTATE,               /*!< protocol stack in illegal state. */
+//    MB_ETIMEDOUT                /*!< timeout error occurred. */
+//} eMBErrorCode;
+
+
 typedef enum
 {
-    MB_ENOERR,                  /*!< no error. */
-    MB_ENOREG,                  /*!< illegal register address. */
-    MB_EINVAL,                  /*!< illegal argument. */
-    MB_EPORTERR,                /*!< porting layer error. */
-    MB_ENORES,                  /*!< insufficient resources. */
-    MB_EIO,                     /*!< I/O error. */
-    MB_EILLSTATE,               /*!< protocol stack in illegal state. */
-    MB_ETIMEDOUT                /*!< timeout error occurred. */
-} eMBErrorCode;
+    STATE_ENABLED,
+    STATE_DISABLED,
+    STATE_NOT_INITIALIZED
+} eMBState;
+
+typedef struct
+{
+	eMBErrorCode    ( *eMBRegInputCB)( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs );
+	eMBErrorCode    ( *eMBRegHoldingCB)( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegisterMode eMode );
+	eMBErrorCode    ( *eMBRegCoilsCB)( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNCoils, eMBRegisterMode eMode );
+	eMBErrorCode    ( *eMBRegDiscreteCB)( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNDiscrete );
+
+
+}stMBPort;
 
 typedef struct
 {
@@ -127,7 +146,33 @@ typedef struct
     UCHAR    		ucFunctionCode;
     USHORT   		usLength;
     eMBException 	eException;
-} stMBPoll;
+
+	peMBFrameSend 		peMBFrameSendCur;
+	pvMBFrameStart 		pvMBFrameStartCur;
+	pvMBFrameStop 		pvMBFrameStopCur;
+	peMBFrameReceive 	peMBFrameReceiveCur;
+	pvMBFrameClose	 	pvMBFrameCloseCur;
+
+	BOOL( *pxMBFrameCBByteReceived ) ( void );
+	BOOL( *pxMBFrameCBTransmitterEmpty ) ( void );
+	BOOL( *pxMBPortCBTimerExpired ) ( void );
+
+	BOOL( *pxMBFrameCBReceiveFSMCur ) ( void );
+	BOOL( *pxMBFrameCBTransmitFSMCur ) ( void );
+
+	UCHAR    ucMBAddress;
+	eMBMode  eMBCurrentMode;
+	eMBState eState;
+
+	stMBCommunication stCommunication;
+	stMBTimer		  stTimer;
+	stMBEvent		  stEvent;
+	stMBRTUContext	  stRTUContext;
+	stMBPort		  stPort;
+}stMBContext;
+
+
+
 
 /* ----------------------- Function prototypes ------------------------------*/
 /*! \ingroup modbus
@@ -155,7 +200,7 @@ typedef struct
  *        slave addresses are in the range 1 - 247.
  *    - eMBErrorCode::MB_EPORTERR IF the porting layer returned an error.
  */
-eMBErrorCode    eMBInit( eMBMode eMode, UCHAR ucSlaveAddress,
+eMBErrorCode    eMBInit( stMBContext *stContext,eMBMode eMode, UCHAR ucSlaveAddress,
                          UCHAR ucPort, ULONG ulBaudRate, eMBParity eParity );
 
 /*! \ingroup modbus
@@ -188,7 +233,7 @@ eMBErrorCode    eMBTCPInit( USHORT usTCPPort );
  *   If the protocol stack is not in the disabled state it returns
  *   eMBErrorCode::MB_EILLSTATE.
  */
-eMBErrorCode    eMBClose( void );
+eMBErrorCode    eMBClose(  stMBContext *stContext );
 
 /*! \ingroup modbus
  * \brief Enable the Modbus protocol stack.
@@ -200,7 +245,7 @@ eMBErrorCode    eMBClose( void );
  *   eMBErrorCode::MB_ENOERR. If it was not in the disabled state it 
  *   return eMBErrorCode::MB_EILLSTATE.
  */
-eMBErrorCode    eMBEnable( void );
+eMBErrorCode    eMBEnable(  stMBContext *stContext );
 
 /*! \ingroup modbus
  * \brief Disable the Modbus protocol stack.
@@ -211,7 +256,7 @@ eMBErrorCode    eMBEnable( void );
  *  eMBErrorCode::MB_ENOERR. If it was not in the enabled state it returns
  *  eMBErrorCode::MB_EILLSTATE.
  */
-eMBErrorCode    eMBDisable( void );
+eMBErrorCode    eMBDisable(  stMBContext *stContext );
 
 /*! \ingroup modbus
  * \brief The main pooling loop of the Modbus protocol stack.
@@ -225,7 +270,7 @@ eMBErrorCode    eMBDisable( void );
  *   returns eMBErrorCode::MB_EILLSTATE. Otherwise it returns 
  *   eMBErrorCode::MB_ENOERR.
  */
-eMBErrorCode    eMBPoll( stMBPoll *stPoll );
+eMBErrorCode    eMBPoll( stMBContext *stContext);
 
 /*! \ingroup modbus
  * \brief Configure the slave id of the device.
