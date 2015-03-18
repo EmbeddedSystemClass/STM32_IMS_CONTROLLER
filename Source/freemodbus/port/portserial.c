@@ -75,13 +75,13 @@ vMBPortSerialEnable( BOOL xRxEnable, BOOL xTxEnable )
 
 	if(TRUE==xTxEnable)
 	{
-		USART_ITConfig(USART_RS485, USART_IT_TXE, ENABLE);
+		USART_ITConfig(USART_RS485, USART_IT_TC, ENABLE);
 		RS_485_TRANSMIT;
 		pxMBFrameCBTransmitterEmpty();
 	}
 	else
 	{
-	   USART_ITConfig(USART_RS485, USART_IT_TXE, DISABLE);
+	   USART_ITConfig(USART_RS485, USART_IT_TC, DISABLE);
 	   RS_485_RECEIVE;
 	}
 }
@@ -144,15 +144,25 @@ xMBPortSerialInit( UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity e
 BOOL
 xMBPortSerialPutByte( CHAR ucByte )
 {
-	USART_RS485->DR=ucByte;
-    return TRUE;
+//	USART_RS485->DR=ucByte;
+//    return TRUE;
+
+	USART_SendData(USART_RS485, ucByte);
+	while(USART_GetFlagStatus(USART_RS485, USART_FLAG_TXE) == 0);
+
+	return TRUE;
 }
 
 
 BOOL
 xMBPortSerialGetByte( CHAR * pucByte )
 {
-	*pucByte=USART_RS485->DR;
+//	*pucByte=USART_RS485->DR;
+//    return TRUE;
+
+    USART_ClearFlag(USART_RS485, USART_IT_RXNE) ;
+
+    *pucByte = (u8)USART_ReceiveData(USART_RS485);
     return TRUE;
 }
 
@@ -161,17 +171,26 @@ void USART_RS485_IRQHandler(void)
  	static portBASE_TYPE xHigherPriorityTaskWoken;
  	xHigherPriorityTaskWoken = pdFALSE;
 
- 	if(USART_GetITStatus(USART_RS485, USART_IT_RXNE) != RESET)
-   	{
- 		USART_ClearITPendingBit(USART_RS485, USART_IT_RXNE);
- 		pxMBFrameCBByteReceived();
-   	}
+// 	if(USART_GetITStatus(USART_RS485, USART_IT_RXNE) != RESET)
+//   	{
+// 		USART_ClearITPendingBit(USART_RS485, USART_IT_RXNE);
+// 		pxMBFrameCBByteReceived();
+//   	}
+//
+//   	if(USART_GetITStatus(USART_RS485, USART_IT_TC) != RESET)
+//   	{
+//   		USART_ClearITPendingBit(USART_RS485, USART_IT_TC);
+//   		pxMBFrameCBTransmitterEmpty(  );
+//   	}
 
-   	if(USART_GetITStatus(USART_RS485, USART_IT_TXE) != RESET)
-   	{
-   		USART_ClearITPendingBit(USART_RS485, USART_IT_TXE);
-   		pxMBFrameCBTransmitterEmpty(  );
-   	}
+ 	if(USART_GetITStatus(USART_RS485,USART_IT_TC))
+ 	{
+ 	        pxMBFrameCBTransmitterEmpty(  );
+ 	}
+ 	else if(USART_GetITStatus(USART_RS485,USART_IT_RXNE))
+ 	{
+ 	        pxMBFrameCBByteReceived(  );
+ 	}
 
    	portEND_SWITCHING_ISR( xHigherPriorityTaskWoken );
 }
