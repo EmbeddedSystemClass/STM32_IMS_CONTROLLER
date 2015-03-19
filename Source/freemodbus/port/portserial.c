@@ -93,9 +93,6 @@ RS485SerialEnable( BOOL xRxEnable, BOOL xTxEnable )
 BOOL 
 RS485SerialInit(UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity eParity )
 {
-
-
-
 		GPIO_InitTypeDef GPIO_InitStruct;
 		USART_InitTypeDef USART_InitStruct;
 		NVIC_InitTypeDef NVIC_InitStructure;
@@ -195,3 +192,147 @@ void RS485SerialContextInit( stMBContext *stContext)
 	stRS485Context->stCommunication.vMBPortClose=NULL;
 	stRS485Context->stCommunication.xMBPortSerialClose=NULL;
 }
+
+
+
+#define USART_RS232 			UART4
+#define GPIO_AF_USART_RS232 	GPIO_AF_UART4
+#define USART_RS232_IRQn		UART4_IRQn
+#define RCC_USART_RS232 		RCC_APB1Periph_UART4
+#define USART_RS232_IRQHandler  UART4_IRQHandler
+
+#define RCC_USART_RS232_GPIO 	RCC_AHB1Periph_GPIOC
+
+#define USART_RS232_GPIO 	GPIOC
+
+#define USART_RS232_TXD	GPIO_Pin_10
+#define USART_RS232_RXD	GPIO_Pin_11
+
+#define USART_RS232_TXD_PIN_SOURCE GPIO_PinSource10
+#define USART_RS232_RXD_PIN_SOURCE GPIO_PinSource11
+
+
+static stMBContext *stRS232Context;
+
+/* ----------------------- Start implementation -----------------------------*/
+void
+RS232SerialEnable( BOOL xRxEnable, BOOL xTxEnable )
+{
+	if(TRUE==xRxEnable)
+	{
+		USART_ITConfig(USART_RS232, USART_IT_RXNE, ENABLE);
+	}
+	else
+	{
+		USART_ITConfig(USART_RS232, USART_IT_RXNE, DISABLE);
+	}
+
+	if(TRUE==xTxEnable)
+	{
+		USART_ITConfig(USART_RS232, USART_IT_TC, ENABLE);
+		stRS232Context->pxMBFrameCBTransmitterEmpty(&stRS232Context->stRTUContext,&stRS232Context->stCommunication,&stRS232Context->stEvent);
+	}
+	else
+	{
+	   USART_ITConfig(USART_RS232, USART_IT_TC, DISABLE);
+	}
+}
+
+
+
+BOOL
+RS232SerialInit(UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity eParity )
+{
+		GPIO_InitTypeDef GPIO_InitStruct;
+		USART_InitTypeDef USART_InitStruct;
+		NVIC_InitTypeDef NVIC_InitStructure;
+
+		RCC_APB1PeriphClockCmd(RCC_USART_RS232, ENABLE);
+		RCC_AHB1PeriphClockCmd(RCC_USART_RS232_GPIO, ENABLE);
+
+		GPIO_InitStruct.GPIO_Pin = USART_RS232_TXD | USART_RS232_RXD;
+		GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
+		GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+		GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+		GPIO_Init(USART_RS232_GPIO, &GPIO_InitStruct);
+
+		GPIO_PinAFConfig(USART_RS232_GPIO, USART_RS232_TXD_PIN_SOURCE, GPIO_AF_USART_RS232);
+		GPIO_PinAFConfig(USART_RS232_GPIO, USART_RS232_RXD_PIN_SOURCE, GPIO_AF_USART_RS232);
+
+		USART_InitStruct.USART_BaudRate = ulBaudRate;
+		USART_InitStruct.USART_WordLength = USART_WordLength_8b;
+		USART_InitStruct.USART_StopBits = USART_StopBits_1;
+		USART_InitStruct.USART_Parity = USART_Parity_No;
+		USART_InitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+		USART_InitStruct.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
+		USART_Init(USART_RS232, &USART_InitStruct);
+
+		USART_ClearFlag(USART_RS232,  USART_FLAG_TXE  | USART_FLAG_RXNE );
+
+		USART_Cmd(USART_RS232, ENABLE);
+
+		NVIC_PriorityGroupConfig( NVIC_PriorityGroup_4 );
+
+		NVIC_InitStructure.NVIC_IRQChannel = USART_RS232_IRQn;
+		NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
+		NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+		NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+		NVIC_Init(&NVIC_InitStructure);
+
+		NVIC_EnableIRQ(USART_RS232_IRQn);
+
+		stRS232Context->stCommunication.vMBPortSerialEnable(TRUE,FALSE);
+
+		return TRUE;
+}
+
+
+BOOL
+RS232SerialPutByte( CHAR ucByte )
+{
+	USART_SendData(USART_RS232, ucByte);
+	while(USART_GetFlagStatus(USART_RS232, USART_FLAG_TXE) == 0);
+
+	return TRUE;
+}
+
+
+BOOL
+RS232SerialGetByte( CHAR * pucByte )
+{
+    USART_ClearFlag(USART_RS232, USART_IT_RXNE) ;
+
+    *pucByte = (u8)USART_ReceiveData(USART_RS232);
+    return TRUE;
+}
+
+void USART_RS232_IRQHandler(void)
+{
+ 	static portBASE_TYPE xHigherPriorityTaskWoken;
+ 	xHigherPriorityTaskWoken = pdFALSE;
+
+ 	if(USART_GetITStatus(USART_RS232,USART_IT_TC))
+ 	{
+ 		stRS232Context->pxMBFrameCBTransmitterEmpty(&stRS232Context->stRTUContext,&stRS232Context->stCommunication,&stRS232Context->stEvent);
+ 	}
+ 	else if(USART_GetITStatus(USART_RS232,USART_IT_RXNE))
+ 	{
+ 		stRS232Context->pxMBFrameCBByteReceived( &stRS232Context->stRTUContext,&stRS232Context->stTimer,&stRS232Context->stCommunication );
+ 	}
+
+   	portEND_SWITCHING_ISR( xHigherPriorityTaskWoken );
+}
+
+
+void RS232SerialContextInit( stMBContext *stContext)
+{
+	stRS232Context=stContext;
+	stRS232Context->stCommunication.xMBPortSerialInit=RS232SerialInit;
+	stRS232Context->stCommunication.vMBPortSerialEnable=RS232SerialEnable;
+	stRS232Context->stCommunication.xMBPortSerialPutByte=RS232SerialPutByte;
+	stRS232Context->stCommunication.xMBPortSerialGetByte=RS232SerialGetByte;
+	stRS232Context->stCommunication.vMBPortClose=NULL;
+	stRS232Context->stCommunication.xMBPortSerialClose=NULL;
+}
+

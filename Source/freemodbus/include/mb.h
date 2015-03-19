@@ -477,7 +477,8 @@ eMBErrorCode    eMBRegDiscreteCB( UCHAR * pucRegBuffer, USHORT usAddress,
 //---------------------------
 void RS485SerialContextInit(  stMBContext *stContext);
 void RS485TimerContextInit(  stMBContext *stContext);
-
+void RS232SerialContextInit( stMBContext *stContext);
+void RS232TimerContextInit(  stMBContext *stContext);
 
 #ifdef __cplusplus
 PR_END_EXTERN_C

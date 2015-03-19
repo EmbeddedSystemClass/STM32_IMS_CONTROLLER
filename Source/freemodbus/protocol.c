@@ -24,6 +24,7 @@ static void Modbus_RS485_Task(void *pvParameters);
 static void Modbus_RS232_Task(void *pvParameters);
 
 stMBContext stContext_RS485;
+stMBContext stContext_RS232;
 
 void Protocol_Init(void)
 {
@@ -33,9 +34,14 @@ void Protocol_Init(void)
 	RS485SerialContextInit(&stContext_RS485);
 	RS485TimerContextInit(&stContext_RS485);
 
+	RS232SerialContextInit(&stContext_RS232);
+	RS232TimerContextInit(&stContext_RS232);
+
 	eStatus = eMBInit(&stContext_RS485, MB_RTU, 0x0A, 0, 57600, 0 );
+	eStatus = eMBInit(&stContext_RS232, MB_RTU, 0x0A, 0, 57600, 0 );
+
 	xTaskCreate(Modbus_RS485_Task,(signed char*)"Modbus RS485",1024,NULL, tskIDLE_PRIORITY + 1, NULL);
-	//xTaskCreate(Modbus_RS232_Task,(signed char*)"Modbus RS232",256,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(Modbus_RS232_Task,(signed char*)"Modbus RS232",1024,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 
 
@@ -58,9 +64,17 @@ static void Modbus_RS485_Task(void *pvParameters)
 
 static void Modbus_RS232_Task(void *pvParameters)
 {
+    portTickType    xLastWakeTime;
+
+
+    eMBEnable(&stContext_RS232);
+    task_watches[PROTO_TASK].task_status=TASK_ACTIVE;
     for( ;; )
     {
-    	vTaskDelay(10);
+        eMBPoll(&stContext_RS232);
+
+        vTaskDelay(10);
+        task_watches[PROTO_TASK].counter++;
     }
 
 }
