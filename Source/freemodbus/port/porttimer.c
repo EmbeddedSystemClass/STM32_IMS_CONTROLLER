@@ -31,6 +31,9 @@
 #include "stm32f4xx_tim.h"
 #include "misc.h"
 
+#include "stdlib.h"
+
+static stMBContext *stRS485Context;
 /* ----------------------- Start implementation -----------------------------*/
 BOOL
 RS485TimersInit( USHORT usTim1Timerout50us )
@@ -91,6 +94,16 @@ void RS485TimersDisable(  )
 void TIM4_IRQHandler( void ) //
 {
 	TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
-   /* ( void )pxMBPortCBTimerExpired(  );*///!!!
+	( void )stRS485Context->pxMBPortCBTimerExpired(&stRS485Context->stRTUContext,&stRS485Context->stTimer,&stRS485Context->stEvent  );//!!!
+}
+
+void RS485TimerContextInit(  stMBContext *stContext)
+{
+	stRS485Context=stContext;
+	stRS485Context->stTimer.vMBPortTimersDelay=NULL;
+	stRS485Context->stTimer.vMBPortTimersDisable=RS485TimersDisable;
+	stRS485Context->stTimer.vMBPortTimersEnable=RS485TimersEnable;
+	stRS485Context->stTimer.xMBPortTimersClose=NULL;
+	stRS485Context->stTimer.xMBPortTimersInit=RS485TimersInit;
 }
 

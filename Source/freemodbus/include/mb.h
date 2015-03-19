@@ -37,6 +37,7 @@ PR_BEGIN_EXTERN_C
 #endif
 
 #include "mbport.h"
+#include "mbrtu.h"
 #include "mbproto.h"
 #include "mbframe.h"
 #include "stm32f4xx.h"
@@ -129,15 +130,15 @@ typedef enum
     STATE_NOT_INITIALIZED
 } eMBState;
 
-typedef struct
-{
-	eMBErrorCode    ( *eMBRegInputCB)( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs );
-	eMBErrorCode    ( *eMBRegHoldingCB)( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegisterMode eMode );
-	eMBErrorCode    ( *eMBRegCoilsCB)( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNCoils, eMBRegisterMode eMode );
-	eMBErrorCode    ( *eMBRegDiscreteCB)( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNDiscrete );
-
-
-}stMBPort;
+//typedef struct
+//{
+//	eMBErrorCode    ( *eMBRegInputCB)( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs );
+//	eMBErrorCode    ( *eMBRegHoldingCB)( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegisterMode eMode );
+//	eMBErrorCode    ( *eMBRegCoilsCB)( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNCoils, eMBRegisterMode eMode );
+//	eMBErrorCode    ( *eMBRegDiscreteCB)( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNDiscrete );
+//
+//
+//}stMBPort;
 
 typedef struct
 {
@@ -147,15 +148,24 @@ typedef struct
     USHORT   		usLength;
     eMBException 	eException;
 
-	peMBFrameSend 		peMBFrameSendCur;
-	pvMBFrameStart 		pvMBFrameStartCur;
-	pvMBFrameStop 		pvMBFrameStopCur;
-	peMBFrameReceive 	peMBFrameReceiveCur;
-	pvMBFrameClose	 	pvMBFrameCloseCur;
+//	peMBFrameSend 		peMBFrameSendCur;
+//	pvMBFrameStart 		peMBFrameSendCur;
+//	pvMBFrameStop 		pvMBFrameStopCur;
+//	peMBFrameReceive 	peMBFrameReceiveCur;
+//	pvMBFrameClose	 	pvMBFrameCloseCur;
 
-	BOOL( *pxMBFrameCBByteReceived ) ( void );
-	BOOL( *pxMBFrameCBTransmitterEmpty ) ( void );
-	BOOL( *pxMBPortCBTimerExpired ) ( void );
+
+    void            ( *pvMBFrameStartCur)(stMBRTUContext *stRTUContext,stMBCommunication *stCommunication,stMBTimer *stTimer);
+    void            ( *pvMBFrameStopCur)( stMBCommunication *stCommunication, stMBTimer *stTimer );
+    eMBErrorCode    ( *peMBFrameReceiveCur)( stMBRTUContext *stRTUContext, UCHAR * pucRcvAddress, UCHAR ** pucFrame, USHORT * pusLength );
+    eMBErrorCode    ( *peMBFrameSendCur)(stMBRTUContext *stRTUContext,stMBCommunication *stCommunication, UCHAR ucSlaveAddress, const UCHAR * pucFrame, USHORT usLength );
+    void			( *pvMBFrameCloseCur)(void);
+
+    //typedef void( *pvMBFrameClose ) ( void );
+
+	BOOL( *pxMBFrameCBByteReceived ) ( stMBRTUContext *stRTUContext,stMBTimer *stTimer, stMBCommunication *stCommunication );
+	BOOL( *pxMBFrameCBTransmitterEmpty ) ( stMBRTUContext *stRTUContext, stMBCommunication *stCommunication, stMBEvent *stEvent );
+	BOOL( *pxMBPortCBTimerExpired ) ( stMBRTUContext *stRTUContext,stMBTimer *stTimer , stMBEvent *stEvent );
 
 	BOOL( *pxMBFrameCBReceiveFSMCur ) ( void );
 	BOOL( *pxMBFrameCBTransmitFSMCur ) ( void );
@@ -168,7 +178,7 @@ typedef struct
 	stMBTimer		  stTimer;
 	stMBEvent		  stEvent;
 	stMBRTUContext	  stRTUContext;
-	stMBPort		  stPort;
+	//stMBPort		  stPort;
 }stMBContext;
 
 
@@ -462,6 +472,12 @@ eMBErrorCode    eMBRegCoilsCB( UCHAR * pucRegBuffer, USHORT usAddress,
  */
 eMBErrorCode    eMBRegDiscreteCB( UCHAR * pucRegBuffer, USHORT usAddress,
                                   USHORT usNDiscrete );
+
+
+//---------------------------
+void RS485SerialContextInit(  stMBContext *stContext);
+void RS485TimerContextInit(  stMBContext *stContext);
+
 
 #ifdef __cplusplus
 PR_END_EXTERN_C

@@ -18,6 +18,14 @@ enum
 	PID_TASK=9,
 };
 
+#ifndef TRUE
+#define TRUE            1
+#endif
+
+#ifndef FALSE
+#define FALSE           0
+#endif
+
 enum
 {
 	TASK_ACTIVE=0,

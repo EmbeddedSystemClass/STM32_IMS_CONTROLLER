@@ -58,6 +58,8 @@
 #define RS_485_TRANSMIT USART_RS485_GPIO->BSRRL|=USART_RS485_DE; USART_RS485_GPIO->BSRRL|=USART_RS485_RE;
 
 
+static stMBContext *stRS485Context;
+
 /* ----------------------- Start implementation -----------------------------*/
 void
 RS485SerialEnable( BOOL xRxEnable, BOOL xTxEnable )
@@ -77,7 +79,7 @@ RS485SerialEnable( BOOL xRxEnable, BOOL xTxEnable )
 	{
 		USART_ITConfig(USART_RS485, USART_IT_TC, ENABLE);
 		RS_485_TRANSMIT;
-		pxMBFrameCBTransmitterEmpty();
+		stRS485Context->pxMBFrameCBTransmitterEmpty(&stRS485Context->stRTUContext,&stRS485Context->stCommunication,&stRS485Context->stEvent);
 	}
 	else
 	{
@@ -86,9 +88,14 @@ RS485SerialEnable( BOOL xRxEnable, BOOL xTxEnable )
 	}
 }
 
+
+
 BOOL 
-RS485SerialInit( UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity eParity )
+RS485SerialInit(UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity eParity )
 {
+
+
+
 		GPIO_InitTypeDef GPIO_InitStruct;
 		USART_InitTypeDef USART_InitStruct;
 		NVIC_InitTypeDef NVIC_InitStructure;
@@ -135,7 +142,7 @@ RS485SerialInit( UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity ePa
 
 		NVIC_EnableIRQ(USART_RS485_IRQn);
 
-		vMBPortSerialEnable(TRUE,FALSE);
+		stRS485Context->stCommunication.vMBPortSerialEnable(TRUE,FALSE);
 
 		return TRUE;
 }
@@ -167,13 +174,24 @@ void USART_RS485_IRQHandler(void)
 
  	if(USART_GetITStatus(USART_RS485,USART_IT_TC))
  	{
- 		pxMBFrameCBTransmitterEmpty(  );
+ 		stRS485Context->pxMBFrameCBTransmitterEmpty(&stRS485Context->stRTUContext,&stRS485Context->stCommunication,&stRS485Context->stEvent);
  	}
  	else if(USART_GetITStatus(USART_RS485,USART_IT_RXNE))
  	{
- 	        pxMBFrameCBByteReceived(  );
+ 		stRS485Context->pxMBFrameCBByteReceived( &stRS485Context->stRTUContext,&stRS485Context->stTimer,&stRS485Context->stCommunication );
  	}
 
    	portEND_SWITCHING_ISR( xHigherPriorityTaskWoken );
 }
 
+
+void RS485SerialContextInit( stMBContext *stContext)
+{
+	stRS485Context=stContext;
+	stRS485Context->stCommunication.xMBPortSerialInit=RS485SerialInit;
+	stRS485Context->stCommunication.vMBPortSerialEnable=RS485SerialEnable;
+	stRS485Context->stCommunication.xMBPortSerialPutByte=RS485SerialPutByte;
+	stRS485Context->stCommunication.xMBPortSerialGetByte=RS485SerialGetByte;
+	stRS485Context->stCommunication.vMBPortClose=NULL;
+	stRS485Context->stCommunication.xMBPortSerialClose=NULL;
+}

@@ -35,6 +35,8 @@
 PR_BEGIN_EXTERN_C
 #endif
 
+#include "mbport.h"
+#include "mbframe.h"
 /* ----------------------- Defines ------------------------------------------*/
 #define MB_SER_PDU_SIZE_MIN     4       /*!< Minimum size of a Modbus RTU frame. */
 #define MB_SER_PDU_SIZE_MAX     256     /*!< Maximum size of a Modbus RTU frame. */
@@ -70,16 +72,15 @@ typedef struct
 	volatile USHORT usRcvBufferPos;
 } stMBRTUContext;
 
-    eMBErrorCode eMBRTUInit( UCHAR slaveAddress, UCHAR ucPort, ULONG ulBaudRate,
-                             eMBParity eParity );
-void            eMBRTUStart( void );
-void            eMBRTUStop( void );
-eMBErrorCode    eMBRTUReceive( UCHAR * pucRcvAddress, UCHAR ** pucFrame, USHORT * pusLength );
-eMBErrorCode    eMBRTUSend( UCHAR slaveAddress, const UCHAR * pucFrame, USHORT usLength );
-BOOL            xMBRTUReceiveFSM( void );
-BOOL            xMBRTUTransmitFSM( void );
-BOOL            xMBRTUTimerT15Expired( void );
-BOOL            xMBRTUTimerT35Expired( void );
+eMBErrorCode 	eMBRTUInit(stMBCommunication *stCommunication,stMBTimer *stTimer ,UCHAR ucSlaveAddress, UCHAR ucPort, ULONG ulBaudRate, eMBParity eParity );
+void            eMBRTUStart(stMBRTUContext *stRTUContext,stMBCommunication *stCommunication,stMBTimer *stTimer);
+void            eMBRTUStop( stMBCommunication *stCommunication, stMBTimer *stTimer );
+eMBErrorCode    eMBRTUReceive( stMBRTUContext *stRTUContext, UCHAR * pucRcvAddress, UCHAR ** pucFrame, USHORT * pusLength );
+eMBErrorCode    eMBRTUSend(stMBRTUContext *stRTUContext,stMBCommunication *stCommunication, UCHAR ucSlaveAddress, const UCHAR * pucFrame, USHORT usLength );
+BOOL            xMBRTUReceiveFSM( stMBRTUContext *stRTUContext,stMBTimer *stTimer, stMBCommunication *stCommunication );
+BOOL            xMBRTUTransmitFSM( stMBRTUContext *stRTUContext,stMBCommunication *stCommunication, stMBEvent *stEvent );
+BOOL            xMBRTUTimerT15Expired( stMBRTUContext *stRTUContext,stMBTimer *stTimer , stMBEvent *stEvent );
+BOOL            xMBRTUTimerT35Expired( stMBRTUContext *stRTUContext,stMBTimer *stTimer , stMBEvent *stEvent);
 
 #ifdef __cplusplus
 PR_END_EXTERN_C

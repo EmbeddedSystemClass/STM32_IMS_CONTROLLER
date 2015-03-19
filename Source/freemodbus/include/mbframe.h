@@ -35,6 +35,9 @@
 PR_BEGIN_EXTERN_C
 #endif
 
+#include "mbport.h"
+#include "mbrtu.h"
+
 /*!
  * Constants which defines the format of a modbus frame. The example is
  * shown for a Modbus RTU/ASCII frame. Note that the Modbus PDU is not
@@ -80,19 +83,20 @@ typedef enum
 #define MB_PDU_DATA_OFF     1   /*!< Offset for response data in PDU. */
 
 /* ----------------------- Prototypes  0-------------------------------------*/
-typedef void    ( *pvMBFrameStart ) ( void );
-
-typedef void    ( *pvMBFrameStop ) ( void );
-
-typedef eMBErrorCode( *peMBFrameReceive ) ( UCHAR * pucRcvAddress,
-                                            UCHAR ** pucFrame,
-                                            USHORT * pusLength );
-
-typedef eMBErrorCode( *peMBFrameSend ) ( UCHAR slaveAddress,
-                                         const UCHAR * pucFrame,
-                                         USHORT usLength );
-
-typedef void( *pvMBFrameClose ) ( void );
+//typedef void    ( *pvMBFrameStart ) ( stMBRTUContext *stRTUContext,stMBCommunication *stCommunication,stMBTimer *stTimer );
+//
+//typedef void    ( *pvMBFrameStop ) ( stMBCommunication *stCommunication, stMBTimer *stTimer );
+//
+//typedef eMBErrorCode( *peMBFrameReceive ) ( stMBRTUContext *stRTUContext,
+//											UCHAR * pucRcvAddress,
+//                                            UCHAR ** pucFrame,
+//                                            USHORT * pusLength );
+//
+//typedef eMBErrorCode( *peMBFrameSend ) ( stMBRTUContext *stRTUContext,stMBCommunication *stCommunication,UCHAR slaveAddress,
+//                                         const UCHAR * pucFrame,
+//                                         USHORT usLength );
+//
+//typedef void( *pvMBFrameClose ) ( void );
 
 #ifdef __cplusplus
 PR_END_EXTERN_C

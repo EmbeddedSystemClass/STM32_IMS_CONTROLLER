@@ -114,16 +114,17 @@ eMBInit( stMBContext *stContext, eMBMode eMode, UCHAR ucSlaveAddress, UCHAR ucPo
         {
 #if MB_RTU_ENABLED > 0
         case MB_RTU:
+
         	stContext->pvMBFrameStartCur = eMBRTUStart;
         	stContext->pvMBFrameStopCur = eMBRTUStop;
         	stContext->peMBFrameSendCur = eMBRTUSend;
         	stContext->peMBFrameReceiveCur = eMBRTUReceive;
-        	stContext->pvMBFrameCloseCur = MB_PORT_HAS_CLOSE ? vMBPortClose : NULL;
+        	stContext->pvMBFrameCloseCur = MB_PORT_HAS_CLOSE ? stContext->stCommunication.vMBPortClose : NULL;
         	stContext->pxMBFrameCBByteReceived = xMBRTUReceiveFSM;
         	stContext->pxMBFrameCBTransmitterEmpty = xMBRTUTransmitFSM;
         	stContext->pxMBPortCBTimerExpired = xMBRTUTimerT35Expired;
 
-            eStatus = eMBRTUInit( stContext->ucMBAddress, ucPort, ulBaudRate, eParity );
+            eStatus = eMBRTUInit(&stContext->stCommunication, &stContext->stTimer, stContext->ucMBAddress, ucPort, ulBaudRate, eParity );
             break;
 #endif
 #if MB_ASCII_ENABLED > 0
@@ -146,7 +147,7 @@ eMBInit( stMBContext *stContext, eMBMode eMode, UCHAR ucSlaveAddress, UCHAR ucPo
 
         if( eStatus == MB_ENOERR )
         {
-            if( !xMBPortEventInit(  ) )
+            if( !xMBPortEventInit(&stContext->stEvent  ) )
             {
                 /* port dependent event module initalization failed. */
                 eStatus = MB_EPORTERR;
@@ -265,7 +266,7 @@ eMBEnable( stMBContext *stContext )
     if( stContext->eState == STATE_DISABLED )
     {
         /* Activate the protocol stack. */
-    	stContext->pvMBFrameStartCur(  );
+    	stContext->pvMBFrameStartCur(&stContext->stRTUContext,&stContext->stCommunication,&stContext->stTimer  );
         stContext->eState = STATE_ENABLED;
     }
     else
@@ -282,7 +283,7 @@ eMBDisable( stMBContext *stContext )
 
     if( stContext->eState == STATE_ENABLED )
     {
-    	stContext->pvMBFrameStopCur(  );
+    	stContext->pvMBFrameStopCur( &stContext->stCommunication,&stContext->stTimer );
         stContext->eState = STATE_DISABLED;
         eStatus = MB_ENOERR;
     }
@@ -314,7 +315,7 @@ eMBPoll(stMBContext *stContext)
 
     /* Check if there is a event available. If not return control to caller.
      * Otherwise we will handle the event. */
-    if( xMBPortEventGet( &eEvent ) == TRUE )
+    if( xMBPortEventGet(&stContext->stEvent, &eEvent ) == TRUE )
     {
         switch ( eEvent )
         {
@@ -322,13 +323,13 @@ eMBPoll(stMBContext *stContext)
             break;
 
         case EV_FRAME_RECEIVED:
-            eStatus = stContext->peMBFrameReceiveCur( &stContext->ucRcvAddress, &stContext->ucMBFrame, &stContext->usLength );
+            eStatus = stContext->peMBFrameReceiveCur(&stContext->stRTUContext ,&stContext->ucRcvAddress, &stContext->ucMBFrame, &stContext->usLength );
             if( eStatus == MB_ENOERR )
             {
                 /* Check if the frame is for us. If not ignore the frame. */
                 if( ( stContext->ucRcvAddress == stContext->ucMBAddress ) || ( stContext->ucRcvAddress == MB_ADDRESS_BROADCAST ) )
                 {
-                    ( void )xMBPortEventPost( EV_EXECUTE );
+                    ( void )xMBPortEventPost(&stContext->stEvent, EV_EXECUTE );
                 }
             }
             break;
@@ -363,9 +364,9 @@ eMBPoll(stMBContext *stContext)
                 }
                 if( ( stContext->eMBCurrentMode == MB_ASCII ) && MB_ASCII_TIMEOUT_WAIT_BEFORE_SEND_MS )
                 {
-                    vMBPortTimersDelay( MB_ASCII_TIMEOUT_WAIT_BEFORE_SEND_MS );
+                    stContext->stTimer.vMBPortTimersDelay( MB_ASCII_TIMEOUT_WAIT_BEFORE_SEND_MS );
                 }                
-                eStatus = stContext->peMBFrameSendCur( stContext->ucMBAddress, stContext->ucMBFrame, stContext->usLength );
+                eStatus = stContext->peMBFrameSendCur(&stContext->stRTUContext,&stContext->stCommunication ,stContext->ucMBAddress, stContext->ucMBFrame, stContext->usLength );
             }
             break;
 

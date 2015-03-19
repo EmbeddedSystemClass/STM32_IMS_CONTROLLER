@@ -31,7 +31,7 @@
 BOOL
 xMBPortEventInit( stMBEvent *stEvent )
 {
-    xEventInQueue = FALSE;
+	stEvent->xEventInQueue = FALSE;
     return TRUE;
 }
 
@@ -48,9 +48,9 @@ xMBPortEventGet(stMBEvent *stEvent, eMBEventType * eEvent )
 {
     BOOL            xEventHappened = FALSE;
 
-    if( xEventInQueue )
+    if( stEvent->xEventInQueue )
     {
-        *eEvent = eQueuedEvent;
+        *eEvent = stEvent->eQueuedEvent;
         stEvent->xEventInQueue = FALSE;
         xEventHappened = TRUE;
     }
