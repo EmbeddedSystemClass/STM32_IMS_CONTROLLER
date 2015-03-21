@@ -112,8 +112,8 @@
       <target file="heap_2.o" lastModified="14c31370e01">
          <source file="..\..\..\Source\FreeRTOS\Source\portable\MemMang\heap_2.c" lastModified="14af2c557af"/>
       </target>
-      <target file="frequency.o" lastModified="14c2bcf543e">
-         <source file="..\..\..\Source\devices\frequency.c" lastModified="14c2bcac9b4"/>
+      <target file="frequency.o" lastModified="14c3c800ea9">
+         <source file="..\..\..\Source\devices\frequency.c" lastModified="14c3c7fbc53"/>
       </target>
       <target file="stm32f4xx_syscfg.o" lastModified="14c31395959">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_syscfg.c" lastModified="14125d878f6"/>
@@ -124,14 +124,14 @@
       <target file="stm32f4xx_spi.o" lastModified="14c313970c9">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="14c313944a8"/>
       </target>
-      <target file="protocol.o" lastModified="14c319db56d">
-         <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14c319da82e"/>
+      <target file="protocol.o" lastModified="14c3b6f77d3">
+         <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14c3b2985f1"/>
       </target>
       <target file="ADS1120.o" lastModified="14c313965fb">
          <source file="..\..\..\Source\devices\ADS1120.c" lastModified="14c2226703e"/>
       </target>
-      <target file="main.o" lastModified="14c313967b1">
-         <source file="..\..\..\main.c" lastModified="14c269245e1"/>
+      <target file="main.o" lastModified="14c3b70a7f6">
+         <source file="..\..\..\main.c" lastModified="14c3b70975c"/>
       </target>
       <target file="mbcrc.o" lastModified="14c3125b93d">
          <source file="..\..\..\Source\freemodbus\rtu\mbcrc.c" lastModified="14c2274fcc4"/>

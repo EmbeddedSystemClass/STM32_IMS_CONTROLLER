@@ -48,9 +48,6 @@ void Protocol_Init(void)
 
 static void Modbus_RS485_Task(void *pvParameters)
 {
-    portTickType    xLastWakeTime;
-
-
     eMBEnable(&stContext_RS485);
     task_watches[PROTO_TASK].task_status=TASK_ACTIVE;
     for( ;; )
@@ -64,9 +61,6 @@ static void Modbus_RS485_Task(void *pvParameters)
 
 static void Modbus_RS232_Task(void *pvParameters)
 {
-    portTickType    xLastWakeTime;
-
-
     eMBEnable(&stContext_RS232);
     task_watches[PROTO_TASK].task_status=TASK_ACTIVE;
     for( ;; )

@@ -14,12 +14,15 @@
 #include "semphr.h"
 #include "protocol.h"
 
+#include "frequency.h"
+
 
 int main(void)
 {
 	SystemInit();
 
 	Protocol_Init();
+	FrequencyMeasureInit();
     vTaskStartScheduler();
 
     while(1);
