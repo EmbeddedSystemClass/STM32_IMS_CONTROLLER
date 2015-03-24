@@ -22,6 +22,8 @@ u8 REG_INPUT_NREGS=32,REG_HOLDING_NREGS=48;
 u8 usRegInputStart=1,usRegHoldingStart=1;
 
 
+extern float ch1_frequency;
+
 eMBErrorCode
 eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
 {
@@ -33,7 +35,7 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
 
     for(i=0;i<(usNRegs/2);i++)
     {
-    	((float*)usRegInputBuf)[i] = 123.45;
+    	((float*)usRegInputBuf)[i] = ch1_frequency;
     }
 
     if( ( usAddress >= REG_INPUT_START )&& ( usAddress + usNRegs <= REG_INPUT_START + REG_INPUT_NREGS ) )

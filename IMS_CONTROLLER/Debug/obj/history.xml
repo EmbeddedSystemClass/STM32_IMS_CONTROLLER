@@ -37,8 +37,8 @@
       <target file="stm32f4xx_gpio.o" lastModified="14c31396b79">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="14835b06da1"/>
       </target>
-      <target file="porttimer.o" lastModified="14c31914393">
-         <source file="..\..\..\Source\freemodbus\port\porttimer.c" lastModified="14c31913c11"/>
+      <target file="porttimer.o" lastModified="14c4bf05793">
+         <source file="..\..\..\Source\freemodbus\port\porttimer.c" lastModified="14c4bf04e6b"/>
       </target>
       <target file="mbutils.o" lastModified="14c318da492">
          <source file="..\..\..\Source\freemodbus\functions\mbutils.c" lastModified="14c22662822"/>
@@ -46,8 +46,8 @@
       <target file="mbascii.o" lastModified="14c318dab97">
          <source file="..\..\..\Source\freemodbus\ascii\mbascii.c" lastModified="14c26d2e219"/>
       </target>
-      <target file="mbport.o" lastModified="14c318d9e97">
-         <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14c2b9d15b1"/>
+      <target file="mbport.o" lastModified="14c45b454f6">
+         <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14c45b44a28"/>
       </target>
       <target file="portserial.o" lastModified="14c318e16d4">
          <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14c318df959"/>
@@ -112,32 +112,32 @@
       <target file="heap_2.o" lastModified="14c31370e01">
          <source file="..\..\..\Source\FreeRTOS\Source\portable\MemMang\heap_2.c" lastModified="14af2c557af"/>
       </target>
-      <target file="frequency.o" lastModified="14c3c800ea9">
-         <source file="..\..\..\Source\devices\frequency.c" lastModified="14c3c7fbc53"/>
-      </target>
-      <target file="stm32f4xx_syscfg.o" lastModified="14c31395959">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_syscfg.c" lastModified="14125d878f6"/>
+      <target file="frequency.o" lastModified="14c4bf17cd9">
+         <source file="..\..\..\Source\devices\frequency.c" lastModified="14c4bf141d4"/>
       </target>
       <target file="mbfuncdisc.o" lastModified="14c318da260">
          <source file="..\..\..\Source\freemodbus\functions\mbfuncdisc.c" lastModified="14c2274fab0"/>
       </target>
+      <target file="stm32f4xx_syscfg.o" lastModified="14c31395959">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_syscfg.c" lastModified="14125d878f6"/>
+      </target>
       <target file="stm32f4xx_spi.o" lastModified="14c313970c9">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="14c313944a8"/>
-      </target>
-      <target file="protocol.o" lastModified="14c3b6f77d3">
-         <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14c3b2985f1"/>
       </target>
       <target file="ADS1120.o" lastModified="14c313965fb">
          <source file="..\..\..\Source\devices\ADS1120.c" lastModified="14c2226703e"/>
       </target>
-      <target file="main.o" lastModified="14c3b70a7f6">
-         <source file="..\..\..\main.c" lastModified="14c3b70975c"/>
+      <target file="protocol.o" lastModified="14c3b6f77d3">
+         <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14c3b2985f1"/>
       </target>
-      <target file="mbcrc.o" lastModified="14c3125b93d">
-         <source file="..\..\..\Source\freemodbus\rtu\mbcrc.c" lastModified="14c2274fcc4"/>
+      <target file="main.o" lastModified="14c4bf17b72">
+         <source file="..\..\..\main.c" lastModified="14c4bf089fd"/>
       </target>
       <target file="system_stm32f4xx.o" lastModified="14c31396ed5">
          <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="1428e3c1104"/>
+      </target>
+      <target file="mbcrc.o" lastModified="14c3125b93d">
+         <source file="..\..\..\Source\freemodbus\rtu\mbcrc.c" lastModified="14c2274fcc4"/>
       </target>
       <target file="mbfuncdiag.o" lastModified="14c26d2b388">
          <source file="..\..\..\Source\freemodbus\functions\mbfuncdiag.c" lastModified="10f5ec0d910"/>

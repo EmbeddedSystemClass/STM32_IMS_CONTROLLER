@@ -119,19 +119,19 @@ RS232TimersInit( USHORT usTim1Timerout50us )
 	uint16_t PrescalerValue = 0;
 
 
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM5, ENABLE);
 	PrescalerValue = (uint16_t) (SystemCoreClock / 20000) - 1; // 1/20000=50us
 	TIM_TimeBaseStructure.TIM_Period = (uint16_t) usTim1Timerout50us;
 	TIM_TimeBaseStructure.TIM_Prescaler = PrescalerValue;
 	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
+	TIM_TimeBaseInit(TIM5, &TIM_TimeBaseStructure);
 
-	TIM_ARRPreloadConfig(TIM2, ENABLE);
+	TIM_ARRPreloadConfig(TIM5, ENABLE);
 
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
 
-	NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannel = TIM5_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
@@ -139,37 +139,37 @@ RS232TimersInit( USHORT usTim1Timerout50us )
 	NVIC_Init(&NVIC_InitStructure);
 
 
-	TIM_ClearITPendingBit(TIM2,TIM_IT_Update);
-	TIM_ITConfig(TIM2, TIM_IT_Update, DISABLE);
+	TIM_ClearITPendingBit(TIM5,TIM_IT_Update);
+	TIM_ITConfig(TIM5, TIM_IT_Update, DISABLE);
 
-	TIM_Cmd(TIM2,  DISABLE);
-	return TRUE;;
+	TIM_Cmd(TIM5,  DISABLE);
+	return TRUE;
 }
 
 
 void RS232TimersEnable(  )
 {
-	TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
-	TIM_ITConfig(TIM2, TIM_IT_Update, ENABLE);
-	TIM_SetCounter(TIM2,0x0000);
-	TIM_Cmd(TIM2, ENABLE);
+	TIM_ClearITPendingBit(TIM5, TIM_IT_Update);
+	TIM_ITConfig(TIM5, TIM_IT_Update, ENABLE);
+	TIM_SetCounter(TIM5,0x0000);
+	TIM_Cmd(TIM5, ENABLE);
 }
 
 void RS232TimersDisable(  )
 {
-	TIM_Cmd(TIM2, DISABLE);
-	TIM_SetCounter(TIM2,0x0000);
-	TIM_ITConfig(TIM2, TIM_IT_Update, DISABLE);
-	TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
+	TIM_Cmd(TIM5, DISABLE);
+	TIM_SetCounter(TIM5,0x0000);
+	TIM_ITConfig(TIM5, TIM_IT_Update, DISABLE);
+	TIM_ClearITPendingBit(TIM5, TIM_IT_Update);
 }
 
 /* Create an ISR which is called whenever the timer has expired. This function
  * must then call pxMBPortCBTimerExpired( ) to notify the protocol stack that
  * the timer has expired.
  */
-void TIM2_IRQHandler( void ) //
+void TIM5_IRQHandler( void ) //
 {
-	TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
+	TIM_ClearITPendingBit(TIM5, TIM_IT_Update);
 	( void )stRS232Context->pxMBPortCBTimerExpired(&stRS232Context->stRTUContext,&stRS232Context->stTimer,&stRS232Context->stEvent  );//!!!
 }
 
