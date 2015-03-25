@@ -402,6 +402,20 @@
          <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
       </source>
+      <source file="..\..\..\main.c" lastModified="14c4bf089fd">
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
+         <include file="..\..\..\cmsis_lib\include\misc.h"/>
+         <include file="..\..\..\cmsis_boot\system_stm32f4xx.h"/>
+         <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
+         <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
+         <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
+         <include file="..\..\..\Source\FreeRTOS\Source\include\semphr.h"/>
+         <include file="..\..\..\Source\freemodbus\protocol.h"/>
+         <include file="..\..\..\Source\devices\frequency.h"/>
+      </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\queue.h" lastModified="14af2c4ffa4">
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h" lastModified="1428e61eab6">

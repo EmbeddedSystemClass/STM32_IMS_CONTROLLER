@@ -21,7 +21,7 @@
 #define FREQ_GPIO_PINSOURCE_1		GPIO_PinSource6
 #define FREQ_GPIO_PINSOURCE_2		GPIO_PinSource7
 #define Freq_TIM_IRQHandler 		TIM3_IRQHandler
-#define FREQ_TIM_PERIOD				(60000+1)
+#define FREQ_TIM_PERIOD				(65535)
 #define FREQ_TIM_PRESCALER			1
 #define FREQ_TIMER_TICK_FREQUENCY	12000000
 
@@ -63,14 +63,14 @@ void FrequencyMeasureInit(void)
 	 TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
 	 TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
 	 TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
-	 TIM_ICInitStructure.TIM_ICFilter = 0;
+	 TIM_ICInitStructure.TIM_ICFilter = 5;
 	 TIM_ICInit(FREQ_TIM, &TIM_ICInitStructure);
 
 	 TIM_ICInitStructure.TIM_Channel = TIM_Channel_2;
 	 TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Falling;
 	 TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
 	 TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
-	 TIM_ICInitStructure.TIM_ICFilter = 0;
+	 TIM_ICInitStructure.TIM_ICFilter = 5;
 	 TIM_ICInit(FREQ_TIM, &TIM_ICInitStructure);
 
 
@@ -78,14 +78,14 @@ void FrequencyMeasureInit(void)
 	 NVIC_EnableIRQ(FREQ_TIM_IRQn);
 	 NVIC_PriorityGroupConfig( NVIC_PriorityGroup_4 );
 	 NVIC_InitStructure.NVIC_IRQChannel = FREQ_TIM_IRQn;
-	 NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY;
-	 NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+	 NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
+	 NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
 	 NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	 NVIC_Init(&NVIC_InitStructure);
 
-	 TIM_ITConfig(FREQ_TIM,/* TIM_IT_Update|*/ TIM_IT_CC1 /* | TIM_IT_CC2*/, ENABLE);
+	 TIM_ITConfig(FREQ_TIM,TIM_IT_CC1, ENABLE);
 	 TIM_SelectOutputTrigger(FREQ_TIM, TIM_TRGOSource_Update);
-	 TIM_ClearFlag(FREQ_TIM, TIM_FLAG_Update /*| TIM_FLAG_CC1 | TIM_FLAG_CC2*/ );
+	 TIM_ClearFlag(FREQ_TIM, TIM_FLAG_CC1 );
 
 	 xFrequencyMeasureCH1Queue = xQueueCreate( 2, sizeof( uint8_t ) );
 	 xFrequencyMeasureCH2Queue = xQueueCreate( 2, sizeof( uint8_t ) );
@@ -93,52 +93,69 @@ void FrequencyMeasureInit(void)
 	 xTaskCreate(FrequencyMeasure_Task,(signed char*)"Freq CH1",64,NULL, tskIDLE_PRIORITY + 1, NULL);
 
 
-	 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12;
-	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
+
+	TIM_InitStructure.TIM_Period = 65535;
+	TIM_InitStructure.TIM_Prescaler = 0;
+	TIM_InitStructure.TIM_ClockDivision = 0;
+	TIM_InitStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseInit(TIM2, &TIM_InitStructure);
+
+
+	 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
+	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
 	 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	 GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	 GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
 	 GPIO_Init(FREQ_GPIO_PORT, &GPIO_InitStructure);
-	 FREQ_GPIO_PORT->BSRRH|=GPIO_Pin_12;
 
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
-
-		TIM_InitStructure.TIM_Period = 25;
-		TIM_InitStructure.TIM_Prescaler = 1;
-		TIM_InitStructure.TIM_ClockDivision = 0;
-		TIM_InitStructure.TIM_CounterMode = TIM_CounterMode_Up;
-		TIM_TimeBaseInit(TIM2, &TIM_InitStructure);
-
-		TIM_ARRPreloadConfig(TIM2, ENABLE);
-
-			   TIM_SelectInputTrigger(TIM2, TIM_TS_ITR2);
-
-			   TIM_SelectMasterSlaveMode(TIM2, TIM_MasterSlaveMode_Enable);
-			   TIM_SelectSlaveMode(TIM2, TIM_SlaveMode_External1);
-
-		NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
-
-		NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
-		NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
-		NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
-		NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-
-		NVIC_Init(&NVIC_InitStructure);
+	 GPIO_PinAFConfig(FREQ_GPIO_PORT, GPIO_PinSource2, GPIO_AF_TIM2 );
 
 
-		TIM_ClearITPendingBit(TIM2,TIM_IT_Update);
-		TIM_ITConfig(TIM2, TIM_IT_Update, ENABLE);
+	 TIM_ICInitStructure.TIM_Channel = TIM_Channel_3;
+	 TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
+	 TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
+	 TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
+	 TIM_ICInitStructure.TIM_ICFilter = 5;
+	 TIM_ICInit(TIM2, &TIM_ICInitStructure);
 
-		TIM_Cmd(TIM2,  ENABLE);
-//
+	TIM_ARRPreloadConfig(TIM2, ENABLE);
 
+	TIM_SelectInputTrigger(TIM2, TIM_TS_ITR2);
+
+	TIM_SelectMasterSlaveMode(TIM2, TIM_MasterSlaveMode_Enable);
+	TIM_SelectSlaveMode(TIM2, TIM_SlaveMode_External1);
+
+	TIM_Cmd(TIM2,  ENABLE);
+
+
+
+	 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12;
+	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+	 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	 GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	 GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+	 GPIO_Init(FREQ_GPIO_PORT, &GPIO_InitStructure);
+
+	 GPIO_PinAFConfig(FREQ_GPIO_PORT, GPIO_PinSource12, GPIO_AF_TIM1 );
+
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE);
+
+	TIM_TimeBaseStructInit(&TIM_InitStructure);
+	TIM_InitStructure.TIM_Prescaler = 0;
+	TIM_InitStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_InitStructure.TIM_Period= 65535;
+	TIM_InitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
+	TIM_TimeBaseInit(TIM1, &TIM_InitStructure);
+	TIM_ETRClockMode2Config(TIM1, TIM_ExtTRGPSC_OFF, TIM_ExtTRGPolarity_NonInverted, 0x00);
+	TIM_Cmd(TIM1, ENABLE);
 
 }
 
 typedef struct
 {
 	uint32_t capture;
-//	uint32_t overflow_count;
+	uint32_t div_cap;
 	uint32_t impulse_count;
 }stFrequencyData;
 
@@ -154,34 +171,20 @@ static volatile uint8_t FrequencyDataCH2counter=0;
 
 static volatile uint32_t FrequencyCH1overflow_count=0;
 
+portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 void Freq_TIM_IRQHandler()
 {
 	 if (FREQ_TIM->SR & TIM_IT_CC1 )
 	 {
 		 FREQ_TIM->SR &= (~TIM_IT_CC1 );
-		 FrequencyDataCH1[FrequencyDataCH1counter].capture =FREQ_TIM->CCR1;
-		 FrequencyDataCH1[FrequencyDataCH1counter].impulse_count++;
-	 }
-}
-
-void TIM2_IRQHandler(void)
-{
-	 portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
-	 if (TIM2->SR & TIM_IT_Update )
-	 {
-		 TIM2->SR &= (~TIM_IT_Update );
-		 GPIO_ToggleBits(FREQ_GPIO_PORT,GPIO_Pin_12);
+		 FREQ_TIM->DIER &= (uint16_t)~TIM_IT_CC1;
+		 FrequencyDataCH1[FrequencyDataCH1counter].capture =(uint32_t)FREQ_TIM->CCR1|(((uint32_t)TIM2->CCR3)<<16);
+		 FrequencyDataCH1[FrequencyDataCH1counter].impulse_count=TIM1->CNT;
+		 TIM1->CNT=0x0;
 
 		 FrequencyDataCH1counter++;
 		 FrequencyDataCH1counter&=(FREQUENCY_DATA_LEN-1);
-		 FrequencyDataCH1[FrequencyDataCH1counter].impulse_count=0;
-
 		 xQueueSendFromISR(xFrequencyMeasureCH1Queue,  &FrequencyDataCH1counter, &xHigherPriorityTaskWoken);
-
-		 if (xHigherPriorityTaskWoken)
-		 {
-			 taskYIELD();
-		 }
 	 }
 }
 
@@ -198,32 +201,29 @@ static void FrequencyMeasure_Task(void *pvParameters)
 
  	for( ;; )
 	{
-		 if (uxQueueMessagesWaiting(xFrequencyMeasureCH1Queue) > 0)
-		 {
+ 		vTaskDelay(250);
+ 		FREQ_TIM->SR &= (~TIM_IT_CC1 );
+ 		FREQ_TIM->DIER |= TIM_IT_CC1;
+
+		if (uxQueueMessagesWaiting(xFrequencyMeasureCH1Queue) > 0)
+		{
 			 xQueueReceive(xFrequencyMeasureCH1Queue, &ch1_current_pos, 0 );
 
-//			 uint8_t first_element=(ch1_current_pos-FREQUENCY_TIME_INTERVAL)&(FREQUENCY_DATA_LEN-1);
-//
-//			 for(i=first_element;i<ch1_current_pos;i++)
-//			 {
-//				 ch1_sum_impulse+=FrequencyDataCH1[i&(FREQUENCY_DATA_LEN-1)].impulse_count;
-//			 }
-
 			 ch1_sum_impulse=FrequencyDataCH1[(ch1_current_pos-1)&(FREQUENCY_DATA_LEN-1)].impulse_count;
-			 ch1_sum_tick_impulse=(uint32_t)FREQ_TIM_PERIOD*OVERFLOW_250MSEC-(FREQ_TIM_PERIOD-FrequencyDataCH1[(ch1_current_pos-1)&(FREQUENCY_DATA_LEN-1)].capture)+(FREQ_TIM_PERIOD-FrequencyDataCH1[(ch1_current_pos-2)&(FREQUENCY_DATA_LEN-1)].capture);
 
+			 if(FrequencyDataCH1[(ch1_current_pos-1)&(FREQUENCY_DATA_LEN-1)].capture>FrequencyDataCH1[(ch1_current_pos-2)&(FREQUENCY_DATA_LEN-1)].capture)
+			 {
+				 ch1_sum_tick_impulse=FrequencyDataCH1[(ch1_current_pos-1)&(FREQUENCY_DATA_LEN-1)].capture-FrequencyDataCH1[(ch1_current_pos-2)&(FREQUENCY_DATA_LEN-1)].capture;
+			 }
+			 else
+			 {
+				 ch1_sum_tick_impulse=FrequencyDataCH1[(ch1_current_pos-2)&(FREQUENCY_DATA_LEN-1)].capture-FrequencyDataCH1[(ch1_current_pos-1)&(FREQUENCY_DATA_LEN-1)].capture;
+			 }
 
-			 //ch1_sum_tick_impulse=(FREQUENCY_TIME_INTERVAL+1)*FREQ_TIM_PERIOD+FrequencyDataCH1[ch1_current_pos].capture-FrequencyDataCH1[(first_element-1)&(FREQUENCY_DATA_LEN-1)].capture;
+			 FrequencyDataCH1[(ch1_current_pos-1)&(FREQUENCY_DATA_LEN-1)].div_cap=ch1_sum_tick_impulse;
 
-			 ch1_frequency= (float)FREQ_TIMER_TICK_FREQUENCY*ch1_sum_impulse/ch1_sum_tick_impulse;//(float)FREQ_TIMER_TICK_FREQUENCY*ch1_sum_impulse/((FREQUENCY_TIME_INTERVAL+1)*FREQ_TIM_PERIOD-FrequencyDataCH1[first_element].capture+FrequencyDataCH1[ch1_current_pos].capture);
-			 ch1_sum_impulse=0;
-		 }
-
-//		 if (uxQueueMessagesWaiting(xFrequencyMeasureCH2Queue) > 0)
-//		 {
-//			 xQueueReceive(xFrequencyMeasureCH2Queue, &ch2_current_pos, 0 );
-//		 }
-
+			 ch1_frequency= (float)FREQ_TIMER_TICK_FREQUENCY*ch1_sum_impulse/ch1_sum_tick_impulse;
+		}
 	}
 }
 
