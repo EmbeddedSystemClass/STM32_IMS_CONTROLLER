@@ -187,10 +187,10 @@
       </source>
       <source file="..\..\..\Source\devices\rtc.h" lastModified="1475ce20740">
       </source>
-      <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="1428e3c1104">
+      <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="14c554a72b0">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14c318df959">
+      <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14c554be877">
          <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
          <include file="..\..\..\Source\freemodbus\include\mb.h"/>
          <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
@@ -324,7 +324,7 @@
          <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\timers.h"/>
       </source>
-      <source file="..\..\..\Source\FreeRTOS\Source\FreeRTOSConfig.h" lastModified="14c3136f76c">
+      <source file="..\..\..\Source\FreeRTOS\Source\FreeRTOSConfig.h" lastModified="14c554a8be5">
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="14835b06da1">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
@@ -394,7 +394,7 @@
          <include file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\portmacro.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\portmacro.h"/>
       </source>
-      <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14c45b44a28">
+      <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14c55909537">
          <include file="..\..\..\Source\freemodbus\include\mb.h"/>
          <include file="..\..\..\Source\devices\backup_sram.h"/>
       </source>
