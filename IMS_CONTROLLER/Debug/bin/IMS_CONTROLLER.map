@@ -862,8 +862,6 @@ Discarded input sections
                 0x00000000       0x1c ..\obj\stm32f4xx_tim.o
  .text.TIM_GetFlagStatus
                 0x00000000       0x40 ..\obj\stm32f4xx_tim.o
- .text.TIM_GetITStatus
-                0x00000000       0x64 ..\obj\stm32f4xx_tim.o
  .text.TIM_DMAConfig
                 0x00000000       0x2c ..\obj\stm32f4xx_tim.o
  .text.TIM_DMACmd
@@ -921,7 +919,7 @@ Linker script and memory map
 
                 0x20020000                _eram = 0x20020000
 
-.text           0x08000000     0x6fca
+.text           0x08000000     0x7026
  *(.isr_vector .isr_vector.*)
  .isr_vector    0x08000000      0x188 ..\obj\startup_stm32f4xx.o
                 0x08000000                g_pfnVectors
@@ -1392,148 +1390,151 @@ Linker script and memory map
                 0x08004ce4      0x4c0 ..\obj\frequency.o
                 0x08004ce4                FrequencyMeasureInit
  .text.TIM3_IRQHandler
-                0x080051a4      0x264 ..\obj\frequency.o
+                0x080051a4      0x25c ..\obj\frequency.o
                 0x080051a4                TIM3_IRQHandler
  .text.FrequencyCH1Measure_Task
-                0x08005408      0x1fc ..\obj\frequency.o
+                0x08005400      0x1fc ..\obj\frequency.o
  .text.FrequencyCH2Measure_Task
-                0x08005604      0x1f8 ..\obj\frequency.o
+                0x080055fc      0x1f8 ..\obj\frequency.o
  .text.EXTI_GetITStatus
-                0x080057fc       0x60 ..\obj\stm32f4xx_exti.o
-                0x080057fc                EXTI_GetITStatus
+                0x080057f4       0x60 ..\obj\stm32f4xx_exti.o
+                0x080057f4                EXTI_GetITStatus
  .text.EXTI_ClearITPendingBit
-                0x0800585c       0x20 ..\obj\stm32f4xx_exti.o
-                0x0800585c                EXTI_ClearITPendingBit
+                0x08005854       0x20 ..\obj\stm32f4xx_exti.o
+                0x08005854                EXTI_ClearITPendingBit
  .text.NVIC_PriorityGroupConfig
-                0x0800587c       0x28 ..\obj\misc.o
-                0x0800587c                NVIC_PriorityGroupConfig
+                0x08005874       0x28 ..\obj\misc.o
+                0x08005874                NVIC_PriorityGroupConfig
  .text.NVIC_Init
-                0x080058a4       0xe8 ..\obj\misc.o
-                0x080058a4                NVIC_Init
+                0x0800589c       0xe8 ..\obj\misc.o
+                0x0800589c                NVIC_Init
  .text.pvPortMalloc
-                0x0800598c      0x164 ..\obj\heap_2.o
-                0x0800598c                pvPortMalloc
+                0x08005984      0x164 ..\obj\heap_2.o
+                0x08005984                pvPortMalloc
  .text.vPortFree
-                0x08005af0       0x88 ..\obj\heap_2.o
-                0x08005af0                vPortFree
+                0x08005ae8       0x88 ..\obj\heap_2.o
+                0x08005ae8                vPortFree
  .text.xPortGetFreeHeapSize
-                0x08005b78       0x18 ..\obj\heap_2.o
-                0x08005b78                xPortGetFreeHeapSize
+                0x08005b70       0x18 ..\obj\heap_2.o
+                0x08005b70                xPortGetFreeHeapSize
  .text.prvHeapInit
-                0x08005b90       0x6c ..\obj\heap_2.o
+                0x08005b88       0x6c ..\obj\heap_2.o
  .text.TIM_DeInit
-                0x08005bfc      0x238 ..\obj\stm32f4xx_tim.o
-                0x08005bfc                TIM_DeInit
+                0x08005bf4      0x238 ..\obj\stm32f4xx_tim.o
+                0x08005bf4                TIM_DeInit
  .text.TIM_TimeBaseInit
-                0x08005e34       0xf8 ..\obj\stm32f4xx_tim.o
-                0x08005e34                TIM_TimeBaseInit
+                0x08005e2c       0xf8 ..\obj\stm32f4xx_tim.o
+                0x08005e2c                TIM_TimeBaseInit
  .text.TIM_TimeBaseStructInit
-                0x08005f2c       0x3c ..\obj\stm32f4xx_tim.o
-                0x08005f2c                TIM_TimeBaseStructInit
+                0x08005f24       0x3c ..\obj\stm32f4xx_tim.o
+                0x08005f24                TIM_TimeBaseStructInit
  .text.TIM_SetCounter
-                0x08005f68       0x1c ..\obj\stm32f4xx_tim.o
-                0x08005f68                TIM_SetCounter
+                0x08005f60       0x1c ..\obj\stm32f4xx_tim.o
+                0x08005f60                TIM_SetCounter
  .text.TIM_ARRPreloadConfig
-                0x08005f84       0x40 ..\obj\stm32f4xx_tim.o
-                0x08005f84                TIM_ARRPreloadConfig
- .text.TIM_Cmd  0x08005fc4       0x40 ..\obj\stm32f4xx_tim.o
-                0x08005fc4                TIM_Cmd
+                0x08005f7c       0x40 ..\obj\stm32f4xx_tim.o
+                0x08005f7c                TIM_ARRPreloadConfig
+ .text.TIM_Cmd  0x08005fbc       0x40 ..\obj\stm32f4xx_tim.o
+                0x08005fbc                TIM_Cmd
  .text.TIM_ICInit
-                0x08006004       0xa8 ..\obj\stm32f4xx_tim.o
-                0x08006004                TIM_ICInit
+                0x08005ffc       0xa8 ..\obj\stm32f4xx_tim.o
+                0x08005ffc                TIM_ICInit
  .text.TIM_SetIC1Prescaler
-                0x080060ac       0x38 ..\obj\stm32f4xx_tim.o
-                0x080060ac                TIM_SetIC1Prescaler
+                0x080060a4       0x38 ..\obj\stm32f4xx_tim.o
+                0x080060a4                TIM_SetIC1Prescaler
  .text.TIM_SetIC2Prescaler
-                0x080060e4       0x40 ..\obj\stm32f4xx_tim.o
-                0x080060e4                TIM_SetIC2Prescaler
+                0x080060dc       0x40 ..\obj\stm32f4xx_tim.o
+                0x080060dc                TIM_SetIC2Prescaler
  .text.TIM_SetIC3Prescaler
-                0x08006124       0x38 ..\obj\stm32f4xx_tim.o
-                0x08006124                TIM_SetIC3Prescaler
+                0x0800611c       0x38 ..\obj\stm32f4xx_tim.o
+                0x0800611c                TIM_SetIC3Prescaler
  .text.TIM_SetIC4Prescaler
-                0x0800615c       0x40 ..\obj\stm32f4xx_tim.o
-                0x0800615c                TIM_SetIC4Prescaler
+                0x08006154       0x40 ..\obj\stm32f4xx_tim.o
+                0x08006154                TIM_SetIC4Prescaler
  .text.TIM_ITConfig
-                0x0800619c       0x4c ..\obj\stm32f4xx_tim.o
-                0x0800619c                TIM_ITConfig
+                0x08006194       0x4c ..\obj\stm32f4xx_tim.o
+                0x08006194                TIM_ITConfig
  .text.TIM_ClearFlag
-                0x080061e8       0x24 ..\obj\stm32f4xx_tim.o
-                0x080061e8                TIM_ClearFlag
+                0x080061e0       0x24 ..\obj\stm32f4xx_tim.o
+                0x080061e0                TIM_ClearFlag
+ .text.TIM_GetITStatus
+                0x08006204       0x64 ..\obj\stm32f4xx_tim.o
+                0x08006204                TIM_GetITStatus
  .text.TIM_ClearITPendingBit
-                0x0800620c       0x24 ..\obj\stm32f4xx_tim.o
-                0x0800620c                TIM_ClearITPendingBit
+                0x08006268       0x24 ..\obj\stm32f4xx_tim.o
+                0x08006268                TIM_ClearITPendingBit
  .text.TIM_ETRClockMode2Config
-                0x08006230       0x34 ..\obj\stm32f4xx_tim.o
-                0x08006230                TIM_ETRClockMode2Config
+                0x0800628c       0x34 ..\obj\stm32f4xx_tim.o
+                0x0800628c                TIM_ETRClockMode2Config
  .text.TIM_SelectInputTrigger
-                0x08006264       0x3c ..\obj\stm32f4xx_tim.o
-                0x08006264                TIM_SelectInputTrigger
+                0x080062c0       0x3c ..\obj\stm32f4xx_tim.o
+                0x080062c0                TIM_SelectInputTrigger
  .text.TIM_SelectOutputTrigger
-                0x080062a0       0x38 ..\obj\stm32f4xx_tim.o
-                0x080062a0                TIM_SelectOutputTrigger
+                0x080062fc       0x38 ..\obj\stm32f4xx_tim.o
+                0x080062fc                TIM_SelectOutputTrigger
  .text.TIM_SelectSlaveMode
-                0x080062d8       0x38 ..\obj\stm32f4xx_tim.o
-                0x080062d8                TIM_SelectSlaveMode
+                0x08006334       0x38 ..\obj\stm32f4xx_tim.o
+                0x08006334                TIM_SelectSlaveMode
  .text.TIM_SelectMasterSlaveMode
-                0x08006310       0x38 ..\obj\stm32f4xx_tim.o
-                0x08006310                TIM_SelectMasterSlaveMode
+                0x0800636c       0x38 ..\obj\stm32f4xx_tim.o
+                0x0800636c                TIM_SelectMasterSlaveMode
  .text.TIM_ETRConfig
-                0x08006348       0x54 ..\obj\stm32f4xx_tim.o
-                0x08006348                TIM_ETRConfig
+                0x080063a4       0x54 ..\obj\stm32f4xx_tim.o
+                0x080063a4                TIM_ETRConfig
  .text.TI1_Config
-                0x0800639c       0x84 ..\obj\stm32f4xx_tim.o
+                0x080063f8       0x84 ..\obj\stm32f4xx_tim.o
  .text.TI2_Config
-                0x08006420       0xa4 ..\obj\stm32f4xx_tim.o
+                0x0800647c       0xa4 ..\obj\stm32f4xx_tim.o
  .text.TI3_Config
-                0x080064c4       0x94 ..\obj\stm32f4xx_tim.o
+                0x08006520       0x94 ..\obj\stm32f4xx_tim.o
  .text.TI4_Config
-                0x08006558       0xac ..\obj\stm32f4xx_tim.o
+                0x080065b4       0xac ..\obj\stm32f4xx_tim.o
  .text.NVIC_SystemReset
-                0x08006604       0x34 ..\obj\power_detector.o
+                0x08006660       0x34 ..\obj\power_detector.o
  .text.PVD_IRQHandler
-                0x08006638       0x20 ..\obj\power_detector.o
-                0x08006638                PVD_IRQHandler
- .text          0x08006658      0x21c c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_addsubsf3.o)
-                0x08006658                __aeabi_frsub
-                0x08006660                __subsf3
-                0x08006660                __aeabi_fsub
-                0x08006664                __aeabi_fadd
-                0x08006664                __addsf3
-                0x080067c4                __aeabi_ui2f
-                0x080067c4                __floatunsisf
-                0x080067cc                __aeabi_i2f
-                0x080067cc                __floatsisf
-                0x080067e8                __aeabi_ul2f
-                0x080067e8                __floatundisf
-                0x080067f8                __aeabi_l2f
-                0x080067f8                __floatdisf
- .text          0x08006874      0x2a0 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_muldivsf3.o)
-                0x08006874                __mulsf3
-                0x08006874                __aeabi_fmul
-                0x080069dc                __aeabi_fdiv
-                0x080069dc                __divsf3
- .text          0x08006b14       0x58 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memcmp.o)
-                0x08006b14                memcmp
- .text          0x08006b6c      0x150 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memcpy.o)
-                0x08006b6c                memcpy
- .text          0x08006cbc       0xb4 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memset.o)
-                0x08006cbc                memset
+                0x08006694       0x20 ..\obj\power_detector.o
+                0x08006694                PVD_IRQHandler
+ .text          0x080066b4      0x21c c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_addsubsf3.o)
+                0x080066b4                __aeabi_frsub
+                0x080066bc                __subsf3
+                0x080066bc                __aeabi_fsub
+                0x080066c0                __aeabi_fadd
+                0x080066c0                __addsf3
+                0x08006820                __aeabi_ui2f
+                0x08006820                __floatunsisf
+                0x08006828                __aeabi_i2f
+                0x08006828                __floatsisf
+                0x08006844                __aeabi_ul2f
+                0x08006844                __floatundisf
+                0x08006854                __aeabi_l2f
+                0x08006854                __floatdisf
+ .text          0x080068d0      0x2a0 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_muldivsf3.o)
+                0x080068d0                __mulsf3
+                0x080068d0                __aeabi_fmul
+                0x08006a38                __aeabi_fdiv
+                0x08006a38                __divsf3
+ .text          0x08006b70       0x58 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memcmp.o)
+                0x08006b70                memcmp
+ .text          0x08006bc8      0x150 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memcpy.o)
+                0x08006bc8                memcpy
+ .text          0x08006d18       0xb4 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memset.o)
+                0x08006d18                memset
  *(.glue_7t)
  .glue_7t       0x00000000        0x0 linker stubs
  *(.glue_7)
  .glue_7        0x00000000        0x0 linker stubs
  *(.rodata .rodata* .gnu.linkonce.r.*)
- .rodata        0x08006d70       0x20 ..\obj\protocol.o
- .rodata        0x08006d90      0x200 ..\obj\mbcrc.o
- .rodata        0x08006f90       0x1c ..\obj\tasks.o
- .rodata        0x08006fac        0x4 ..\obj\port.o
- .rodata        0x08006fb0       0x18 ..\obj\frequency.o
- .rodata        0x08006fc8        0x2 ..\obj\heap_2.o
+ .rodata        0x08006dcc       0x20 ..\obj\protocol.o
+ .rodata        0x08006dec      0x200 ..\obj\mbcrc.o
+ .rodata        0x08006fec       0x1c ..\obj\tasks.o
+ .rodata        0x08007008        0x4 ..\obj\port.o
+ .rodata        0x0800700c       0x18 ..\obj\frequency.o
+ .rodata        0x08007024        0x2 ..\obj\heap_2.o
 
-.vfp11_veneer   0x08006fcc        0x0 load address 0x08006fca
+.vfp11_veneer   0x08007028        0x0 load address 0x08007026
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x08006fcc        0x0 load address 0x08006fca
+.v4_bx          0x08007028        0x0 load address 0x08007026
  .v4_bx         0x00000000        0x0 linker stubs
 
 .ARM.extab
@@ -1541,11 +1542,11 @@ Linker script and memory map
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x08006fcc                . = ALIGN (0x4)
-                0x08006fcc                _etext = .
-                0x08006fcc                _sidata = .
+                0x08007028                . = ALIGN (0x4)
+                0x08007028                _etext = .
+                0x08007028                _sidata = .
 
-.data           0x20000000       0xbc load address 0x08006fcc
+.data           0x20000000       0xbc load address 0x08007028
                 0x20000000                _sdata = .
  *(.data .data.*)
  .data          0x20000000        0xc ..\obj\mbport.o
@@ -1567,7 +1568,7 @@ Linker script and memory map
                 0x200000bc                . = ALIGN (0x4)
                 0x200000bc                _edata = .
 
-.bss            0x200000bc     0x4ba8 load address 0x08007088
+.bss            0x200000bc     0x4ba8 load address 0x080070e4
                 0x200000bc                _sbss = .
  *(.bss .bss.*)
  .bss           0x200000bc      0x100 ..\obj\mbport.o
@@ -1594,7 +1595,7 @@ Linker script and memory map
                 0x20004c64                . = ALIGN (0x4)
                 0x20004c64                _ebss = .
 
-.co_stack       0x20004c64      0x804 load address 0x0800bc30
+.co_stack       0x20004c64      0x804 load address 0x0800bc8c
                 0x20004c68                . = ALIGN (0x8)
  *fill*         0x20004c64        0x4 00
  *(.co_stack .co_stack.*)

@@ -68,7 +68,7 @@ void FrequencyMeasureInit(void)
 	 TIM_ICInit(FREQ_TIM, &TIM_ICInitStructure);
 
 	 TIM_ICInitStructure.TIM_Channel = TIM_Channel_2;
-	 TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
+	 TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Falling;
 	 TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
 	 TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
 	 TIM_ICInitStructure.TIM_ICFilter = 5;
@@ -119,7 +119,7 @@ void FrequencyMeasureInit(void)
 	 TIM_ICInit(TIM2, &TIM_ICInitStructure);
 
 	 TIM_ICInitStructure.TIM_Channel = TIM_Channel_3;
-	 TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
+	 TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Falling;
 	 TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
 	 TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
 	 TIM_ICInitStructure.TIM_ICFilter = 5;
@@ -207,9 +207,11 @@ static volatile uint32_t FrequencyCH1overflow_count=0;
 portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 void Freq_TIM_IRQHandler()
 {
-	 if (FREQ_TIM->SR & TIM_IT_CC1 )
+//	 TIM_ITConfig(FREQ_TIM,TIM_IT_CC1|TIM_IT_CC2, DISABLE);
+
+	 if (TIM_GetITStatus(FREQ_TIM,TIM_FLAG_CC1 ))
 	 {
-		 FREQ_TIM->SR &= (~TIM_IT_CC1 );
+		 TIM_ClearFlag(FREQ_TIM, TIM_FLAG_CC1 );
 		 FREQ_TIM->DIER &= (uint16_t)~TIM_IT_CC1;
 		 FrequencyDataCH1[FrequencyDataCH1counter].capture =(uint32_t)FREQ_TIM->CCR1|(((uint32_t)TIM2->CCR2)<<16);
 		 FrequencyDataCH1[FrequencyDataCH1counter].impulse_count=TIM8->CNT;
@@ -220,9 +222,9 @@ void Freq_TIM_IRQHandler()
 		 xQueueSendFromISR(xFrequencyMeasureCH1Queue,  &FrequencyDataCH1counter, &xHigherPriorityTaskWoken);
 	 }
 
-	 if (FREQ_TIM->SR & TIM_IT_CC2 )
+	 if (TIM_GetITStatus(FREQ_TIM,TIM_FLAG_CC2 ))
 	 {
-		 FREQ_TIM->SR &= (~TIM_IT_CC2 );
+		 FREQ_TIM->SR &= (~TIM_FLAG_CC2 );
 		 FREQ_TIM->DIER &= (uint16_t)~TIM_IT_CC2;
 		 FrequencyDataCH2[FrequencyDataCH2counter].capture =(uint32_t)FREQ_TIM->CCR2|(((uint32_t)TIM2->CCR3)<<16);
 		 FrequencyDataCH2[FrequencyDataCH2counter].impulse_count=TIM1->CNT;
@@ -232,6 +234,8 @@ void Freq_TIM_IRQHandler()
 		 FrequencyDataCH2counter&=(FREQUENCY_DATA_LEN-1);
 		 xQueueSendFromISR(xFrequencyMeasureCH2Queue,  &FrequencyDataCH2counter, &xHigherPriorityTaskWoken);
 	 }
+
+//	 TIM_ITConfig(FREQ_TIM,TIM_IT_CC1|TIM_IT_CC2, ENABLE);
 }
 
 
