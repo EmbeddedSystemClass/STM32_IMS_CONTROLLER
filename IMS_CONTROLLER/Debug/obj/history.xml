@@ -112,8 +112,8 @@
       <target file="heap_2.o" lastModified="14c554c00b2">
          <source file="..\..\..\Source\FreeRTOS\Source\portable\MemMang\heap_2.c" lastModified="14af2c557af"/>
       </target>
-      <target file="frequency.o" lastModified="14c55d626d9">
-         <source file="..\..\..\Source\devices\frequency.c" lastModified="14c55d619b9"/>
+      <target file="frequency.o" lastModified="14c5618a918">
+         <source file="..\..\..\Source\devices\frequency.c" lastModified="14c56189f63"/>
       </target>
       <target file="mbfuncdisc.o" lastModified="14c318da260">
          <source file="..\..\..\Source\freemodbus\functions\mbfuncdisc.c" lastModified="14c2274fab0"/>
