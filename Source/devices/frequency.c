@@ -68,7 +68,7 @@ void FrequencyMeasureInit(void)
 	 TIM_ICInit(FREQ_TIM, &TIM_ICInitStructure);
 
 	 TIM_ICInitStructure.TIM_Channel = TIM_Channel_2;
-	 TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Falling;
+	 TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
 	 TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
 	 TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
 	 TIM_ICInitStructure.TIM_ICFilter = 5;
@@ -119,7 +119,7 @@ void FrequencyMeasureInit(void)
 	 TIM_ICInit(TIM2, &TIM_ICInitStructure);
 
 	 TIM_ICInitStructure.TIM_Channel = TIM_Channel_3;
-	 TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Falling;
+	 TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
 	 TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
 	 TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
 	 TIM_ICInitStructure.TIM_ICFilter = 5;
