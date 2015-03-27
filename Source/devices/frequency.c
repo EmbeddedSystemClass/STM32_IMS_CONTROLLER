@@ -39,62 +39,62 @@ void FrequencyMeasureInit(void)
 	 NVIC_InitTypeDef NVIC_InitStructure;
 	 TIM_TimeBaseInitTypeDef TIM_InitStructure;
 
-	 TIM_DeInit(FREQ_TIM);
+	// TIM_DeInit(FREQ_TIM);
 
-	 RCC_APB1PeriphClockCmd(RCC_FREQ_TIM, ENABLE);
+//	 RCC_APB1PeriphClockCmd(RCC_FREQ_TIM, ENABLE);
 	 RCC_AHB1PeriphClockCmd(RCC_FREQ_GPIO_PORT, ENABLE);
 
 
-	 TIM_TimeBaseStructInit(&TIM_InitStructure);
-	 TIM_InitStructure.TIM_Prescaler = FREQ_TIM_PRESCALER;
-	 TIM_InitStructure.TIM_Period = FREQ_TIM_PERIOD ;
-	 TIM_TimeBaseInit(FREQ_TIM, &TIM_InitStructure);
-	 TIM_Cmd(FREQ_TIM, ENABLE);
-
-	 GPIO_InitStructure.GPIO_Pin = FREQ_GPIO_PINS;
-	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-	 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	 GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-	 GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
-	 GPIO_Init(FREQ_GPIO_PORT, &GPIO_InitStructure);
-
-	 GPIO_PinAFConfig(FREQ_GPIO_PORT, FREQ_GPIO_PINSOURCE_1, FREQ_GPIO_AF );
-	 GPIO_PinAFConfig(FREQ_GPIO_PORT, FREQ_GPIO_PINSOURCE_2, FREQ_GPIO_AF );
-
-	 TIM_ICInitStructure.TIM_Channel = TIM_Channel_1;
-	 TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
-	 TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
-	 TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
-	 TIM_ICInitStructure.TIM_ICFilter = 5;
-	 TIM_ICInit(FREQ_TIM, &TIM_ICInitStructure);
-
-	 TIM_ICInitStructure.TIM_Channel = TIM_Channel_2;
-	 TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
-	 TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
-	 TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
-	 TIM_ICInitStructure.TIM_ICFilter = 5;
-	 TIM_ICInit(FREQ_TIM, &TIM_ICInitStructure);
-
-
-
-	 NVIC_EnableIRQ(FREQ_TIM_IRQn);
-	 NVIC_PriorityGroupConfig( NVIC_PriorityGroup_4 );
-	 NVIC_InitStructure.NVIC_IRQChannel = FREQ_TIM_IRQn;
-	 NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
-	 NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
-	 NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-	 NVIC_Init(&NVIC_InitStructure);
-
-	 TIM_ITConfig(FREQ_TIM,TIM_IT_CC1|TIM_IT_CC2, ENABLE);
-	 TIM_SelectOutputTrigger(FREQ_TIM, TIM_TRGOSource_Update);
-	 TIM_ClearFlag(FREQ_TIM, TIM_FLAG_CC1|TIM_FLAG_CC2 );
+//	 TIM_TimeBaseStructInit(&TIM_InitStructure);
+//	 TIM_InitStructure.TIM_Prescaler = FREQ_TIM_PRESCALER;
+//	 TIM_InitStructure.TIM_Period = FREQ_TIM_PERIOD ;
+//	 TIM_TimeBaseInit(FREQ_TIM, &TIM_InitStructure);
+//	 TIM_Cmd(FREQ_TIM, ENABLE);
+//
+//	 GPIO_InitStructure.GPIO_Pin = FREQ_GPIO_PINS;
+//	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+//	 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+//	 GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+//	 GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+//	 GPIO_Init(FREQ_GPIO_PORT, &GPIO_InitStructure);
+//
+//	 GPIO_PinAFConfig(FREQ_GPIO_PORT, FREQ_GPIO_PINSOURCE_1, FREQ_GPIO_AF );
+//	 GPIO_PinAFConfig(FREQ_GPIO_PORT, FREQ_GPIO_PINSOURCE_2, FREQ_GPIO_AF );
+//
+//	 TIM_ICInitStructure.TIM_Channel = TIM_Channel_1;
+//	 TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
+//	 TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
+//	 TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
+//	 TIM_ICInitStructure.TIM_ICFilter = 5;
+//	 TIM_ICInit(FREQ_TIM, &TIM_ICInitStructure);
+//
+//	 TIM_ICInitStructure.TIM_Channel = TIM_Channel_2;
+//	 TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
+//	 TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
+//	 TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
+//	 TIM_ICInitStructure.TIM_ICFilter = 5;
+//	 TIM_ICInit(FREQ_TIM, &TIM_ICInitStructure);
+//
+//
+//
+//	 NVIC_EnableIRQ(FREQ_TIM_IRQn);
+//	 NVIC_PriorityGroupConfig( NVIC_PriorityGroup_4 );
+//	 NVIC_InitStructure.NVIC_IRQChannel = FREQ_TIM_IRQn;
+//	 NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
+//	 NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+//	 NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+//	 NVIC_Init(&NVIC_InitStructure);
+//
+//	 TIM_ITConfig(FREQ_TIM,TIM_IT_CC1|TIM_IT_CC2, ENABLE);
+//	 TIM_SelectOutputTrigger(FREQ_TIM, TIM_TRGOSource_Update);
+//	 TIM_ClearFlag(FREQ_TIM, TIM_FLAG_CC1|TIM_FLAG_CC2 );
 
 
 
 
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
 
-	TIM_InitStructure.TIM_Period = 65535;
+	TIM_InitStructure.TIM_Period = 0xFFFFFFFF;
 	TIM_InitStructure.TIM_Prescaler = 0;
 	TIM_InitStructure.TIM_ClockDivision = 0;
 	TIM_InitStructure.TIM_CounterMode = TIM_CounterMode_Up;
@@ -129,10 +129,21 @@ void FrequencyMeasureInit(void)
 
 	TIM_ARRPreloadConfig(TIM2, ENABLE);
 
-	TIM_SelectInputTrigger(TIM2, TIM_TS_ITR2);
+	 NVIC_EnableIRQ(TIM2_IRQn);
+	 NVIC_PriorityGroupConfig( NVIC_PriorityGroup_4 );
+	 NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
+	 NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
+	 NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+	 NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	 NVIC_Init(&NVIC_InitStructure);
 
-	TIM_SelectMasterSlaveMode(TIM2, TIM_MasterSlaveMode_Enable);
-	TIM_SelectSlaveMode(TIM2, TIM_SlaveMode_External1);
+	 TIM_ITConfig(TIM2,TIM_IT_CC2|TIM_IT_CC3, ENABLE);
+
+
+//	TIM_SelectInputTrigger(TIM2, TIM_TS_ITR2);
+//
+//	TIM_SelectMasterSlaveMode(TIM2, TIM_MasterSlaveMode_Enable);
+//	TIM_SelectSlaveMode(TIM2, TIM_SlaveMode_External1);
 
 	TIM_Cmd(TIM2,  ENABLE);
 
@@ -206,13 +217,13 @@ static volatile uint8_t FrequencyDataCH2counter=0;
 static volatile uint32_t FrequencyCH1overflow_count=0;
 
 portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
-void Freq_TIM_IRQHandler()
+void TIM2_IRQHandler()
 {
-	 if (TIM_GetITStatus(FREQ_TIM,TIM_FLAG_CC1 ))
+	 if (TIM_GetITStatus(TIM2,TIM_FLAG_CC2 ))
 	 {
-		 TIM_ClearFlag(FREQ_TIM, TIM_FLAG_CC1 );
-		 FREQ_TIM->DIER &= (uint16_t)~TIM_IT_CC1;
-		 FrequencyDataCH1[FrequencyDataCH1counter].capture =(uint32_t)FREQ_TIM->CCR1|(((uint32_t)TIM2->CCR2)<<16);
+		 TIM_ClearFlag(TIM2, TIM_FLAG_CC2 );
+		 TIM2->DIER &= (uint16_t)~TIM_IT_CC2;
+		 FrequencyDataCH1[FrequencyDataCH1counter].capture =TIM2->CCR2;
 		 FrequencyDataCH1[FrequencyDataCH1counter].impulse_count=TIM8->CNT;
 		 TIM8->CNT=0x0;
 
@@ -221,11 +232,11 @@ void Freq_TIM_IRQHandler()
 		 xQueueSendFromISR(xFrequencyMeasureCH1Queue,  &FrequencyDataCH1counter, &xHigherPriorityTaskWoken);
 	 }
 
-	 if (TIM_GetITStatus(FREQ_TIM,TIM_FLAG_CC2 ))
+	 if (TIM_GetITStatus(TIM2,TIM_FLAG_CC3 ))
 	 {
-		 FREQ_TIM->SR &= (~TIM_FLAG_CC2 );
-		 FREQ_TIM->DIER &= (uint16_t)~TIM_IT_CC2;
-		 FrequencyDataCH2[FrequencyDataCH2counter].capture =(uint32_t)FREQ_TIM->CCR2|(((uint32_t)TIM2->CCR3)<<16);
+		 TIM2->SR &= (~TIM_FLAG_CC3 );
+		 TIM2->DIER &= (uint16_t)~TIM_IT_CC3;
+		 FrequencyDataCH2[FrequencyDataCH2counter].capture =TIM2->CCR3;
 		 FrequencyDataCH2[FrequencyDataCH2counter].impulse_count=TIM1->CNT;
 		 TIM1->CNT=0x0;
 
@@ -248,8 +259,8 @@ static void FrequencyCH1Measure_Task(void *pvParameters)
  	for( ;; )
 	{
  		vTaskDelay(250);
- 		FREQ_TIM->SR &= (~TIM_IT_CC1 );
- 		FREQ_TIM->DIER |= TIM_IT_CC1;
+ 		TIM2->SR &= (~TIM_IT_CC2 );
+ 		TIM2->DIER |= TIM_IT_CC2;
 
  			xStatus=xQueueReceive(xFrequencyMeasureCH1Queue, &ch1_current_pos, FREQ_PERIOD_0_HZ );
  			if(xStatus==pdPASS)
@@ -289,8 +300,8 @@ static void FrequencyCH2Measure_Task(void *pvParameters)
  	for( ;; )
 	{
  		vTaskDelay(250);
- 		FREQ_TIM->SR &= (~TIM_IT_CC2 );
- 		FREQ_TIM->DIER |= TIM_IT_CC2;
+ 		TIM2->SR &= (~TIM_IT_CC3 );
+ 		TIM2->DIER |= TIM_IT_CC3;
 
 		xStatus=xQueueReceive(xFrequencyMeasureCH2Queue, &ch2_current_pos, FREQ_PERIOD_0_HZ );
 		if (xStatus==pdPASS)
