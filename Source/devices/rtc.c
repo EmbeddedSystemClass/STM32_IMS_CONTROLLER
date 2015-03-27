@@ -61,23 +61,23 @@ void RTC_Clock_Init(void)
     xTaskCreate(RTC_Task,(signed char*)"RTC",128,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 
-static void RTC_Task(void *pvParameters)
-{
-    RTC_TimeTypeDef RTC_TimeStructure;
-//    RTC_DateTypeDef RTC_DateStructure;
-    uint8_t str_buf[8];
-	while(1)
-	{
-        RTC_GetTime(RTC_Format_BCD, &RTC_TimeStructure);
-        //RTC_GetDate(RTC_Format_BIN, &RTC_DateStructure);
-        str_buf[0]=0x30+((RTC_TimeStructure.RTC_Minutes>>4)&0xF);
-        str_buf[1]=0x30+(RTC_TimeStructure.RTC_Minutes&0xF);
-        str_buf[2]='.';
-        str_buf[3]=0x30+((RTC_TimeStructure.RTC_Seconds>>4)&0xF);
-        str_buf[4]=0x30+(RTC_TimeStructure.RTC_Seconds&0xF);
-        str_buf[5]=NULL;
-
-     //   str_to_ind(&tab.indicators[0],str_buf);
-        vTaskDelay(200);
-	}
-}
+//static void RTC_Task(void *pvParameters)
+//{
+//    RTC_TimeTypeDef RTC_TimeStructure;
+////    RTC_DateTypeDef RTC_DateStructure;
+//    uint8_t str_buf[8];
+//	while(1)
+//	{
+//        RTC_GetTime(RTC_Format_BCD, &RTC_TimeStructure);
+//        //RTC_GetDate(RTC_Format_BIN, &RTC_DateStructure);
+//        str_buf[0]=0x30+((RTC_TimeStructure.RTC_Minutes>>4)&0xF);
+//        str_buf[1]=0x30+(RTC_TimeStructure.RTC_Minutes&0xF);
+//        str_buf[2]='.';
+//        str_buf[3]=0x30+((RTC_TimeStructure.RTC_Seconds>>4)&0xF);
+//        str_buf[4]=0x30+(RTC_TimeStructure.RTC_Seconds&0xF);
+//        str_buf[5]=NULL;
+//
+//     //   str_to_ind(&tab.indicators[0],str_buf);
+//        vTaskDelay(200);
+//	}
+//}
