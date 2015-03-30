@@ -124,14 +124,15 @@
     <File name="cmsis_boot/startup/startup_stm32f4xx.c" path="cmsis_boot/startup/startup_stm32f4xx.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_rcc.c" path="cmsis_lib/source/stm32f4xx_rcc.c" type="1"/>
     <File name="cmsis/core_cmInstr.h" path="cmsis/core_cmInstr.h" type="1"/>
+    <File name="devices/controller.h" path="Source/devices/controller.h" type="1"/>
     <File name="freemodbus/port/portserial.c" path="Source/freemodbus/port/portserial.c" type="1"/>
     <File name="freemodbus/rtu" path="" type="2"/>
     <File name="cmsis_lib/source/stm32f4xx_pwr.c" path="cmsis_lib/source/stm32f4xx_pwr.c" type="1"/>
     <File name="devices/backup_sram.h" path="Source/devices/backup_sram.h" type="1"/>
     <File name="FreeRTOS/Source/include/semphr.h" path="Source/FreeRTOS/Source/include/semphr.h" type="1"/>
     <File name="cmsis_boot/system_stm32f4xx.c" path="cmsis_boot/system_stm32f4xx.c" type="1"/>
-    <File name="devices/rtc.c" path="Source/devices/rtc.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_spi.h" path="cmsis_lib/include/stm32f4xx_spi.h" type="1"/>
+    <File name="devices/rtc.c" path="Source/devices/rtc.c" type="1"/>
     <File name="FreeRTOS/Source/include/deprecated_definitions.h" path="Source/FreeRTOS/Source/include/deprecated_definitions.h" type="1"/>
     <File name="freemodbus" path="" type="2"/>
     <File name="cmsis" path="" type="2"/>
@@ -157,6 +158,7 @@
     <File name="FreeRTOS/Source/include/mpu_wrappers.h" path="Source/FreeRTOS/Source/include/mpu_wrappers.h" type="1"/>
     <File name="freemodbus/port/porttimer.c" path="Source/freemodbus/port/porttimer.c" type="1"/>
     <File name="FreeRTOS/Source/include/timers.h" path="Source/FreeRTOS/Source/include/timers.h" type="1"/>
+    <File name="devices/controller.c" path="Source/devices/controller.c" type="1"/>
     <File name="freemodbus/functions" path="" type="2"/>
     <File name="cmsis_boot/startup" path="" type="2"/>
     <File name="cmsis/core_cm4.h" path="cmsis/core_cm4.h" type="1"/>

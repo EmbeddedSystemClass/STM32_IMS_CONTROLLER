@@ -50,9 +50,13 @@
 #define FREQ_COUNT_1_GPIO_PINSOURCE			GPIO_PinSource0
 #define FREQ_COUNT_1_TIM_PERIOD				(65535)
 
+#define FREQ_MEASURE_TIME					250
+
 
 xQueueHandle xFrequencyMeasureCH1Queue;
 xQueueHandle xFrequencyMeasureCH2Queue;
+
+xQueueHandle xFrequencyResultQueue[2];
 
 static void FrequencyCH1Measure_Task(void *pvParameters);
 static void FrequencyCH2Measure_Task(void *pvParameters);
@@ -148,6 +152,9 @@ void FrequencyMeasureInit(void)
 	xFrequencyMeasureCH1Queue = xQueueCreate( 2, sizeof( uint8_t ) );
 	xFrequencyMeasureCH2Queue = xQueueCreate( 2, sizeof( uint8_t ) );
 
+	xFrequencyResultQueue[0] = xQueueCreate( 2, sizeof( float ) );
+	xFrequencyResultQueue[1] = xQueueCreate( 2, sizeof( float ) );
+
 	xTaskCreate(FrequencyCH1Measure_Task,(signed char*)"Freq CH1",64,NULL, tskIDLE_PRIORITY + 1, NULL);
 	xTaskCreate(FrequencyCH2Measure_Task,(signed char*)"Freq CH2",64,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
@@ -202,80 +209,84 @@ void FREQ_CAPTURE_TIM_IRQHandler()
 }
 
 
-float ch1_frequency;
+
 static void FrequencyCH1Measure_Task(void *pvParameters)
 {
-	uint8_t ch1_current_pos=0;
-	uint32_t ch1_sum_impulse=0;
-	uint32_t ch1_sum_tick_impulse=0;
+	uint8_t current_pos=0;
+	uint32_t sum_impulse=0;
+	uint32_t sum_tick_impulse=0;
+	float frequency;
 
 	portBASE_TYPE xStatus;
 
  	for( ;; )
 	{
- 		vTaskDelay(250);
+ 		vTaskDelay(FREQ_MEASURE_TIME);
  		FREQ_CAPTURE_TIM->SR &= (~FREQ_CAPTURE_IT_1 );
  		FREQ_CAPTURE_TIM->DIER |= FREQ_CAPTURE_IT_1;
 
- 			xStatus=xQueueReceive(xFrequencyMeasureCH1Queue, &ch1_current_pos, FREQ_CAPTURE_PERIOD_0_HZ );
+ 			xStatus=xQueueReceive(xFrequencyMeasureCH1Queue, &current_pos, FREQ_CAPTURE_PERIOD_0_HZ );
  			if(xStatus==pdPASS)
  			{
-				 ch1_sum_impulse=FrequencyDataCH1[(ch1_current_pos-1)&(FREQUENCY_DATA_LEN-1)].impulse_count;
+				 sum_impulse=FrequencyDataCH1[(current_pos-1)&(FREQUENCY_DATA_LEN-1)].impulse_count;
 
-				 if(FrequencyDataCH1[(ch1_current_pos-1)&(FREQUENCY_DATA_LEN-1)].capture>FrequencyDataCH1[(ch1_current_pos-2)&(FREQUENCY_DATA_LEN-1)].capture)
+				 if(FrequencyDataCH1[(current_pos-1)&(FREQUENCY_DATA_LEN-1)].capture>FrequencyDataCH1[(current_pos-2)&(FREQUENCY_DATA_LEN-1)].capture)
 				 {
-					 ch1_sum_tick_impulse=FrequencyDataCH1[(ch1_current_pos-1)&(FREQUENCY_DATA_LEN-1)].capture-FrequencyDataCH1[(ch1_current_pos-2)&(FREQUENCY_DATA_LEN-1)].capture;
+					 sum_tick_impulse=FrequencyDataCH1[(current_pos-1)&(FREQUENCY_DATA_LEN-1)].capture-FrequencyDataCH1[(current_pos-2)&(FREQUENCY_DATA_LEN-1)].capture;
 				 }
 				 else
 				 {
-					 ch1_sum_tick_impulse=FrequencyDataCH1[(ch1_current_pos-2)&(FREQUENCY_DATA_LEN-1)].capture-FrequencyDataCH1[(ch1_current_pos-1)&(FREQUENCY_DATA_LEN-1)].capture;
+					 sum_tick_impulse=FrequencyDataCH1[(current_pos-2)&(FREQUENCY_DATA_LEN-1)].capture-FrequencyDataCH1[(current_pos-1)&(FREQUENCY_DATA_LEN-1)].capture;
 				 }
 
-				 ch1_frequency= (float)FREQ_CAPTURE_TIMER_TICK_FREQUENCY*ch1_sum_impulse/ch1_sum_tick_impulse;
+				 frequency= (float)FREQ_CAPTURE_TIMER_TICK_FREQUENCY*sum_impulse/sum_tick_impulse;
  			}
  			else
  			{
- 				ch1_frequency=0.0;
+ 				frequency=0.0;
  			}
+ 			xQueueSend( xFrequencyResultQueue[0], &frequency, 0 );
 	}
 }
 
 
-float ch2_frequency;
+
 static void FrequencyCH2Measure_Task(void *pvParameters)
 {
-	uint8_t ch2_current_pos=0;
-	uint32_t ch2_sum_impulse=0;
-	uint32_t ch2_sum_tick_impulse=0;
+	uint8_t current_pos=0;
+	uint32_t sum_impulse=0;
+	uint32_t sum_tick_impulse=0;
+	float frequency;
 
 	portBASE_TYPE xStatus;
 
  	for( ;; )
 	{
- 		vTaskDelay(250);
+ 		vTaskDelay(FREQ_MEASURE_TIME);
  		FREQ_CAPTURE_TIM->SR &= (~FREQ_CAPTURE_IT_2 );
  		FREQ_CAPTURE_TIM->DIER |= FREQ_CAPTURE_IT_2;
 
-		xStatus=xQueueReceive(xFrequencyMeasureCH2Queue, &ch2_current_pos, FREQ_CAPTURE_PERIOD_0_HZ );
+		xStatus=xQueueReceive(xFrequencyMeasureCH2Queue, &current_pos, FREQ_CAPTURE_PERIOD_0_HZ );
 		if (xStatus==pdPASS)
 		{
-			 ch2_sum_impulse=FrequencyDataCH2[(ch2_current_pos-1)&(FREQUENCY_DATA_LEN-1)].impulse_count;
+			 sum_impulse=FrequencyDataCH2[(current_pos-1)&(FREQUENCY_DATA_LEN-1)].impulse_count;
 
-			 if(FrequencyDataCH2[(ch2_current_pos-1)&(FREQUENCY_DATA_LEN-1)].capture>FrequencyDataCH2[(ch2_current_pos-2)&(FREQUENCY_DATA_LEN-1)].capture)
+			 if(FrequencyDataCH2[(current_pos-1)&(FREQUENCY_DATA_LEN-1)].capture>FrequencyDataCH2[(current_pos-2)&(FREQUENCY_DATA_LEN-1)].capture)
 			 {
-				 ch2_sum_tick_impulse=FrequencyDataCH2[(ch2_current_pos-1)&(FREQUENCY_DATA_LEN-1)].capture-FrequencyDataCH2[(ch2_current_pos-2)&(FREQUENCY_DATA_LEN-1)].capture;
+				 sum_tick_impulse=FrequencyDataCH2[(current_pos-1)&(FREQUENCY_DATA_LEN-1)].capture-FrequencyDataCH2[(current_pos-2)&(FREQUENCY_DATA_LEN-1)].capture;
 			 }
 			 else
 			 {
-				 ch2_sum_tick_impulse=FrequencyDataCH2[(ch2_current_pos-2)&(FREQUENCY_DATA_LEN-1)].capture-FrequencyDataCH2[(ch2_current_pos-1)&(FREQUENCY_DATA_LEN-1)].capture;
+				 sum_tick_impulse=FrequencyDataCH2[(current_pos-2)&(FREQUENCY_DATA_LEN-1)].capture-FrequencyDataCH2[(current_pos-1)&(FREQUENCY_DATA_LEN-1)].capture;
 			 }
 
-			 ch2_frequency= (float)FREQ_CAPTURE_TIMER_TICK_FREQUENCY*ch2_sum_impulse/ch2_sum_tick_impulse;
+			 frequency= (float)FREQ_CAPTURE_TIMER_TICK_FREQUENCY*sum_impulse/sum_tick_impulse;
 		}
 		else
 		{
-			ch2_frequency=0.0;
+			frequency=0.0;
 		}
+		xQueueSend( xFrequencyResultQueue[1], &frequency, 0 );
 	}
 }
 

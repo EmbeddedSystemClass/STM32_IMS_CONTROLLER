@@ -1,6 +1,11 @@
 #include "mb.h"
 #include "backup_sram.h"
 
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "semphr.h"
+
 extern struct uks uks_channels;
 
 void ENTER_CRITICAL_SECTION(void)
@@ -13,6 +18,7 @@ void EXIT_CRITICAL_SECTION(void)
 
 }
 
+extern xQueueHandle xFrequencyResultQueue[];
 
 static volatile u16 usRegInputBuf[128];
 u16 *usRegHoldingBuf=usRegInputBuf;
@@ -22,7 +28,7 @@ u8 REG_INPUT_NREGS=32,REG_HOLDING_NREGS=48;
 u8 usRegInputStart=1,usRegHoldingStart=1;
 
 
-extern float ch1_frequency, ch2_frequency;
+//extern float ch1_frequency, ch2_frequency;
 
 eMBErrorCode
 eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
@@ -37,8 +43,19 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
 //    {
 //    	((float*)usRegInputBuf)[i] = ch1_frequency;
 //    }
-    ((float*)usRegInputBuf)[0] = ch1_frequency;
-    ((float*)usRegInputBuf)[1] = ch2_frequency;
+
+    if (uxQueueMessagesWaiting(xFrequencyResultQueue[0]) > 0)
+    {
+    	 xQueueReceive(xFrequencyResultQueue[0], &(((float*)usRegInputBuf)[0]), 0 );
+    }
+
+    if (uxQueueMessagesWaiting(xFrequencyResultQueue[1]) > 0)
+    {
+    	 xQueueReceive(xFrequencyResultQueue[1], &(((float*)usRegInputBuf)[1]), 0 );
+    }
+
+//    ((float*)usRegInputBuf)[0] = ch1_frequency;
+//    ((float*)usRegInputBuf)[1] = ch2_frequency;
 
     if( ( usAddress >= REG_INPUT_START )&& ( usAddress + usNRegs <= REG_INPUT_START + REG_INPUT_NREGS ) )
     {
