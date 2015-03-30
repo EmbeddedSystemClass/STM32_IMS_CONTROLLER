@@ -25,9 +25,8 @@ void RTC_Clock_Init(void)
 	RCC_LSEConfig(RCC_LSE_ON);
 
 	/* Wait till LSE is ready */
-	while(RCC_GetFlagStatus(RCC_FLAG_LSERDY) == RESET)
-	{
-	}
+	while(RCC_GetFlagStatus(RCC_FLAG_LSERDY) == RESET);
+
 
 	/* Select the RTC Clock Source */
 	RCC_RTCCLKConfig(RCC_RTCCLKSource_LSE);
@@ -42,23 +41,23 @@ void RTC_Clock_Init(void)
 
 	RTC_StructInit(&RTC_InitStruct);
 
-	RTC_TimeStruct.RTC_Hours = (1<<4)|0;
-	RTC_TimeStruct.RTC_Minutes = (2<<4)|3;
-	RTC_TimeStruct.RTC_Seconds = 0;
-	RTC_SetTime(RTC_Format_BCD,&RTC_TimeStruct);
-
-	RTC_DateStruct.RTC_WeekDay = RTC_Weekday_Thursday;
-	RTC_DateStruct.RTC_Date = 14;
-	RTC_DateStruct.RTC_Month = RTC_Month_March;
-	RTC_DateStruct.RTC_Year = 13;
-	RTC_SetDate(RTC_Format_BCD,&RTC_DateStruct);
+//	RTC_TimeStruct.RTC_Hours = (1<<4)|0;
+//	RTC_TimeStruct.RTC_Minutes = (2<<4)|3;
+//	RTC_TimeStruct.RTC_Seconds = 0;
+//	RTC_SetTime(RTC_Format_BCD,&RTC_TimeStruct);
+//
+//	RTC_DateStruct.RTC_WeekDay = RTC_Weekday_Thursday;
+//	RTC_DateStruct.RTC_Date = 14;
+//	RTC_DateStruct.RTC_Month = RTC_Month_March;
+//	RTC_DateStruct.RTC_Year = 13;
+//	RTC_SetDate(RTC_Format_BCD,&RTC_DateStruct);
 
 	RTC_InitStruct.RTC_AsynchPrediv = AsynchPrediv;
 	RTC_InitStruct.RTC_SynchPrediv = SynchPrediv;
 	RTC_InitStruct.RTC_HourFormat = RTC_HourFormat_24;
     RTC_Init(&RTC_InitStruct);
 
-    xTaskCreate(RTC_Task,(signed char*)"RTC",128,NULL, tskIDLE_PRIORITY + 1, NULL);
+  //  xTaskCreate(RTC_Task,(signed char*)"RTC",128,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 
 //static void RTC_Task(void *pvParameters)

@@ -8,10 +8,11 @@
 
 //FreeRTOS:
 
-#include "FreeRTOS.h"
-#include "task.h"
-#include "queue.h"
-#include "semphr.h"
+//#include "FreeRTOS.h"
+//#include "task.h"
+//#include "queue.h"
+//#include "semphr.h"
+#include "controller.h"
 #include "protocol.h"
 
 #include "frequency.h"
@@ -20,6 +21,7 @@
 int main(void)
 {
 	SystemInit();
+	ControllerInit();
 
 	Protocol_Init();
 	FrequencyMeasureInit();

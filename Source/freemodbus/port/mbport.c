@@ -1,12 +1,7 @@
 #include "mb.h"
 #include "backup_sram.h"
 
-#include "FreeRTOS.h"
-#include "task.h"
-#include "queue.h"
-#include "semphr.h"
-
-extern struct uks uks_channels;
+#include "controller.h"
 
 void ENTER_CRITICAL_SECTION(void)
 {
@@ -18,7 +13,7 @@ void EXIT_CRITICAL_SECTION(void)
 
 }
 
-extern xQueueHandle xFrequencyResultQueue[];
+
 
 static volatile u16 usRegInputBuf[128];
 u16 *usRegHoldingBuf=usRegInputBuf;
@@ -37,16 +32,17 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
 
     REG_INPUT_NREGS=16;
 
-
-    if (uxQueueMessagesWaiting(xFrequencyResultQueue[0]) > 0)
+    xSemaphoreTake( xFrequencyMutex[0], portMAX_DELAY );
     {
-    	 xQueueReceive(xFrequencyResultQueue[0], &(((float*)usRegInputBuf)[0]), 0 );
+    	((float*)usRegInputBuf)[0]=stMeasureData.frequency[0];
     }
+    xSemaphoreGive( xFrequencyMutex[0] );
 
-    if (uxQueueMessagesWaiting(xFrequencyResultQueue[1]) > 0)
+    xSemaphoreTake( xFrequencyMutex[1], portMAX_DELAY );
     {
-    	 xQueueReceive(xFrequencyResultQueue[1], &(((float*)usRegInputBuf)[1]), 0 );
+    	((float*)usRegInputBuf)[1]=stMeasureData.frequency[1];
     }
+    xSemaphoreGive( xFrequencyMutex[1] );
 
 
     if( ( usAddress >= REG_INPUT_START )&& ( usAddress + usNRegs <= REG_INPUT_START + REG_INPUT_NREGS ) )

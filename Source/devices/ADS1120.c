@@ -92,10 +92,10 @@ void	SPI2_config(void)//
 
 uint8_t SPI2_send (uint8_t data)
 {
-  while (!(SPI2->SR & SPI_SR_TXE));      //убедиться, что предыдущая передача завершена
-  SPI2->DR = data;                       //загружаем данные для передачи
-  while (!(SPI2->SR & SPI_SR_RXNE));     //ждем окончания обмена
-  return (SPI2->DR);		         //читаем принятые данные
+  while (!(SPI2->SR & SPI_SR_TXE));
+  SPI2->DR = data;
+  while (!(SPI2->SR & SPI_SR_RXNE));
+  return (SPI2->DR);
 }
 
 uint8_t SPI2_read (void)

@@ -1,4 +1,5 @@
 #include "frequency.h"
+#include "controller.h"
 
 #include "stm32f4xx.h"
 #include "stm32f4xx_gpio.h"
@@ -6,55 +7,16 @@
 #include "stm32f4xx_tim.h"
 #include "misc.h"
 
-#include "FreeRTOS.h"
-#include "task.h"
-#include "queue.h"
-#include "semphr.h"
 
-#define FREQ_CAPTURE_TIM					TIM2
-#define FREQ_CAPTURE_GPIO_AF 				GPIO_AF_TIM2
-#define RCC_FREQ_CAPTURE_TIM 				RCC_APB1Periph_TIM2
-#define	RCC_FREQ_CAPTURE_GPIO_PORT			RCC_AHB1Periph_GPIOA
-#define FREQ_CAPTURE_GPIO_PORT				GPIOA
-#define FREQ_CAPTURE_TIM_IRQn				TIM2_IRQn
-#define FREQ_CAPTURE_GPIO_PINS				GPIO_Pin_1 | GPIO_Pin_2
-#define FREQ_CAPTURE_GPIO_PINSOURCE_1		GPIO_PinSource1
-#define FREQ_CAPTURE_GPIO_PINSOURCE_2		GPIO_PinSource2
-#define FREQ_CAPTURE_TIM_IRQHandler 		TIM2_IRQHandler
-#define FREQ_CAPTURE_TIM_PERIOD				(0xFFFFFFFF)
-#define FREQ_CAPTURE_TIMER_TICK_FREQUENCY	19999592//20000000///12000000
-#define FREQ_CAPTURE_PERIOD_0_HZ			10000
-#define FREQ_CAPTURE_IC_FILTER				5
-#define FREQ_CAPTURE_CHN_1					TIM_Channel_2
-#define FREQ_CAPTURE_CHN_2					TIM_Channel_3
-#define FREQ_CAPTURE_IT_1					TIM_IT_CC2
-#define FREQ_CAPTURE_IT_2					TIM_IT_CC3
-#define FREQ_CAP_REG_1						CCR2
-#define FREQ_CAP_REG_2						CCR3
+typedef struct
+{
+	uint32_t	capture_1;
+	uint32_t	capture_2;
+	uint32_t impulse_count;
+}stFrequencyData;
 
-#define FREQ_COUNT_2_TIM					TIM1
-#define FREQ_COUNT_2_GPIO_AF 				GPIO_AF_TIM1
-#define RCC_FREQ_COUNT_2_TIM 				RCC_APB2Periph_TIM1
-#define	RCC_FREQ_COUNT_2_GPIO_PORT			RCC_AHB1Periph_GPIOA
-#define FREQ_COUNT_2_GPIO_PORT				GPIOA
-#define FREQ_COUNT_2_GPIO_PINS				GPIO_Pin_12
-#define FREQ_COUNT_2_GPIO_PINSOURCE			GPIO_PinSource12
-#define FREQ_COUNT_2_TIM_PERIOD				(65535)
-
-#define FREQ_COUNT_1_TIM					TIM8
-#define FREQ_COUNT_1_GPIO_AF 				GPIO_AF_TIM8
-#define RCC_FREQ_COUNT_1_TIM 				RCC_APB2Periph_TIM8
-#define	RCC_FREQ_COUNT_1_GPIO_PORT			RCC_AHB1Periph_GPIOA
-#define FREQ_COUNT_1_GPIO_PORT				GPIOA
-#define FREQ_COUNT_1_GPIO_PINS				GPIO_Pin_0
-#define FREQ_COUNT_1_GPIO_PINSOURCE			GPIO_PinSource0
-#define FREQ_COUNT_1_TIM_PERIOD				(65535)
-
-#define FREQ_MEASURE_TIME					250
-
-
-xQueueHandle xFrequencyResultQueue[2];
 xSemaphoreHandle xFrequencySemaphore[2];
+static volatile stFrequencyData FrequencyData[2];
 
 static void FrequencyCH1Measure_Task(void *pvParameters);
 static void FrequencyCH2Measure_Task(void *pvParameters);
@@ -150,21 +112,9 @@ void FrequencyMeasureInit(void)
 	vSemaphoreCreateBinary( xFrequencySemaphore[0] );
 	vSemaphoreCreateBinary( xFrequencySemaphore[1] );
 
-	xFrequencyResultQueue[0] = xQueueCreate( 2, sizeof( float ) );
-	xFrequencyResultQueue[1] = xQueueCreate( 2, sizeof( float ) );
-
 	xTaskCreate(FrequencyCH1Measure_Task,(signed char*)"Freq CH1",64,NULL, tskIDLE_PRIORITY + 1, NULL);
 	xTaskCreate(FrequencyCH2Measure_Task,(signed char*)"Freq CH2",64,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
-
-typedef struct
-{
-	uint32_t	capture_1;
-	uint32_t	capture_2;
-	uint32_t impulse_count;
-}stFrequencyData;
-
-static volatile stFrequencyData FrequencyData[2];
 
 portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 
@@ -221,7 +171,12 @@ static void FrequencyCH1Measure_Task(void *pvParameters)
 		{
 			frequency=0.0;
 		}
-		xQueueSend( xFrequencyResultQueue[0], &frequency, 0 );
+
+	    xSemaphoreTake( xFrequencyMutex[0], portMAX_DELAY );
+	    {
+	    	stMeasureData.frequency[0]=frequency;
+	    }
+	    xSemaphoreGive( xFrequencyMutex[0] );
 	}
 }
 
@@ -254,7 +209,12 @@ static void FrequencyCH2Measure_Task(void *pvParameters)
 		{
 			frequency=0.0;
 		}
-		xQueueSend( xFrequencyResultQueue[1], &frequency, 0 );
+
+	    xSemaphoreTake( xFrequencyMutex[1], portMAX_DELAY );
+	    {
+	    	stMeasureData.frequency[1]=frequency;
+	    }
+	    xSemaphoreGive( xFrequencyMutex[1] );
 	}
 }
 
