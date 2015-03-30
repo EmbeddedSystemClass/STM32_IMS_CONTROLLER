@@ -28,8 +28,6 @@ u8 REG_INPUT_NREGS=32,REG_HOLDING_NREGS=48;
 u8 usRegInputStart=1,usRegHoldingStart=1;
 
 
-//extern float ch1_frequency, ch2_frequency;
-
 eMBErrorCode
 eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
 {
@@ -39,10 +37,6 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
 
     REG_INPUT_NREGS=16;
 
-//    for(i=0;i<(usNRegs/2);i++)
-//    {
-//    	((float*)usRegInputBuf)[i] = ch1_frequency;
-//    }
 
     if (uxQueueMessagesWaiting(xFrequencyResultQueue[0]) > 0)
     {
@@ -54,8 +48,6 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
     	 xQueueReceive(xFrequencyResultQueue[1], &(((float*)usRegInputBuf)[1]), 0 );
     }
 
-//    ((float*)usRegInputBuf)[0] = ch1_frequency;
-//    ((float*)usRegInputBuf)[1] = ch2_frequency;
 
     if( ( usAddress >= REG_INPUT_START )&& ( usAddress + usNRegs <= REG_INPUT_START + REG_INPUT_NREGS ) )
     {

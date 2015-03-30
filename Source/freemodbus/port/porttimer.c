@@ -67,7 +67,7 @@ RS485TimersInit( USHORT usTim1Timerout50us )
 	TIM_ITConfig(TIM4, TIM_IT_Update, DISABLE);
 
 	TIM_Cmd(TIM4,  DISABLE);
-	return TRUE;;
+	return TRUE;
 }
 
 
