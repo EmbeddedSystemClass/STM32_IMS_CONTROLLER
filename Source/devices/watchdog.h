@@ -38,6 +38,8 @@ struct task_watch
 	uint8_t  task_status;
 };
 
+extern struct task_watch task_watches[];
+
 void Watchdog_Init(void);
 
 #endif
