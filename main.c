@@ -6,27 +6,15 @@
 #include <misc.h>
 #include "system_stm32f4xx.h"
 
-//FreeRTOS:
-
-//#include "FreeRTOS.h"
-//#include "task.h"
-//#include "queue.h"
-//#include "semphr.h"
 #include "controller.h"
-#include "protocol.h"
 
-#include "frequency.h"
 
 
 int main(void)
 {
 	SystemInit();
 	ControllerInit();
-
-	Protocol_Init();
-	FrequencyMeasureInit();
     vTaskStartScheduler();
-
     while(1);
 }
 

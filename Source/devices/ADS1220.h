@@ -47,6 +47,6 @@
 
 
 uint8_t ADS1220_init(void);
-float PT100_Code_To_Temperature(int32_t adc_code);
+
 
 #endif

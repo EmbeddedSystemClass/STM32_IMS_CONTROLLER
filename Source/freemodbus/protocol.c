@@ -40,8 +40,8 @@ void Protocol_Init(void)
 	eStatus = eMBInit(&stContext_RS485, MB_RTU, 0x0A, 0, 57600, 0 );
 	eStatus = eMBInit(&stContext_RS232, MB_RTU, 0x0A, 0, 57600, 0 );
 
-	xTaskCreate(Modbus_RS485_Task,(signed char*)"Modbus RS485",1024,NULL, tskIDLE_PRIORITY + 1, NULL);
-	xTaskCreate(Modbus_RS232_Task,(signed char*)"Modbus RS232",1024,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(Modbus_RS485_Task,(signed char*)"Modbus RS485",512,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(Modbus_RS232_Task,(signed char*)"Modbus RS232",512,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 
 

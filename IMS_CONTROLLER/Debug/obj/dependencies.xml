@@ -84,7 +84,7 @@
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\mpu_wrappers.h" lastModified="14af2c4fa14">
       </source>
-      <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14c3b298dc1">
+      <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14c6f35a289">
          <include file="..\..\..\Source\freemodbus\protocol.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
@@ -146,8 +146,11 @@
          <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\semphr.h"/>
       </source>
-      <source file="..\..\..\Source\devices\controller.c" lastModified="14c6ad17ceb">
+      <source file="..\..\..\Source\devices\controller.c" lastModified="14c6f41f9a8">
          <include file="..\..\..\Source\devices\controller.h"/>
+         <include file="..\..\..\Source\freemodbus\protocol.h"/>
+         <include file="..\..\..\Source\devices\frequency.h"/>
+         <include file="..\..\..\Source\devices\ADS1220.h"/>
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\semphr.h" lastModified="14af2c5021e">
          <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
@@ -326,7 +329,7 @@
          <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\timers.h"/>
       </source>
-      <source file="..\..\..\Source\FreeRTOS\Source\FreeRTOSConfig.h" lastModified="14c6e82f081">
+      <source file="..\..\..\Source\FreeRTOS\Source\FreeRTOSConfig.h" lastModified="14c6f3caedb">
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="14835b06da1">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
@@ -375,6 +378,9 @@
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\list.h" lastModified="14af2c4f9bf">
       </source>
+      <source file="..\..\..\Source\devices\ADS1220.h" lastModified="14c6f424bee">
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h" lastModified="14c3138e1c7">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
@@ -396,7 +402,7 @@
          <include file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\portmacro.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\portmacro.h"/>
       </source>
-      <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14c6adb70f4">
+      <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14c6f338324">
          <include file="..\..\..\Source\freemodbus\include\mb.h"/>
          <include file="..\..\..\Source\devices\backup_sram.h"/>
          <include file="..\..\..\Source\devices\controller.h"/>
@@ -405,7 +411,7 @@
          <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
       </source>
-      <source file="..\..\..\main.c" lastModified="14c6ad2b646">
+      <source file="..\..\..\main.c" lastModified="14c6f3c6520">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
@@ -413,8 +419,6 @@
          <include file="..\..\..\cmsis_lib\include\misc.h"/>
          <include file="..\..\..\cmsis_boot\system_stm32f4xx.h"/>
          <include file="..\..\..\Source\devices\controller.h"/>
-         <include file="..\..\..\Source\freemodbus\protocol.h"/>
-         <include file="..\..\..\Source\devices\frequency.h"/>
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\queue.h" lastModified="14af2c4ffa4">
       </source>

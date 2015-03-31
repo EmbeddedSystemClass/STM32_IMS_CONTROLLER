@@ -1,4 +1,4 @@
-#include "ADS1120.h"
+#include "ADS1220.h"
 
 #include "stm32f4xx.h"
 #include "stm32f4xx_gpio.h"
@@ -15,10 +15,7 @@
 
 #include "stdio.h"
 #include "string.h"
-
-
-
-//static void ADS1120_task(void *pvParameters);//
+#include "controller.h"
 
 static void ADC_RTD1_Task(void *pvParameters);
 static void ADC_RTD2_Task(void *pvParameters);
@@ -26,10 +23,9 @@ static void ADC_Current1_Task(void *pvParameters);
 static void ADC_Current2_Task(void *pvParameters);
 
 static void	ADC_SPI_config(void);
-
+float PT100_Code_To_Temperature(int32_t adc_code);
 
 xSemaphoreHandle xADC_SPI_Mutex;
-extern struct task_watch task_watches[];
 
 uint8_t ADS1220_init(void)//
 {
@@ -37,10 +33,10 @@ uint8_t ADS1220_init(void)//
 
 	xADC_SPI_Mutex=xSemaphoreCreateMutex() ;
 
-	xTaskCreate(ADC_RTD1_Task,(signed char*)"ADS1220 rtd1 task",128,NULL, tskIDLE_PRIORITY + 1, NULL);
-	xTaskCreate(ADC_RTD2_Task,(signed char*)"ADS1220 rtd2 task",128,NULL, tskIDLE_PRIORITY + 1, NULL);
-	xTaskCreate(ADC_Current1_Task,(signed char*)"ADS1220 current1 task",128,NULL, tskIDLE_PRIORITY + 1, NULL);
-	xTaskCreate(ADC_Current2_Task,(signed char*)"ADS1220 current2 task",128,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(ADC_RTD1_Task,(signed char*)"ADS1220 rtd1 task",64,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(ADC_RTD2_Task,(signed char*)"ADS1220 rtd2 task",64,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(ADC_Current1_Task,(signed char*)"ADS1220 current1 task",64,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(ADC_Current2_Task,(signed char*)"ADS1220 current2 task",64,NULL, tskIDLE_PRIORITY + 1, NULL);
 	return 0;
 }
 
@@ -93,26 +89,19 @@ void	ADC_SPI_config(void)//
 	    ADC_SPI_GPIO_CS->BSRRL|=(ADC_SPI_CS1 | ADC_SPI_CS2 | ADC_SPI_CS3 | ADC_SPI_CS4);// pin up
 }
 
-
-
 uint8_t ADC_SPI_send (uint8_t data)
 {
-  while (!(ADC_SPI->SR & SPI_SR_TXE)) taskYIELD();
+  while (!(ADC_SPI->SR & SPI_SR_TXE)) /*taskYIELD()*/;
   ADC_SPI->DR = data;
-  while (!(ADC_SPI->SR & SPI_SR_RXNE))taskYIELD();
+  while (!(ADC_SPI->SR & SPI_SR_RXNE))/*taskYIELD()*/;
   return (ADC_SPI->DR);
 }
 
 uint8_t ADC_SPI_read (void)
 {
-  return ADC_SPI_send(0xff);		  //читаем принятые данные
+  return ADC_SPI_send(0xff);
 }
 
-uint32_t ADC_result_temp;
-int32_t ADC_result;
-uint8_t adc_reg;
-
-//struct ADS1120_result ADS1120_res;
 
 enum
 {
@@ -124,19 +113,87 @@ enum
 
 static void ADC_RTD1_Task(void *pvParameters)
 {
+	uint32_t RTD1_ADC_code=0;
+	int32_t  RTD1_ADC_code_signed=0;
+
     xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
     {
-
+		ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS1;// pin down SPI1_CS1
+		ADC_SPI_send (ADS_RESET);
+		ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS1;// pin up SPI1_CS1
     }
     xSemaphoreGive( xADC_SPI_Mutex );
+    vTaskDelay(10);
+
+    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
+    {
+		ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS1;// pin down SPI1_CS1
+		ADC_SPI_send (ADS_WREG|(ADS_REG_0<<2)|(0x0));//1 reg 0x0
+		ADC_SPI_send (ADC_REG_CONFIG_00);
+		ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS1;// pin up SPI1_CS1
+    }
+    xSemaphoreGive( xADC_SPI_Mutex );
+    vTaskDelay(10);
+
+    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
+    {
+		ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS1;// pin down SPI1_CS1
+		ADC_SPI_send (ADS_WREG|(ADS_REG_2<<2)|(0x0));//1 reg 0x2
+		ADC_SPI_send (ADC_REG_CONFIG_02);
+		ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS1;// pin up SPI1_CS1
+    }
+    xSemaphoreGive( xADC_SPI_Mutex );
+    vTaskDelay(10);
+
+    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
+    {
+		ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS1;// pin down SPI1_CS1
+		ADC_SPI_send (ADS_WREG|(ADS_REG_3<<2)|(0x0));//1 reg 0x3
+		ADC_SPI_send (ADC_REG_CONFIG_03);
+		ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS1;// pin up SPI1_CS1
+    }
+    xSemaphoreGive( xADC_SPI_Mutex );
+    vTaskDelay(10);
 
 	while(1)
 	{
 	    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
 	    {
-
+			ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS1;// pin down SPI1_CS1
+			ADC_SPI_send (ADS_START);
+			ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS1;// pin up SPI1_CS1
 	    }
 	    xSemaphoreGive( xADC_SPI_Mutex );
+	    while(GPIO_ReadInputDataBit(ADC_SPI_GPIO, ADC_DRDY1)==Bit_SET) taskYIELD();//wait
+
+	    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
+	    {
+			ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS1;// pin down SPI1_CS1
+			RTD1_ADC_code=ADC_SPI_read ();
+			RTD1_ADC_code=RTD1_ADC_code<<8;
+			RTD1_ADC_code|=ADC_SPI_read ();
+			RTD1_ADC_code=RTD1_ADC_code<<8;
+			RTD1_ADC_code|=ADC_SPI_read ();
+			ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS1;// pin up SPI1_CS1
+	    }
+	    xSemaphoreGive( xADC_SPI_Mutex );
+
+		if(RTD1_ADC_code>0x7FFFFF)
+		{
+			RTD1_ADC_code_signed=-(0xFFFFFF-(int32_t)RTD1_ADC_code);
+		}
+		else
+		{
+			RTD1_ADC_code_signed=(int32_t)RTD1_ADC_code;
+		}
+
+	    xSemaphoreTake( xRTDMutex[0], portMAX_DELAY );
+	    {
+	    	stMeasureData.rtd[0]=PT100_Code_To_Temperature(RTD1_ADC_code_signed);
+	    }
+	    xSemaphoreGive( xRTDMutex[0] );
+
+
 	    vTaskDelay(ADC_MEASURE_DELAY);
 	}
 }

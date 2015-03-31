@@ -87,7 +87,6 @@
     <File name="freemodbus/protocol.c" path="Source/freemodbus/protocol.c" type="1"/>
     <File name="FreeRTOS/Source/tasks.c" path="Source/FreeRTOS/Source/tasks.c" type="1"/>
     <File name="freemodbus/include" path="" type="2"/>
-    <File name="devices/ADS1120.h" path="Source/devices/ADS1120.h" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_usart.h" path="cmsis_lib/include/stm32f4xx_usart.h" type="1"/>
     <File name="devices/backup_sram.c" path="Source/devices/backup_sram.c" type="1"/>
     <File name="freemodbus/include/mbframe.h" path="Source/freemodbus/include/mbframe.h" type="1"/>
@@ -114,6 +113,7 @@
     <File name="cmsis_lib/source/stm32f4xx_rtc.c" path="cmsis_lib/source/stm32f4xx_rtc.c" type="1"/>
     <File name="stdio/printf.c" path="stdio/printf.c" type="1"/>
     <File name="FreeRTOS/Source/timers.c" path="Source/FreeRTOS/Source/timers.c" type="1"/>
+    <File name="devices/ADS1220.c" path="Source/devices/ADS1220.c" type="1"/>
     <File name="FreeRTOS/Source/include" path="" type="2"/>
     <File name="cmsis_lib/include/stm32f4xx_rcc.h" path="cmsis_lib/include/stm32f4xx_rcc.h" type="1"/>
     <File name="freemodbus/port/mbport.c" path="Source/freemodbus/port/mbport.c" type="1"/>
@@ -184,7 +184,6 @@
     <File name="freemodbus/functions/mbfunccoils.c" path="Source/freemodbus/functions/mbfunccoils.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_iwdg.h" path="cmsis_lib/include/stm32f4xx_iwdg.h" type="1"/>
     <File name="cmsis/core_cm3.h" path="cmsis/core_cm3.h" type="1"/>
-    <File name="devices/ADS1120.c" path="Source/devices/ADS1120.c" type="1"/>
     <File name="FreeRTOS/Source/include/queue.h" path="Source/FreeRTOS/Source/include/queue.h" type="1"/>
     <File name="freemodbus/rtu/mbrtu.h" path="Source/freemodbus/rtu/mbrtu.h" type="1"/>
     <File name="FreeRTOS/Source/include/stdint.readme" path="Source/FreeRTOS/Source/include/stdint.readme" type="1"/>
@@ -195,6 +194,7 @@
     <File name="freemodbus/ascii/mbascii.h" path="Source/freemodbus/ascii/mbascii.h" type="1"/>
     <File name="freemodbus/functions/mbfuncdisc.c" path="Source/freemodbus/functions/mbfuncdisc.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_tim.c" path="cmsis_lib/source/stm32f4xx_tim.c" type="1"/>
+    <File name="devices/ADS1220.h" path="Source/devices/ADS1220.h" type="1"/>
     <File name="FreeRTOS/Source/include/FreeRTOS.h" path="Source/FreeRTOS/Source/include/FreeRTOS.h" type="1"/>
     <File name="freemodbus/rtu/mbrtu.c" path="Source/freemodbus/rtu/mbrtu.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_gpio.h" path="cmsis_lib/include/stm32f4xx_gpio.h" type="1"/>

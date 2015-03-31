@@ -1,4 +1,7 @@
 #include "controller.h"
+#include "protocol.h"
+#include "frequency.h"
+#include "ADS1220.h"
 
 xSemaphoreHandle xFrequencyMutex[FREQ_CHN_NUM];
 xSemaphoreHandle xPulseCounterMutex[PULSE_COUNT_CHN_NUM];
@@ -31,4 +34,9 @@ void ControllerInit(void)
 	{
 		xCurrentMutex[i]=xSemaphoreCreateMutex() ;
 	}
+
+
+	Protocol_Init();
+	FrequencyMeasureInit();
+	ADS1220_init();
 }

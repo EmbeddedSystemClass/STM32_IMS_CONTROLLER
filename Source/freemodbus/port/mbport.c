@@ -15,8 +15,8 @@ void EXIT_CRITICAL_SECTION(void)
 
 
 
-static volatile u16 usRegInputBuf[128];
-u16 *usRegHoldingBuf=usRegInputBuf;
+//static volatile u16 usRegInputBuf[128];
+//u16 *usRegHoldingBuf=usRegInputBuf;
 
 u8 REG_INPUT_START=1,REG_HOLDING_START=1;
 u8 REG_INPUT_NREGS=32,REG_HOLDING_NREGS=48;
@@ -28,6 +28,7 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
 {
 	eMBErrorCode    eStatus = MB_ENOERR;
 	int             iRegIndex;
+	u16 usRegInputBuf[32];
     uint16_t i=0;
 
     REG_INPUT_NREGS=16;

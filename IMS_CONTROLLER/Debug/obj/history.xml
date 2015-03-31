@@ -7,10 +7,10 @@
       <target file="misc.o" lastModified="14c31397240">
          <source file="..\..\..\cmsis_lib\source\misc.c" lastModified="14835c29268"/>
       </target>
-      <target file="watchdog.o" lastModified="14c6eda13a2">
+      <target file="watchdog.o" lastModified="14c6f3cbcb6">
          <source file="..\..\..\Source\devices\watchdog.c" lastModified="14b2fdb598d"/>
       </target>
-      <target file="queue.o" lastModified="14c6e832aea">
+      <target file="queue.o" lastModified="14c6f3cc15a">
          <source file="..\..\..\Source\FreeRTOS\Source\queue.c" lastModified="14af2c587b1"/>
       </target>
       <target file="mb.o" lastModified="14c318d9fa0">
@@ -19,7 +19,7 @@
       <target file="stm32f4xx_tim.o" lastModified="14c313974e0">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_tim.c" lastModified="1483603f646"/>
       </target>
-      <target file="timers.o" lastModified="14c6e8326f2">
+      <target file="timers.o" lastModified="14c6f3cbbfb">
          <source file="..\..\..\Source\FreeRTOS\Source\timers.c" lastModified="14af2c59580"/>
       </target>
       <target file="mbfunccoils.o" lastModified="14c318daa8d">
@@ -28,7 +28,7 @@
       <target file="stm32f4xx_iwdg.o" lastModified="14c313964f2">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_iwdg.c" lastModified="14835c96d0b"/>
       </target>
-      <target file="tasks.o" lastModified="14c6e832954">
+      <target file="tasks.o" lastModified="14c6f3cbeba">
          <source file="..\..\..\Source\FreeRTOS\Source\tasks.c" lastModified="14af2c59338"/>
       </target>
       <target file="stm32f4xx_exti.o" lastModified="14c313971d2">
@@ -46,10 +46,10 @@
       <target file="mbascii.o" lastModified="14c318dab97">
          <source file="..\..\..\Source\freemodbus\ascii\mbascii.c" lastModified="14c26d2e219"/>
       </target>
-      <target file="mbport.o" lastModified="14c6e83201c">
-         <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14c6adb70f4"/>
+      <target file="mbport.o" lastModified="14c6f3cb6da">
+         <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14c6f338324"/>
       </target>
-      <target file="portserial.o" lastModified="14c6e832ba5">
+      <target file="portserial.o" lastModified="14c6f3cc283">
          <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14c554be877"/>
       </target>
       <target file="mbfuncother.o" lastModified="14c318da3c7">
@@ -67,7 +67,7 @@
       <target file="mbfuncholding.o" lastModified="14c318da57c">
          <source file="..\..\..\Source\freemodbus\functions\mbfuncholding.c" lastModified="14c22b6ab09"/>
       </target>
-      <target file="event_groups.o" lastModified="14c6e832caf">
+      <target file="event_groups.o" lastModified="14c6f3cc429">
          <source file="..\..\..\Source\FreeRTOS\Source\event_groups.c" lastModified="14af2c4f0cc"/>
       </target>
       <target file="stm32f4xx_rtc.o" lastModified="14c3139733a">
@@ -79,19 +79,22 @@
       <target file="stm32f4xx_pwr.o" lastModified="14c31396177">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_pwr.c" lastModified="14149991717"/>
       </target>
-      <target file="croutine.o" lastModified="14c6e832c22">
+      <target file="croutine.o" lastModified="14c6f3cc32f">
          <source file="..\..\..\Source\FreeRTOS\Source\croutine.c" lastModified="14af2c4eed0"/>
       </target>
-      <target file="controller.o" lastModified="14c6e832ee2">
-         <source file="..\..\..\Source\devices\controller.c" lastModified="14c6ad17ceb"/>
+      <target file="controller.o" lastModified="14c6f425525">
+         <source file="..\..\..\Source\devices\controller.c" lastModified="14c6f41f9a8"/>
       </target>
       <target file="mbrtu.o" lastModified="14c318da899">
          <source file="..\..\..\Source\freemodbus\rtu\mbrtu.c" lastModified="14c31767da1"/>
       </target>
-      <target file="list.o" lastModified="14c6e8329b1">
+      <target file="list.o" lastModified="14c6f3cbf56">
          <source file="..\..\..\Source\FreeRTOS\Source\list.c" lastModified="14af2c506ae"/>
       </target>
-      <target file="port.o" lastModified="14c6e832a2e">
+      <target file="ADS1220.o" lastModified="14c6f5d565b">
+         <source file="..\..\..\Source\devices\ADS1220.c" lastModified="14c6f5d2066"/>
+      </target>
+      <target file="port.o" lastModified="14c6f3cc012">
          <source file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\port.c" lastModified="14af2c51989"/>
       </target>
       <target file="startup_stm32f4xx.o" lastModified="14c277bbc6b">
@@ -109,10 +112,10 @@
       <target file="printf.o" lastModified="14c274f02a6">
          <source file="..\..\..\stdio\printf.c" lastModified="14c274eee15"/>
       </target>
-      <target file="rtc.o" lastModified="14c6e832339">
+      <target file="rtc.o" lastModified="14c6f3cb92c">
          <source file="..\..\..\Source\devices\rtc.c" lastModified="14c69e8c5b9"/>
       </target>
-      <target file="heap_2.o" lastModified="14c6e832e45">
+      <target file="heap_2.o" lastModified="14c6f3cc69a">
          <source file="..\..\..\Source\FreeRTOS\Source\portable\MemMang\heap_2.c" lastModified="14af2c557af"/>
       </target>
       <target file="stm32f4xx_syscfg.o" lastModified="14c31395959">
@@ -121,20 +124,20 @@
       <target file="mbfuncdisc.o" lastModified="14c318da260">
          <source file="..\..\..\Source\freemodbus\functions\mbfuncdisc.c" lastModified="14c2274fab0"/>
       </target>
-      <target file="frequency.o" lastModified="14c6e832d99">
+      <target file="frequency.o" lastModified="14c6f3cc5de">
          <source file="..\..\..\Source\devices\frequency.c" lastModified="14c6adcd518"/>
       </target>
       <target file="stm32f4xx_spi.o" lastModified="14c313970c9">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="14c313944a8"/>
       </target>
-      <target file="ADS1120.o" lastModified="14c6ee554fb">
-         <source file="..\..\..\Source\devices\ADS1120.c" lastModified="14c6ee3da42"/>
+      <target file="protocol.o" lastModified="14c6f3cb7e4">
+         <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14c6f359ab9"/>
       </target>
-      <target file="protocol.o" lastModified="14c6eda1085">
-         <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14c3b2985f1"/>
+      <target file="ADS1120.o" lastModified="14c6f3cbab3">
+         <source file="..\..\..\Source\devices\ADS1120.c" lastModified="14c6f2125d9"/>
       </target>
-      <target file="main.o" lastModified="14c6e832637">
-         <source file="..\..\..\main.c" lastModified="14c6ad2b646"/>
+      <target file="main.o" lastModified="14c6f3cbb6e">
+         <source file="..\..\..\main.c" lastModified="14c6f3c6520"/>
       </target>
       <target file="mbcrc.o" lastModified="14c3125b93d">
          <source file="..\..\..\Source\freemodbus\rtu\mbcrc.c" lastModified="14c2274fcc4"/>
