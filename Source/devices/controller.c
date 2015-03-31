@@ -3,10 +3,13 @@
 #include "frequency.h"
 #include "ADS1220.h"
 
-xSemaphoreHandle xFrequencyMutex[FREQ_CHN_NUM];
+/*xSemaphoreHandle xFrequencyMutex[FREQ_CHN_NUM];
 xSemaphoreHandle xPulseCounterMutex[PULSE_COUNT_CHN_NUM];
 xSemaphoreHandle xRTDMutex[RTD_CHN_NUM];
-xSemaphoreHandle xCurrentMutex[CURRENT_CHN_NUM];
+xSemaphoreHandle xCurrentMutex[CURRENT_CHN_NUM];*/
+
+xSemaphoreHandle xMeasureDataMutex;
+xSemaphoreHandle xSettingsMutex;
 
 stControllerSettings stSettings;
 stControllerMeasureData stMeasureData;
@@ -15,15 +18,15 @@ void ControllerInit(void)
 {
 	uint8_t i=0;
 
-	for(i=0;i<FREQ_CHN_NUM;i++)
+/*	for(i=0;i<FREQ_CHN_NUM;i++)
 	{
 		xFrequencyMutex[i]=xSemaphoreCreateMutex() ;
 	}
 
-/*	for(i=0;i<PULSE_COUNT_CHN_NUM;i++)
+	for(i=0;i<PULSE_COUNT_CHN_NUM;i++)
 	{
 		xPulseCounterMutex[i]=xSemaphoreCreateMutex() ;
-	}*/
+	}
 
 	for(i=0;i<RTD_CHN_NUM;i++)
 	{
@@ -33,8 +36,10 @@ void ControllerInit(void)
 	for(i=0;i<CURRENT_CHN_NUM;i++)
 	{
 		xCurrentMutex[i]=xSemaphoreCreateMutex() ;
-	}
+	}*/
 
+	xMeasureDataMutex=xSemaphoreCreateMutex() ;
+	xSettingsMutex=xSemaphoreCreateMutex() ;
 
 	Protocol_Init();
 	FrequencyMeasureInit();

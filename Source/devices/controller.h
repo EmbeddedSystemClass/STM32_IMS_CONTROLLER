@@ -28,10 +28,13 @@ typedef struct
 	float current[CURRENT_CHN_NUM];
 }stControllerMeasureData;
 
-extern xSemaphoreHandle xFrequencyMutex[FREQ_CHN_NUM];
+/*extern xSemaphoreHandle xFrequencyMutex[FREQ_CHN_NUM];
 extern xSemaphoreHandle xPulseCounterMutex[PULSE_COUNT_CHN_NUM];
 extern xSemaphoreHandle xRTDMutex[RTD_CHN_NUM];
-extern xSemaphoreHandle xCurrentMutex[CURRENT_CHN_NUM];
+extern xSemaphoreHandle xCurrentMutex[CURRENT_CHN_NUM];*/
+
+extern xSemaphoreHandle xMeasureDataMutex;
+extern xSemaphoreHandle xSettingsMutex;
 
 extern stControllerSettings stSettings;
 extern stControllerMeasureData stMeasureData;

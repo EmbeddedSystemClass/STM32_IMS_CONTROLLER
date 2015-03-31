@@ -19,7 +19,7 @@ void EXIT_CRITICAL_SECTION(void)
 //u16 *usRegHoldingBuf=usRegInputBuf;
 
 u8 REG_INPUT_START=1,REG_HOLDING_START=1;
-u8 REG_INPUT_NREGS=32,REG_HOLDING_NREGS=48;
+u8 REG_INPUT_NREGS=20,REG_HOLDING_NREGS=48;
 u8 usRegInputStart=1,usRegHoldingStart=1;
 
 
@@ -29,22 +29,24 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
 	eMBErrorCode    eStatus = MB_ENOERR;
 	int             iRegIndex;
 	u16 usRegInputBuf[32];
-    uint16_t i=0;
+ //   uint16_t i=0;
 
-    REG_INPUT_NREGS=16;
+ //   REG_INPUT_NREGS=16;
 
-    xSemaphoreTake( xFrequencyMutex[0], portMAX_DELAY );
+    xSemaphoreTake( xMeasureDataMutex, portMAX_DELAY );
     {
     	((float*)usRegInputBuf)[0]=stMeasureData.frequency[0];
-    }
-    xSemaphoreGive( xFrequencyMutex[0] );
-
-    xSemaphoreTake( xFrequencyMutex[1], portMAX_DELAY );
-    {
     	((float*)usRegInputBuf)[1]=stMeasureData.frequency[1];
+    	((float*)usRegInputBuf)[2]=stMeasureData.rtd[0];
+    	((float*)usRegInputBuf)[3]=stMeasureData.rtd[1];
+    	((float*)usRegInputBuf)[4]=stMeasureData.current[0];
+    	((float*)usRegInputBuf)[5]=stMeasureData.current[1];
+    	((float*)usRegInputBuf)[6]=stMeasureData.current[2];
+    	((float*)usRegInputBuf)[7]=stMeasureData.current[3];
+    	((float*)usRegInputBuf)[8]=stMeasureData.current[4];
+    	((float*)usRegInputBuf)[9]=stMeasureData.current[5];
     }
-    xSemaphoreGive( xFrequencyMutex[1] );
-
+    xSemaphoreGive( xMeasureDataMutex );
 
     if( ( usAddress >= REG_INPUT_START )&& ( usAddress + usNRegs <= REG_INPUT_START + REG_INPUT_NREGS ) )
     {

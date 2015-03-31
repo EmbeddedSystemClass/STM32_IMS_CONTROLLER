@@ -187,11 +187,11 @@ static void ADC_RTD1_Task(void *pvParameters)
 			RTD1_ADC_code_signed=(int32_t)RTD1_ADC_code;
 		}
 
-	    xSemaphoreTake( xRTDMutex[0], portMAX_DELAY );
+	    xSemaphoreTake( xMeasureDataMutex, portMAX_DELAY );
 	    {
 	    	stMeasureData.rtd[0]=PT100_Code_To_Temperature(RTD1_ADC_code_signed);
 	    }
-	    xSemaphoreGive( xRTDMutex[0] );
+	    xSemaphoreGive( xMeasureDataMutex );
 
 
 	    vTaskDelay(ADC_MEASURE_DELAY);

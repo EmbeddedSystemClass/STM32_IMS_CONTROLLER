@@ -30,7 +30,6 @@ void Protocol_Init(void)
 {
 	eMBErrorCode    eStatus;
 
-
 	RS485SerialContextInit(&stContext_RS485);
 	RS485TimerContextInit(&stContext_RS485);
 
