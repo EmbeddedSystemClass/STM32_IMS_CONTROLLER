@@ -4,46 +4,35 @@
 #include "ADS1220.h"
 #include "rtc.h"
 
-/*xSemaphoreHandle xFrequencyMutex[FREQ_CHN_NUM];
-xSemaphoreHandle xPulseCounterMutex[PULSE_COUNT_CHN_NUM];
-xSemaphoreHandle xRTDMutex[RTD_CHN_NUM];
-xSemaphoreHandle xCurrentMutex[CURRENT_CHN_NUM];*/
-
 xSemaphoreHandle xMeasureDataMutex;
 xSemaphoreHandle xSettingsMutex;
 
 stControllerSettings stSettings;
 stControllerMeasureData stMeasureData;
 
+uint8_t Controller_RestoreSettings(void);
+
 void ControllerInit(void)
 {
 	uint8_t i=0;
 
-/*	for(i=0;i<FREQ_CHN_NUM;i++)
-	{
-		xFrequencyMutex[i]=xSemaphoreCreateMutex() ;
-	}
-
-	for(i=0;i<PULSE_COUNT_CHN_NUM;i++)
-	{
-		xPulseCounterMutex[i]=xSemaphoreCreateMutex() ;
-	}
-
-	for(i=0;i<RTD_CHN_NUM;i++)
-	{
-		xRTDMutex[i]=xSemaphoreCreateMutex() ;
-	}
-
-	for(i=0;i<CURRENT_CHN_NUM;i++)
-	{
-		xCurrentMutex[i]=xSemaphoreCreateMutex() ;
-	}*/
-
 	xMeasureDataMutex=xSemaphoreCreateMutex() ;
 	xSettingsMutex=xSemaphoreCreateMutex() ;
-
+	Controller_RestoreSettings();
 	RTC_Clock_Init();
 	Protocol_Init();
 	FrequencyMeasureInit();
 	ADS1220_init();
+}
+
+uint8_t Controller_RestoreSettings(void)
+{
+	/*read struct settings from ROM*/
+	/*CRC check*/
+	if((stSettings.TCXO_frequency<TCXO_FREQ_MIN) || (stSettings.TCXO_frequency>TCXO_FREQ_MAX))
+	{
+		stSettings.TCXO_frequency=TCXO_FREQ_DEFAULT;
+	}
+
+	return 0;
 }

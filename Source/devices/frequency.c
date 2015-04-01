@@ -162,10 +162,14 @@ static void FrequencyCH1Measure_Task(void *pvParameters)
 			 }
 			 else
 			 {
-				 sum_tick_impulse=FrequencyData[0].capture_1-FrequencyData[0].capture_2;
+				 sum_tick_impulse=(FREQ_CAPTURE_TIM_PERIOD-FrequencyData[0].capture_1)+FrequencyData[0].capture_2;
 			 }
 
-			 frequency= (float)FREQ_CAPTURE_TIMER_TICK_FREQUENCY*FrequencyData[0].impulse_count/sum_tick_impulse;
+			 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
+			 {
+			     frequency= (float)stSettings.TCXO_frequency*FrequencyData[0].impulse_count/sum_tick_impulse;
+			 }
+			 xSemaphoreGive( xSettingsMutex );
 		}
 		else
 		{
@@ -200,10 +204,14 @@ static void FrequencyCH2Measure_Task(void *pvParameters)
 			 }
 			 else
 			 {
-				 sum_tick_impulse=FrequencyData[1].capture_1-FrequencyData[1].capture_2;
+				 sum_tick_impulse=(FREQ_CAPTURE_TIM_PERIOD-FrequencyData[1].capture_1)+FrequencyData[1].capture_2;
 			 }
 
-			 frequency= (float)FREQ_CAPTURE_TIMER_TICK_FREQUENCY*FrequencyData[1].impulse_count/sum_tick_impulse;
+			 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
+			 {
+			     frequency= (float)stSettings.TCXO_frequency*FrequencyData[1].impulse_count/sum_tick_impulse;
+			 }
+			 xSemaphoreGive( xSettingsMutex );
 		}
 		else
 		{

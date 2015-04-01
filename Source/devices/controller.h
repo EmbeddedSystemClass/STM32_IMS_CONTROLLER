@@ -6,12 +6,13 @@
 #include "queue.h"
 #include "semphr.h"
 
-#define FREQ_COEFF_MIN	1.0
-#define FREQ_COEFF_MAX	1.1
+#define TCXO_FREQ_MIN		19999000
+#define TCXO_FREQ_MAX		20001000
+#define TCXO_FREQ_DEFAULT	20000000
 
 typedef struct
 {
-	float frequency_coefficient;
+	uint32_t TCXO_frequency;
 
 }stControllerSettings;
 
@@ -28,10 +29,6 @@ typedef struct
 	float current[CURRENT_CHN_NUM];
 }stControllerMeasureData;
 
-/*extern xSemaphoreHandle xFrequencyMutex[FREQ_CHN_NUM];
-extern xSemaphoreHandle xPulseCounterMutex[PULSE_COUNT_CHN_NUM];
-extern xSemaphoreHandle xRTDMutex[RTD_CHN_NUM];
-extern xSemaphoreHandle xCurrentMutex[CURRENT_CHN_NUM];*/
 
 extern xSemaphoreHandle xMeasureDataMutex;
 extern xSemaphoreHandle xSettingsMutex;

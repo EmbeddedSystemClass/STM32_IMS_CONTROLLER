@@ -77,6 +77,7 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
 #define REG_RTC_MONTH			4
 #define REG_RTC_YEAR			5
 #define REG_RTC_DAY_OF_WEEK		6
+#define REG_TCXO_FREQ			7
 
 
 eMBErrorCode
@@ -85,13 +86,13 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
     eMBErrorCode    eStatus = MB_ENOERR;
     u16 usRegHoldingBuf[64];
     int             iRegIndex;
-//	u16 *PRT=(u16*)pucRegBuffer;
-	uint16_t i=0;
+
+	//uint16_t i=0;
 
     if( ( usAddress >= REG_HOLDING_START ) && ( usAddress + usNRegs <= REG_HOLDING_START + REG_HOLDING_NREGS ) )
     {
         iRegIndex = ( int )( usAddress - usRegHoldingStart );
-       // REG_HOLDING_NREGS=(DRYING_CHANNELS_NUM+8)*2+2;//исправить
+
         switch ( eMode )
         {
 			case MB_REG_READ:
@@ -102,13 +103,14 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 				RTC_GetTime(RTC_Format_BIN, &RTC_TimeStructure);
 				RTC_GetDate(RTC_Format_BIN, &RTC_DateStructure);
 
-			     usRegHoldingBuf[REG_RTC_SECOND] 		= RTC_TimeStructure.RTC_Seconds;
-			     usRegHoldingBuf[REG_RTC_MINUTE] 		= RTC_TimeStructure.RTC_Minutes;
-			     usRegHoldingBuf[REG_RTC_HOUR] 	 		= RTC_TimeStructure.RTC_Hours;
-			     usRegHoldingBuf[REG_RTC_DAY_OF_MONTH] 	= RTC_DateStructure.RTC_Date;
-			     usRegHoldingBuf[REG_RTC_MONTH] 		= RTC_DateStructure.RTC_Month;
-			     usRegHoldingBuf[REG_RTC_YEAR]  		= RTC_DateStructure.RTC_Year;
-			     usRegHoldingBuf[REG_RTC_DAY_OF_WEEK]  	= RTC_DateStructure.RTC_WeekDay;
+			     usRegHoldingBuf[REG_RTC_SECOND] 				= RTC_TimeStructure.RTC_Seconds;
+			     usRegHoldingBuf[REG_RTC_MINUTE] 				= RTC_TimeStructure.RTC_Minutes;
+			     usRegHoldingBuf[REG_RTC_HOUR] 	 				= RTC_TimeStructure.RTC_Hours;
+			     usRegHoldingBuf[REG_RTC_DAY_OF_MONTH] 			= RTC_DateStructure.RTC_Date;
+			     usRegHoldingBuf[REG_RTC_MONTH] 				= RTC_DateStructure.RTC_Month;
+			     usRegHoldingBuf[REG_RTC_YEAR]  				= RTC_DateStructure.RTC_Year;
+			     usRegHoldingBuf[REG_RTC_DAY_OF_WEEK]  			= RTC_DateStructure.RTC_WeekDay;
+			     *(uint32_t*)(&usRegHoldingBuf[REG_TCXO_FREQ])	= stSettings.TCXO_frequency;
 
 
 				while( usNRegs > 0 )
@@ -264,6 +266,30 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 
 								iRegIndex++;
 								usNRegs--;
+							}
+							break;
+
+							case REG_TCXO_FREQ:
+							{
+								uint32_t temp=0;
+
+								((uint8_t*)(&temp))[1]=*pucRegBuffer++;
+								((uint8_t*)(&temp))[0]=*pucRegBuffer++;
+								((uint8_t*)(&temp))[3]=*pucRegBuffer++;
+								((uint8_t*)(&temp))[2]=*pucRegBuffer++;
+
+								if((temp>=TCXO_FREQ_MIN) && (temp<=TCXO_FREQ_MAX))
+								{
+									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
+									 {
+									     stSettings.TCXO_frequency=temp;
+									 }
+									 xSemaphoreGive( xSettingsMutex );
+									 /*Write settings to ROM*/
+								}
+
+								iRegIndex+=2;
+								usNRegs-=2;
 							}
 							break;
 
