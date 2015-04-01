@@ -2,6 +2,7 @@
 #include "protocol.h"
 #include "frequency.h"
 #include "ADS1220.h"
+#include "rtc.h"
 
 /*xSemaphoreHandle xFrequencyMutex[FREQ_CHN_NUM];
 xSemaphoreHandle xPulseCounterMutex[PULSE_COUNT_CHN_NUM];
@@ -41,6 +42,7 @@ void ControllerInit(void)
 	xMeasureDataMutex=xSemaphoreCreateMutex() ;
 	xSettingsMutex=xSemaphoreCreateMutex() ;
 
+	RTC_Clock_Init();
 	Protocol_Init();
 	FrequencyMeasureInit();
 	ADS1220_init();

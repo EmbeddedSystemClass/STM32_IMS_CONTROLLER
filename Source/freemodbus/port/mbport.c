@@ -19,7 +19,7 @@ void EXIT_CRITICAL_SECTION(void)
 //u16 *usRegHoldingBuf=usRegInputBuf;
 
 u8 REG_INPUT_START=1,REG_HOLDING_START=1;
-u8 REG_INPUT_NREGS=20,REG_HOLDING_NREGS=48;
+u8 REG_INPUT_NREGS=20,REG_HOLDING_NREGS=20;
 u8 usRegInputStart=1,usRegHoldingStart=1;
 
 
@@ -84,14 +84,14 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 {
     eMBErrorCode    eStatus = MB_ENOERR;
     u16 usRegHoldingBuf[64];
-//    int             iRegIndex;
+    int             iRegIndex;
 //	u16 *PRT=(u16*)pucRegBuffer;
 	uint16_t i=0;
 
     if( ( usAddress >= REG_HOLDING_START ) && ( usAddress + usNRegs <= REG_HOLDING_START + REG_HOLDING_NREGS ) )
     {
         iRegIndex = ( int )( usAddress - usRegHoldingStart );
-        REG_HOLDING_NREGS=(DRYING_CHANNELS_NUM+8)*2+2;//исправить
+       // REG_HOLDING_NREGS=(DRYING_CHANNELS_NUM+8)*2+2;//исправить
         switch ( eMode )
         {
 			case MB_REG_READ:
@@ -102,7 +102,13 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 				RTC_GetTime(RTC_Format_BIN, &RTC_TimeStructure);
 				RTC_GetDate(RTC_Format_BIN, &RTC_DateStructure);
 
-			     usRegHoldingBuf[REG_RTC_SECOND] = uks_channels.uks_params.measuring_frame_time;
+			     usRegHoldingBuf[REG_RTC_SECOND] 		= RTC_TimeStructure.RTC_Seconds;
+			     usRegHoldingBuf[REG_RTC_MINUTE] 		= RTC_TimeStructure.RTC_Minutes;
+			     usRegHoldingBuf[REG_RTC_HOUR] 	 		= RTC_TimeStructure.RTC_Hours;
+			     usRegHoldingBuf[REG_RTC_DAY_OF_MONTH] 	= RTC_DateStructure.RTC_Date;
+			     usRegHoldingBuf[REG_RTC_MONTH] 		= RTC_DateStructure.RTC_Month;
+			     usRegHoldingBuf[REG_RTC_YEAR]  		= RTC_DateStructure.RTC_Year;
+			     usRegHoldingBuf[REG_RTC_DAY_OF_WEEK]  	= RTC_DateStructure.RTC_WeekDay;
 
 
 				while( usNRegs > 0 )
@@ -126,17 +132,138 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 							{
 								uint16_t temp=0;
 
+								RTC_TimeTypeDef RTC_TimeStructure;
+								RTC_GetTime(RTC_Format_BIN, &RTC_TimeStructure);
+
 								((uint8_t*)(&temp))[1]=*pucRegBuffer++;
 								((uint8_t*)(&temp))[0]=*pucRegBuffer++;
 
-								iRegIndex+=2;
-								usNRegs-=2;
+								RTC_TimeStructure.RTC_Seconds=temp;
 
-								if((temp>=HEATER_TEMP_MIN)&&(temp<=HEATER_TEMP_MAX))
-								{
-									//uks_channels.uks_params.heater_temperature_1=temp;
-								    //Backup_SRAM_Write_Reg(&uks_channels.backup_uks_params->heater_temperature_1,&uks_channels.uks_params.heater_temperature_1,sizeof(float));
-								}
+								RTC_SetTime(RTC_Format_BIN, &RTC_TimeStructure);
+
+								iRegIndex++;
+								usNRegs--;
+
+//								if((temp>=HEATER_TEMP_MIN)&&(temp<=HEATER_TEMP_MAX))
+//								{
+//									//uks_channels.uks_params.heater_temperature_1=temp;
+//								    //Backup_SRAM_Write_Reg(&uks_channels.backup_uks_params->heater_temperature_1,&uks_channels.uks_params.heater_temperature_1,sizeof(float));
+//								}
+							}
+							break;
+
+							case REG_RTC_MINUTE:
+							{
+								uint16_t temp=0;
+
+								RTC_TimeTypeDef RTC_TimeStructure;
+								RTC_GetTime(RTC_Format_BIN, &RTC_TimeStructure);
+
+								((uint8_t*)(&temp))[1]=*pucRegBuffer++;
+								((uint8_t*)(&temp))[0]=*pucRegBuffer++;
+
+								RTC_TimeStructure.RTC_Minutes=temp;
+
+								RTC_SetTime(RTC_Format_BIN, &RTC_TimeStructure);
+
+								iRegIndex++;
+								usNRegs--;
+							}
+							break;
+
+							case REG_RTC_HOUR:
+							{
+								uint16_t temp=0;
+
+								RTC_TimeTypeDef RTC_TimeStructure;
+								RTC_GetTime(RTC_Format_BIN, &RTC_TimeStructure);
+
+								((uint8_t*)(&temp))[1]=*pucRegBuffer++;
+								((uint8_t*)(&temp))[0]=*pucRegBuffer++;
+
+								RTC_TimeStructure.RTC_Hours=temp;
+
+								RTC_SetTime(RTC_Format_BIN, &RTC_TimeStructure);
+
+								iRegIndex++;
+								usNRegs--;
+							}
+							break;
+
+							case REG_RTC_DAY_OF_MONTH:
+							{
+								uint16_t temp=0;
+
+								RTC_DateTypeDef RTC_DateStructure;
+								RTC_GetDate(RTC_Format_BIN, &RTC_DateStructure);
+
+								((uint8_t*)(&temp))[1]=*pucRegBuffer++;
+								((uint8_t*)(&temp))[0]=*pucRegBuffer++;
+
+								RTC_DateStructure.RTC_Date=temp;
+
+								RTC_SetDate(RTC_Format_BIN, &RTC_DateStructure);
+
+								iRegIndex++;
+								usNRegs--;
+							}
+							break;
+
+							case REG_RTC_MONTH:
+							{
+								uint16_t temp=0;
+
+								RTC_DateTypeDef RTC_DateStructure;
+								RTC_GetDate(RTC_Format_BIN, &RTC_DateStructure);
+
+								((uint8_t*)(&temp))[1]=*pucRegBuffer++;
+								((uint8_t*)(&temp))[0]=*pucRegBuffer++;
+
+								RTC_DateStructure.RTC_Month=temp;
+
+								RTC_SetDate(RTC_Format_BIN, &RTC_DateStructure);
+
+								iRegIndex++;
+								usNRegs--;
+							}
+							break;
+
+							case REG_RTC_YEAR:
+							{
+								uint16_t temp=0;
+
+								RTC_DateTypeDef RTC_DateStructure;
+								RTC_GetDate(RTC_Format_BIN, &RTC_DateStructure);
+
+								((uint8_t*)(&temp))[1]=*pucRegBuffer++;
+								((uint8_t*)(&temp))[0]=*pucRegBuffer++;
+
+								RTC_DateStructure.RTC_Year=temp;
+
+								RTC_SetDate(RTC_Format_BIN, &RTC_DateStructure);
+
+								iRegIndex++;
+								usNRegs--;
+							}
+							break;
+
+							case REG_RTC_DAY_OF_WEEK:
+							{
+								uint16_t temp=0;
+
+								RTC_DateTypeDef RTC_DateStructure;
+								RTC_GetDate(RTC_Format_BIN, &RTC_DateStructure);
+
+								((uint8_t*)(&temp))[1]=*pucRegBuffer++;
+								((uint8_t*)(&temp))[0]=*pucRegBuffer++;
+
+								RTC_DateStructure.RTC_WeekDay=temp;
+
+								RTC_SetDate(RTC_Format_BIN, &RTC_DateStructure);
+
+								iRegIndex++;
+								usNRegs--;
 							}
 							break;
 
