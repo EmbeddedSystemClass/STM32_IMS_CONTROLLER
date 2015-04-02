@@ -3,6 +3,7 @@
 #include "frequency.h"
 #include "ADS1220.h"
 #include "rtc.h"
+#include "fram_i2c.h"
 
 xSemaphoreHandle xMeasureDataMutex;
 xSemaphoreHandle xSettingsMutex;
@@ -18,6 +19,7 @@ void ControllerInit(void)
 
 	xMeasureDataMutex=xSemaphoreCreateMutex() ;
 	xSettingsMutex=xSemaphoreCreateMutex() ;
+	FRAM_I2C_Init();
 	Controller_RestoreSettings();
 	RTC_Clock_Init();
 	Protocol_Init();
@@ -27,6 +29,10 @@ void ControllerInit(void)
 
 uint8_t Controller_RestoreSettings(void)
 {
+	uint8_t buf[16];
+
+	FRAM_I2C_Read_Buffer(0x0,buf,16);
+
 	/*read struct settings from ROM*/
 	/*CRC check*/
 	if((stSettings.TCXO_frequency<TCXO_FREQ_MIN) || (stSettings.TCXO_frequency>TCXO_FREQ_MAX))
