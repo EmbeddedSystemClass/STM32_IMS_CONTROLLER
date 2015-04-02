@@ -43,11 +43,11 @@
       <target file="mbutils.o" lastModified="14c78f4e799">
          <source file="..\..\..\Source\freemodbus\functions\mbutils.c" lastModified="14c22662822"/>
       </target>
-      <target file="mbascii.o" lastModified="14c78f4fff4">
+      <target file="mbascii.o" lastModified="14c79ed44f5">
          <source file="..\..\..\Source\freemodbus\ascii\mbascii.c" lastModified="14c26d2e219"/>
       </target>
-      <target file="mbport.o" lastModified="14c78f4de71">
-         <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14c74600656"/>
+      <target file="mbport.o" lastModified="14c79f83129">
+         <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14c79f8262d"/>
       </target>
       <target file="portserial.o" lastModified="14c78f4f593">
          <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14c554be877"/>
@@ -82,10 +82,10 @@
       <target file="croutine.o" lastModified="14c6f3cc32f">
          <source file="..\..\..\Source\FreeRTOS\Source\croutine.c" lastModified="14af2c4eed0"/>
       </target>
-      <target file="controller.o" lastModified="14c793fe52b">
-         <source file="..\..\..\Source\devices\controller.c" lastModified="14c793fc000"/>
+      <target file="controller.o" lastModified="14c7a1bf635">
+         <source file="..\..\..\Source\devices\controller.c" lastModified="14c7a1bec51"/>
       </target>
-      <target file="mbrtu.o" lastModified="14c78f4f370">
+      <target file="mbrtu.o" lastModified="14c79ed43fb">
          <source file="..\..\..\Source\freemodbus\rtu\mbrtu.c" lastModified="14c31767da1"/>
       </target>
       <target file="list.o" lastModified="14c6f3cbf56">
@@ -94,7 +94,7 @@
       <target file="port.o" lastModified="14c6f3cc012">
          <source file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\port.c" lastModified="14af2c51989"/>
       </target>
-      <target file="ADS1220.o" lastModified="14c78f4f98b">
+      <target file="ADS1220.o" lastModified="14c79c628ef">
          <source file="..\..\..\Source\devices\ADS1220.c" lastModified="14c6f97130e"/>
       </target>
       <target file="startup_stm32f4xx.o" lastModified="14c277bbc6b">
@@ -112,8 +112,8 @@
       <target file="printf.o" lastModified="14c274f02a6">
          <source file="..\..\..\stdio\printf.c" lastModified="14c274eee15"/>
       </target>
-      <target file="fram_i2c.o" lastModified="14c7994706b">
-         <source file="..\..\..\Source\devices\fram_i2c.c" lastModified="14c799463e8"/>
+      <target file="fram_i2c.o" lastModified="14c7a23a9b4">
+         <source file="..\..\..\Source\devices\fram_i2c.c" lastModified="14c7a239030"/>
       </target>
       <target file="rtc.o" lastModified="14c78f4e6af">
          <source file="..\..\..\Source\devices\rtc.c" lastModified="14c73f81bdb"/>
@@ -121,7 +121,7 @@
       <target file="heap_2.o" lastModified="14c6f3cc69a">
          <source file="..\..\..\Source\FreeRTOS\Source\portable\MemMang\heap_2.c" lastModified="14af2c557af"/>
       </target>
-      <target file="frequency.o" lastModified="14c78f4fc79">
+      <target file="frequency.o" lastModified="14c79c62a76">
          <source file="..\..\..\Source\devices\frequency.c" lastModified="14c7452952c"/>
       </target>
       <target file="stm32f4xx_i2c.o" lastModified="14c78f4faa4">
@@ -142,7 +142,7 @@
       <target file="ADS1120.o" lastModified="14c6f3cbab3">
          <source file="..\..\..\Source\devices\ADS1120.c" lastModified="14c6f2125d9"/>
       </target>
-      <target file="main.o" lastModified="14c78f4eb14">
+      <target file="main.o" lastModified="14c79c62575">
          <source file="..\..\..\main.c" lastModified="14c6f3c6520"/>
       </target>
       <target file="system_stm32f4xx.o" lastModified="14c78f4f44b">

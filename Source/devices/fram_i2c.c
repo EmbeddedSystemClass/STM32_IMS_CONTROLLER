@@ -5,6 +5,8 @@
 #include "stm32f4xx_i2c.h"
 #include "misc.h"
 
+#include "mbcrc.h"
+
 #define FRAM_I2C_GPIO				GPIOB
 #define FRAM_I2C_GPIO_RCC			RCC_AHB1Periph_GPIOB
 #define FRAM_I2C_GPIO_PIN_SDA		GPIO_Pin_9
@@ -51,6 +53,8 @@ void FRAM_I2C_Init(void)
 uint8_t FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 {
 		uint16_t i=0;
+		 I2C_AcknowledgeConfig(FRAM_I2C, ENABLE);
+
 	        /* While the bus is busy */
 	    while(I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_BUSY));
 
@@ -154,4 +158,35 @@ uint8_t FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    I2C_GenerateSTOP(FRAM_I2C, ENABLE);
 
 	    return 0;
+}
+
+
+uint8_t FRAM_Read_Settings(stControllerSettings *stSettings)
+{
+	stControllerSettings stSettings_temp;
+	uint16_t Settings_CRC=0;
+	FRAM_I2C_Read_Buffer(FRAM_SETTINGS_ADDR,&stSettings_temp,sizeof(stSettings_temp));
+	FRAM_I2C_Read_Buffer(FRAM_SETTINGS_CRC_ADDR,&Settings_CRC,sizeof(Settings_CRC));
+
+	if(Settings_CRC==usMBCRC16(&stSettings_temp,sizeof(stSettings_temp)))
+	{
+		*stSettings=stSettings_temp;
+		return 0;
+	}
+	else
+	{
+		*stSettings=stSettingsDefault;
+		return 1;
+	}
+}
+
+uint8_t FRAM_Write_Settings(stControllerSettings stSettings)
+{
+	uint16_t Settings_CRC=0;
+	Settings_CRC=usMBCRC16(&stSettings,sizeof(stSettings));
+
+	FRAM_I2C_Write_Buffer(FRAM_SETTINGS_ADDR,&stSettings,sizeof(stSettings));
+	FRAM_I2C_Write_Buffer(FRAM_SETTINGS_CRC_ADDR,&Settings_CRC,sizeof(Settings_CRC));
+
+	return 0;
 }

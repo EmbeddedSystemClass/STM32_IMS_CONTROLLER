@@ -34,6 +34,7 @@ extern xSemaphoreHandle xMeasureDataMutex;
 extern xSemaphoreHandle xSettingsMutex;
 
 extern stControllerSettings stSettings;
+extern const stControllerSettings stSettingsDefault;
 extern stControllerMeasureData stMeasureData;
 
 void ControllerInit(void);

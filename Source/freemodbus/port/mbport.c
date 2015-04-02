@@ -1,5 +1,6 @@
 #include "mb.h"
-#include "backup_sram.h"
+//#include "backup_sram.h"
+#include "fram_i2c.h"
 #include "stm32f4xx_rtc.h"
 #include "controller.h"
 
@@ -272,6 +273,7 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 							case REG_TCXO_FREQ:
 							{
 								uint32_t temp=0;
+								stControllerSettings stSettingsCopy;
 
 								((uint8_t*)(&temp))[1]=*pucRegBuffer++;
 								((uint8_t*)(&temp))[0]=*pucRegBuffer++;
@@ -283,8 +285,11 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
 									     stSettings.TCXO_frequency=temp;
+									     stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
+
+									 FRAM_Write_Settings(stSettingsCopy);
 									 /*Write settings to ROM*/
 								}
 

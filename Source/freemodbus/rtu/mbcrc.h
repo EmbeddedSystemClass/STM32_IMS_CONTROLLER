@@ -27,9 +27,9 @@
  *
  * File: $Id: mbcrc.h,v 1.5 2006/12/07 22:10:34 wolti Exp $
  */
-
 #ifndef _MB_CRC_H
 #define _MB_CRC_H
+#include "mbport.h"
 
 USHORT          usMBCRC16( UCHAR * pucFrame, USHORT usLen );
 
