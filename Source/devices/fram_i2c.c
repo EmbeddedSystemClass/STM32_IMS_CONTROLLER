@@ -19,6 +19,8 @@
 #define FRAM_I2C_AF					GPIO_AF_I2C1
 #define FRAM_I2C_ADDRESS			0xA0
 
+xSemaphoreHandle xI2CBusMutex;
+
 void FRAM_I2C_Init(void)
 {
 		 GPIO_InitTypeDef GPIO_InitStructure;
@@ -48,10 +50,14 @@ void FRAM_I2C_Init(void)
 
 	     I2C_Init(FRAM_I2C, &I2C_InitStructure);
 	     I2C_Cmd(FRAM_I2C, ENABLE);
+
+	     xI2CBusMutex=xSemaphoreCreateMutex() ;
 }
 
 uint8_t FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 {
+	 xSemaphoreTake( xI2CBusMutex, portMAX_DELAY );
+	 {
 		uint16_t i=0;
 		 I2C_AcknowledgeConfig(FRAM_I2C, ENABLE);
 
@@ -114,11 +120,16 @@ uint8_t FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    /* Send STOP Condition */
 	    I2C_GenerateSTOP(FRAM_I2C, ENABLE);
 
+	 }
+	 xSemaphoreGive( xI2CBusMutex );
+
 	    return 0;
 }
 
 uint8_t FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 {
+	 xSemaphoreTake( xI2CBusMutex, portMAX_DELAY );
+	 {
 		uint16_t i=0;
 		/* Send START condition */
 	    I2C_GenerateSTART(FRAM_I2C, ENABLE);
@@ -156,6 +167,8 @@ uint8_t FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 
 	    /* Send STOP condition */
 	    I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+	 }
+	 xSemaphoreGive( xI2CBusMutex );
 
 	    return 0;
 }

@@ -5,6 +5,8 @@
 #include "task.h"
 #include "queue.h"
 #include "semphr.h"
+#include "stm32f4xx_rtc.h"
+#include "stdint.h"
 
 #define TCXO_FREQ_MIN		19999000
 #define TCXO_FREQ_MAX		20001000
