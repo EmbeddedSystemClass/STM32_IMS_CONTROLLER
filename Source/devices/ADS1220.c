@@ -193,7 +193,6 @@ static void ADC_RTD1_Task(void *pvParameters)
 	    }
 	    xSemaphoreGive( xMeasureDataMutex );
 
-
 	    vTaskDelay(ADC_MEASURE_DELAY);
 	}
 }
@@ -254,67 +253,6 @@ static void ADC_Current2_Task(void *pvParameters)
 	    vTaskDelay(ADC_MEASURE_DELAY);
 	}
 }
-
-
-//----------------------------------------------------------------
-//static void ADS1120_task(void *pvParameters)//
-//{
-////	uint8_t str_buf[32];
-//
-//	ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS1;// pin down SPI1_CS1
-//	ADC_SPI_send (ADS_RESET);
-//	vTaskDelay(10);
-//	ADC_SPI_send (ADS_WREG|(ADS_REG_0<<2)|(0x0));//1 reg 0x0
-//	ADC_SPI_send (ADC_REG_CONFIG_00);
-//	vTaskDelay(10);
-//
-//	ADC_SPI_send (ADS_WREG|(ADS_REG_2<<2)|(0x0));//1 reg 0x2
-//	ADC_SPI_send (ADC_REG_CONFIG_02);
-//	vTaskDelay(10);
-//
-//	ADC_SPI_send (ADS_WREG|(ADS_REG_3<<2)|(0x0));//1 reg 0x3
-//	ADC_SPI_send (ADC_REG_CONFIG_03);
-//	vTaskDelay(10);
-//
-////	spi_send (ADS_RREG|(ADS_REG_0<<2)|(0x0));//1 reg 0x0
-////	adc_reg=spi_read ();
-////	vTaskDelay(10);
-////	spi_send (ADS_RREG|(ADS_REG_3<<2)|(0x0));//1 reg 0x3
-////	adc_reg=spi_read ();
-////	vTaskDelay(10);
-//
-//	task_watches[ADS1120_TASK].task_status=TASK_ACTIVE;
-//
-//	while(1)
-//	{
-//		ADC_SPI_send (ADS_START);
-//		while(GPIO_ReadInputDataBit(ADC_SPI_GPIO, ADC_SPI_MISO)==Bit_SET);//wait
-//		//spi_send (ADS_RDATA);
-//		ADC_result_temp=ADC_SPI_read ();
-//		ADC_result_temp=ADC_result_temp<<8;
-//		ADC_result_temp|=ADC_SPI_read ();
-//		ADC_result_temp=ADC_result_temp<<8;
-//		ADC_result_temp|=ADC_SPI_read ();
-//
-//
-//
-//		if(ADC_result_temp>0x7FFFFF)
-//		{
-//			ADC_result=-(0xFFFFFF-(int32_t)ADC_result_temp);
-//		}
-//		else
-//		{
-//			ADC_result=(int32_t)ADC_result_temp;
-//		}
-//
-//
-//		//ADS1120_res.result=ADC_result;
-//		//uks_channels.heater_temperature=PT100_Code_To_Temperature(ADC_result);
-//
-//		vTaskDelay(100);
-//		task_watches[ADS1120_TASK].counter++;
-//	}
-//}
 
 #define CURRENT_SOURCE  0.001014
 #define VOLTAGE_REF		2.0289

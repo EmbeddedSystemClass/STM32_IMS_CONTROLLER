@@ -16,8 +16,6 @@ uint8_t Controller_RestoreSettings(void);
 
 void ControllerInit(void)
 {
-	uint8_t i=0;
-
 	xMeasureDataMutex=xSemaphoreCreateMutex() ;
 	xSettingsMutex=xSemaphoreCreateMutex() ;
 	FRAM_I2C_Init();
@@ -30,12 +28,6 @@ void ControllerInit(void)
 
 uint8_t Controller_RestoreSettings(void)
 {
-//	uint8_t buf[16];
-//	uint8_t buf_2[16]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
-//	FRAM_I2C_Write_Buffer(0,buf_2,16);
-//
-//	FRAM_I2C_Read_Buffer(0x0,buf,16);
-
 	FRAM_Read_Settings(&stSettings);
 	if((stSettings.TCXO_frequency<TCXO_FREQ_MIN) || (stSettings.TCXO_frequency>TCXO_FREQ_MAX))
 	{

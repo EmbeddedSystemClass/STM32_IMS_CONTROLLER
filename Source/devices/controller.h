@@ -8,6 +8,18 @@
 #include "stm32f4xx_rtc.h"
 #include "stdint.h"
 
+typedef enum
+{
+    ENOERR,                  /*!< no error. */
+    ENOREG,                  /*!< illegal register address. */
+    EINVAL,                  /*!< illegal argument. */
+    ENORES,                  /*!< insufficient resources. */
+    EIO,                     /*!< I/O error. */
+    ETIMEDOUT,                /*!< timeout error occurred. */
+    ECRCERR
+} eErrorCode;
+
+
 #define TCXO_FREQ_MIN		19999000
 #define TCXO_FREQ_MAX		20001000
 #define TCXO_FREQ_DEFAULT	20000000

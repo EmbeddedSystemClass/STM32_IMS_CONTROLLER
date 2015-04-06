@@ -18,6 +18,7 @@
 #define FRAM_I2C_RCC				RCC_APB1Periph_I2C1
 #define FRAM_I2C_AF					GPIO_AF_I2C1
 #define FRAM_I2C_ADDRESS			0xA0
+#define FRAM_I2C_TIMEOUT			10000
 
 xSemaphoreHandle xI2CBusMutex;
 
@@ -54,56 +55,97 @@ void FRAM_I2C_Init(void)
 	     xI2CBusMutex=xSemaphoreCreateMutex() ;
 }
 
-uint8_t FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
+eErrorCode FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 {
+	uint32_t i2c_timeout=0;
 	 xSemaphoreTake( xI2CBusMutex, portMAX_DELAY );
 	 {
 		uint16_t i=0;
 		 I2C_AcknowledgeConfig(FRAM_I2C, ENABLE);
 
-	        /* While the bus is busy */
-	    while(I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_BUSY));
+	    i2c_timeout=0;
+	    while(I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_BUSY))
+	    {
+	    	i2c_timeout++;
+	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
+	    	{
+	    		return ETIMEDOUT;
+	    	}
+	    }
 
-	    /* Send START condition */
 	    I2C_GenerateSTART(FRAM_I2C, ENABLE);
 
-	    /* Test on EV5 and clear it */
-	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_MODE_SELECT));
+	    i2c_timeout=0;
+	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_MODE_SELECT))
+	    {
+	    	i2c_timeout++;
+	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
+	    	{
+	    		return ETIMEDOUT;
+	    	}
+	    }
 
-	    /* Send EEPROM address for write */
 	    I2C_Send7bitAddress(FRAM_I2C, FRAM_I2C_ADDRESS, I2C_Direction_Transmitter);
 
-	    /* Test on EV6 and clear it */
-	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED));
+	    i2c_timeout=0;
+	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
+	    {
+	    	i2c_timeout++;
+	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
+	    	{
+	    		return ETIMEDOUT;
+	    	}
+	    }
 
-
-	    /* Send the EEPROM's internal address to read from: MSB of the address first */
 	    I2C_SendData(FRAM_I2C, (uint8_t)((addr & 0xFF00) >> 8));
 
-	    /* Test on EV8 and clear it */
-	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
+	    i2c_timeout=0;
+	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
+	    {
+	    	i2c_timeout++;
+	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
+	    	{
+	    		return ETIMEDOUT;
+	    	}
+	    }
 
-	    /* Send the EEPROM's internal address to read from: LSB of the address */
 	    I2C_SendData(FRAM_I2C, (uint8_t)(addr & 0x00FF));
 
-	    /* Test on EV8 and clear it */
-	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
+	    i2c_timeout=0;
+	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
+	    {
+	    	i2c_timeout++;
+	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
+	    	{
+	    		return ETIMEDOUT;
+	    	}
+	    }
 //----------------------------------------------------------------------------------
-
-	    /* Send STRAT condition a second time */
 	    I2C_GenerateSTART(FRAM_I2C, ENABLE);
 
-	    /* Test on EV5 and clear it */
-	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_MODE_SELECT));
+	    i2c_timeout=0;
+	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_MODE_SELECT))
+	    {
+	    	i2c_timeout++;
+	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
+	    	{
+	    		return ETIMEDOUT;
+	    	}
+	    }
 
-	    /* Send EEPROM address for read */
 	    I2C_Send7bitAddress(FRAM_I2C, FRAM_I2C_ADDRESS, I2C_Direction_Receiver);
-
-	    /* Test on EV6 and clear it */
 
 	    for(i=0;i<buf_len;i++)
 	    {
-	    	while(!I2C_CheckEvent(FRAM_I2C,I2C_EVENT_MASTER_BYTE_RECEIVED));//I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED));
+	    	i2c_timeout=0;
+	    	while(!I2C_CheckEvent(FRAM_I2C,I2C_EVENT_MASTER_BYTE_RECEIVED))
+	    	{
+		    	i2c_timeout++;
+		    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
+		    	{
+		    		return ETIMEDOUT;
+		    	}
+	    	}
 
 	    	buf[i]=I2C_ReceiveData(FRAM_I2C);
 
@@ -117,89 +159,131 @@ uint8_t FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    	}
 	    }
 
-	    /* Send STOP Condition */
 	    I2C_GenerateSTOP(FRAM_I2C, ENABLE);
-
 	 }
 	 xSemaphoreGive( xI2CBusMutex );
 
-	    return 0;
+	    return ENOERR;
 }
 
-uint8_t FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
+eErrorCode FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 {
+	uint32_t i2c_timeout=0;
 	 xSemaphoreTake( xI2CBusMutex, portMAX_DELAY );
 	 {
 		uint16_t i=0;
-		/* Send START condition */
+
 	    I2C_GenerateSTART(FRAM_I2C, ENABLE);
 
-	    /* Test on EV5 and clear it */
-	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_MODE_SELECT));
+	    i2c_timeout=0;
+	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_MODE_SELECT))
+	    {
+	    	i2c_timeout++;
+	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
+	    	{
+	    		return ETIMEDOUT;
+	    	}
+	    }
 
-	    /* Send EEPROM address for write */
 	    I2C_Send7bitAddress(FRAM_I2C, FRAM_I2C_ADDRESS, I2C_Direction_Transmitter);
 
-	    /* Test on EV6 and clear it */
-	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED));
+	    i2c_timeout=0;
+	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
+	    {
+	    	i2c_timeout++;
+	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
+	    	{
+	    		return ETIMEDOUT;
+	    	}
+	    }
 
-
-	    /* Send the EEPROM's internal address to write to : MSB of the address first */
 	    I2C_SendData(FRAM_I2C, (uint8_t)((addr & 0xFF00) >> 8));
 
-	    /* Test on EV8 and clear it */
-	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
+	    i2c_timeout=0;
+	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
+	    {
+	    	i2c_timeout++;
+	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
+	    	{
+	    		return ETIMEDOUT;
+	    	}
+	    }
 
-
-
-	    /* Send the EEPROM's internal address to write to : LSB of the address */
 	    I2C_SendData(FRAM_I2C, (uint8_t)(addr & 0x00FF));
 
-	    /* Test on EV8 and clear it */
-	    while(! I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
+	    i2c_timeout=0;
+	    while(! I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
+	    {
+	    	i2c_timeout++;
+	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
+	    	{
+	    		return ETIMEDOUT;
+	    	}
+	    }
 
 	    for(i=0;i<buf_len;i++)
 	    {
 		    I2C_SendData(FRAM_I2C, buf[i]);
-		        /* Test on EV8 and clear it */
-		    while (!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
+
+		    i2c_timeout=0;
+		    while (!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
+		    {
+		    	i2c_timeout++;
+		    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
+		    	{
+		    		return ETIMEDOUT;
+		    	}
+		    }
 	    }
 
-	    /* Send STOP condition */
 	    I2C_GenerateSTOP(FRAM_I2C, ENABLE);
 	 }
 	 xSemaphoreGive( xI2CBusMutex );
 
-	    return 0;
+	    return ENOERR;
 }
 
 
-uint8_t FRAM_Read_Settings(stControllerSettings *stSettings)
+eErrorCode FRAM_Read_Settings(stControllerSettings *stSettings)
 {
 	stControllerSettings stSettings_temp;
 	uint16_t Settings_CRC=0;
-	FRAM_I2C_Read_Buffer(FRAM_SETTINGS_ADDR,&stSettings_temp,sizeof(stSettings_temp));
-	FRAM_I2C_Read_Buffer(FRAM_SETTINGS_CRC_ADDR,&Settings_CRC,sizeof(Settings_CRC));
+	if(FRAM_I2C_Read_Buffer(FRAM_SETTINGS_ADDR,&stSettings_temp,sizeof(stSettings_temp))!=ENOERR)
+	{
+		return EIO;
+	}
+
+	if(FRAM_I2C_Read_Buffer(FRAM_SETTINGS_CRC_ADDR,&Settings_CRC,sizeof(Settings_CRC))!=ENOERR)
+	{
+		return EIO;
+	}
 
 	if(Settings_CRC==usMBCRC16(&stSettings_temp,sizeof(stSettings_temp)))
 	{
 		*stSettings=stSettings_temp;
-		return 0;
+		return ENOERR;
 	}
 	else
 	{
 		*stSettings=stSettingsDefault;
-		return 1;
+		return ECRCERR;
 	}
 }
 
-uint8_t FRAM_Write_Settings(stControllerSettings stSettings)
+eErrorCode FRAM_Write_Settings(stControllerSettings stSettings)
 {
 	uint16_t Settings_CRC=0;
 	Settings_CRC=usMBCRC16(&stSettings,sizeof(stSettings));
 
-	FRAM_I2C_Write_Buffer(FRAM_SETTINGS_ADDR,&stSettings,sizeof(stSettings));
-	FRAM_I2C_Write_Buffer(FRAM_SETTINGS_CRC_ADDR,&Settings_CRC,sizeof(Settings_CRC));
+	if(FRAM_I2C_Write_Buffer(FRAM_SETTINGS_ADDR,&stSettings,sizeof(stSettings))!=ENOERR)
+	{
+		return EIO;
+	}
 
-	return 0;
+	if(FRAM_I2C_Write_Buffer(FRAM_SETTINGS_CRC_ADDR,&Settings_CRC,sizeof(Settings_CRC))!=ENOERR)
+	{
+		return EIO;
+	}
+
+	return ENOERR;
 }

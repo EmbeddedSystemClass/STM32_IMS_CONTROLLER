@@ -21,11 +21,14 @@ typedef struct
 #define FRAM_LOG_LEN						(200*sizeof(stLogEntry))
 
 
-void FRAM_I2C_Init(void);
-uint8_t FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len);
-uint8_t FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len);
+void 	FRAM_I2C_Init(void);
+eErrorCode FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len);
+eErrorCode FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len);
 
-uint8_t FRAM_Read_Settings(stControllerSettings *stSettings);
-uint8_t FRAM_Write_Settings(stControllerSettings stSettings);
+eErrorCode FRAM_Read_Settings(stControllerSettings *stSettings);
+eErrorCode FRAM_Write_Settings(stControllerSettings stSettings);
+
+uint8_t FRAM_Write_LogEntry(void);
+uint8_t FRAM_Read_LogEntries(uint16_t first_entry_index, uint16_t num_entries, uint8_t *buf);
 
 #endif
