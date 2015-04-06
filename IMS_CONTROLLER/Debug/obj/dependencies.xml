@@ -184,7 +184,7 @@
       </source>
       <source file="..\..\..\cmsis_boot\system_stm32f4xx.h" lastModified="13cedd0ed70">
       </source>
-      <source file="..\..\..\Source\freemodbus\include\mbproto.h" lastModified="14c8e9495c1">
+      <source file="..\..\..\Source\freemodbus\include\mbproto.h" lastModified="14c8edf5996">
       </source>
       <source file="..\..\..\cmsis\core_cmInstr.h" lastModified="14125d7ed9e">
       </source>
@@ -394,6 +394,13 @@
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
       <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="13cedd0ed70">
+      </source>
+      <source file="..\..\..\Source\freemodbus\functions\mbfuncfile.c" lastModified="14c8edf8808">
+         <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
+         <include file="..\..\..\Source\freemodbus\include\mb.h"/>
+         <include file="..\..\..\Source\freemodbus\include\mbframe.h"/>
+         <include file="..\..\..\Source\freemodbus\include\mbproto.h"/>
+         <include file="..\..\..\Source\freemodbus\include\mbconfig.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h" lastModified="14125d80992">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>

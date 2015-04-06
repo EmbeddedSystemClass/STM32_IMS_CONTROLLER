@@ -80,7 +80,7 @@ typedef struct
 
 typedef struct
 {
-	USHORT ucFileNum;
+	USHORT usFileNum;
 	USHORT usStartAddress;
 	USHORT usRegNum;
 }	xMBReadFileRequest ;

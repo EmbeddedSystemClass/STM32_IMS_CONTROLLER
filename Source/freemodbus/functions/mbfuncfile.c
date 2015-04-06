@@ -43,8 +43,8 @@
 
 /* ----------------------- Defines ------------------------------------------*/
 //#define MB_PDU_FUNC_READ_ADDR_OFF           ( MB_PDU_DATA_OFF )
-#define MB_PDU_FUNC_READ_BYTECNT_OFF        ( MB_PDU_DATA_OFF + 2 )
-#define MB_PDU_FUNC_READ_SIZE               ( 4 )
+#define MB_PDU_FUNC_READ_BYTECNT_OFF        ( MB_PDU_DATA_OFF )
+#define MB_PDU_FUNC_READ_FILE_MIN_SIZE      ( 9 )
 #define MB_PDU_FUNC_READ_FILECNT_MAX        ( 0xA )
 
 #define MB_PDU_FUNC_READ_RSP_BYTECNT_OFF    ( MB_PDU_DATA_OFF )
@@ -70,14 +70,18 @@ eMBFuncReadFile( UCHAR * pucFrame, USHORT * usLen )
     eMBException    eStatus = MB_EX_NONE;
     eMBErrorCode    eFileStatus;
 
-    if( *usLen == ( MB_PDU_FUNC_READ_SIZE + MB_PDU_SIZE_MIN ) )
+    if( *usLen >= ( MB_PDU_FUNC_READ_FILE_MIN_SIZE ) )
     {
     	chByteCount = ( USHORT )( pucFrame[MB_PDU_FUNC_READ_BYTECNT_OFF] );
     	usFileCount = chByteCount/MB_PDU_FUNC_READ_SUBQUERY_LEN;
 
     	for(i=0;i<usFileCount;i++)
     	{
-    		xReadFileRequest[i]=*( xMBReadFileRequest* )( &pucFrame[(MB_PDU_FUNC_READ_BYTECNT_OFF+1)+i*MB_PDU_FUNC_READ_SUBQUERY_LEN+1] );
+    		//xReadFileRequest[i]=*( xMBReadFileRequest* )( &pucFrame[(MB_PDU_FUNC_READ_BYTECNT_OFF+1)+i*MB_PDU_FUNC_READ_SUBQUERY_LEN+1] );
+
+    		xReadFileRequest[i].usFileNum=(((USHORT)pucFrame[(MB_PDU_FUNC_READ_BYTECNT_OFF+3)]&0xFF)|(((USHORT)pucFrame[(MB_PDU_FUNC_READ_BYTECNT_OFF+2)]<<8)&0xFF00));
+    		xReadFileRequest[i].usStartAddress=(((USHORT)pucFrame[(MB_PDU_FUNC_READ_BYTECNT_OFF+5)]&0xFF)|(((USHORT)pucFrame[(MB_PDU_FUNC_READ_BYTECNT_OFF+4)]<<8)&0xFF00));
+    		xReadFileRequest[i].usRegNum=(((USHORT)pucFrame[(MB_PDU_FUNC_READ_BYTECNT_OFF+7)]&0xFF)|(((USHORT)pucFrame[(MB_PDU_FUNC_READ_BYTECNT_OFF+6)]<<8)&0xFF00));
     	}
 
         if( ( usFileCount >= 1 )&& ( usFileCount < MB_PDU_FUNC_READ_FILECNT_MAX ) )
