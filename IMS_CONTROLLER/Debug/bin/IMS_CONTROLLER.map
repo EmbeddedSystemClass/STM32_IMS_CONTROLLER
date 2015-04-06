@@ -296,6 +296,9 @@ Discarded input sections
                 0x00000000       0x44 ..\obj\stm32f4xx_rcc.o
  .text.RCC_ClearITPendingBit
                 0x00000000       0x20 ..\obj\stm32f4xx_rcc.o
+ .text          0x00000000        0x0 ..\obj\mbfuncfile.o
+ .data          0x00000000        0x0 ..\obj\mbfuncfile.o
+ .bss           0x00000000        0x0 ..\obj\mbfuncfile.o
  .text          0x00000000        0x0 ..\obj\timers.o
  .data          0x00000000        0x0 ..\obj\timers.o
  .bss           0x00000000        0x0 ..\obj\timers.o
@@ -1768,6 +1771,7 @@ LOAD ..\obj\mbfuncholding.o
 LOAD ..\obj\main.o
 LOAD ..\obj\mbcrc.o
 LOAD ..\obj\stm32f4xx_rcc.o
+LOAD ..\obj\mbfuncfile.o
 LOAD ..\obj\timers.o
 LOAD ..\obj\mbfuncinput.o
 LOAD ..\obj\printf.o
@@ -1805,7 +1809,7 @@ LOAD c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/..
 END GROUP
 OUTPUT(IMS_CONTROLLER.elf elf32-littlearm)
 
-.debug_abbrev   0x00000000     0x3969
+.debug_abbrev   0x00000000     0x396a
  .debug_abbrev  0x00000000      0x12a ..\obj\stm32f4xx_syscfg.o
  .debug_abbrev  0x0000012a      0x178 ..\obj\mbport.o
  .debug_abbrev  0x000002a2      0x199 ..\obj\mb.o
@@ -1824,37 +1828,38 @@ OUTPUT(IMS_CONTROLLER.elf elf32-littlearm)
  .debug_abbrev  0x00000f3e       0xc0 ..\obj\main.o
  .debug_abbrev  0x00000ffe       0x90 ..\obj\mbcrc.o
  .debug_abbrev  0x0000108e      0x1b7 ..\obj\stm32f4xx_rcc.o
- .debug_abbrev  0x00001245       0x28 ..\obj\timers.o
- .debug_abbrev  0x0000126d       0xa5 ..\obj\mbfuncinput.o
- .debug_abbrev  0x00001312      0x238 ..\obj\printf.o
- .debug_abbrev  0x0000154a      0x120 ..\obj\watchdog.o
- .debug_abbrev  0x0000166a        0x1 ..\obj\mbfuncdiag.o
- .debug_abbrev  0x0000166b      0x206 ..\obj\tasks.o
- .debug_abbrev  0x00001871      0x1c6 ..\obj\fram_i2c.o
- .debug_abbrev  0x00001a37      0x182 ..\obj\stm32f4xx_gpio.o
- .debug_abbrev  0x00001bb9      0x1b6 ..\obj\porttimer.o
- .debug_abbrev  0x00001d6f      0x180 ..\obj\mbrtu.o
- .debug_abbrev  0x00001eef       0xb8 ..\obj\list.o
- .debug_abbrev  0x00001fa7      0x140 ..\obj\system_stm32f4xx.o
- .debug_abbrev  0x000020e7       0xde ..\obj\syscalls.o
- .debug_abbrev  0x000021c5      0x186 ..\obj\port.o
- .debug_abbrev  0x0000234b      0x132 ..\obj\queue.o
- .debug_abbrev  0x0000247d      0x203 ..\obj\portserial.o
- .debug_abbrev  0x00002680      0x17f ..\obj\croutine.o
- .debug_abbrev  0x000027ff      0x160 ..\obj\stm32f4xx_spi.o
- .debug_abbrev  0x0000295f       0xb7 ..\obj\mbfunccoils.o
- .debug_abbrev  0x00002a16      0x10f ..\obj\event_groups.o
- .debug_abbrev  0x00002b25      0x1ac ..\obj\ADS1220.o
- .debug_abbrev  0x00002cd1      0x15d ..\obj\stm32f4xx_i2c.o
- .debug_abbrev  0x00002e2e      0x1b6 ..\obj\frequency.o
- .debug_abbrev  0x00002fe4      0x198 ..\obj\stm32f4xx_exti.o
- .debug_abbrev  0x0000317c      0x126 ..\obj\misc.o
- .debug_abbrev  0x000032a2      0x16b ..\obj\stm32f4xx_rtc.o
- .debug_abbrev  0x0000340d       0x4d ..\obj\mbascii.o
- .debug_abbrev  0x0000345a      0x15f ..\obj\heap_2.o
- .debug_abbrev  0x000035b9       0xe8 ..\obj\controller.o
- .debug_abbrev  0x000036a1      0x163 ..\obj\stm32f4xx_tim.o
- .debug_abbrev  0x00003804      0x165 ..\obj\power_detector.o
+ .debug_abbrev  0x00001245        0x1 ..\obj\mbfuncfile.o
+ .debug_abbrev  0x00001246       0x28 ..\obj\timers.o
+ .debug_abbrev  0x0000126e       0xa5 ..\obj\mbfuncinput.o
+ .debug_abbrev  0x00001313      0x238 ..\obj\printf.o
+ .debug_abbrev  0x0000154b      0x120 ..\obj\watchdog.o
+ .debug_abbrev  0x0000166b        0x1 ..\obj\mbfuncdiag.o
+ .debug_abbrev  0x0000166c      0x206 ..\obj\tasks.o
+ .debug_abbrev  0x00001872      0x1c6 ..\obj\fram_i2c.o
+ .debug_abbrev  0x00001a38      0x182 ..\obj\stm32f4xx_gpio.o
+ .debug_abbrev  0x00001bba      0x1b6 ..\obj\porttimer.o
+ .debug_abbrev  0x00001d70      0x180 ..\obj\mbrtu.o
+ .debug_abbrev  0x00001ef0       0xb8 ..\obj\list.o
+ .debug_abbrev  0x00001fa8      0x140 ..\obj\system_stm32f4xx.o
+ .debug_abbrev  0x000020e8       0xde ..\obj\syscalls.o
+ .debug_abbrev  0x000021c6      0x186 ..\obj\port.o
+ .debug_abbrev  0x0000234c      0x132 ..\obj\queue.o
+ .debug_abbrev  0x0000247e      0x203 ..\obj\portserial.o
+ .debug_abbrev  0x00002681      0x17f ..\obj\croutine.o
+ .debug_abbrev  0x00002800      0x160 ..\obj\stm32f4xx_spi.o
+ .debug_abbrev  0x00002960       0xb7 ..\obj\mbfunccoils.o
+ .debug_abbrev  0x00002a17      0x10f ..\obj\event_groups.o
+ .debug_abbrev  0x00002b26      0x1ac ..\obj\ADS1220.o
+ .debug_abbrev  0x00002cd2      0x15d ..\obj\stm32f4xx_i2c.o
+ .debug_abbrev  0x00002e2f      0x1b6 ..\obj\frequency.o
+ .debug_abbrev  0x00002fe5      0x198 ..\obj\stm32f4xx_exti.o
+ .debug_abbrev  0x0000317d      0x126 ..\obj\misc.o
+ .debug_abbrev  0x000032a3      0x16b ..\obj\stm32f4xx_rtc.o
+ .debug_abbrev  0x0000340e       0x4d ..\obj\mbascii.o
+ .debug_abbrev  0x0000345b      0x15f ..\obj\heap_2.o
+ .debug_abbrev  0x000035ba       0xe8 ..\obj\controller.o
+ .debug_abbrev  0x000036a2      0x163 ..\obj\stm32f4xx_tim.o
+ .debug_abbrev  0x00003805      0x165 ..\obj\power_detector.o
 
 .debug_info     0x00000000    0x1445c
  .debug_info    0x00000000      0x27a ..\obj\stm32f4xx_syscfg.o
@@ -1875,6 +1880,7 @@ OUTPUT(IMS_CONTROLLER.elf elf32-littlearm)
  .debug_info    0x000041fe      0x188 ..\obj\main.o
  .debug_info    0x00004386      0x13e ..\obj\mbcrc.o
  .debug_info    0x000044c4      0xd24 ..\obj\stm32f4xx_rcc.o
+ .debug_info    0x000051e8        0x0 ..\obj\mbfuncfile.o
  .debug_info    0x000051e8       0x6f ..\obj\timers.o
  .debug_info    0x00005257      0x1eb ..\obj\mbfuncinput.o
  .debug_info    0x00005442      0xed2 ..\obj\printf.o
@@ -1926,6 +1932,7 @@ OUTPUT(IMS_CONTROLLER.elf elf32-littlearm)
  .debug_line    0x0000266b      0x2ad ..\obj\main.o
  .debug_line    0x00002918      0x164 ..\obj\mbcrc.o
  .debug_line    0x00002a7c      0x598 ..\obj\stm32f4xx_rcc.o
+ .debug_line    0x00003014        0x0 ..\obj\mbfuncfile.o
  .debug_line    0x00003014       0x1d ..\obj\timers.o
  .debug_line    0x00003031      0x1e3 ..\obj\mbfuncinput.o
  .debug_line    0x00003214      0x3cf ..\obj\printf.o
@@ -2458,6 +2465,7 @@ OUTPUT(IMS_CONTROLLER.elf elf32-littlearm)
  .comment       0x00000000       0x2b ..\obj\main.o
  .comment       0x00000000       0x2b ..\obj\mbcrc.o
  .comment       0x00000000       0x2b ..\obj\stm32f4xx_rcc.o
+ .comment       0x00000000       0x2b ..\obj\mbfuncfile.o
  .comment       0x00000000       0x2b ..\obj\timers.o
  .comment       0x00000000       0x2b ..\obj\mbfuncinput.o
  .comment       0x00000000       0x2b ..\obj\printf.o
@@ -2529,83 +2537,85 @@ OUTPUT(IMS_CONTROLLER.elf elf32-littlearm)
  .ARM.attributes
                 0x00000341       0x31 ..\obj\stm32f4xx_rcc.o
  .ARM.attributes
-                0x00000372       0x31 ..\obj\timers.o
+                0x00000372       0x31 ..\obj\mbfuncfile.o
  .ARM.attributes
-                0x000003a3       0x31 ..\obj\mbfuncinput.o
+                0x000003a3       0x31 ..\obj\timers.o
  .ARM.attributes
-                0x000003d4       0x31 ..\obj\printf.o
+                0x000003d4       0x31 ..\obj\mbfuncinput.o
  .ARM.attributes
-                0x00000405       0x31 ..\obj\watchdog.o
+                0x00000405       0x31 ..\obj\printf.o
  .ARM.attributes
-                0x00000436       0x31 ..\obj\mbfuncdiag.o
+                0x00000436       0x31 ..\obj\watchdog.o
  .ARM.attributes
-                0x00000467       0x31 ..\obj\tasks.o
+                0x00000467       0x31 ..\obj\mbfuncdiag.o
  .ARM.attributes
-                0x00000498       0x31 ..\obj\fram_i2c.o
+                0x00000498       0x31 ..\obj\tasks.o
  .ARM.attributes
-                0x000004c9       0x31 ..\obj\stm32f4xx_gpio.o
+                0x000004c9       0x31 ..\obj\fram_i2c.o
  .ARM.attributes
-                0x000004fa       0x31 ..\obj\porttimer.o
+                0x000004fa       0x31 ..\obj\stm32f4xx_gpio.o
  .ARM.attributes
-                0x0000052b       0x31 ..\obj\mbrtu.o
+                0x0000052b       0x31 ..\obj\porttimer.o
  .ARM.attributes
-                0x0000055c       0x31 ..\obj\list.o
+                0x0000055c       0x31 ..\obj\mbrtu.o
  .ARM.attributes
-                0x0000058d       0x31 ..\obj\system_stm32f4xx.o
+                0x0000058d       0x31 ..\obj\list.o
  .ARM.attributes
-                0x000005be       0x31 ..\obj\syscalls.o
+                0x000005be       0x31 ..\obj\system_stm32f4xx.o
  .ARM.attributes
-                0x000005ef       0x31 ..\obj\port.o
+                0x000005ef       0x31 ..\obj\syscalls.o
  .ARM.attributes
-                0x00000620       0x31 ..\obj\queue.o
+                0x00000620       0x31 ..\obj\port.o
  .ARM.attributes
-                0x00000651       0x31 ..\obj\portserial.o
+                0x00000651       0x31 ..\obj\queue.o
  .ARM.attributes
-                0x00000682       0x31 ..\obj\croutine.o
+                0x00000682       0x31 ..\obj\portserial.o
  .ARM.attributes
-                0x000006b3       0x31 ..\obj\stm32f4xx_spi.o
+                0x000006b3       0x31 ..\obj\croutine.o
  .ARM.attributes
-                0x000006e4       0x31 ..\obj\mbfunccoils.o
+                0x000006e4       0x31 ..\obj\stm32f4xx_spi.o
  .ARM.attributes
-                0x00000715       0x31 ..\obj\event_groups.o
+                0x00000715       0x31 ..\obj\mbfunccoils.o
  .ARM.attributes
-                0x00000746       0x31 ..\obj\ADS1220.o
+                0x00000746       0x31 ..\obj\event_groups.o
  .ARM.attributes
-                0x00000777       0x31 ..\obj\stm32f4xx_i2c.o
+                0x00000777       0x31 ..\obj\ADS1220.o
  .ARM.attributes
-                0x000007a8       0x31 ..\obj\frequency.o
+                0x000007a8       0x31 ..\obj\stm32f4xx_i2c.o
  .ARM.attributes
-                0x000007d9       0x31 ..\obj\stm32f4xx_exti.o
+                0x000007d9       0x31 ..\obj\frequency.o
  .ARM.attributes
-                0x0000080a       0x31 ..\obj\misc.o
+                0x0000080a       0x31 ..\obj\stm32f4xx_exti.o
  .ARM.attributes
-                0x0000083b       0x31 ..\obj\stm32f4xx_rtc.o
+                0x0000083b       0x31 ..\obj\misc.o
  .ARM.attributes
-                0x0000086c       0x31 ..\obj\mbascii.o
+                0x0000086c       0x31 ..\obj\stm32f4xx_rtc.o
  .ARM.attributes
-                0x0000089d       0x31 ..\obj\heap_2.o
+                0x0000089d       0x31 ..\obj\mbascii.o
  .ARM.attributes
-                0x000008ce       0x31 ..\obj\controller.o
+                0x000008ce       0x31 ..\obj\heap_2.o
  .ARM.attributes
-                0x000008ff       0x31 ..\obj\stm32f4xx_tim.o
+                0x000008ff       0x31 ..\obj\controller.o
  .ARM.attributes
-                0x00000930       0x31 ..\obj\power_detector.o
+                0x00000930       0x31 ..\obj\stm32f4xx_tim.o
  .ARM.attributes
-                0x00000961       0x1b c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_addsubdf3.o)
+                0x00000961       0x31 ..\obj\power_detector.o
  .ARM.attributes
-                0x0000097c       0x1b c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_muldivdf3.o)
+                0x00000992       0x1b c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_addsubdf3.o)
  .ARM.attributes
-                0x00000997       0x1b c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_truncdfsf2.o)
+                0x000009ad       0x1b c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_muldivdf3.o)
  .ARM.attributes
-                0x000009b2       0x1b c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_addsubsf3.o)
+                0x000009c8       0x1b c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_truncdfsf2.o)
  .ARM.attributes
-                0x000009cd       0x1b c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_muldivsf3.o)
+                0x000009e3       0x1b c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_addsubsf3.o)
  .ARM.attributes
-                0x000009e8       0x29 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memcmp.o)
+                0x000009fe       0x1b c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_muldivsf3.o)
  .ARM.attributes
-                0x00000a11       0x29 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memcpy.o)
+                0x00000a19       0x29 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memcmp.o)
  .ARM.attributes
-                0x00000a3a       0x29 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memset.o)
+                0x00000a42       0x29 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memcpy.o)
+ .ARM.attributes
+                0x00000a6b       0x29 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memset.o)
 
 .debug_frame    0x00000000     0x45cc
  .debug_frame   0x00000000       0xbc ..\obj\stm32f4xx_syscfg.o
