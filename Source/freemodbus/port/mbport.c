@@ -338,3 +338,8 @@ eMBRegDiscreteCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNDiscrete )
     ( void )usNDiscrete;
     return MB_ENOREG;
 }
+
+eMBErrorCode    eMBFileCB( UCHAR * pucFileBuffer, xMBReadFileRequest* xReadFileRequest, USHORT usNFiles )
+{
+	return MB_ENOREG;
+}

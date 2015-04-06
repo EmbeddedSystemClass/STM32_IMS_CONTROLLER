@@ -42,12 +42,14 @@
 #include "mbconfig.h"
 
 /* ----------------------- Defines ------------------------------------------*/
-#define MB_PDU_FUNC_READ_ADDR_OFF           ( MB_PDU_DATA_OFF )
-#define MB_PDU_FUNC_READ_REGCNT_OFF         ( MB_PDU_DATA_OFF + 2 )
+//#define MB_PDU_FUNC_READ_ADDR_OFF           ( MB_PDU_DATA_OFF )
+#define MB_PDU_FUNC_READ_BYTECNT_OFF        ( MB_PDU_DATA_OFF + 2 )
 #define MB_PDU_FUNC_READ_SIZE               ( 4 )
-#define MB_PDU_FUNC_READ_REGCNT_MAX         ( 0x007D )
+#define MB_PDU_FUNC_READ_FILECNT_MAX        ( 0xA )
 
 #define MB_PDU_FUNC_READ_RSP_BYTECNT_OFF    ( MB_PDU_DATA_OFF )
+
+#define MB_PDU_FUNC_READ_SUBQUERY_LEN		( 7 )
 
 /* ----------------------- Static functions ---------------------------------*/
 eMBException    prveMBError2Exception( eMBErrorCode eErrorCode );
@@ -58,51 +60,54 @@ eMBException    prveMBError2Exception( eMBErrorCode eErrorCode );
 eMBException
 eMBFuncReadFile( UCHAR * pucFrame, USHORT * usLen )
 {
-    USHORT          usRegAddress;
-    USHORT          usRegCount;
+	UCHAR			chByteCount;
+	UCHAR           usFileCount;
     UCHAR          *pucFrameCur;
+    UCHAR i=0;
+
+    xMBReadFileRequest xReadFileRequest[16];
 
     eMBException    eStatus = MB_EX_NONE;
-    eMBErrorCode    eRegStatus;
+    eMBErrorCode    eFileStatus;
 
     if( *usLen == ( MB_PDU_FUNC_READ_SIZE + MB_PDU_SIZE_MIN ) )
     {
-        usRegAddress = ( USHORT )( pucFrame[MB_PDU_FUNC_READ_ADDR_OFF] << 8 );
-        usRegAddress |= ( USHORT )( pucFrame[MB_PDU_FUNC_READ_ADDR_OFF + 1] );
-        usRegAddress++;
+    	chByteCount = ( USHORT )( pucFrame[MB_PDU_FUNC_READ_BYTECNT_OFF] );
+    	usFileCount = chByteCount/MB_PDU_FUNC_READ_SUBQUERY_LEN;
 
-        usRegCount = ( USHORT )( pucFrame[MB_PDU_FUNC_READ_REGCNT_OFF] << 8 );
-        usRegCount |= ( USHORT )( pucFrame[MB_PDU_FUNC_READ_REGCNT_OFF + 1] );
+    	for(i=0;i<usFileCount;i++)
+    	{
+    		xReadFileRequest[i]=*( xMBReadFileRequest* )( &pucFrame[(MB_PDU_FUNC_READ_BYTECNT_OFF+1)+i*MB_PDU_FUNC_READ_SUBQUERY_LEN+1] );
+    	}
 
-        /* Check if the number of registers to read is valid. If not
-         * return Modbus illegal data value exception.
-         */
-        if( ( usRegCount >= 1 )
-            && ( usRegCount < MB_PDU_FUNC_READ_REGCNT_MAX ) )
+        if( ( usFileCount >= 1 )&& ( usFileCount < MB_PDU_FUNC_READ_FILECNT_MAX ) )
         {
-            /* Set the current PDU data pointer to the beginning. */
             pucFrameCur = &pucFrame[MB_PDU_FUNC_OFF];
             *usLen = MB_PDU_FUNC_OFF;
 
             /* First byte contains the function code. */
-            *pucFrameCur++ = MB_FUNC_READ_INPUT_REGISTER;
+            *pucFrameCur++ = MB_FUNC_READ_FILE;
             *usLen += 1;
 
-            /* Second byte in the response contain the number of bytes. */
-            *pucFrameCur++ = ( UCHAR )( usRegCount * 2 );
-            *usLen += 1;
-
-            eRegStatus =
-                eMBRegInputCB( pucFrameCur, usRegAddress, usRegCount );
-
-            /* If an error occured convert it into a Modbus exception. */
-            if( eRegStatus != MB_ENOERR )
+            chByteCount=0;
+            for(i=0;i<usFileCount;i++)
             {
-                eStatus = prveMBError2Exception( eRegStatus );
+            	chByteCount+=(xReadFileRequest[i].usRegNum*2);
+            }
+
+			*pucFrameCur++ = chByteCount;
+			*usLen += 1;
+
+            eFileStatus =eMBFileCB( pucFrameCur, xReadFileRequest, usFileCount );
+
+
+            if( eFileStatus != MB_ENOERR )
+            {
+                eStatus = prveMBError2Exception( eFileStatus );
             }
             else
             {
-                *usLen += usRegCount * 2;
+                *usLen += usFileCount * 6;
             }
         }
         else
@@ -112,7 +117,7 @@ eMBFuncReadFile( UCHAR * pucFrame, USHORT * usLen )
     }
     else
     {
-        /* Can't be a valid read input register request because the length
+        /* Can't be a valid read file request because the length
          * is incorrect. */
         eStatus = MB_EX_ILLEGAL_DATA_VALUE;
     }

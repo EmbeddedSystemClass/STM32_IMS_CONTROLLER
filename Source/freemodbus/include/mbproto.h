@@ -78,6 +78,13 @@ typedef struct
     pxMBFunctionHandler pxHandler;
 } xMBFunctionHandler;
 
+typedef struct
+{
+	USHORT ucFileNum;
+	USHORT usStartAddress;
+	USHORT usRegNum;
+}	xMBReadFileRequest ;
+
 #ifdef __cplusplus
 PR_END_EXTERN_C
 #endif
