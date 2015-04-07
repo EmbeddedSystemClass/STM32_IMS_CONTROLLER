@@ -33,7 +33,10 @@ typedef struct
 #define FREQ_CHN_NUM		2
 #define PULSE_COUNT_CHN_NUM	2
 #define RTD_CHN_NUM			2
-#define CURRENT_CHN_NUM		6
+#define CURRENT_CHN_NUM		8
+
+#define CONTROLLER_MEASURE_DATA_LEN	64
+#define TIMESTAMP_LEN				6
 
 typedef struct
 {

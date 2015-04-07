@@ -40,16 +40,19 @@
 #include "mbframe.h"
 #include "mbproto.h"
 #include "mbconfig.h"
+#include "controller.h"
 
 /* ----------------------- Defines ------------------------------------------*/
 //#define MB_PDU_FUNC_READ_ADDR_OFF           ( MB_PDU_DATA_OFF )
 #define MB_PDU_FUNC_READ_BYTECNT_OFF        ( MB_PDU_DATA_OFF )
 #define MB_PDU_FUNC_READ_FILE_MIN_SIZE      ( 9 )
 #define MB_PDU_FUNC_READ_FILECNT_MAX        ( 0xA )
-
+#define MB_PDU_FUNC_READ_BYTECNT_MAX         ( 250 )
 #define MB_PDU_FUNC_READ_RSP_BYTECNT_OFF    ( MB_PDU_DATA_OFF )
 
 #define MB_PDU_FUNC_READ_SUBQUERY_LEN		( 7 )
+
+#define MB_FRAM_REG_LEN						( CONTROLLER_MEASURE_DATA_LEN + TIMESTAMP_LEN + 2)
 
 /* ----------------------- Static functions ---------------------------------*/
 eMBException    prveMBError2Exception( eMBErrorCode eErrorCode );
@@ -60,7 +63,7 @@ eMBException    prveMBError2Exception( eMBErrorCode eErrorCode );
 eMBException
 eMBFuncReadFile( UCHAR * pucFrame, USHORT * usLen )
 {
-	UCHAR			chByteCount;
+	USHORT			usByteCount;
 	UCHAR           usFileCount;
     UCHAR          *pucFrameCur;
     UCHAR i=0;
@@ -72,13 +75,11 @@ eMBFuncReadFile( UCHAR * pucFrame, USHORT * usLen )
 
     if( *usLen >= ( MB_PDU_FUNC_READ_FILE_MIN_SIZE ) )
     {
-    	chByteCount = ( USHORT )( pucFrame[MB_PDU_FUNC_READ_BYTECNT_OFF] );
-    	usFileCount = chByteCount/MB_PDU_FUNC_READ_SUBQUERY_LEN;
+    	usByteCount = ( USHORT )( pucFrame[MB_PDU_FUNC_READ_BYTECNT_OFF] );
+    	usFileCount = usByteCount/MB_PDU_FUNC_READ_SUBQUERY_LEN;
 
     	for(i=0;i<usFileCount;i++)
     	{
-    		//xReadFileRequest[i]=*( xMBReadFileRequest* )( &pucFrame[(MB_PDU_FUNC_READ_BYTECNT_OFF+1)+i*MB_PDU_FUNC_READ_SUBQUERY_LEN+1] );
-
     		xReadFileRequest[i].usFileNum=(((USHORT)pucFrame[(MB_PDU_FUNC_READ_BYTECNT_OFF+3)]&0xFF)|(((USHORT)pucFrame[(MB_PDU_FUNC_READ_BYTECNT_OFF+2)]<<8)&0xFF00));
     		xReadFileRequest[i].usStartAddress=(((USHORT)pucFrame[(MB_PDU_FUNC_READ_BYTECNT_OFF+5)]&0xFF)|(((USHORT)pucFrame[(MB_PDU_FUNC_READ_BYTECNT_OFF+4)]<<8)&0xFF00));
     		xReadFileRequest[i].usRegNum=(((USHORT)pucFrame[(MB_PDU_FUNC_READ_BYTECNT_OFF+7)]&0xFF)|(((USHORT)pucFrame[(MB_PDU_FUNC_READ_BYTECNT_OFF+6)]<<8)&0xFF00));
@@ -93,25 +94,32 @@ eMBFuncReadFile( UCHAR * pucFrame, USHORT * usLen )
             *pucFrameCur++ = MB_FUNC_READ_FILE;
             *usLen += 1;
 
-            chByteCount=0;
+            usByteCount=0;
             for(i=0;i<usFileCount;i++)
             {
-            	chByteCount+=(xReadFileRequest[i].usRegNum*2);
+            	usByteCount+=(xReadFileRequest[i].usRegNum*MB_FRAM_REG_LEN);
             }
 
-			*pucFrameCur++ = chByteCount;
-			*usLen += 1;
-
-            eFileStatus =eMBFileCB( pucFrameCur, xReadFileRequest, usFileCount );
-
-
-            if( eFileStatus != MB_ENOERR )
+            if(usByteCount<=MB_PDU_FUNC_READ_BYTECNT_MAX)
             {
-                eStatus = prveMBError2Exception( eFileStatus );
+
+				*pucFrameCur++ = (UCHAR)usByteCount;
+				*usLen += 1;
+
+				eFileStatus =eMBFileCB( pucFrameCur, xReadFileRequest, usFileCount );
+
+	            if( eFileStatus != MB_ENOERR )
+	            {
+	                eStatus = prveMBError2Exception( eFileStatus );
+	            }
+	            else
+	            {
+	                *usLen += (UCHAR)usByteCount;
+	            }
             }
             else
             {
-                *usLen += usFileCount * 6;
+            	eStatus = MB_EX_ILLEGAL_DATA_VALUE;
             }
         }
         else

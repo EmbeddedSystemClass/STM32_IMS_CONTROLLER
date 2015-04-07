@@ -14,8 +14,6 @@ void EXIT_CRITICAL_SECTION(void)
 
 }
 
-
-
 //static volatile u16 usRegInputBuf[128];
 //u16 *usRegHoldingBuf=usRegInputBuf;
 
@@ -339,7 +337,57 @@ eMBRegDiscreteCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNDiscrete )
     return MB_ENOREG;
 }
 
+#define FILE_0	0
+
+#define MB_FRAM_REG_LEN						( CONTROLLER_MEASURE_DATA_LEN + TIMESTAMP_LEN )
+
 eMBErrorCode    eMBFileCB( UCHAR * pucFileBuffer, xMBReadFileRequest* xReadFileRequest, USHORT usNFiles )
 {
-	return MB_ENOREG;
+	eMBErrorCode    eStatus = MB_ENOERR;
+	eErrorCode		buf_err=ENOERR;
+	UCHAR file_cnt=0,reg_cnt=0;
+	UCHAR reg_buf[MB_FRAM_REG_LEN];
+
+	for(file_cnt=0;file_cnt<usNFiles;file_cnt++)
+	{
+		switch(xReadFileRequest[file_cnt].usFileNum)
+		{
+			case FILE_0:
+			{
+				for(reg_cnt=xReadFileRequest[file_cnt].usStartAddress;reg_cnt<(xReadFileRequest[file_cnt].usStartAddress+xReadFileRequest[file_cnt].usRegNum);reg_cnt++)
+				{
+					*pucFileBuffer++=MB_FRAM_REG_LEN+1;
+					*pucFileBuffer++=0x6;
+					//pucFileBuffer+=MB_FRAM_REG_LEN;
+					buf_err=FRAM_Read_LogEntry(reg_cnt,reg_buf);
+
+					if(buf_err==ENOERR)
+					{
+						UCHAR i=0;
+						for(i=0;i<MB_FRAM_REG_LEN;i++)
+						{
+							*pucFileBuffer++=reg_buf[i];
+						}
+					}
+					else
+					{
+						eStatus=MB_ENOREG;
+					}
+
+					/*
+					 * insert data
+					 */
+				}
+			}
+			break;
+
+			default:
+			{
+				eStatus=MB_ENOREG;
+			}
+			break;
+		}
+	}
+
+	return eStatus;
 }
