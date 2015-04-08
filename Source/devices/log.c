@@ -4,7 +4,7 @@
 volatile uint16_t current_entry_index=0;
 static void Log_Task(void *pvParameters);
 
-#define LOG_PERIOD	2000
+#define LOG_PERIOD	1000*60
 
 void Log_Init(void)
 {

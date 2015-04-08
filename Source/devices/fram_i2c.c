@@ -70,6 +70,8 @@ eErrorCode FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    	i2c_timeout++;
 	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
 	    	{
+	    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+	    		xSemaphoreGive( xI2CBusMutex );
 	    		return ETIMEDOUT;
 	    	}
 	    }
@@ -82,6 +84,8 @@ eErrorCode FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    	i2c_timeout++;
 	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
 	    	{
+	    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+	    		xSemaphoreGive( xI2CBusMutex );
 	    		return ETIMEDOUT;
 	    	}
 	    }
@@ -94,6 +98,8 @@ eErrorCode FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    	i2c_timeout++;
 	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
 	    	{
+	    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+	    		xSemaphoreGive( xI2CBusMutex );
 	    		return ETIMEDOUT;
 	    	}
 	    }
@@ -106,6 +112,8 @@ eErrorCode FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    	i2c_timeout++;
 	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
 	    	{
+	    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+	    		xSemaphoreGive( xI2CBusMutex );
 	    		return ETIMEDOUT;
 	    	}
 	    }
@@ -118,6 +126,8 @@ eErrorCode FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    	i2c_timeout++;
 	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
 	    	{
+	    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+	    		xSemaphoreGive( xI2CBusMutex );
 	    		return ETIMEDOUT;
 	    	}
 	    }
@@ -130,6 +140,8 @@ eErrorCode FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    	i2c_timeout++;
 	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
 	    	{
+	    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+	    		xSemaphoreGive( xI2CBusMutex );
 	    		return ETIMEDOUT;
 	    	}
 	    }
@@ -144,6 +156,8 @@ eErrorCode FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 		    	i2c_timeout++;
 		    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
 		    	{
+		    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+		    		xSemaphoreGive( xI2CBusMutex );
 		    		return ETIMEDOUT;
 		    	}
 	    	}
@@ -182,6 +196,8 @@ eErrorCode FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    	i2c_timeout++;
 	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
 	    	{
+	    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+	    		xSemaphoreGive( xI2CBusMutex );
 	    		return ETIMEDOUT;
 	    	}
 	    }
@@ -194,6 +210,8 @@ eErrorCode FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    	i2c_timeout++;
 	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
 	    	{
+	    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+	    		xSemaphoreGive( xI2CBusMutex );
 	    		return ETIMEDOUT;
 	    	}
 	    }
@@ -206,6 +224,8 @@ eErrorCode FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    	i2c_timeout++;
 	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
 	    	{
+	    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+	    		xSemaphoreGive( xI2CBusMutex );
 	    		return ETIMEDOUT;
 	    	}
 	    }
@@ -218,6 +238,8 @@ eErrorCode FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    	i2c_timeout++;
 	    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
 	    	{
+	    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+	    		xSemaphoreGive( xI2CBusMutex );
 	    		return ETIMEDOUT;
 	    	}
 	    }
@@ -232,6 +254,8 @@ eErrorCode FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 		    	i2c_timeout++;
 		    	if(i2c_timeout>=FRAM_I2C_TIMEOUT)
 		    	{
+		    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+		    		xSemaphoreGive( xI2CBusMutex );
 		    		return ETIMEDOUT;
 		    	}
 		    }
