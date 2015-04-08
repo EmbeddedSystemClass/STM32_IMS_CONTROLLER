@@ -4,6 +4,7 @@
 #include "ADS1220.h"
 #include "rtc.h"
 #include "fram_i2c.h"
+#include "log.h"
 
 xSemaphoreHandle xMeasureDataMutex;
 xSemaphoreHandle xSettingsMutex;
@@ -24,6 +25,7 @@ void ControllerInit(void)
 	Protocol_Init();
 	FrequencyMeasureInit();
 	ADS1220_init();
+	Log_Init();
 }
 
 uint8_t Controller_RestoreSettings(void)

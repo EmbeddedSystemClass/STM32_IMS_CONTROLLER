@@ -6,6 +6,7 @@
 #include "misc.h"
 
 #include "mbcrc.h"
+#include "controller.h"
 
 #define FRAM_I2C_GPIO				GPIOB
 #define FRAM_I2C_GPIO_RCC			RCC_AHB1Periph_GPIOB
@@ -288,17 +289,4 @@ eErrorCode FRAM_Write_Settings(stControllerSettings stSettings)
 	return ENOERR;
 }
 
-eErrorCode FRAM_Read_LogEntry(uint16_t entry_index, uint8_t *buf)
-{
-	eErrorCode err=ENOERR;
 
-	if(entry_index<FRAM_LOG_LEN)
-	{
-		err=FRAM_I2C_Read_Buffer(FRAM_LOG_BASE_ADDR+entry_index*(CONTROLLER_MEASURE_DATA_LEN+TIMESTAMP_LEN),buf,(CONTROLLER_MEASURE_DATA_LEN+TIMESTAMP_LEN));
-	}
-	else
-	{
-		return EIO;
-	}
-	return err;
-}

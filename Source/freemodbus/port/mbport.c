@@ -1,8 +1,8 @@
 #include "mb.h"
-//#include "backup_sram.h"
 #include "fram_i2c.h"
 #include "stm32f4xx_rtc.h"
 #include "controller.h"
+#include "log.h"
 
 void ENTER_CRITICAL_SECTION(void)
 {
@@ -28,9 +28,6 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
 	eMBErrorCode    eStatus = MB_ENOERR;
 	int             iRegIndex;
 	u16 usRegInputBuf[32];
- //   uint16_t i=0;
-
- //   REG_INPUT_NREGS=16;
 
     xSemaphoreTake( xMeasureDataMutex, portMAX_DELAY );
     {
@@ -85,8 +82,6 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
     eMBErrorCode    eStatus = MB_ENOERR;
     u16 usRegHoldingBuf[64];
     int             iRegIndex;
-
-	//uint16_t i=0;
 
     if( ( usAddress >= REG_HOLDING_START ) && ( usAddress + usNRegs <= REG_HOLDING_START + REG_HOLDING_NREGS ) )
     {
@@ -145,12 +140,6 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 
 								iRegIndex++;
 								usNRegs--;
-
-//								if((temp>=HEATER_TEMP_MIN)&&(temp<=HEATER_TEMP_MAX))
-//								{
-//									//uks_channels.uks_params.heater_temperature_1=temp;
-//								    //Backup_SRAM_Write_Reg(&uks_channels.backup_uks_params->heater_temperature_1,&uks_channels.uks_params.heater_temperature_1,sizeof(float));
-//								}
 							}
 							break;
 
@@ -288,7 +277,6 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 									 xSemaphoreGive( xSettingsMutex );
 
 									 FRAM_Write_Settings(stSettingsCopy);
-									 /*Write settings to ROM*/
 								}
 
 								iRegIndex+=2;
@@ -345,7 +333,7 @@ eMBErrorCode    eMBFileCB( UCHAR * pucFileBuffer, xMBReadFileRequest* xReadFileR
 {
 	eMBErrorCode    eStatus = MB_ENOERR;
 	eErrorCode		buf_err=ENOERR;
-	UCHAR file_cnt=0,reg_cnt=0;
+	USHORT file_cnt=0,reg_cnt=0;
 	UCHAR reg_buf[MB_FRAM_REG_LEN];
 
 	for(file_cnt=0;file_cnt<usNFiles;file_cnt++)
@@ -358,8 +346,7 @@ eMBErrorCode    eMBFileCB( UCHAR * pucFileBuffer, xMBReadFileRequest* xReadFileR
 				{
 					*pucFileBuffer++=MB_FRAM_REG_LEN+1;
 					*pucFileBuffer++=0x6;
-					//pucFileBuffer+=MB_FRAM_REG_LEN;
-					buf_err=FRAM_Read_LogEntry(reg_cnt,reg_buf);
+					buf_err=Log_Read_LogEntry(reg_cnt,reg_buf);
 
 					if(buf_err==ENOERR)
 					{
@@ -373,10 +360,6 @@ eMBErrorCode    eMBFileCB( UCHAR * pucFileBuffer, xMBReadFileRequest* xReadFileR
 					{
 						eStatus=MB_ENOREG;
 					}
-
-					/*
-					 * insert data
-					 */
 				}
 			}
 			break;
@@ -388,6 +371,5 @@ eMBErrorCode    eMBFileCB( UCHAR * pucFileBuffer, xMBReadFileRequest* xReadFileR
 			break;
 		}
 	}
-
 	return eStatus;
 }

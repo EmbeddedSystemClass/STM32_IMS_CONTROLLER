@@ -28,7 +28,6 @@ eErrorCode FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len);
 eErrorCode FRAM_Read_Settings(stControllerSettings *stSettings);
 eErrorCode FRAM_Write_Settings(stControllerSettings stSettings);
 
-eErrorCode FRAM_Write_LogEntry(uint16_t entry_index, uint8_t *buf);
-eErrorCode FRAM_Read_LogEntry(uint16_t entry_index, uint8_t *buf);
+
 
 #endif

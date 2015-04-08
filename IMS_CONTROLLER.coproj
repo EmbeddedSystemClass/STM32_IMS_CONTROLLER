@@ -100,6 +100,7 @@
     <File name="freemodbus/rtu/mbcrc.h" path="Source/freemodbus/rtu/mbcrc.h" type="1"/>
     <File name="freemodbus/include/mbfunc.h" path="Source/freemodbus/include/mbfunc.h" type="1"/>
     <File name="FreeRTOS/Source/portable/MemMang/heap_2.c" path="Source/FreeRTOS/Source/portable/MemMang/heap_2.c" type="1"/>
+    <File name="devices/log.h" path="Source/devices/log.h" type="1"/>
     <File name="devices" path="" type="2"/>
     <File name="cmsis_lib/source/stm32f4xx_iwdg.c" path="cmsis_lib/source/stm32f4xx_iwdg.c" type="1"/>
     <File name="devices/watchdog.h" path="Source/devices/watchdog.h" type="1"/>
@@ -107,8 +108,8 @@
     <File name="FreeRTOS/Source/include/portable.h" path="Source/FreeRTOS/Source/include/portable.h" type="1"/>
     <File name="devices/fram_i2c.c" path="Source/devices/fram_i2c.c" type="1"/>
     <File name="FreeRTOS/Source/portable" path="" type="2"/>
-    <File name="FreeRTOS/Source/croutine.c" path="Source/FreeRTOS/Source/croutine.c" type="1"/>
     <File name="freemodbus/ascii/mbascii.c" path="Source/freemodbus/ascii/mbascii.c" type="1"/>
+    <File name="FreeRTOS/Source/croutine.c" path="Source/FreeRTOS/Source/croutine.c" type="1"/>
     <File name="freemodbus/protocol.h" path="Source/freemodbus/protocol.h" type="1"/>
     <File name="freemodbus/rtu/mbcrc.c" path="Source/freemodbus/rtu/mbcrc.c" type="1"/>
     <File name="FreeRTOS/Source/list.c" path="Source/FreeRTOS/Source/list.c" type="1"/>
@@ -148,6 +149,7 @@
     <File name="devices/rtc.h" path="Source/devices/rtc.h" type="1"/>
     <File name="FreeRTOS/Source/portable/GCC/ARM_CM3" path="" type="2"/>
     <File name="FreeRTOS/Source/include/projdefs.h" path="Source/FreeRTOS/Source/include/projdefs.h" type="1"/>
+    <File name="devices/log.c" path="Source/devices/log.c" type="1"/>
     <File name="main.c" path="main.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_gpio.c" path="cmsis_lib/source/stm32f4xx_gpio.c" type="1"/>
     <File name="freemodbus/mb.c" path="Source/freemodbus/mb.c" type="1"/>
@@ -179,8 +181,8 @@
     <File name="cmsis_boot/stm32f4xx_conf.h" path="cmsis_boot/stm32f4xx_conf.h" type="1"/>
     <File name="cmsis_boot/system_stm32f4xx.h" path="cmsis_boot/system_stm32f4xx.h" type="1"/>
     <File name="freemodbus/port" path="" type="2"/>
-    <File name="FreeRTOS/Source/portable/GCC/ARM_CM3/port.c" path="Source/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c" type="1"/>
     <File name="devices/frequency.h" path="Source/devices/frequency.h" type="1"/>
+    <File name="FreeRTOS/Source/portable/GCC/ARM_CM3/port.c" path="Source/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c" type="1"/>
     <File name="freemodbus/include/mbport.h" path="Source/freemodbus/include/mbport.h" type="1"/>
     <File name="FreeRTOS/Source" path="" type="2"/>
     <File name="devices/power_detector.c" path="Source/devices/power_detector.c" type="1"/>
