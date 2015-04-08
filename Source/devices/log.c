@@ -9,10 +9,12 @@ static void Log_Task(void *pvParameters);
 void Log_Init(void)
 {
 	FRAM_I2C_Read_Buffer(FRAM_LOG_CURRENT_ENTRY_ADDR,&current_entry_index,sizeof(current_entry_index));
-	/*
-	 *
-	 */
-	current_entry_index=0;
+
+	if(current_entry_index>FRAM_LOG_LEN)
+	{
+		current_entry_index=0;
+	}
+
 	xTaskCreate(Log_Task,(signed char*)"Log",256,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 
@@ -38,12 +40,12 @@ eErrorCode Log_Write_LogEntry(uint8_t *buf)
 	if(current_entry_index<FRAM_LOG_LEN)
 	{
 		err=FRAM_I2C_Write_Buffer(FRAM_LOG_BASE_ADDR+current_entry_index*(CONTROLLER_MEASURE_DATA_LEN+TIMESTAMP_LEN),buf,(CONTROLLER_MEASURE_DATA_LEN+TIMESTAMP_LEN));
-//		current_entry_index++;
-//
-//		if(current_entry_index>FRAM_LOG_LEN)
-//		{
-//			current_entry_index=0;
-//		}
+		current_entry_index++;
+
+		if(current_entry_index>FRAM_LOG_LEN)
+		{
+			current_entry_index=0;
+		}
 
 		FRAM_I2C_Write_Buffer(FRAM_LOG_CURRENT_ENTRY_ADDR,&current_entry_index,sizeof(current_entry_index));
 	}
