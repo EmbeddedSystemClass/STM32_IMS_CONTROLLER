@@ -4,7 +4,7 @@
 volatile uint16_t current_entry_index=0;
 static void Log_Task(void *pvParameters);
 
-#define LOG_PERIOD	1000*60
+#define LOG_PERIOD	2000///1000*60
 
 void Log_Init(void)
 {
@@ -37,9 +37,13 @@ eErrorCode Log_Write_LogEntry(uint8_t *buf)
 {
 	eErrorCode err=ENOERR;
 
-	if(current_entry_index<FRAM_LOG_LEN)
-	{
 		err=FRAM_I2C_Write_Buffer(FRAM_LOG_BASE_ADDR+current_entry_index*(CONTROLLER_MEASURE_DATA_LEN+TIMESTAMP_LEN),buf,(CONTROLLER_MEASURE_DATA_LEN+TIMESTAMP_LEN));
+
+		if(err!=ENOERR)
+		{
+			return err;
+		}
+
 		current_entry_index++;
 
 		if(current_entry_index>FRAM_LOG_LEN)
@@ -47,12 +51,8 @@ eErrorCode Log_Write_LogEntry(uint8_t *buf)
 			current_entry_index=0;
 		}
 
-		FRAM_I2C_Write_Buffer(FRAM_LOG_CURRENT_ENTRY_ADDR,&current_entry_index,sizeof(current_entry_index));
-	}
-	else
-	{
-		return EIO;
-	}
+		err=FRAM_I2C_Write_Buffer(FRAM_LOG_CURRENT_ENTRY_ADDR,&current_entry_index,sizeof(current_entry_index));
+
 	return err;
 }
 
