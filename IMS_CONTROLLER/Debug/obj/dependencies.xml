@@ -155,7 +155,11 @@
          <include file="..\..\..\Source\FreeRTOS\Source\include\semphr.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h"/>
       </source>
-      <source file="..\..\..\Source\devices\controller.c" lastModified="14ca26fa6e4">
+      <source file="..\..\..\Source\devices\log.c" lastModified="14ca28c1536">
+         <include file="..\..\..\Source\devices\log.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h"/>
+      </source>
+      <source file="..\..\..\Source\devices\controller.c" lastModified="14ca2e6710c">
          <include file="..\..\..\Source\devices\controller.h"/>
          <include file="..\..\..\Source\freemodbus\protocol.h"/>
          <include file="..\..\..\Source\devices\frequency.h"/>
@@ -294,17 +298,6 @@
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\projdefs.h" lastModified="14af2c4fa89">
-      </source>
-      <source file="..\..\..\Source\devices\fram_i2c.c" lastModified="14ca26dfb95">
-         <include file="..\..\..\Source\devices\fram_i2c.h"/>
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h"/>
-         <include file="..\..\..\cmsis_lib\include\misc.h"/>
-         <include file="..\..\..\Source\freemodbus\rtu\mbcrc.h"/>
-         <include file="..\..\..\Source\devices\controller.h"/>
-         <include file="..\..\..\cmsis\core_cmFunc.h"/>
       </source>
       <source file="..\..\..\Source\freemodbus\port\porttimer.c" lastModified="14c699887fa">
          <include file="..\..\..\Source\freemodbus\include\mbport.h"/>

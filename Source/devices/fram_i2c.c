@@ -63,7 +63,7 @@ eErrorCode FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	 xSemaphoreTake( xI2CBusMutex, portMAX_DELAY );
 	 {
 		uint16_t i=0;
-		I2C_AcknowledgeConfig(FRAM_I2C, ENABLE);
+		//I2C_AcknowledgeConfig(FRAM_I2C, ENABLE);
 
 	    i2c_timeout=FRAM_I2C_TIMEOUT;
 	    while(I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_BUSY))
@@ -133,25 +133,38 @@ eErrorCode FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    		return ETIMEDOUT;
 	    	}
 	    }
+	    I2C_GenerateSTOP(FRAM_I2C, ENABLE);
 //----------------------------------------------------------------------------------
-//	    I2C_GenerateSTART(FRAM_I2C, ENABLE);
-//
-////	    I2C_NACKPositionConfig(FRAM_I2C, I2C_NACKPosition_Current);
-//
-//	    i2c_timeout=FRAM_I2C_TIMEOUT;
-//	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_MODE_SELECT))
-//	    {
-//
-//	    	if(i2c_timeout--==0)
-//	    	{
-//	    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
-//
-//	    		xSemaphoreGive( xI2CBusMutex );
-//	    		return ETIMEDOUT;
-//	    	}
-//	    }
-//
-//	    I2C_Send7bitAddress(FRAM_I2C, FRAM_I2C_ADDRESS, I2C_Direction_Receiver);
+	    I2C_AcknowledgeConfig(FRAM_I2C, ENABLE);
+	    I2C_NACKPositionConfig(FRAM_I2C, I2C_NACKPosition_Current);
+
+	    I2C_GenerateSTART(FRAM_I2C, ENABLE);
+
+	    i2c_timeout=FRAM_I2C_TIMEOUT;
+	    while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_MODE_SELECT))
+	    {
+	    	if(i2c_timeout--==0)
+	    	{
+	    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+
+	    		xSemaphoreGive( xI2CBusMutex );
+	    		return ETIMEDOUT;
+	    	}
+	    }
+
+	    I2C_Send7bitAddress(FRAM_I2C, FRAM_I2C_ADDRESS, I2C_Direction_Receiver);
+
+	    i2c_timeout=FRAM_I2C_TIMEOUT;
+	    while(!I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_ADDR))
+	    {
+	    	if(i2c_timeout--==0)
+	    	{
+	    	//	I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+
+	    		xSemaphoreGive( xI2CBusMutex );
+	    		return ETIMEDOUT;
+	    	}
+	    }
 //
 //
 //
@@ -186,54 +199,22 @@ eErrorCode FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 
 //	    if (buf_len == 1)
 //	       {
+//				 // Clear Ack bit
 //
-//	         // Clear Ack bit
+//				 I2C_AcknowledgeConfig(FRAM_I2C, DISABLE);
 //
-//	         I2C_AcknowledgeConfig(FRAM_I2C, DISABLE);
+//				 // EV6_1 -- must be atomic -- Clear ADDR, generate STOP
 //
-//	         // EV6_1 -- must be atomic -- Clear ADDR, generate STOP
+//				 __disable_irq();
+//				 (void) FRAM_I2C->SR2;
+//				 I2C_GenerateSTOP(FRAM_I2C,ENABLE);
+//				 __enable_irq();
 //
-//	         __disable_irq();
-//	         (void) FRAM_I2C->SR2;
-//	         I2C_GenerateSTOP(FRAM_I2C,ENABLE);
-//	         __enable_irq();
+//				 // Receive data   EV7
 //
-//	         // Receive data   EV7
-//
-//	      //   Timed(!I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_RXNE));
-//	        i2c_timeout=FRAM_I2C_TIMEOUT;
-//			while(!I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_RXNE))
-//			{
-//
-//				if(i2c_timeout--==0)
-//				{
-//					I2C_GenerateSTOP(FRAM_I2C, ENABLE);
-//					xSemaphoreGive( xI2CBusMutex );
-//					return ETIMEDOUT;
-//				}
-//			}
-//
-//	         *buf++ = I2C_ReceiveData(FRAM_I2C);
-//
-//	       }
-//	     else if (buf_len == 2)
-//	       {
-//	         // Set POS flag
-//
-//	         I2C_NACKPositionConfig(FRAM_I2C, I2C_NACKPosition_Next);
-//
-//	         // EV6_1 -- must be atomic and in this order
-//
-//	         __disable_irq();
-//	         (void) FRAM_I2C->SR2;                           // Clear ADDR flag
-//	         I2C_AcknowledgeConfig(FRAM_I2C, DISABLE);       // Clear Ack bit
-//	         __enable_irq();
-//
-//	         // EV7_3  -- Wait for BTF, program stop, read data twice
-//
-//	         //Timed(!I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_BTF));
-//	            i2c_timeout=FRAM_I2C_TIMEOUT;
-//				while(!I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_BTF))
+//			  //   Timed(!I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_RXNE));
+//				i2c_timeout=FRAM_I2C_TIMEOUT;
+//				while(!I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_RXNE))
 //				{
 //
 //					if(i2c_timeout--==0)
@@ -244,26 +225,27 @@ eErrorCode FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 //					}
 //				}
 //
-//	         __disable_irq();
-//	         I2C_GenerateSTOP(FRAM_I2C,ENABLE);
-//	         *buf++ = FRAM_I2C->DR;
-//	         __enable_irq();
-//
-//	         *buf++ = FRAM_I2C->DR;
+//				*buf++ = I2C_ReceiveData(FRAM_I2C);
 //	       }
-//	     else
-//	     {
-//	         (void) FRAM_I2C->SR2;                           // Clear ADDR flag
-//	         while (buf_len-- != 3)
-//			 {
-//				  // EV7 -- cannot guarantee 1 transfer completion time, wait for BTF
-//						 //        instead of RXNE
+//	     else if (buf_len == 2)
+//	       {
+//				 // Set POS flag
 //
-//				 // Timed(!I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_BTF));
+//				 I2C_NACKPositionConfig(FRAM_I2C, I2C_NACKPosition_Next);
 //
+//				 // EV6_1 -- must be atomic and in this order
+//
+//				 __disable_irq();
+//				 (void) FRAM_I2C->SR2;                           // Clear ADDR flag
+//				 I2C_AcknowledgeConfig(FRAM_I2C, DISABLE);       // Clear Ack bit
+//				 __enable_irq();
+//
+//				 // EV7_3  -- Wait for BTF, program stop, read data twice
+//
+//				 //Timed(!I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_BTF));
 //					i2c_timeout=FRAM_I2C_TIMEOUT;
-//				  while(!I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_BTF))
-//				  {
+//					while(!I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_BTF))
+//					{
 //
 //						if(i2c_timeout--==0)
 //						{
@@ -271,53 +253,79 @@ eErrorCode FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 //							xSemaphoreGive( xI2CBusMutex );
 //							return ETIMEDOUT;
 //						}
-//				   }
-//				  *buf++ = I2C_ReceiveData(FRAM_I2C);
-//			}
-//
-//	         //Timed(!I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_BTF));
-//	         i2c_timeout=FRAM_I2C_TIMEOUT;
-//			while(!I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_BTF))
-//			{
-//					if(i2c_timeout--==0)
-//					{
-//						I2C_GenerateSTOP(FRAM_I2C, ENABLE);
-//						xSemaphoreGive( xI2CBusMutex );
-//						return ETIMEDOUT;
 //					}
-//			}
+//
+//				 __disable_irq();
+//				 I2C_GenerateSTOP(FRAM_I2C,ENABLE);
+//				 *buf++ = FRAM_I2C->DR;
+//				 __enable_irq();
+//
+//				 *buf++ = FRAM_I2C->DR;
+//	     }
+//	     else
+//	     {
+//				 (void) FRAM_I2C->SR2;                           // Clear ADDR flag
+//				 while (buf_len-- != 3)
+//				 {
+//					  // EV7 -- cannot guarantee 1 transfer completion time, wait for BTF
+//							 //        instead of RXNE
+//
+//
+//						i2c_timeout=FRAM_I2C_TIMEOUT;
+//					  while(!I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_BTF))
+//					  {
+//
+//							if(i2c_timeout--==0)
+//							{
+//								I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+//								xSemaphoreGive( xI2CBusMutex );
+//								return ETIMEDOUT;
+//							}
+//					   }
+//					  *buf++ = I2C_ReceiveData(FRAM_I2C);
+//				}
+//
+//				i2c_timeout=FRAM_I2C_TIMEOUT;
+//				while(!I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_BTF))
+//				{
+//						if(i2c_timeout--==0)
+//						{
+//							I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+//							xSemaphoreGive( xI2CBusMutex );
+//							return ETIMEDOUT;
+//						}
+//				}
 //
 //	         // EV7_2 -- Figure 1 has an error, doesn't read N-2 !
 //
-//	         I2C_AcknowledgeConfig(FRAM_I2C, DISABLE);           // clear ack bit
+//				 I2C_AcknowledgeConfig(FRAM_I2C, DISABLE);           // clear ack bit
 //
-//	         __disable_irq();
-//	         *buf++ = I2C_ReceiveData(FRAM_I2C);             // receive byte N-2
-//	         I2C_GenerateSTOP(FRAM_I2C,ENABLE);                  // program stop
-//	         __enable_irq();
+//				 __disable_irq();
+//				 *buf++ = I2C_ReceiveData(FRAM_I2C);             // receive byte N-2
+//				 I2C_GenerateSTOP(FRAM_I2C,ENABLE);                  // program stop
+//				 __enable_irq();
 //
-//	         *buf++ = I2C_ReceiveData(FRAM_I2C);             // receive byte N-1
+//				 *buf++ = I2C_ReceiveData(FRAM_I2C);             // receive byte N-1
 //
-//	         // wait for byte N
+//				 // wait for byte N
 //
-//	         //Timed(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_BYTE_RECEIVED));
-//
-//	            i2c_timeout=FRAM_I2C_TIMEOUT;
-//				while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_BYTE_RECEIVED))
-//				{
-//					if(i2c_timeout--==0)
+//					i2c_timeout=FRAM_I2C_TIMEOUT;
+//					while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_BYTE_RECEIVED))
 //					{
-//						//I2C_GenerateSTOP(FRAM_I2C, ENABLE);
-//						xSemaphoreGive( xI2CBusMutex );
-//						return ETIMEDOUT;
+//						if(i2c_timeout--==0)
+//						{
+//							//I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+//							xSemaphoreGive( xI2CBusMutex );
+//							return ETIMEDOUT;
+//						}
 //					}
-//				}
-//	         *buf++ = I2C_ReceiveData(FRAM_I2C);
+//				 *buf++ = I2C_ReceiveData(FRAM_I2C);
 //
-//	         buf_len = 0;
+//				  buf_len = 0;
 //	       }
-
-	    I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+//
+//
+//
 //        i2c_timeout=FRAM_I2C_TIMEOUT;
 //		while(I2C_GetFlagStatus(FRAM_I2C, I2C_FLAG_STOPF))
 //		{
@@ -327,6 +335,83 @@ eErrorCode FRAM_I2C_Read_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 //				return ETIMEDOUT;
 //			}
 //		}
+
+
+//	    I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+
+
+		if(buf_len>2)
+		{								//More than two buf_len to receive
+			i2c_timeout=FRAM_I2C_TIMEOUT;
+			while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_BYTE_RECEIVED))
+			{	//Wait for the first byte
+				if(i2c_timeout--==0)
+				{
+					I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+					xSemaphoreGive( xI2CBusMutex );
+					return ETIMEDOUT;
+				}
+			}
+
+			while (buf_len-- != 3)
+			{
+				*buf++=I2C_ReceiveData(FRAM_I2C);
+
+				i2c_timeout=FRAM_I2C_TIMEOUT;
+				while(!I2C_CheckEvent(FRAM_I2C, I2C_EVENT_MASTER_BYTE_RECEIVED))
+				{
+					if(i2c_timeout--==0)
+					{
+						I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+						xSemaphoreGive( xI2CBusMutex );
+						return ETIMEDOUT;
+					}
+				}
+			}
+
+			i2c_timeout=FRAM_I2C_TIMEOUT;
+			while(I2C_GetFlagStatus(FRAM_I2C,I2C_FLAG_BTF)!=SET)
+			{		//Wait for two buf_len to be received - ref man p712
+				if(i2c_timeout--==0)
+				{
+					I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+					xSemaphoreGive( xI2CBusMutex );
+					return ETIMEDOUT;
+				}
+			}
+			I2C_AcknowledgeConfig(FRAM_I2C, DISABLE);				//Do not ack the last byte
+			*buf++=I2C_ReceiveData(FRAM_I2C);			//Third to last byte
+			I2C_GenerateSTOP( FRAM_I2C, ENABLE );				//Enable the STOP here
+			*buf++=I2C_ReceiveData(FRAM_I2C);			//Read the Penultimate from buffer
+			i2c_timeout=FRAM_I2C_TIMEOUT;
+			while(I2C_GetFlagStatus(FRAM_I2C,I2C_FLAG_RXNE)!=SET)
+			{		//Last byte received here with a NACK and STOP
+				if(i2c_timeout--==0)
+				{
+					I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+					xSemaphoreGive( xI2CBusMutex );
+					return ETIMEDOUT;
+				}
+			}
+		}
+		else
+		{
+			I2C_AcknowledgeConfig(FRAM_I2C, DISABLE);				//Do not ack the last byte
+			i2c_timeout=FRAM_I2C_TIMEOUT;
+			while(I2C_GetFlagStatus(FRAM_I2C,I2C_FLAG_BTF)!=SET)
+			{		//Wait for two buf_len to be received - ref man p713
+				if(i2c_timeout--==0)
+				{
+					I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+					xSemaphoreGive( xI2CBusMutex );
+					return ETIMEDOUT;
+				}
+			}
+			I2C_GenerateSTOP( FRAM_I2C, ENABLE );				//Enable the STOP here
+			*buf++=I2C_ReceiveData(FRAM_I2C);			//First byte to lowest location
+		}
+		*buf=I2C_ReceiveData(FRAM_I2C);					//Clear the buffer (last byte is in it)
+		I2C_AcknowledgeConfig(FRAM_I2C, ENABLE);					//Re-enable ACK
 
 	 }
 	 xSemaphoreGive( xI2CBusMutex );
