@@ -25,12 +25,12 @@ void ControllerInit(void)
 	Protocol_Init();
 	FrequencyMeasureInit();
 	ADS1220_init();
-//	Log_Init();
+	Log_Init();
 }
 
 uint8_t Controller_RestoreSettings(void)
 {
-	//FRAM_Read_Settings(&stSettings);
+	FRAM_Read_Settings(&stSettings);
 	if((stSettings.TCXO_frequency<TCXO_FREQ_MIN) || (stSettings.TCXO_frequency>TCXO_FREQ_MAX))
 	{
 		stSettings.TCXO_frequency=TCXO_FREQ_DEFAULT;

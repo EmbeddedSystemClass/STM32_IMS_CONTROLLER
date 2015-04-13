@@ -8,9 +8,11 @@ static void Log_Task(void *pvParameters);
 
 void Log_Init(void)
 {
-	FRAM_I2C_Read_Buffer(FRAM_LOG_CURRENT_ENTRY_ADDR,&current_entry_index,sizeof(current_entry_index));
+	eErrorCode err=ENOERR;
 
-	if(current_entry_index>FRAM_LOG_LEN)
+	err=FRAM_I2C_Read_Buffer(FRAM_LOG_CURRENT_ENTRY_ADDR,&current_entry_index,sizeof(current_entry_index));
+
+	if((current_entry_index>FRAM_LOG_LEN) || (err!=ENOERR))
 	{
 		current_entry_index=0;
 	}
