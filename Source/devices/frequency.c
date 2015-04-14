@@ -219,6 +219,7 @@ static void FrequencyCH1Measure_Task(void *pvParameters)
 	    xSemaphoreTake( xMeasureDataMutex, portMAX_DELAY );
 	    {
 	    	stMeasureData.frequency[0]=frequency;
+	    	stMeasureData.pulse_counter[0]+=FrequencyData[0].impulse_count;
 	    }
 	    xSemaphoreGive( xMeasureDataMutex );
 	}
@@ -261,6 +262,7 @@ static void FrequencyCH2Measure_Task(void *pvParameters)
 	    xSemaphoreTake( xMeasureDataMutex, portMAX_DELAY );
 	    {
 	    	stMeasureData.frequency[1]=frequency;
+	    	stMeasureData.pulse_counter[1]+=FrequencyData[1].impulse_count;
 	    }
 	    xSemaphoreGive( xMeasureDataMutex );
 	}
