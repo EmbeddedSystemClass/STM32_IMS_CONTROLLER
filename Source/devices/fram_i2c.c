@@ -79,11 +79,11 @@ void FRAM_I2C_Reset(void)
     FRAM_I2C_GPIO->BSRRH|=FRAM_I2C_GPIO_PIN_SCL;
     for(i=0;i<10;i++)
     {
-    	delay_counter=0xFF;
+    	delay_counter=0x1F;
     	while(delay_counter--);
     	FRAM_I2C_GPIO->BSRRL|=FRAM_I2C_GPIO_PIN_SCL;
 
-    	delay_counter=0xFF;
+    	delay_counter=0x1F;
     	while(delay_counter--);
     	FRAM_I2C_GPIO->BSRRH|=FRAM_I2C_GPIO_PIN_SCL;
     }
@@ -387,6 +387,7 @@ eErrorCode FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    	if(i2c_timeout--==0)
 	    	{
 	    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+	    		FRAM_I2C_Reset();
 	    		xSemaphoreGive( xI2CBusMutex );
 	    		return ETIMEDOUT;
 	    	}
@@ -400,6 +401,7 @@ eErrorCode FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    	if(i2c_timeout--==0)
 	    	{
 	    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+	    		FRAM_I2C_Reset();
 	    		xSemaphoreGive( xI2CBusMutex );
 	    		return ETIMEDOUT;
 	    	}
@@ -413,6 +415,7 @@ eErrorCode FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    	if(i2c_timeout--==0)
 	    	{
 	    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+	    		FRAM_I2C_Reset();
 	    		xSemaphoreGive( xI2CBusMutex );
 	    		return ETIMEDOUT;
 	    	}
@@ -426,6 +429,7 @@ eErrorCode FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	    	if(i2c_timeout--==0)
 	    	{
 	    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+	    		FRAM_I2C_Reset();
 	    		xSemaphoreGive( xI2CBusMutex );
 	    		return ETIMEDOUT;
 	    	}
@@ -441,6 +445,7 @@ eErrorCode FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 		    	if(i2c_timeout--==0)
 		    	{
 		    		I2C_GenerateSTOP(FRAM_I2C, ENABLE);
+		    		FRAM_I2C_Reset();
 		    		xSemaphoreGive( xI2CBusMutex );
 		    		return ETIMEDOUT;
 		    	}
@@ -449,6 +454,7 @@ eErrorCode FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 
 	    I2C_GenerateSTOP(FRAM_I2C, ENABLE);
 	 }
+	 FRAM_I2C_Reset();
 	 xSemaphoreGive( xI2CBusMutex );
 
 	    return ENOERR;
