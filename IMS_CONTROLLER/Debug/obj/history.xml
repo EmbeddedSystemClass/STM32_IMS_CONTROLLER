@@ -124,8 +124,8 @@
       <target file="heap_2.o" lastModified="14c983ab8ac">
          <source file="..\..\..\Source\FreeRTOS\Source\portable\MemMang\heap_2.c" lastModified="14af2c557af"/>
       </target>
-      <target file="frequency.o" lastModified="14cb737c2f3">
-         <source file="..\..\..\Source\devices\frequency.c" lastModified="14cb737b557"/>
+      <target file="frequency.o" lastModified="14cbc3cbb67">
+         <source file="..\..\..\Source\devices\frequency.c" lastModified="14cbc3cb24f"/>
       </target>
       <target file="stm32f4xx_syscfg.o" lastModified="14c78f4dd77">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_syscfg.c" lastModified="14125d878f6"/>
@@ -148,8 +148,8 @@
       <target file="main.o" lastModified="14c983aa718">
          <source file="..\..\..\main.c" lastModified="14c6f3c6520"/>
       </target>
-      <target file="log.o" lastModified="14ca37f37a4">
-         <source file="..\..\..\Source\devices\log.c" lastModified="14ca37eaa39"/>
+      <target file="log.o" lastModified="14cbbff20f5">
+         <source file="..\..\..\Source\devices\log.c" lastModified="14cbbff156c"/>
       </target>
       <target file="mbcrc.o" lastModified="14c3125b93d">
          <source file="..\..\..\Source\freemodbus\rtu\mbcrc.c" lastModified="14c2274fcc4"/>
