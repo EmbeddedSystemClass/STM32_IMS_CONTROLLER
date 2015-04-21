@@ -5,6 +5,7 @@
 #include "rtc.h"
 #include "fram_i2c.h"
 #include "log.h"
+#include "watchdog.h"
 
 xSemaphoreHandle xMeasureDataMutex;
 xSemaphoreHandle xSettingsMutex;
@@ -19,12 +20,13 @@ void ControllerInit(void)
 {
 	xMeasureDataMutex=xSemaphoreCreateMutex() ;
 	xSettingsMutex=xSemaphoreCreateMutex() ;
+	Watchdog_Init();
 	FRAM_I2C_Init();
 	Controller_RestoreSettings();
 	RTC_Clock_Init();
 	Protocol_Init();
 	FrequencyMeasureInit();
-	ADS1220_init();
+//	ADS1220_init();
 	Log_Init();
 }
 

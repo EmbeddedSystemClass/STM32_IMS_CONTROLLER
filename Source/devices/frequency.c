@@ -1,5 +1,6 @@
 #include "frequency.h"
 #include "controller.h"
+#include "watchdog.h"
 
 #include "stm32f4xx.h"
 #include "stm32f4xx_gpio.h"
@@ -152,8 +153,8 @@ void FrequencyMeasureInit(void)
 	vSemaphoreCreateBinary( xFrequencySemaphore[0] );
 	vSemaphoreCreateBinary( xFrequencySemaphore[1] );
 
-	xTaskCreate(FrequencyCH1Measure_Task,(signed char*)"Freq CH1",64,NULL, tskIDLE_PRIORITY + 1, NULL);
-	xTaskCreate(FrequencyCH2Measure_Task,(signed char*)"Freq CH2",64,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(FrequencyCH1Measure_Task,(signed char*)"Freq CH1",64,NULL, tskIDLE_PRIORITY + 2, NULL);
+	xTaskCreate(FrequencyCH2Measure_Task,(signed char*)"Freq CH2",64,NULL, tskIDLE_PRIORITY + 2, NULL);
 }
 
 portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
@@ -169,6 +170,10 @@ void FREQ_CAPTURE_TIM_IRQHandler()
 		 FrequencyData[0].impulse_count=FREQ_COUNT_1_TIM->CNT;
 		 FREQ_COUNT_1_TIM->CNT=0x0;
 		 xSemaphoreGiveFromISR( xFrequencySemaphore[0], &xHigherPriorityTaskWoken );
+		  if( xHigherPriorityTaskWoken == pdTRUE )
+		  {
+			  portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
+		  }
 	 }
 
 	 if ((FREQ_CAPTURE_TIM->SR & FREQ_CAPTURE_IT_2) && (FREQ_CAPTURE_TIM->DIER & FREQ_CAPTURE_IT_2))
@@ -180,8 +185,13 @@ void FREQ_CAPTURE_TIM_IRQHandler()
 		 FrequencyData[1].impulse_count=FREQ_COUNT_2_TIM->CNT;
 		 FREQ_COUNT_2_TIM->CNT=0x0;
 		 xSemaphoreGiveFromISR( xFrequencySemaphore[1], &xHigherPriorityTaskWoken );
+		  if( xHigherPriorityTaskWoken == pdTRUE )
+		  {
+			  portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
+		  }
 	 }
 }
+
 
 static void FrequencyCH1Measure_Task(void *pvParameters)
 {
@@ -196,7 +206,8 @@ static void FrequencyCH1Measure_Task(void *pvParameters)
 
 		if ( xSemaphoreTake( xFrequencySemaphore[0], ( portTickType ) FREQ_CAPTURE_PERIOD_0_HZ ) == pdTRUE )
 		{
-			 if(FrequencyData[0].capture_2>FrequencyData[0].capture_1)
+			Watchdog_SetTaskStatus(FREQUENCY_CH1_TASK,TASK_ACTIVE);
+			if(FrequencyData[0].capture_2>FrequencyData[0].capture_1)
 			 {
 				 sum_tick_impulse=FrequencyData[0].capture_2-FrequencyData[0].capture_1;
 			 }
@@ -210,6 +221,9 @@ static void FrequencyCH1Measure_Task(void *pvParameters)
 			     frequency= (float)stSettings.TCXO_frequency*FrequencyData[0].impulse_count/sum_tick_impulse;
 			 }
 			 xSemaphoreGive( xSettingsMutex );
+
+			 Watchdog_IncrementCouter(FREQUENCY_CH1_TASK);
+			 Watchdog_SetTaskStatus(FREQUENCY_CH1_TASK,TASK_IDLE);
 		}
 		else
 		{
@@ -218,12 +232,15 @@ static void FrequencyCH1Measure_Task(void *pvParameters)
 			FREQ_COUNT_1_TIM->CNT=0x0;
 		}
 
+		Watchdog_SetTaskStatus(FREQUENCY_CH1_TASK,TASK_ACTIVE);
 	    xSemaphoreTake( xMeasureDataMutex, portMAX_DELAY );
 	    {
 	    	stMeasureData.frequency[0]=frequency;
 	    	stMeasureData.pulse_counter[0]+=FrequencyData[0].impulse_count;
 	    }
 	    xSemaphoreGive( xMeasureDataMutex );
+		Watchdog_IncrementCouter(FREQUENCY_CH1_TASK);
+		Watchdog_SetTaskStatus(FREQUENCY_CH1_TASK,TASK_IDLE);
 	}
 }
 
@@ -241,6 +258,7 @@ static void FrequencyCH2Measure_Task(void *pvParameters)
 
 		if ( xSemaphoreTake( xFrequencySemaphore[1], ( portTickType ) FREQ_CAPTURE_PERIOD_0_HZ ) == pdTRUE )
 		{
+			 Watchdog_SetTaskStatus(FREQUENCY_CH2_TASK,TASK_ACTIVE);
 			 if(FrequencyData[1].capture_2>FrequencyData[1].capture_1)
 			 {
 				 sum_tick_impulse=FrequencyData[1].capture_2-FrequencyData[1].capture_1;
@@ -255,6 +273,9 @@ static void FrequencyCH2Measure_Task(void *pvParameters)
 			     frequency= (float)stSettings.TCXO_frequency*FrequencyData[1].impulse_count/sum_tick_impulse;
 			 }
 			 xSemaphoreGive( xSettingsMutex );
+
+			 Watchdog_IncrementCouter(FREQUENCY_CH2_TASK);
+			 Watchdog_SetTaskStatus(FREQUENCY_CH2_TASK,TASK_IDLE);
 		}
 		else
 		{
@@ -263,12 +284,15 @@ static void FrequencyCH2Measure_Task(void *pvParameters)
 			FREQ_COUNT_2_TIM->CNT=0x0;
 		}
 
+		Watchdog_SetTaskStatus(FREQUENCY_CH2_TASK,TASK_ACTIVE);
 	    xSemaphoreTake( xMeasureDataMutex, portMAX_DELAY );
 	    {
 	    	stMeasureData.frequency[1]=frequency;
 	    	stMeasureData.pulse_counter[1]+=FrequencyData[1].impulse_count;
 	    }
 	    xSemaphoreGive( xMeasureDataMutex );
+		Watchdog_IncrementCouter(FREQUENCY_CH2_TASK);
+		Watchdog_SetTaskStatus(FREQUENCY_CH2_TASK,TASK_IDLE);
 	}
 }
 

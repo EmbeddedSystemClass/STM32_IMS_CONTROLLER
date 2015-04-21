@@ -48,26 +48,26 @@ void Protocol_Init(void)
 static void Modbus_RS485_Task(void *pvParameters)
 {
     eMBEnable(&stContext_RS485);
-    task_watches[PROTO_TASK].task_status=TASK_ACTIVE;
+    Watchdog_SetTaskStatus(RS485_TASK,TASK_ACTIVE);
     for( ;; )
     {
         eMBPoll(&stContext_RS485);
 
         vTaskDelay(10);
-        task_watches[PROTO_TASK].counter++;
+        Watchdog_IncrementCouter(RS485_TASK);
     }
 }
 
 static void Modbus_RS232_Task(void *pvParameters)
 {
     eMBEnable(&stContext_RS232);
-    task_watches[PROTO_TASK].task_status=TASK_ACTIVE;
+    Watchdog_SetTaskStatus(RS232_TASK,TASK_ACTIVE);
     for( ;; )
     {
         eMBPoll(&stContext_RS232);
 
         vTaskDelay(10);
-        task_watches[PROTO_TASK].counter++;
+        Watchdog_IncrementCouter(RS232_TASK);
     }
 
 }

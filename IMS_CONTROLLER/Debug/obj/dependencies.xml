@@ -38,7 +38,7 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
-      <source file="..\..\..\Source\devices\watchdog.h" lastModified="14c6e963790">
+      <source file="..\..\..\Source\devices\watchdog.h" lastModified="14cbca6fc64">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_pwr.c" lastModified="14149991717">
@@ -60,7 +60,7 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_exti.h"/>
          <include file="..\..\..\cmsis_lib\include\misc.h"/>
       </source>
-      <source file="..\..\..\Source\devices\watchdog.c" lastModified="14b2fdb598d">
+      <source file="..\..\..\Source\devices\watchdog.c" lastModified="14cbca3e30f">
          <include file="..\..\..\Source\devices\watchdog.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
@@ -88,7 +88,7 @@
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\mpu_wrappers.h" lastModified="14af2c4fa14">
       </source>
-      <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14c6faf90c5">
+      <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14cbd32cc53">
          <include file="..\..\..\Source\freemodbus\protocol.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
@@ -148,25 +148,17 @@
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_syscfg.h" lastModified="14125d878f6">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\Source\devices\controller.h" lastModified="14c93de3306">
+      <source file="..\..\..\Source\devices\controller.h" lastModified="14cdafa5a25">
          <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\semphr.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h"/>
       </source>
-      <source file="..\..\..\Source\devices\log.c" lastModified="14cbbff156c">
+      <source file="..\..\..\Source\devices\log.c" lastModified="14cbcc75065">
          <include file="..\..\..\Source\devices\log.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h"/>
-      </source>
-      <source file="..\..\..\Source\devices\controller.c" lastModified="14cb1a80123">
-         <include file="..\..\..\Source\devices\controller.h"/>
-         <include file="..\..\..\Source\freemodbus\protocol.h"/>
-         <include file="..\..\..\Source\devices\frequency.h"/>
-         <include file="..\..\..\Source\devices\ADS1220.h"/>
-         <include file="..\..\..\Source\devices\rtc.h"/>
-         <include file="..\..\..\Source\devices\fram_i2c.h"/>
-         <include file="..\..\..\Source\devices\log.h"/>
+         <include file="..\..\..\Source\devices\watchdog.h"/>
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\semphr.h" lastModified="14af2c5021e">
          <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
@@ -422,7 +414,7 @@
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h" lastModified="14125d83d54">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\Source\devices\ADS1220.c" lastModified="14c8d8cf2c9">
+      <source file="..\..\..\Source\devices\ADS1220.c" lastModified="14cbd30da76">
          <include file="..\..\..\Source\devices\ADS1220.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
@@ -448,7 +440,7 @@
          <include file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\portmacro.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\portmacro.h"/>
       </source>
-      <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14cb744e774">
+      <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14cbd18199b">
          <include file="..\..\..\Source\freemodbus\include\mb.h"/>
          <include file="..\..\..\Source\devices\fram_i2c.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h"/>
@@ -494,14 +486,6 @@
       </source>
       <source file="..\..\..\Source\devices\power_detector.h" lastModified="14a19783a11">
       </source>
-      <source file="..\..\..\Source\devices\watchdog.c" lastModified="14b2fdb598d">
-         <include file="..\..\..\Source\devices\watchdog.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\semphr.h"/>
-      </source>
       <source file="..\..\..\Source\freemodbus\protocol.h" lastModified="14a57004310">
       </source>
       <source file="..\..\..\Source\freemodbus\functions\mbfuncdiag.c" lastModified="10f5ec0d910">
@@ -526,14 +510,6 @@
       </source>
       <source file="..\..\..\Source\devices\power_detector.h" lastModified="14a19783a11">
       </source>
-      <source file="..\..\..\Source\devices\watchdog.c" lastModified="14b2fdb598d">
-         <include file="..\..\..\Source\devices\watchdog.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\semphr.h"/>
-      </source>
       <source file="..\..\..\Source\freemodbus\protocol.h" lastModified="14a57004310">
       </source>
       <source file="..\..\..\Source\freemodbus\functions\mbfuncdiag.c" lastModified="10f5ec0d910">
@@ -557,14 +533,6 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_pwr.h"/>
       </source>
       <source file="..\..\..\Source\devices\power_detector.h" lastModified="14a19783a11">
-      </source>
-      <source file="..\..\..\Source\devices\watchdog.c" lastModified="14b2fdb598d">
-         <include file="..\..\..\Source\devices\watchdog.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\semphr.h"/>
       </source>
       <source file="..\..\..\Source\devices\rtc.h" lastModified="1475ce20740">
       </source>

@@ -1,5 +1,6 @@
 #include "log.h"
 #include "stm32f4xx_rtc.h"
+#include "watchdog.h"
 
 volatile uint16_t current_entry_index=0;
 static void Log_Task(void *pvParameters);
@@ -71,6 +72,9 @@ static void Log_Task(void *pvParameters)
 	while(1)
 	{
 		vTaskDelay(LOG_PERIOD);
+
+
+		Watchdog_SetTaskStatus(LOG_TASK,TASK_ACTIVE);
 		buf=log_buf;
 		RTC_GetDate(RTC_Format_BIN, &RTC_DateStructure);
 		RTC_GetTime(RTC_Format_BIN, &RTC_TimeStructure);
@@ -114,5 +118,7 @@ static void Log_Task(void *pvParameters)
 	    }
 
 		Log_Write_LogEntry(log_buf);
+		Watchdog_IncrementCouter(LOG_TASK);
+		Watchdog_SetTaskStatus(LOG_TASK,TASK_IDLE);
 	}
 }

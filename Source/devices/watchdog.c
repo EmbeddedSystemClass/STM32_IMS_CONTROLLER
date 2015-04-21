@@ -36,6 +36,22 @@ void Watchdog_Init(void)
 	  xTaskCreate(Watchdog_Task,(signed char*)"INIT",128,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 
+void Watchdog_SetTaskStatus(uint8_t task,uint8_t status)
+{
+	if(task<TASK_NUM)
+	{
+		task_watches[task].task_status=status;
+	}
+}
+
+void Watchdog_IncrementCouter(uint8_t task)
+{
+	if(task<TASK_NUM)
+	{
+		task_watches[task].counter++;
+	}
+}
+
 static void Watchdog_Task(void *pvParameters)
 {
 	while(1)
