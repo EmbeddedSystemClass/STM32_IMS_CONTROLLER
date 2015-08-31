@@ -20,14 +20,14 @@ void ControllerInit(void)
 {
 	xMeasureDataMutex=xSemaphoreCreateMutex() ;
 	xSettingsMutex=xSemaphoreCreateMutex() ;
-	Watchdog_Init();
+	//Watchdog_Init();
 	FRAM_I2C_Init();
 	Controller_RestoreSettings();
 	RTC_Clock_Init();
 	Protocol_Init();
 	FrequencyMeasureInit();
 //	ADS1220_init();
-	Log_Init();
+	//Log_Init();
 }
 
 uint8_t Controller_RestoreSettings(void)

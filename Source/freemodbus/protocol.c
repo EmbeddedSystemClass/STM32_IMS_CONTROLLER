@@ -18,6 +18,7 @@
 #include "stm32f4xx_tim.h"
 #include "stm32f4xx_usart.h"
 #include "misc.h"
+
 extern struct task_watch task_watches[];
 
 static void Modbus_RS485_Task(void *pvParameters);
@@ -25,6 +26,8 @@ static void Modbus_RS232_Task(void *pvParameters);
 
 stMBContext stContext_RS485;
 stMBContext stContext_RS232;
+
+static stMBContext *stRS232Context;
 
 void Protocol_Init(void)
 {

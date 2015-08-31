@@ -11,14 +11,14 @@
 
 #define FRAM_I2C_GPIO				GPIOB
 #define FRAM_I2C_GPIO_RCC			RCC_AHB1Periph_GPIOB
-#define FRAM_I2C_GPIO_PIN_SDA		GPIO_Pin_9
-#define FRAM_I2C_GPIO_PIN_SCL		GPIO_Pin_8
-#define FRAM_I2C_GPIO_PINSOURCE_SDA	GPIO_PinSource9
-#define FRAM_I2C_GPIO_PINSOURCE_SCL	GPIO_PinSource8
+#define FRAM_I2C_GPIO_PIN_SDA		GPIO_Pin_11
+#define FRAM_I2C_GPIO_PIN_SCL		GPIO_Pin_10
+#define FRAM_I2C_GPIO_PINSOURCE_SDA	GPIO_PinSource11
+#define FRAM_I2C_GPIO_PINSOURCE_SCL	GPIO_PinSource10
 
-#define FRAM_I2C					I2C1
-#define FRAM_I2C_RCC				RCC_APB1Periph_I2C1
-#define FRAM_I2C_AF					GPIO_AF_I2C1
+#define FRAM_I2C					I2C2
+#define FRAM_I2C_RCC				RCC_APB1Periph_I2C2
+#define FRAM_I2C_AF					GPIO_AF_I2C2
 #define FRAM_I2C_ADDRESS			0xA0
 #define FRAM_I2C_TIMEOUT			10000
 
@@ -375,9 +375,9 @@ eErrorCode FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 	 xSemaphoreTake( xI2CBusMutex, portMAX_DELAY );
 	 {
 		uint16_t i=0;
-		/*
-		 * I2C_AcknowledgeConfig
-		 */
+//		/*
+//		 * I2C_AcknowledgeConfig
+//		 */
 
 	    I2C_GenerateSTART(FRAM_I2C, ENABLE);
 
@@ -454,7 +454,7 @@ eErrorCode FRAM_I2C_Write_Buffer(uint16_t addr,uint8_t *buf, uint16_t buf_len)
 
 	    I2C_GenerateSTOP(FRAM_I2C, ENABLE);
 	 }
-	 FRAM_I2C_Reset();
+//	 FRAM_I2C_Reset();
 	 xSemaphoreGive( xI2CBusMutex );
 
 	    return ENOERR;

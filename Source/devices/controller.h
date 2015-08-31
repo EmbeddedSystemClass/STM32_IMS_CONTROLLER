@@ -46,6 +46,11 @@ typedef struct
 	float current[CURRENT_CHN_NUM];
 }stControllerMeasureData;
 
+//typedef struct
+//{
+//
+//}stControllerError;
+
 extern xSemaphoreHandle xMeasureDataMutex;
 extern xSemaphoreHandle xSettingsMutex;
 
