@@ -409,9 +409,6 @@
       </source>
       <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="13cedd0ed70">
       </source>
-      <source file="..\..\..\Source\devices\ADS1220.h" lastModified="14f87ce3036">
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-      </source>
       <source file="..\..\..\Source\freemodbus\functions\mbfuncfile.c" lastModified="14c93df5389">
          <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
          <include file="..\..\..\Source\freemodbus\include\mb.h"/>
@@ -424,6 +421,9 @@
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\list.h" lastModified="14af2c4f9bf">
+      </source>
+      <source file="..\..\..\Source\devices\ADS1220.h" lastModified="14f87f082c5">
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h" lastModified="14c3138e1c7">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
