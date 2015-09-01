@@ -280,19 +280,21 @@ static void ADC_Current1_Task(void *pvParameters)
     vTaskDelay(10);
 
 
-//    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
-//    {
-//		ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;// pin down SPI1_CS1
-//		ADC_SPI_send (ADS_RREG|(ADS_REG_2<<2)|(0x0));//1 reg 0x3
-//		uint8_t reg_1=ADC_SPI_read();
-//		ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;// pin up SPI1_CS1
-//    }
-//    xSemaphoreGive( xADC_SPI_Mutex );
-//    vTaskDelay(10);
+
 
 
 	while(1)
 	{
+
+		    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
+		    {
+				ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;// pin down SPI1_CS1
+				ADC_SPI_send (ADS_RREG|(ADS_REG_0<<2)|(0x0));//1 reg 0x3
+				uint8_t reg_1=ADC_SPI_read();
+				ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;// pin up SPI1_CS1
+		    }
+		    xSemaphoreGive( xADC_SPI_Mutex );
+		    vTaskDelay(10);
 
 	    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
 	    {
@@ -329,7 +331,7 @@ static void ADC_Current1_Task(void *pvParameters)
 
 	    vTaskDelay(ADC_MEASURE_DELAY);
 	    Watchdog_IncrementCouter(ADS1220_CURRENT1_TASK);
-	    channel_count=(channel_count++)&CHANNEL_COUNT_MASK;
+	    channel_count=(channel_count+1)&CHANNEL_COUNT_MASK;
 	}
 }
 
