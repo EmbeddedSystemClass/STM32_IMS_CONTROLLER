@@ -26,7 +26,7 @@ void ControllerInit(void)
 	RTC_Clock_Init();
 	Protocol_Init();
 	FrequencyMeasureInit();
-//	ADS1220_init();
+	ADS1220_init();
 	//Log_Init();
 }
 

@@ -3,31 +3,31 @@
 
 #include "stm32f4xx.h"
 
-#define ADC_SPI							SPI2
-#define ADC_SPI_RCC						RCC_APB1Periph_SPI2
-#define ADC_SPI_GPIO_AF					GPIO_AF_SPI2
-#define ADC_SPI_GPIO_RCC 	    		RCC_AHB1Periph_GPIOB
-#define ADC_SPI_CS_GPIO_RCC 			RCC_AHB1Periph_GPIOB
-#define ADC_SPI_GPIO					GPIOB
-#define ADC_SPI_GPIO_CS					GPIOB
+#define ADC_SPI							SPI1
+#define ADC_SPI_RCC						RCC_APB2Periph_SPI1
+#define ADC_SPI_GPIO_AF					GPIO_AF_SPI1
+#define ADC_SPI_GPIO_RCC 	    		RCC_AHB1Periph_GPIOA
+#define ADC_SPI_CS_GPIO_RCC 			RCC_AHB1Periph_GPIOE
+#define ADC_SPI_GPIO					GPIOA
+#define ADC_SPI_GPIO_CS					GPIOE
 
-#define ADC_SPI_SCK						GPIO_Pin_13
-#define ADC_SPI_MISO					GPIO_Pin_14
-#define ADC_SPI_MOSI					GPIO_Pin_15
+#define ADC_SPI_SCK						GPIO_Pin_5
+#define ADC_SPI_MISO					GPIO_Pin_6
+#define ADC_SPI_MOSI					GPIO_Pin_7
 
-#define ADC_SPI_SCK_PinSource			GPIO_PinSource13
-#define ADC_SPI_MISO_PinSource			GPIO_PinSource14
-#define ADC_SPI_MOSI_PinSource			GPIO_PinSource15
+#define ADC_SPI_SCK_PinSource			GPIO_PinSource5
+#define ADC_SPI_MISO_PinSource			GPIO_PinSource6
+#define ADC_SPI_MOSI_PinSource			GPIO_PinSource7
 
-#define ADC_SPI_CS1						GPIO_Pin_12
-#define ADC_SPI_CS2						GPIO_Pin_12
+#define ADC_SPI_CS1						GPIO_Pin_8
+#define ADC_SPI_CS2						GPIO_Pin_10
 #define ADC_SPI_CS3						GPIO_Pin_12
-#define ADC_SPI_CS4						GPIO_Pin_12
+#define ADC_SPI_CS4						GPIO_Pin_14
 
-#define ADC_DRDY1						GPIO_Pin_12
-#define ADC_DRDY2						GPIO_Pin_12
-#define ADC_DRDY3						GPIO_Pin_12
-#define ADC_DRDY4						GPIO_Pin_12
+#define ADC_DRDY1						GPIO_Pin_9
+#define ADC_DRDY2						GPIO_Pin_11
+#define ADC_DRDY3						GPIO_Pin_13
+#define ADC_DRDY4						GPIO_Pin_15
 
 #define ADS_RESET		0x06
 #define ADS_START		0x08

@@ -46,7 +46,7 @@ void	ADC_SPI_config(void)//
     	SPI_InitTypeDef SPI_InitStructure;
 
 		RCC_AHB1PeriphClockCmd(ADC_SPI_GPIO_RCC, ENABLE);
-	    RCC_APB1PeriphClockCmd(ADC_SPI_RCC, ENABLE);
+	    RCC_APB2PeriphClockCmd(ADC_SPI_RCC, ENABLE);
 
 	    GPIO_InitStructure.GPIO_Pin   = ADC_SPI_SCK|ADC_SPI_MOSI;
 	    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
@@ -115,7 +115,7 @@ static void ADC_RTD1_Task(void *pvParameters)
 {
 	uint32_t RTD1_ADC_code=0;
 	int32_t  RTD1_ADC_code_signed=0;
-	Watchdog_SetTaskStatus(ADS1120_RTD1_TASK,TASK_ACTIVE);
+	Watchdog_SetTaskStatus(ADS1220_RTD1_TASK,TASK_ACTIVE);
 
     xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
     {
@@ -195,14 +195,14 @@ static void ADC_RTD1_Task(void *pvParameters)
 	    xSemaphoreGive( xMeasureDataMutex );
 
 	    vTaskDelay(ADC_MEASURE_DELAY);
-	    Watchdog_IncrementCouter(ADS1120_RTD1_TASK);
+	    Watchdog_IncrementCouter(ADS1220_RTD1_TASK);
 	}
 }
 
 static void ADC_RTD2_Task(void *pvParameters)
 {
 
-	Watchdog_SetTaskStatus(ADS1120_RTD2_TASK,TASK_ACTIVE);
+	Watchdog_SetTaskStatus(ADS1220_RTD2_TASK,TASK_ACTIVE);
     xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
     {
 
@@ -217,13 +217,13 @@ static void ADC_RTD2_Task(void *pvParameters)
 	    }
 	    xSemaphoreGive( xADC_SPI_Mutex );
 	    vTaskDelay(ADC_MEASURE_DELAY);
-	    Watchdog_IncrementCouter(ADS1120_RTD2_TASK);
+	    Watchdog_IncrementCouter(ADS1220_RTD2_TASK);
 	}
 }
 
 static void ADC_Current1_Task(void *pvParameters)
 {
-	Watchdog_SetTaskStatus(ADS1120_CURRENT1_TASK,TASK_ACTIVE);
+	Watchdog_SetTaskStatus(ADS1220_CURRENT1_TASK,TASK_ACTIVE);
     xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
     {
 
@@ -238,13 +238,13 @@ static void ADC_Current1_Task(void *pvParameters)
 	    }
 	    xSemaphoreGive( xADC_SPI_Mutex );
 	    vTaskDelay(ADC_MEASURE_DELAY);
-	    Watchdog_IncrementCouter(ADS1120_CURRENT1_TASK);
+	    Watchdog_IncrementCouter(ADS1220_CURRENT1_TASK);
 	}
 }
 
 static void ADC_Current2_Task(void *pvParameters)
 {
-	Watchdog_SetTaskStatus(ADS1120_CURRENT2_TASK,TASK_ACTIVE);
+	Watchdog_SetTaskStatus(ADS1220_CURRENT2_TASK,TASK_ACTIVE);
     xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
     {
 
@@ -259,7 +259,7 @@ static void ADC_Current2_Task(void *pvParameters)
 	    }
 	    xSemaphoreGive( xADC_SPI_Mutex );
 	    vTaskDelay(ADC_MEASURE_DELAY);
-	    Watchdog_IncrementCouter(ADS1120_CURRENT2_TASK);
+	    Watchdog_IncrementCouter(ADS1220_CURRENT2_TASK);
 	}
 }
 
