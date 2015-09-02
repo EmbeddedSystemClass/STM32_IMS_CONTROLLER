@@ -24,6 +24,7 @@ static void ADC_Current2_Task(void *pvParameters);
 
 static void	ADC_SPI_config(void);
 float PT100_Code_To_Temperature(int32_t adc_code);
+float Code_To_Current(uint32_t adc_code);
 
 xSemaphoreHandle xADC_SPI_Mutex;
 
@@ -387,7 +388,7 @@ static void ADC_Current1_Task(void *pvParameters)
 			Cur1_ADC_code=Cur1_ADC_code<<8;
 			Cur1_ADC_code|=ADC_SPI_read ();
 
-			stMeasureData.current[channel_count]=(float)Cur1_ADC_code;
+			stMeasureData.current[channel_count]=Code_To_Current(Cur1_ADC_code);
 			ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;
 	    }
 	    xSemaphoreGive( xADC_SPI_Mutex );
@@ -496,7 +497,7 @@ static void ADC_Current2_Task(void *pvParameters)
 			Cur2_ADC_code=Cur2_ADC_code<<8;
 			Cur2_ADC_code|=ADC_SPI_read ();
 
-			stMeasureData.current[channel_count+4]=(float)Cur2_ADC_code;
+			stMeasureData.current[channel_count+4]=Code_To_Current(Cur2_ADC_code);
 			ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS4;
 	    }
 	    xSemaphoreGive( xADC_SPI_Mutex );
@@ -526,4 +527,16 @@ float PT100_Code_To_Temperature(int32_t adc_code)
 
 	result_temp=(float)(((float)(adc_code-code_temp_0))*(TEMP_200-TEMP_0)/(code_temp_200-code_temp_0)+TEMP_0);
 	return result_temp;
+}
+
+#define CUR_VOLTAGE_REF	2.500
+#define CUR_CODE_MIN	0
+#define CUR_CODE_MAX	8388607
+#define CUR_SHUNT_VAL	120
+
+float Code_To_Current(uint32_t adc_code)
+{
+	float voltage=0.0;
+	voltage=(float)(adc_code-CUR_CODE_MIN)*(CUR_VOLTAGE_REF-0)/(CUR_CODE_MAX-CUR_CODE_MIN)+0;
+	return (voltage/CUR_SHUNT_VAL)*1000;
 }
