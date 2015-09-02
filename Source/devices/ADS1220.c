@@ -165,8 +165,8 @@ static void ADC_RTD1_Task(void *pvParameters)
 			ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS1;// pin up SPI1_CS1
 	    }
 	    xSemaphoreGive( xADC_SPI_Mutex );
-	    while(GPIO_ReadInputDataBit(ADC_SPI_GPIO, ADC_DRDY1)==Bit_SET) taskYIELD();//wait
-
+	    while(GPIO_ReadInputDataBit(ADC_SPI_GPIO_CS, ADC_DRDY1)==Bit_SET) taskYIELD();//wait
+	    //vTaskDelay(100);
 	    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
 	    {
 			ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS1;// pin down SPI1_CS1
@@ -228,7 +228,6 @@ static void ADC_Current1_Task(void *pvParameters)
 	Watchdog_SetTaskStatus(ADS1220_CURRENT1_TASK,TASK_ACTIVE);
 	uint32_t Cur1_ADC_code=0;
 	uint8_t	 channel_count=0;
-	Watchdog_SetTaskStatus(ADS1220_RTD1_TASK,TASK_ACTIVE);
 
     xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
     {
@@ -241,83 +240,81 @@ static void ADC_Current1_Task(void *pvParameters)
 
     xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
     {
-		ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;// pin down SPI1_CS1
-		ADC_SPI_send (ADS_WREG|(ADS_REG_0<<2)|(0x0));//1 reg 0x0
+		ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;// pin down CS
+		ADC_SPI_send (ADS_WREG|(ADS_REG_0<<2)|(0x0));
 		ADC_SPI_send (ADC_REG_CONFIG_CUR_00);
-		ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;// pin up SPI1_CS1
+		ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;// pin up CS
     }
     xSemaphoreGive( xADC_SPI_Mutex );
     vTaskDelay(10);
 
     xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
     {
-		ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;// pin down SPI1_CS1
-		ADC_SPI_send (ADS_WREG|(ADS_REG_1<<2)|(0x0));//1 reg 0x0
+		ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;
+		ADC_SPI_send (ADS_WREG|(ADS_REG_1<<2)|(0x0));
 		ADC_SPI_send (ADC_REG_CONFIG_CUR_01);
-		ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;// pin up SPI1_CS1
+		ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;
     }
     xSemaphoreGive( xADC_SPI_Mutex );
     vTaskDelay(10);
 
     xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
     {
-		ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;// pin down SPI1_CS1
-		ADC_SPI_send (ADS_WREG|(ADS_REG_2<<2)|(0x0));//1 reg 0x2
+		ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;
+		ADC_SPI_send (ADS_WREG|(ADS_REG_2<<2)|(0x0));
 		ADC_SPI_send (ADC_REG_CONFIG_CUR_02);
-		ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;// pin up SPI1_CS1
+		ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;
     }
     xSemaphoreGive( xADC_SPI_Mutex );
     vTaskDelay(10);
 
     xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
     {
-		ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;// pin down SPI1_CS1
-		ADC_SPI_send (ADS_WREG|(ADS_REG_3<<2)|(0x0));//1 reg 0x3
+		ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;
+		ADC_SPI_send (ADS_WREG|(ADS_REG_3<<2)|(0x0));
 		ADC_SPI_send (ADC_REG_CONFIG_CUR_03);
-		ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;// pin up SPI1_CS1
+		ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;
     }
     xSemaphoreGive( xADC_SPI_Mutex );
     vTaskDelay(10);
-
-
-
-
 
 	while(1)
 	{
 
-		    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
-		    {
-				ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;// pin down SPI1_CS1
-				ADC_SPI_send (ADS_RREG|(ADS_REG_0<<2)|(0x0));//1 reg 0x3
-				uint8_t reg_1=ADC_SPI_read();
-				ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;// pin up SPI1_CS1
-		    }
-		    xSemaphoreGive( xADC_SPI_Mutex );
-		    vTaskDelay(10);
+//		    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
+//		    {
+//				ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;// pin down SPI1_CS1
+//				ADC_SPI_send (ADS_RREG|(ADS_REG_0<<2)|(0x0));//1 reg 0x3
+//				uint8_t reg_1=ADC_SPI_read();
+//				ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;// pin up SPI1_CS1
+//		    }
+//		    xSemaphoreGive( xADC_SPI_Mutex );
+//		    vTaskDelay(10);
 
 	    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
 	    {
-			ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;// pin down SPI1_CS1
-			ADC_SPI_send (ADS_WREG|(ADS_REG_0<<2)|(0x0));//1 reg 0x0
+			ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;// pin down CS
+			ADC_SPI_send (ADS_WREG|(ADS_REG_0<<2)|(0x0));
 			ADC_SPI_send (ADC_REG_CONFIG_CUR_00|(channel_count<<4));
-			ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;// pin up SPI1_CS1
+			ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;// pin up CS
 	    }
 	    xSemaphoreGive( xADC_SPI_Mutex );
 	    vTaskDelay(10);
 
 	    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
 	    {
-			ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;// pin down SPI1_CS1
+			ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;
 			ADC_SPI_send (ADS_START);
-			ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;// pin up SPI1_CS1
+			ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;
 	    }
 	    xSemaphoreGive( xADC_SPI_Mutex );
-	    while(GPIO_ReadInputDataBit(ADC_SPI_GPIO, ADC_DRDY3)==Bit_SET) taskYIELD();//wait
+
+	    while(GPIO_ReadInputDataBit(ADC_SPI_GPIO_CS, ADC_DRDY3)==Bit_SET) taskYIELD();
+	   // vTaskDelay(100);
 
 	    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
 	    {
-			ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;// pin down SPI1_CS1
+			ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;
 			Cur1_ADC_code=ADC_SPI_read ();
 			Cur1_ADC_code=Cur1_ADC_code<<8;
 			Cur1_ADC_code|=ADC_SPI_read ();
@@ -325,7 +322,7 @@ static void ADC_Current1_Task(void *pvParameters)
 			Cur1_ADC_code|=ADC_SPI_read ();
 
 			stMeasureData.current[channel_count]=(float)Cur1_ADC_code;
-			ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;// pin up SPI1_CS1
+			ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;
 	    }
 	    xSemaphoreGive( xADC_SPI_Mutex );
 
