@@ -41,8 +41,10 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
     	((float*)usRegInputBuf)[7]=stMeasureData.current[3];
     	((float*)usRegInputBuf)[8]=stMeasureData.current[1];
     	((float*)usRegInputBuf)[9]=stMeasureData.current[0];
-    	((float*)usRegInputBuf)[10]=stMeasureData.current[4];
-    	((float*)usRegInputBuf)[11]=stMeasureData.current[5];
+    	((float*)usRegInputBuf)[10]=stMeasureData.current[6];
+    	((float*)usRegInputBuf)[11]=stMeasureData.current[7];
+    	((float*)usRegInputBuf)[12]=stMeasureData.current[5];
+    	((float*)usRegInputBuf)[13]=stMeasureData.current[4];
     }
     xSemaphoreGive( xMeasureDataMutex );
 
