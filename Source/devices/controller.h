@@ -24,12 +24,6 @@ typedef enum
 #define TCXO_FREQ_MAX		20001000
 #define TCXO_FREQ_DEFAULT	20000000
 
-typedef struct
-{
-	uint32_t TCXO_frequency;
-
-}stControllerSettings;
-
 #define FREQ_CHN_NUM		2
 #define PULSE_COUNT_CHN_NUM	2
 #define RTD_CHN_NUM			2
@@ -37,6 +31,22 @@ typedef struct
 
 #define CONTROLLER_MEASURE_DATA_LEN	64
 #define TIMESTAMP_LEN				6
+
+typedef struct
+{
+	float code_pnt0;
+	float ma_pnt0;
+	float code_pnt1;
+	float ma_pnt1;
+}stCurChannelCalibrate;
+
+typedef struct
+{
+	uint32_t TCXO_frequency;
+	stCurChannelCalibrate CurChannelCalibrate[CURRENT_CHN_NUM];
+}stControllerSettings;
+
+
 
 typedef struct
 {

@@ -79,6 +79,45 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
 #define REG_RTC_DAY_OF_WEEK		6
 #define REG_TCXO_FREQ			7
 
+#define REG_CUR0_CODE_PNT0		9
+#define REG_CUR0_MA_PNT0		11
+#define REG_CUR0_CODE_PNT1		13
+#define REG_CUR0_MA_PNT1		15
+
+#define REG_CUR1_CODE_PNT0		17
+#define REG_CUR1_MA_PNT0		19
+#define REG_CUR1_CODE_PNT1		21
+#define REG_CUR1_MA_PNT1		23
+
+#define REG_CUR2_CODE_PNT0		25
+#define REG_CUR2_MA_PNT0		27
+#define REG_CUR2_CODE_PNT1		29
+#define REG_CUR2_MA_PNT1		31
+
+#define REG_CUR3_CODE_PNT0		33
+#define REG_CUR3_MA_PNT0		35
+#define REG_CUR3_CODE_PNT1		37
+#define REG_CUR3_MA_PNT1		39
+
+#define REG_CUR4_CODE_PNT0		41
+#define REG_CUR4_MA_PNT0		43
+#define REG_CUR4_CODE_PNT1		45
+#define REG_CUR4_MA_PNT1		47
+
+#define REG_CUR5_CODE_PNT0		49
+#define REG_CUR5_MA_PNT0		51
+#define REG_CUR5_CODE_PNT1		53
+#define REG_CUR5_MA_PNT1		55
+
+#define REG_CUR6_CODE_PNT0		57
+#define REG_CUR6_MA_PNT0		59
+#define REG_CUR6_CODE_PNT1		61
+#define REG_CUR6_MA_PNT1		63
+
+#define REG_CUR7_CODE_PNT0		65
+#define REG_CUR7_MA_PNT0		67
+#define REG_CUR7_CODE_PNT1		69
+#define REG_CUR7_MA_PNT1		71
 
 eMBErrorCode
 eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegisterMode eMode )

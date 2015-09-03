@@ -20,7 +20,8 @@
 #define FRAM_I2C_RCC				RCC_APB1Periph_I2C2
 #define FRAM_I2C_AF					GPIO_AF_I2C2
 #define FRAM_I2C_ADDRESS			0xA0
-#define FRAM_I2C_TIMEOUT			10000
+#define FRAM_I2C_TIMEOUT			60000
+#define FRAM_I2C_CLOCK_SPEED		100000
 
 xSemaphoreHandle xI2CBusMutex;
 
@@ -49,7 +50,7 @@ void FRAM_I2C_Init(void)
 	     I2C_InitStructure.I2C_OwnAddress1 = FRAM_I2C_ADDRESS;
 	     I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
 	     I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
-	     I2C_InitStructure.I2C_ClockSpeed = 400000;
+	     I2C_InitStructure.I2C_ClockSpeed = FRAM_I2C_CLOCK_SPEED;
 
 	     I2C_Init(FRAM_I2C, &I2C_InitStructure);
 	     I2C_Cmd(FRAM_I2C, ENABLE);
@@ -108,7 +109,7 @@ void FRAM_I2C_Reset(void)
     I2C_InitStructure.I2C_OwnAddress1 = FRAM_I2C_ADDRESS;
     I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
     I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
-    I2C_InitStructure.I2C_ClockSpeed = 400000;
+    I2C_InitStructure.I2C_ClockSpeed = FRAM_I2C_CLOCK_SPEED;
 
     I2C_Init(FRAM_I2C, &I2C_InitStructure);
     I2C_Cmd(FRAM_I2C, ENABLE);

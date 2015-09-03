@@ -118,7 +118,7 @@ RS485SerialInit(UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity ePar
 		USART_InitStruct.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
 		USART_Init(USART_RS485, &USART_InitStruct);
 
-		USART_RS485->BRR=348;
+		USART_RS485->BRR=0x208;
 
 		GPIO_InitStruct.GPIO_Pin   = USART_RS485_DE|USART_RS485_RE;
 		GPIO_InitStruct.GPIO_Mode  = GPIO_Mode_OUT;
@@ -269,7 +269,7 @@ RS232SerialInit(UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity ePar
 		USART_InitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
 		USART_InitStruct.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
 		USART_Init(USART_RS232, &USART_InitStruct);
-		USART_RS232->BRR=348;
+		USART_RS232->BRR=0x411;
 
 		USART_ClearFlag(USART_RS232,  USART_FLAG_TXE  | USART_FLAG_RXNE );
 
