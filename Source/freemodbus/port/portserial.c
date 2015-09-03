@@ -34,6 +34,12 @@
 #include "stm32f4xx_usart.h"
 #include "misc.h"
 
+#include "usbd_cdc_vcp.h"
+#include "usbd_cdc_core.h"
+#include "usbd_usr.h"
+#include "usbd_desc.h"
+#include "usb_dcd_int.h"
+
 
 #define USART_RS485 			USART3
 #define GPIO_AF_USART_RS485 	GPIO_AF_USART3
@@ -337,5 +343,15 @@ void RS232SerialContextInit( stMBContext *stContext)
 	stRS232Context->stCommunication.xMBPortSerialGetByte=RS232SerialGetByte;
 	stRS232Context->stCommunication.vMBPortClose=NULL;
 	stRS232Context->stCommunication.xMBPortSerialClose=NULL;
+}
+
+void USB_COM_SerialContextInit( stMBContext *stContext)
+{
+	stContext->stCommunication.xMBPortSerialInit=NULL;
+	stContext->stCommunication.vMBPortSerialEnable=NULL;
+	stContext->stCommunication.xMBPortSerialPutByte=usb_cdc_putc;
+	stContext->stCommunication.xMBPortSerialGetByte=usb_cdc_getc;
+	stContext->stCommunication.vMBPortClose=NULL;
+	stContext->stCommunication.xMBPortSerialClose=NULL;
 }
 

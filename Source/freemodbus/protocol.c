@@ -23,9 +23,11 @@ extern struct task_watch task_watches[];
 
 static void Modbus_RS485_Task(void *pvParameters);
 static void Modbus_RS232_Task(void *pvParameters);
+static void Modbus_USB_CDC_Task(void *pvParameters);
 
 stMBContext stContext_RS485;
 stMBContext stContext_RS232;
+stMBContext	stContext_USB_CDC;
 
 static stMBContext *stRS232Context;
 
@@ -71,6 +73,20 @@ static void Modbus_RS232_Task(void *pvParameters)
 
         vTaskDelay(10);
         Watchdog_IncrementCouter(RS232_TASK);
+    }
+
+}
+
+static void Modbus_USB_CDC_Task(void *pvParameters)
+{
+    eMBEnable(&stContext_USB_CDC);
+    Watchdog_SetTaskStatus(USB_TASK,TASK_ACTIVE);
+    for( ;; )
+    {
+        eMBPoll(&stContext_USB_CDC);
+
+        vTaskDelay(10);
+        Watchdog_IncrementCouter(USB_TASK);
     }
 
 }
