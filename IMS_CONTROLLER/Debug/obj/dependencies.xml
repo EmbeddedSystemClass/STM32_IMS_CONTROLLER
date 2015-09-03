@@ -367,6 +367,17 @@
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\projdefs.h" lastModified="14af2c4fa89">
       </source>
+      <source file="..\..\..\Source\devices\fram_i2c.c" lastModified="14f92f694e7">
+         <include file="..\..\..\Source\devices\fram_i2c.h"/>
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h"/>
+         <include file="..\..\..\cmsis_lib\include\misc.h"/>
+         <include file="..\..\..\Source\freemodbus\rtu\mbcrc.h"/>
+         <include file="..\..\..\Source\devices\controller.h"/>
+         <include file="..\..\..\cmsis\core_cmFunc.h"/>
+      </source>
       <source file="..\..\..\Source\freemodbus\port\porttimer.c" lastModified="14c699887fa">
          <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
          <include file="..\..\..\Source\freemodbus\include\mb.h"/>
@@ -411,16 +422,6 @@
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="14835c0baaa">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
-      </source>
-      <source file="..\..\..\Source\devices\frequency.c" lastModified="14f82afef97">
-         <include file="..\..\..\Source\devices\frequency.h"/>
-         <include file="..\..\..\Source\devices\controller.h"/>
-         <include file="..\..\..\Source\devices\watchdog.h"/>
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
-         <include file="..\..\..\cmsis_lib\include\misc.h"/>
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\timers.c" lastModified="14af2c59968">
          <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
@@ -481,9 +482,6 @@
          <include file="..\..\..\usblib\usbd_req.h"/>
          <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
       </source>
-      <source file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h" lastModified="14c78dc4795">
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-      </source>
       <source file="..\..\..\usblib\usbd_desc.c" lastModified="13a790f9fb0">
          <include file="..\..\..\usblib\usbd_core.h"/>
          <include file="..\..\..\usblib\usbd_desc.h"/>
@@ -491,14 +489,17 @@
          <include file="..\..\..\usblib\usbd_conf.h"/>
          <include file="..\..\..\usblib\usb_regs.h"/>
       </source>
+      <source file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h" lastModified="14c78dc4795">
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
       <source file="..\..\..\Source\freemodbus\rtu\mbcrc.h" lastModified="14c79ed3769">
          <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
       </source>
-      <source file="..\..\..\cmsis_lib\include\stm32f4xx_pwr.h" lastModified="14149991717">
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-      </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\event_groups.h" lastModified="14af2c4f5f5">
          <include file="..\..\..\Source\FreeRTOS\Source\include\timers.h"/>
+      </source>
+      <source file="..\..\..\cmsis_lib\include\stm32f4xx_pwr.h" lastModified="14149991717">
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
       <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="13cedd0ed70">
       </source>
@@ -510,19 +511,19 @@
          <include file="..\..\..\Source\freemodbus\include\mbconfig.h"/>
          <include file="..\..\..\Source\devices\controller.h"/>
       </source>
-      <source file="..\..\..\Source\freemodbus\rtu\mbcrc.c" lastModified="14c2274fcc4">
-         <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
-      </source>
-      <source file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h" lastModified="14c3138e1c7">
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-      </source>
-      <source file="..\..\..\Source\devices\ADS1220.h" lastModified="14f8d514d92">
+      <source file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h" lastModified="14125d80992">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\list.h" lastModified="14af2c4f9bf">
       </source>
-      <source file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h" lastModified="14125d80992">
+      <source file="..\..\..\Source\devices\ADS1220.h" lastModified="14f8d514d92">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h" lastModified="14c3138e1c7">
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\Source\freemodbus\rtu\mbcrc.c" lastModified="14c2274fcc4">
+         <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h" lastModified="14125d83d54">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -564,6 +565,9 @@
          <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
       </source>
+      <source file="..\..\..\usblib\usb_regs.h" lastModified="13349a79f90">
+         <include file="..\..\..\usblib\usb_conf.h"/>
+      </source>
       <source file="..\..\..\main.c" lastModified="14c6f3c6520">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
@@ -572,9 +576,6 @@
          <include file="..\..\..\cmsis_lib\include\misc.h"/>
          <include file="..\..\..\cmsis_boot\system_stm32f4xx.h"/>
          <include file="..\..\..\Source\devices\controller.h"/>
-      </source>
-      <source file="..\..\..\usblib\usb_regs.h" lastModified="13349a79f90">
-         <include file="..\..\..\usblib\usb_conf.h"/>
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\queue.h" lastModified="14af2c4ffa4">
       </source>
@@ -746,16 +747,6 @@
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="14835c0baaa">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
-      <source file="..\..\..\Source\devices\frequency.c" lastModified="14f82afef97">
-         <include file="..\..\..\Source\devices\frequency.h"/>
-         <include file="..\..\..\Source\devices\controller.h"/>
-         <include file="..\..\..\Source\devices\watchdog.h"/>
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
-         <include file="..\..\..\cmsis_lib\include\misc.h"/>
-      </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="14835b06da1">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
@@ -777,27 +768,27 @@
       <source file="..\..\..\Source\freemodbus\rtu\mbcrc.h" lastModified="14c79ed3769">
          <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
       </source>
-      <source file="..\..\..\cmsis_lib\include\stm32f4xx_pwr.h" lastModified="14149991717">
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-      </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\event_groups.h" lastModified="14af2c4f5f5">
          <include file="..\..\..\Source\FreeRTOS\Source\include\timers.h"/>
       </source>
-      <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="13cedd0ed70">
-      </source>
-      <source file="..\..\..\Source\freemodbus\rtu\mbcrc.c" lastModified="14c2274fcc4">
-         <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
-      </source>
-      <source file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h" lastModified="14c3138e1c7">
+      <source file="..\..\..\cmsis_lib\include\stm32f4xx_pwr.h" lastModified="14149991717">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\Source\devices\ADS1220.h" lastModified="14f8d514d92">
+      <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="13cedd0ed70">
+      </source>
+      <source file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h" lastModified="14125d80992">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\list.h" lastModified="14af2c4f9bf">
       </source>
-      <source file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h" lastModified="14125d80992">
+      <source file="..\..\..\Source\devices\ADS1220.h" lastModified="14f8d514d92">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h" lastModified="14c3138e1c7">
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\Source\freemodbus\rtu\mbcrc.c" lastModified="14c2274fcc4">
+         <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h" lastModified="14125d83d54">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -828,7 +819,7 @@
          <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
       </source>
    </includePath>
-   <includePath signature="/ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\include /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_boot /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC\ARM_CM3 /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\devices /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib\include /ID:\PROJECTS\GIT_REPOSITORY\STM32 /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source">
+   <includePath signature="/ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\include /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_boot /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC\ARM_CM3 /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\devices /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\rtu /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\include /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib\include /ID:\PROJECTS\GIT_REPOSITORY\STM32 /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source">
       <source file="..\..\..\Source\devices\backup_sram.h" lastModified="148cbbcb8df">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
@@ -840,7 +831,16 @@
       </source>
       <source file="..\..\..\Source\devices\power_detector.h" lastModified="14a19783a11">
       </source>
+      <source file="..\..\..\Source\freemodbus\protocol.h" lastModified="14a57004310">
+      </source>
+      <source file="..\..\..\Source\freemodbus\functions\mbfuncdiag.c" lastModified="10f5ec0d910">
+      </source>
+      <source file="..\..\..\Source\freemodbus\ascii\mbascii.h" lastModified="10f5ec0d910">
+      </source>
       <source file="..\..\..\Source\devices\rtc.h" lastModified="1475ce20740">
+      </source>
+      <source file="..\..\..\Source\freemodbus\rtu\mbcrc.c" lastModified="14c2274fcc4">
+         <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
       </source>
    </includePath>
    <includePath signature="/ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\include /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_boot /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC\ARM_CM3 /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\devices /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\rtu /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\include /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib\include /ID:\PROJECTS\GIT_REPOSITORY\STM32 /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\port">
@@ -867,7 +867,7 @@
          <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
       </source>
    </includePath>
-   <includePath signature="/ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\include /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_boot /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC\ARM_CM3 /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\devices /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\rtu /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\include /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib\include /ID:\PROJECTS\GIT_REPOSITORY\STM32 /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source">
+   <includePath signature="/ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\include /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_boot /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC\ARM_CM3 /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\devices /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib\include /ID:\PROJECTS\GIT_REPOSITORY\STM32 /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source">
       <source file="..\..\..\Source\devices\backup_sram.h" lastModified="148cbbcb8df">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
@@ -879,16 +879,7 @@
       </source>
       <source file="..\..\..\Source\devices\power_detector.h" lastModified="14a19783a11">
       </source>
-      <source file="..\..\..\Source\freemodbus\protocol.h" lastModified="14a57004310">
-      </source>
-      <source file="..\..\..\Source\freemodbus\functions\mbfuncdiag.c" lastModified="10f5ec0d910">
-      </source>
-      <source file="..\..\..\Source\freemodbus\ascii\mbascii.h" lastModified="10f5ec0d910">
-      </source>
       <source file="..\..\..\Source\devices\rtc.h" lastModified="1475ce20740">
-      </source>
-      <source file="..\..\..\Source\freemodbus\rtu\mbcrc.c" lastModified="14c2274fcc4">
-         <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
       </source>
    </includePath>
 </dependencies>

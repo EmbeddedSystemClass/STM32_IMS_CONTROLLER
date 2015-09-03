@@ -48,6 +48,7 @@
 #define FREQ_COUNT_1_TIM_PERIOD				(65535)
 
 #define FREQ_MEASURE_TIME					250
+#define FREQ_TCXO_MULTIPLIER				3
 
 typedef struct
 {
@@ -218,7 +219,7 @@ static void FrequencyCH1Measure_Task(void *pvParameters)
 
 			 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 			 {
-			     frequency= (float)stSettings.TCXO_frequency*FrequencyData[0].impulse_count/sum_tick_impulse;
+			     frequency= (float)stSettings.TCXO_frequency*FREQ_TCXO_MULTIPLIER*FrequencyData[0].impulse_count/sum_tick_impulse;
 			 }
 			 xSemaphoreGive( xSettingsMutex );
 
@@ -270,7 +271,7 @@ static void FrequencyCH2Measure_Task(void *pvParameters)
 
 			 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 			 {
-			     frequency= (float)stSettings.TCXO_frequency*FrequencyData[1].impulse_count/sum_tick_impulse;
+			     frequency= (float)stSettings.TCXO_frequency*FREQ_TCXO_MULTIPLIER*FrequencyData[1].impulse_count/sum_tick_impulse;
 			 }
 			 xSemaphoreGive( xSettingsMutex );
 
