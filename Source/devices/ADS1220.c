@@ -388,7 +388,7 @@ static void ADC_Current1_Task(void *pvParameters)
 			Cur1_ADC_code=Cur1_ADC_code<<8;
 			Cur1_ADC_code|=ADC_SPI_read ();
 
-			stMeasureData.current[channel_count]=Code_To_Current(Cur1_ADC_code);
+			stMeasureData.current[channel_count]=(float)Cur1_ADC_code;//Code_To_Current(Cur1_ADC_code);
 			ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;
 	    }
 	    xSemaphoreGive( xADC_SPI_Mutex );

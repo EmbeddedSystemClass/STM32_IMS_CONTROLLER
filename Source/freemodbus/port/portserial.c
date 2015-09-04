@@ -35,10 +35,7 @@
 #include "misc.h"
 
 #include "usbd_cdc_vcp.h"
-#include "usbd_cdc_core.h"
-#include "usbd_usr.h"
-#include "usbd_desc.h"
-#include "usb_dcd_int.h"
+
 
 
 #define USART_RS485 			USART3
@@ -334,6 +331,7 @@ void USART_RS232_IRQHandler(void)
 }
 
 
+static stMBContext *stRS485Context;
 void RS232SerialContextInit( stMBContext *stContext)
 {
 	stRS232Context=stContext;
@@ -345,13 +343,61 @@ void RS232SerialContextInit( stMBContext *stContext)
 	stRS232Context->stCommunication.xMBPortSerialClose=NULL;
 }
 
-void USB_COM_SerialContextInit( stMBContext *stContext)
+//-------------------------------------------------------------------------
+static stMBContext *stUSB_CDC_Context;
+uint8_t temp_char;
+static void USB_CDC_Task(void *pvParameters);
+
+BOOL
+USB_CDC_SerialPutByte( CHAR ucByte )
 {
-	stContext->stCommunication.xMBPortSerialInit=NULL;
-	stContext->stCommunication.vMBPortSerialEnable=NULL;
-	stContext->stCommunication.xMBPortSerialPutByte=usb_cdc_putc;
-	stContext->stCommunication.xMBPortSerialGetByte=usb_cdc_getc;
-	stContext->stCommunication.vMBPortClose=NULL;
-	stContext->stCommunication.xMBPortSerialClose=NULL;
+	VCP_DataTx(&ucByte,1);
+	return TRUE;
 }
+
+BOOL
+USB_CDC_SerialGetByte( CHAR * pucByte )
+{
+	*pucByte=temp_char;
+    return TRUE;
+}
+
+BOOL
+USB_CDC_SerialInit(UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity eParity )
+{
+	xTaskCreate(USB_CDC_Task,(signed char*)"USB Serial",64,NULL, tskIDLE_PRIORITY + 1, NULL);
+}
+
+void
+USB_CDC_SerialEnable( BOOL xRxEnable, BOOL xTxEnable )
+{
+	return;
+}
+
+void USB_CDC_SerialContextInit( stMBContext *stContext)
+{
+	stUSB_CDC_Context=stContext;
+	stUSB_CDC_Context->stCommunication.xMBPortSerialInit=USB_CDC_SerialInit;
+	stUSB_CDC_Context->stCommunication.vMBPortSerialEnable=USB_CDC_SerialEnable;
+	stUSB_CDC_Context->stCommunication.xMBPortSerialPutByte=USB_CDC_SerialPutByte;
+	stUSB_CDC_Context->stCommunication.xMBPortSerialGetByte=USB_CDC_SerialGetByte;
+	stUSB_CDC_Context->stCommunication.vMBPortClose=NULL;
+	stUSB_CDC_Context->stCommunication.xMBPortSerialClose=NULL;
+}
+
+static void USB_CDC_Task(void *pvParameters)
+{
+	while(1)
+	{
+		if(VCP_get_char(&temp_char))
+		{
+			stUSB_CDC_Context->pxMBFrameCBByteReceived( &stUSB_CDC_Context->stRTUContext,&stUSB_CDC_Context->stTimer,&stUSB_CDC_Context->stCommunication );
+		}
+	}
+}
+
+
+
+
+
 

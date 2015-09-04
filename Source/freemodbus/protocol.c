@@ -41,11 +41,16 @@ void Protocol_Init(void)
 	RS232SerialContextInit(&stContext_RS232);
 	RS232TimerContextInit(&stContext_RS232);
 
+	USB_CDC_SerialContextInit(&stContext_USB_CDC);
+	USB_CDC_TimerContextInit(&stContext_USB_CDC);
+
 	eStatus = eMBInit(&stContext_RS485, MB_RTU, 0x0A, 0, 57600, 0 );
 	eStatus = eMBInit(&stContext_RS232, MB_RTU, 0x0A, 0, 57600, 0 );
+	eStatus = eMBInit(&stContext_USB_CDC, MB_RTU, 0x0A, 0, 57600, 0 );
 
 	xTaskCreate(Modbus_RS485_Task,(signed char*)"Modbus RS485",512,NULL, tskIDLE_PRIORITY + 1, NULL);
 	xTaskCreate(Modbus_RS232_Task,(signed char*)"Modbus RS232",512,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(Modbus_USB_CDC_Task,(signed char*)"Modbus USB",512,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 
 

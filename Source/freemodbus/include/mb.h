@@ -482,7 +482,8 @@ void RS485SerialContextInit(  stMBContext *stContext);
 void RS485TimerContextInit(  stMBContext *stContext);
 void RS232SerialContextInit( stMBContext *stContext);
 void RS232TimerContextInit(  stMBContext *stContext);
-void USB_COM_SerialContextInit( stMBContext *stContext);
+void USB_CDC_SerialContextInit( stMBContext *stContext);
+void USB_CDC_TimerContextInit(  stMBContext *stContext);
 
 #ifdef __cplusplus
 PR_END_EXTERN_C

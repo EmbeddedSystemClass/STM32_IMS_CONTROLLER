@@ -183,4 +183,79 @@ void RS232TimerContextInit(  stMBContext *stContext)
 	stRS232Context->stTimer.xMBPortTimersInit=RS232TimersInit;
 }
 
+//--------------------------------------------------------
+static stMBContext *stUSB_CDC_Context;
+
+BOOL
+USB_CDC_TimersInit( USHORT usTim1Timerout50us )
+{
+	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
+	NVIC_InitTypeDef NVIC_InitStructure;
+	uint16_t PrescalerValue = 0;
+
+
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM10, ENABLE);
+	PrescalerValue = (uint16_t) (SystemCoreClock / 20000) - 1; // 1/20000=50us
+	TIM_TimeBaseStructure.TIM_Period = (uint16_t) usTim1Timerout50us;
+	TIM_TimeBaseStructure.TIM_Prescaler = PrescalerValue;
+	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseInit(TIM10, &TIM_TimeBaseStructure);
+
+	TIM_ARRPreloadConfig(TIM10, ENABLE);
+
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
+
+	NVIC_InitStructure.NVIC_IRQChannel = TIM1_UP_TIM10_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+
+	NVIC_Init(&NVIC_InitStructure);
+
+
+	TIM_ClearITPendingBit(TIM10,TIM_IT_Update);
+	TIM_ITConfig(TIM10, TIM_IT_Update, DISABLE);
+
+	TIM_Cmd(TIM10,  DISABLE);
+	return TRUE;
+}
+
+
+void USB_CDC_TimersEnable(  )
+{
+	TIM_ClearITPendingBit(TIM10, TIM_IT_Update);
+	TIM_ITConfig(TIM10, TIM_IT_Update, ENABLE);
+	TIM_SetCounter(TIM10,0x0000);
+	TIM_Cmd(TIM10, ENABLE);
+}
+
+void USB_CDC_TimersDisable(  )
+{
+	TIM_Cmd(TIM10, DISABLE);
+	TIM_SetCounter(TIM10,0x0000);
+	TIM_ITConfig(TIM10, TIM_IT_Update, DISABLE);
+	TIM_ClearITPendingBit(TIM10, TIM_IT_Update);
+}
+
+/* Create an ISR which is called whenever the timer has expired. This function
+ * must then call pxMBPortCBTimerExpired( ) to notify the protocol stack that
+ * the timer has expired.
+ */
+void TIM1_UP_TIM10_IRQHandler( void ) //
+{
+	TIM_ClearITPendingBit(TIM10, TIM_IT_Update);
+	( void )stUSB_CDC_Context->pxMBPortCBTimerExpired(&stUSB_CDC_Context->stRTUContext,&stUSB_CDC_Context->stTimer,&stUSB_CDC_Context->stEvent  );//!!!
+}
+
+void USB_CDC_TimerContextInit(  stMBContext *stContext)
+{
+	stUSB_CDC_Context=stContext;
+	stUSB_CDC_Context->stTimer.vMBPortTimersDelay=NULL;
+	stUSB_CDC_Context->stTimer.vMBPortTimersDisable=USB_CDC_TimersDisable;
+	stUSB_CDC_Context->stTimer.vMBPortTimersEnable=USB_CDC_TimersEnable;
+	stUSB_CDC_Context->stTimer.xMBPortTimersClose=NULL;
+	stUSB_CDC_Context->stTimer.xMBPortTimersInit=USB_CDC_TimersInit;
+}
+
 
