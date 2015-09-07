@@ -348,10 +348,20 @@ static stMBContext *stUSB_CDC_Context;
 uint8_t temp_char;
 static void USB_CDC_Task(void *pvParameters);
 
+//stMBEvent stUSB_CDC_Send_Event;
+
 BOOL
 USB_CDC_SerialPutByte( CHAR ucByte )
 {
+
 	VCP_DataTx(&ucByte,1);
+	xMBPortEventPost(&stUSB_CDC_Context->stEvent,EV_FRAME_SENT);
+	//uint16_t delay=10000;
+
+	//while (delay--);
+
+	//stUSB_CDC_Context->pxMBFrameCBTransmitterEmpty(&stUSB_CDC_Context->stRTUContext,&stUSB_CDC_Context->stCommunication,&stUSB_CDC_Context->stEvent);
+
 	return TRUE;
 }
 
@@ -365,12 +375,30 @@ USB_CDC_SerialGetByte( CHAR * pucByte )
 BOOL
 USB_CDC_SerialInit(UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity eParity )
 {
+	xMBPortEventInit(&stUSB_CDC_Context->stEvent);
 	xTaskCreate(USB_CDC_Task,(signed char*)"USB Serial",64,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 
 void
 USB_CDC_SerialEnable( BOOL xRxEnable, BOOL xTxEnable )
 {
+	if(TRUE==xRxEnable)
+	{
+
+	}
+	else
+	{
+
+	}
+
+	if(TRUE==xTxEnable)
+	{
+		stUSB_CDC_Context->pxMBFrameCBTransmitterEmpty(&stUSB_CDC_Context->stRTUContext,&stUSB_CDC_Context->stCommunication,&stUSB_CDC_Context->stEvent);
+	}
+	else
+	{
+
+	}
 	return;
 }
 

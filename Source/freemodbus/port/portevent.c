@@ -43,6 +43,9 @@ xMBPortEventPost(stMBEvent *stEvent, eMBEventType eEvent )
     return TRUE;
 }
 
+
+extern stMBContext	stContext_USB_CDC;
+
 BOOL
 xMBPortEventGet(stMBEvent *stEvent, eMBEventType * eEvent )
 {
@@ -53,6 +56,10 @@ xMBPortEventGet(stMBEvent *stEvent, eMBEventType * eEvent )
         *eEvent = stEvent->eQueuedEvent;
         stEvent->xEventInQueue = FALSE;
         xEventHappened = TRUE;
+
+        //----------
+		if (stEvent->eQueuedEvent == EV_FRAME_SENT)
+			stContext_USB_CDC.pxMBFrameCBTransmitterEmpty(&stContext_USB_CDC.stRTUContext,&stContext_USB_CDC.stCommunication,&stContext_USB_CDC.stEvent);
     }
     return xEventHappened;
 }

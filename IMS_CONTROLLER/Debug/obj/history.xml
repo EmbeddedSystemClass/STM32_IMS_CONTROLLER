@@ -67,8 +67,8 @@
       <target file="mbport.o" lastModified="14f98246088">
          <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14f921917bb"/>
       </target>
-      <target file="portserial.o" lastModified="14f9837e9c0">
-         <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14f9837dd6c"/>
+      <target file="portserial.o" lastModified="14fa6dbcd51">
+         <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14fa6dbbff3"/>
       </target>
       <target file="usbd_core.o" lastModified="14f9235b9ef">
          <source file="..\..\..\usblib\usbd_core.c" lastModified="13349a797c0"/>
@@ -127,11 +127,11 @@
       <target file="core_cm3.o" lastModified="14f9235b2ab">
          <source file="..\..\..\cmsis\core_cm3.c" lastModified="13f614ce4cf"/>
       </target>
+      <target file="portevent.o" lastModified="14fa6d4aebf">
+         <source file="..\..\..\Source\freemodbus\port\portevent.c" lastModified="14fa6d4a5f5"/>
+      </target>
       <target file="power_detector.o" lastModified="14f9235e3cd">
          <source file="..\..\..\Source\devices\power_detector.c" lastModified="14c2bcc22eb"/>
-      </target>
-      <target file="portevent.o" lastModified="14f980e6fa6">
-         <source file="..\..\..\Source\freemodbus\port\portevent.c" lastModified="14c30b6d6b4"/>
       </target>
       <target file="printf.o" lastModified="14f9235c23c">
          <source file="..\..\..\stdio\printf.c" lastModified="14c274eee15"/>

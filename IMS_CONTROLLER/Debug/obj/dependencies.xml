@@ -12,7 +12,7 @@
          <include file="..\..\..\usblib\usbd_core.h"/>
          <include file="..\..\..\usblib\usbd_cdc_core.h"/>
       </source>
-      <source file="..\..\..\Source\freemodbus\port\portevent.c" lastModified="14c30b6d6b4">
+      <source file="..\..\..\Source\freemodbus\port\portevent.c" lastModified="14fa6d4a5f5">
          <include file="..\..\..\Source\freemodbus\include\mb.h"/>
          <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
       </source>
@@ -230,7 +230,7 @@
       <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="14f92a0c783">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14f9837dd6c">
+      <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14fa6dbbff3">
          <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
          <include file="..\..\..\Source\freemodbus\include\mb.h"/>
          <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
@@ -606,10 +606,6 @@
       </source>
    </includePath>
    <includePath signature="/ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\include /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_boot /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC\ARM_CM3 /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\devices /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\rtu /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\include /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib\include /ID:\PROJECTS\GIT_REPOSITORY\STM32 /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source /ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\ascii">
-      <source file="..\..\..\Source\freemodbus\port\portevent.c" lastModified="14c30b6d6b4">
-         <include file="..\..\..\Source\freemodbus\include\mb.h"/>
-         <include file="..\..\..\Source\freemodbus\include\mbport.h"/>
-      </source>
       <source file="..\..\..\Source\devices\backup_sram.h" lastModified="148cbbcb8df">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
