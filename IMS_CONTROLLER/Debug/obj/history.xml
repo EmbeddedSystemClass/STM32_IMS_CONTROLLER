@@ -100,8 +100,8 @@
       <target file="croutine.o" lastModified="14f9824720c">
          <source file="..\..\..\Source\FreeRTOS\Source\croutine.c" lastModified="14af2c4eed0"/>
       </target>
-      <target file="controller.o" lastModified="14f9824794f">
-         <source file="..\..\..\Source\devices\controller.c" lastModified="14f981dda2e"/>
+      <target file="controller.o" lastModified="14fa6fb6eca">
+         <source file="..\..\..\Source\devices\controller.c" lastModified="14fa6fb638f"/>
       </target>
       <target file="mbrtu.o" lastModified="14f980e75ff">
          <source file="..\..\..\Source\freemodbus\rtu\mbrtu.c" lastModified="14c31767da1"/>
@@ -109,8 +109,8 @@
       <target file="list.o" lastModified="14f98246c8e">
          <source file="..\..\..\Source\FreeRTOS\Source\list.c" lastModified="14af2c506ae"/>
       </target>
-      <target file="ADS1220.o" lastModified="14f98247632">
-         <source file="..\..\..\Source\devices\ADS1220.c" lastModified="14f975448dd"/>
+      <target file="ADS1220.o" lastModified="14fa73873c3">
+         <source file="..\..\..\Source\devices\ADS1220.c" lastModified="14fa73865e8"/>
       </target>
       <target file="port.o" lastModified="14f98246d2a">
          <source file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\port.c" lastModified="14af2c51989"/>

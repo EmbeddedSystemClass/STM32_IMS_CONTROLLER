@@ -168,7 +168,7 @@
       <source file="..\..\..\usblib\usbd_usr.h" lastModified="13349a797c0">
          <include file="..\..\..\usblib\usbd_core.h"/>
       </source>
-      <source file="..\..\..\Source\devices\controller.c" lastModified="14f981dda2e">
+      <source file="..\..\..\Source\devices\controller.c" lastModified="14fa6fb638f">
          <include file="..\..\..\Source\devices\controller.h"/>
          <include file="..\..\..\Source\freemodbus\protocol.h"/>
          <include file="..\..\..\Source\devices\frequency.h"/>
@@ -538,20 +538,6 @@
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h" lastModified="14125d83d54">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-      </source>
-      <source file="..\..\..\Source\devices\ADS1220.c" lastModified="14f975450ad">
-         <include file="..\..\..\Source\devices\ADS1220.h"/>
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_spi.h"/>
-         <include file="..\..\..\cmsis_lib\include\misc.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
-         <include file="..\..\..\Source\FreeRTOS\Source\include\semphr.h"/>
-         <include file="..\..\..\Source\devices\watchdog.h"/>
-         <include file="..\..\..\Source\devices\controller.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_iwdg.c" lastModified="14835c96d0b">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h"/>

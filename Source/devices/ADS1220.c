@@ -347,17 +347,6 @@ static void ADC_Current1_Task(void *pvParameters)
 
 	while(1)
 	{
-
-//		    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
-//		    {
-//				ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;// pin down SPI1_CS1
-//				ADC_SPI_send (ADS_RREG|(ADS_REG_0<<2)|(0x0));//1 reg 0x3
-//				uint8_t reg_1=ADC_SPI_read();
-//				ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;// pin up SPI1_CS1
-//		    }
-//		    xSemaphoreGive( xADC_SPI_Mutex );
-//		    vTaskDelay(10);
-
 	    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
 	    {
 			ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;// pin down CS
@@ -456,17 +445,6 @@ static void ADC_Current2_Task(void *pvParameters)
 
 	while(1)
 	{
-
-//		    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
-//		    {
-//				ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS3;// pin down SPI1_CS1
-//				ADC_SPI_send (ADS_RREG|(ADS_REG_0<<2)|(0x0));//1 reg 0x3
-//				uint8_t reg_1=ADC_SPI_read();
-//				ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;// pin up SPI1_CS1
-//		    }
-//		    xSemaphoreGive( xADC_SPI_Mutex );
-//		    vTaskDelay(10);
-
 	    xSemaphoreTake( xADC_SPI_Mutex, portMAX_DELAY );
 	    {
 			ADC_SPI_GPIO_CS->BSRRH|=ADC_SPI_CS4;// pin down CS
@@ -519,14 +497,15 @@ static void ADC_Current2_Task(void *pvParameters)
 
 float PT100_Code_To_Temperature(int32_t adc_code)
 {
-	int32_t code_temp_0, code_temp_200;
-	float result_temp=0;
-
-	code_temp_0  =(int32_t)(((float)(ADC_MAX)/VOLTAGE_REF)*CURRENT_SOURCE*TEMP_0_RES*ADC_GAIN);
-	code_temp_200=(int32_t)(((float)(ADC_MAX)/VOLTAGE_REF)*CURRENT_SOURCE*TEMP_200_RES*ADC_GAIN);
-
-	result_temp=(float)(((float)(adc_code-code_temp_0))*(TEMP_200-TEMP_0)/(code_temp_200-code_temp_0)+TEMP_0);
-	return result_temp;
+//	int32_t code_temp_0, code_temp_200;
+//	float result_temp=0;
+//
+//	code_temp_0  =(int32_t)(((float)(ADC_MAX)/VOLTAGE_REF)*CURRENT_SOURCE*TEMP_0_RES*ADC_GAIN);
+//	code_temp_200=(int32_t)(((float)(ADC_MAX)/VOLTAGE_REF)*CURRENT_SOURCE*TEMP_200_RES*ADC_GAIN);
+//
+//	result_temp=(float)(((float)(adc_code-code_temp_0))*(TEMP_200-TEMP_0)/(code_temp_200-code_temp_0)+TEMP_0);
+//	return result_temp;
+	return ((float)adc_code/ADC_MAX*VOLTAGE_REF)/CURRENT_SOURCE/ADC_GAIN;
 }
 
 #define CUR_VOLTAGE_REF	2.500
