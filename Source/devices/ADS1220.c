@@ -17,6 +17,8 @@
 #include "string.h"
 #include "controller.h"
 
+#include "math.h"
+
 static void ADC_RTD1_Task(void *pvParameters);
 static void ADC_RTD2_Task(void *pvParameters);
 static void ADC_Current1_Task(void *pvParameters);
@@ -505,7 +507,9 @@ float PT100_Code_To_Temperature(int32_t adc_code)
 //
 //	result_temp=(float)(((float)(adc_code-code_temp_0))*(TEMP_200-TEMP_0)/(code_temp_200-code_temp_0)+TEMP_0);
 //	return result_temp;
-	return ((float)adc_code/ADC_MAX*VOLTAGE_REF)/CURRENT_SOURCE/ADC_GAIN;
+
+	float aResistance=((float)adc_code/ADC_MAX*VOLTAGE_REF)/CURRENT_SOURCE/ADC_GAIN;
+	return (-TEMP_0_RES * 3.9083E-3 + sqrt (TEMP_0_RES * TEMP_0_RES * + 3.9083E-3 * 3.9083E-3 - 4 * TEMP_0_RES * -5.775E-7 * (TEMP_0_RES - aResistance)))/(2 * TEMP_0_RES * -5.775E-7);
 }
 
 #define CUR_VOLTAGE_REF	2.500
