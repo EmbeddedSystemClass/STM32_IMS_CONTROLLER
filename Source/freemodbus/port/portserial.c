@@ -35,8 +35,10 @@
 #include "misc.h"
 
 #include "usbd_cdc_vcp.h"
-
-
+#include "usbd_cdc_core.h"
+#include "usbd_usr.h"
+#include "usbd_desc.h"
+#include "usb_dcd_int.h"
 
 #define USART_RS485 			USART3
 #define GPIO_AF_USART_RS485 	GPIO_AF_USART3
@@ -59,6 +61,8 @@
 
 #define RS_485_RECEIVE  USART_RS485_GPIO->BSRRH|=USART_RS485_DE; USART_RS485_GPIO->BSRRH|=USART_RS485_RE;
 #define RS_485_TRANSMIT USART_RS485_GPIO->BSRRL|=USART_RS485_DE; USART_RS485_GPIO->BSRRL|=USART_RS485_RE;
+
+__ALIGN_BEGIN USB_OTG_CORE_HANDLE  USB_OTG_dev __ALIGN_END;
 
 
 static stMBContext *stRS485Context;
@@ -376,7 +380,8 @@ BOOL
 USB_CDC_SerialInit(UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity eParity )
 {
 	xMBPortEventInit(&stUSB_CDC_Context->stEvent);
-	xTaskCreate(USB_CDC_Task,(signed char*)"USB Serial",64,NULL, tskIDLE_PRIORITY + 1, NULL);
+	USBD_Init(&USB_OTG_dev,USB_OTG_FS_CORE_ID,&USR_desc,&USBD_CDC_cb,&USR_cb);
+	xTaskCreate(USB_CDC_Task,(signed char*)"USB Serial",256,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 
 void
@@ -420,6 +425,7 @@ static void USB_CDC_Task(void *pvParameters)
 		if(VCP_get_char(&temp_char))
 		{
 			stUSB_CDC_Context->pxMBFrameCBByteReceived( &stUSB_CDC_Context->stRTUContext,&stUSB_CDC_Context->stTimer,&stUSB_CDC_Context->stCommunication );
+			//vTaskDelay(1);
 		}
 	}
 }

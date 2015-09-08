@@ -228,13 +228,13 @@ uint8_t VCP_get_char(uint8_t *buf)
 	return 1;
 }
 
-//uint8_t usb_cdc_kbhit(void){
-//	if(APP_tx_ptr_head == APP_tx_ptr_tail){
-//		return 0; //Não há caracter novo
-//	}
-//	else{
-//		return 1; //Há caracter novo
-//	}
-//}
+uint8_t usb_cdc_kbhit(void){
+	if(APP_tx_ptr_head == APP_tx_ptr_tail){
+		return 0; //Não há caracter novo
+	}
+	else{
+		return 1; //Há caracter novo
+	}
+}
 
 /******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/

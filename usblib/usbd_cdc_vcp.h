@@ -32,6 +32,7 @@
 uint16_t VCP_DataTx   (uint8_t* Buf, uint32_t Len);
 uint16_t VCP_DataRx( uint8_t* Buf, uint32_t Len);
 uint8_t VCP_get_char(uint8_t *buf);
+uint8_t usb_cdc_kbhit(void);
 
 #endif /* __USBD_CDC_VCP_H */
 

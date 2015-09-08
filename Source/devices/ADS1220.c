@@ -36,10 +36,10 @@ uint8_t ADS1220_init(void)//
 
 	xADC_SPI_Mutex=xSemaphoreCreateMutex() ;
 
-	xTaskCreate(ADC_RTD1_Task,(signed char*)"ADS1220 rtd1 task",64,NULL, tskIDLE_PRIORITY + 1, NULL);
-	xTaskCreate(ADC_RTD2_Task,(signed char*)"ADS1220 rtd2 task",64,NULL, tskIDLE_PRIORITY + 1, NULL);
-	xTaskCreate(ADC_Current1_Task,(signed char*)"ADS1220 current1 task",64,NULL, tskIDLE_PRIORITY + 1, NULL);
-	xTaskCreate(ADC_Current2_Task,(signed char*)"ADS1220 current2 task",64,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(ADC_RTD1_Task,(signed char*)"ADS1220 rtd1 task",128,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(ADC_RTD2_Task,(signed char*)"ADS1220 rtd2 task",128,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(ADC_Current1_Task,(signed char*)"ADS1220 current1 task",128,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(ADC_Current2_Task,(signed char*)"ADS1220 current2 task",128,NULL, tskIDLE_PRIORITY + 1, NULL);
 	return 0;
 }
 
@@ -509,7 +509,7 @@ float PT100_Code_To_Temperature(int32_t adc_code)
 //	return result_temp;
 
 	float aResistance=((float)adc_code/ADC_MAX*VOLTAGE_REF)/CURRENT_SOURCE/ADC_GAIN;
-	return (-TEMP_0_RES * 3.9083E-3 + sqrt (TEMP_0_RES * TEMP_0_RES * + 3.9083E-3 * 3.9083E-3 - 4 * TEMP_0_RES * -5.775E-7 * (TEMP_0_RES - aResistance)))/(2 * TEMP_0_RES * -5.775E-7);
+	return (-TEMP_0_RES * 3.9083E-3 + sqrtf (TEMP_0_RES * TEMP_0_RES * + 3.9083E-3 * 3.9083E-3 - 4 * TEMP_0_RES * -5.775E-7 * (TEMP_0_RES - aResistance)))/(2 * TEMP_0_RES * -5.775E-7);
 }
 
 #define CUR_VOLTAGE_REF	2.500

@@ -13,50 +13,44 @@
 <part id="0"/>
 <part id="1"/>
 <part id="2"/>
-<part id="3"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="protocol.c" partName="protocol.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/freemodbus/protocol.c" title="protocol.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/freemodbus/protocol.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="protocol.c" partName="protocol.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/freemodbus/protocol.c" title="protocol.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/freemodbus/protocol.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/freemodbus/protocol.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2258" selectionTopPixel="1289"/>
+<editorState selectionHorizontalPixel="0" selectionLength="13" selectionOffset="695" selectionTopPixel="360"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="controller.c" partName="controller.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/devices/controller.c" title="controller.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/devices/controller.c" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="controller.c" partName="controller.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/devices/controller.c" title="controller.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/devices/controller.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/devices/controller.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="603" selectionTopPixel="13"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="980" selectionTopPixel="268"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/main.c" title="main.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/main.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="213" selectionTopPixel="94"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="portserial.c" partName="portserial.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/freemodbus/port/portserial.c" title="portserial.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/freemodbus/port/portserial.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/freemodbus/port/portserial.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="7945" selectionTopPixel="4368"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="mbport.c" partName="mbport.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/freemodbus/port/mbport.c" title="mbport.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/freemodbus/port/mbport.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/freemodbus/port/mbport.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1358" selectionTopPixel="210"/>
 </editor>
 </editors>
 <views>
 <view id="org.eclipse.debug.ui.ExpressionView" partName="Expressions">
 <viewState>
-<ExpressionKeySet ExpKeys="LED_BYTE_Buffer,"/>
+<ExpressionKeySet ExpKeys="ucRTUBuf,"/>
 </viewState>
 </view>
 <view id="org.eclipse.ui.views.ProgressView" partName="Progress">
 <viewState/>
 </view>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="0">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="1">
 <expanded>
 <element path="/IMS_CONTROLLER"/>
-<element path="/IMS_CONTROLLER/cmsis_boot"/>
-<element path="/IMS_CONTROLLER/cmsis_boot/startup"/>
+<element path="/IMS_CONTROLLER/cmsis"/>
 <element path="/IMS_CONTROLLER/freemodbus"/>
 <element path="/IMS_CONTROLLER/freemodbus/port"/>
 <element path="/IMS_CONTROLLER/FreeRTOS"/>
 <element path="/IMS_CONTROLLER/FreeRTOS/Source"/>
 </expanded>
 <selection>
-<element path="/IMS_CONTROLLER/freemodbus/port/portserial.c"/>
+<element path="/IMS_CONTROLLER/freemodbus/port/mbport.c"/>
 </selection>
 </viewState>
 </view>
@@ -71,6 +65,14 @@
 </view>
 <view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
+</view>
+<view id="org.coocox.coassistant.view.CoAssistantView_debug" partName="Peripherals">
+<viewState horizontalPosition="0" verticalPosition="0">
+<selection>
+<element name="USART6"/>
+</selection>
+<registerValues baseAddress="Base Address: 0x40011400" description="Description:  Universal synchronous asynchronous receiver&#x0A;      transmitter"/>
+</viewState>
 </view>
 <view id="org.eclipse.debug.ui.VariableView" partName="Variables">
 <viewState/>
@@ -186,8 +188,8 @@
 <hide_menu_item_id id="org.coocox.builder.rcp.flashMenu"/>
 <hide_menu_item_id id="org.coocox.builder.ui.debug"/>
 <hide_menu_item_id id="org.coocox.builder.ui.showHelpViewAction"/>
-<hide_menu_item_id id="org.coocox.builder.ui.newFile"/>
 <hide_menu_item_id id="org.coocox.builder.ui.showHelpViewAction1"/>
+<hide_menu_item_id id="org.coocox.builder.ui.newFile"/>
 <hide_menu_item_id id="org.coocox.builder.ui.actions.ConfigurationAction"/>
 <hide_menu_item_id id="org.coocox.builder.ui.builderDefaultLayout"/>
 <hide_menu_item_id id="org.eclipse.jdt.ui.source.menu"/>
@@ -208,8 +210,8 @@
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <hide_toolbar_item_id id="org.coocox.builder.ui.build"/>
 <hide_toolbar_item_id id="org.coocox.welcome.ui.action.welcome"/>
-<hide_toolbar_item_id id="org.coocox.component.ui.ShowRepositoryAction"/>
 <hide_toolbar_item_id id="org.coocox.codebugger.configuration.coideProgramDownloadAction"/>
+<hide_toolbar_item_id id="org.coocox.component.ui.ShowRepositoryAction"/>
 <view id="org.coocox.codebugger.trace.ui.traceview"/>
 <view id="org.eclipse.debug.ui.VariableView"/>
 <view id="org.eclipse.ui.views.ProgressView"/>
@@ -217,6 +219,7 @@
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.debug.ui.DebugView"/>
 <view id="org.coocox.builder.ui.views.ProjectView"/>
+<view id="org.coocox.coassistant.view.CoAssistantView_debug"/>
 <fastViewBars/>
 <viewLayoutRec closeable="false" id="org.eclipse.debug.ui.DebugView"/>
 <layout>
@@ -262,12 +265,14 @@
 </folder>
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@1d242c4" ratio="0.74940896" ratioLeft="951" ratioRight="318" relationship="2" relative="org.eclipse.ui.internal.ViewStack@11d77b9">
-<folder appearance="2" expanded="2">
+<folder activePageID="org.coocox.coassistant.view.CoAssistantView_debug" appearance="2" expanded="2">
+<page content="org.coocox.coassistant.view.CoAssistantView_debug" label="Peripherals"/>
 <page content="org.eclipse.cdt.dsf.debug.ui.disassembly.view" label="LabelNotFound"/>
-<page content="org.coocox.coassistant.view.CoAssistantView_debug" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.12844759" ratioLeft="163" ratioRight="1106" relationship="2" relative="org.eclipse.ui.internal.ViewStack@11d77b9"/>
@@ -278,167 +283,161 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/devices/controller.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/freemodbus/protocol.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/freemodbus/port/portserial.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/cmsis_boot/stm32f4xx.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_rcc.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_gpio.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/FreeRTOS/Source/tasks.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/freemodbus/port/porttimer.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/freemodbus/mb.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/devices/ADS1220.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/devices/controller.c"/>
+<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</editor>
+<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</editor>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/devices/controller.h"/>
+<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</editor>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/cmsis/core_cm4_simd.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/FreeRTOS/Source/FreeRTOSConfig.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/devices/rtc.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/devices/frequency.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/freemodbus/protocol.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/freemodbus/rtu/mbrtu.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/freemodbus/port/mbport.c"/>
 </editors>
-<item historyLabel="stm32f4xx_rcc.h" index="5">
-<position info="not_deleted" x="16471" y="21"/>
+<item historyLabel="Configuration" index="4"/>
+<item historyLabel="ADS1220.c" index="2">
+<position info="not_deleted" x="15928" y="0"/>
 </item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="6326" y="0"/>
+<item historyLabel="portserial.c" index="0">
+<position info="not_deleted" x="11511" y="0"/>
 </item>
-<item historyLabel="stm32f4xx_gpio.h" index="6">
-<position info="not_deleted" x="12569" y="14"/>
+<item historyLabel="ADS1220.c" index="2">
+<position info="not_deleted" x="6923" y="15"/>
 </item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="8599" y="0"/>
+<item historyLabel="portserial.c" index="0">
+<position info="not_deleted" x="12733" y="0"/>
 </item>
-<item historyLabel="startup_stm32f4xx.c" index="7">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="ADS1220.c" index="2">
+<position info="not_deleted" x="15712" y="0"/>
 </item>
-<item historyLabel="main.c" index="3">
+<item historyLabel="Configuration" index="5"/>
+<item historyLabel="controller.h" index="6">
+<position info="not_deleted" x="69" y="19"/>
+</item>
+<item historyLabel="Configuration" index="5"/>
+<item historyLabel="ADS1220.c" index="2">
+<position info="not_deleted" x="15794" y="183"/>
+</item>
+<item historyLabel="ADS1220.c" index="2">
+<position info="not_deleted" x="16065" y="0"/>
+</item>
+<item historyLabel="ADS1220.c" index="2">
+<position info="not_deleted" x="15794" y="183"/>
+</item>
+<item historyLabel="Configuration" index="5"/>
+<item historyLabel="Configuration" index="7"/>
+<item historyLabel="main.c" index="1">
 <position info="not_deleted" x="213" y="0"/>
 </item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="8599" y="0"/>
+<item historyLabel="controller.c" index="3">
+<position info="not_deleted" x="985" y="0"/>
 </item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="8086" y="0"/>
+<item historyLabel="ADS1220.c" index="2">
+<position info="not_deleted" x="731" y="12"/>
 </item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="6294" y="19"/>
+<item historyLabel="controller.c" index="3">
+<position info="not_deleted" x="980" y="0"/>
 </item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="8836" y="0"/>
-</item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="6361" y="0"/>
-</item>
-<item historyLabel="stm32f4xx.h" index="4">
-<position info="not_deleted" x="15092" y="11"/>
-</item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="8599" y="0"/>
-</item>
-<item historyLabel="tasks.c" index="8">
-<position info="not_deleted" x="93837" y="0"/>
-</item>
-<item historyLabel="tasks.c" index="8">
-<position info="not_deleted" x="93909" y="0"/>
-</item>
-<item historyLabel="tasks.c" index="8">
-<position info="not_deleted" x="93837" y="0"/>
-</item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="8599" y="0"/>
-</item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="6339" y="16"/>
-</item>
-<item historyLabel="protocol.c" index="1">
-<position info="not_deleted" x="3062" y="0"/>
-</item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="8599" y="0"/>
-</item>
-<item historyLabel="controller.c" index="0">
-<position info="not_deleted" x="663" y="0"/>
-</item>
-<item historyLabel="protocol.c" index="1">
-<position info="not_deleted" x="3066" y="0"/>
-</item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="10128" y="22"/>
-</item>
-<item historyLabel="protocol.c" index="1">
-<position info="not_deleted" x="3011" y="0"/>
-</item>
-<item historyLabel="porttimer.c" index="9">
-<position info="not_deleted" x="3290" y="21"/>
-</item>
-<item historyLabel="protocol.c" index="1">
-<position info="not_deleted" x="3157" y="0"/>
-</item>
-<item historyLabel="mb.c" index="10">
-<position/>
-</item>
-<item historyLabel="protocol.c" index="1">
-<position info="not_deleted" x="3842" y="0"/>
-</item>
-<item historyLabel="mb.c" index="10">
-<position/>
-</item>
-<item historyLabel="protocol.c" index="1">
-<position info="not_deleted" x="3842" y="0"/>
-</item>
-<item historyLabel="portserial.c" index="2">
+<item historyLabel="core_cm4_simd.h" index="8">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="protocol.c" index="1">
-<position info="not_deleted" x="3842" y="0"/>
+<item historyLabel="controller.c" index="3">
+<position info="not_deleted" x="980" y="0"/>
 </item>
-<item historyLabel="controller.c" index="0">
-<position info="not_deleted" x="603" y="0"/>
+<item historyLabel="Configuration" index="7"/>
+<item historyLabel="FreeRTOSConfig.h" index="9">
+<position info="not_deleted" x="4743" y="0"/>
 </item>
-<item historyLabel="protocol.c" index="1">
-<position info="not_deleted" x="3842" y="0"/>
-</item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="9212" y="0"/>
-</item>
-<item historyLabel="main.c" index="3">
+<item historyLabel="main.c" index="1">
 <position info="not_deleted" x="213" y="0"/>
 </item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="9159" y="0"/>
+<item historyLabel="controller.c" index="3">
+<position info="not_deleted" x="980" y="0"/>
 </item>
-<item historyLabel="controller.c" index="0">
-<position info="not_deleted" x="603" y="0"/>
+<item historyLabel="controller.c" index="3">
+<position info="not_deleted" x="816" y="0"/>
 </item>
-<item historyLabel="protocol.c" index="1">
-<position info="not_deleted" x="3843" y="0"/>
+<item historyLabel="controller.c" index="3">
+<position info="not_deleted" x="839" y="0"/>
 </item>
-<item historyLabel="mb.c" index="10">
-<position info="not_deleted" x="8835" y="9"/>
+<item historyLabel="rtc.c" index="10">
+<position info="not_deleted" x="247" y="14"/>
 </item>
-<item historyLabel="protocol.c" index="1">
-<position info="not_deleted" x="3843" y="0"/>
+<item historyLabel="controller.c" index="3">
+<position info="not_deleted" x="967" y="0"/>
 </item>
-<item historyLabel="protocol.c" index="1">
-<position info="not_deleted" x="351" y="0"/>
+<item historyLabel="frequency.c" index="11">
+<position info="not_deleted" x="10440" y="0"/>
 </item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="7383" y="1850"/>
+<item historyLabel="controller.c" index="3">
+<position info="not_deleted" x="987" y="0"/>
 </item>
-<item historyLabel="protocol.c" index="1">
-<position info="not_deleted" x="2871" y="0"/>
+<item historyLabel="ADS1220.c" index="2">
+<position info="not_deleted" x="824" y="0"/>
 </item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="6255" y="2980"/>
+<item historyLabel="controller.c" index="3">
+<position info="not_deleted" x="987" y="0"/>
 </item>
-<item historyLabel="protocol.c" index="1">
-<position info="not_deleted" x="2871" y="0"/>
+<item historyLabel="ADS1220.c" index="2">
+<position info="not_deleted" x="824" y="0"/>
 </item>
-<item historyLabel="protocol.c" index="1">
-<position info="not_deleted" x="1092" y="0"/>
+<item historyLabel="controller.c" index="3">
+<position info="not_deleted" x="980" y="0"/>
 </item>
-<item historyLabel="protocol.c" index="1">
-<position/>
+<item historyLabel="ADS1220.c" index="2">
+<position info="not_deleted" x="6310" y="0"/>
 </item>
-<item historyLabel="portserial.c" index="2">
-<position info="not_deleted" x="7945" y="0"/>
+<item historyLabel="Configuration" index="7"/>
+<item historyLabel="ADS1220.c" index="2">
+<position info="not_deleted" x="6310" y="0"/>
 </item>
-<item active="true" historyLabel="protocol.c" index="1">
-<position/>
+<item historyLabel="Configuration" index="5"/>
+<item historyLabel="ADS1220.c" index="2">
+<position info="not_deleted" x="6310" y="0"/>
+</item>
+<item historyLabel="portserial.c" index="0">
+<position info="not_deleted" x="12733" y="0"/>
+</item>
+<item historyLabel="ADS1220.c" index="2">
+<position info="not_deleted" x="988" y="0"/>
+</item>
+<item historyLabel="controller.c" index="3">
+<position info="not_deleted" x="937" y="0"/>
+</item>
+<item historyLabel="protocol.c" index="12">
+<position info="not_deleted" x="695" y="13"/>
+</item>
+<item historyLabel="controller.c" index="3">
+<position info="not_deleted" x="980" y="0"/>
+</item>
+<item historyLabel="mbrtu.h" index="13">
+<position info="not_deleted" x="2766" y="13"/>
+</item>
+<item historyLabel="controller.c" index="3">
+<position info="not_deleted" x="980" y="0"/>
+</item>
+<item historyLabel="protocol.c" index="12">
+<position info="not_deleted" x="695" y="13"/>
+</item>
+<item historyLabel="controller.c" index="3">
+<position info="not_deleted" x="980" y="0"/>
+</item>
+<item historyLabel="mbport.c" index="14">
+<position info="not_deleted" x="1358" y="0"/>
+</item>
+<item active="true" historyLabel="controller.c" index="3">
+<position info="not_deleted" x="980" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -447,47 +446,55 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mb.c" tooltip="IMS_CONTROLLER/freemodbus/mb.c">
-<persistable path="/IMS_CONTROLLER/freemodbus/mb.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mbport.c" tooltip="IMS_CONTROLLER/freemodbus/port/mbport.c">
+<persistable path="/IMS_CONTROLLER/freemodbus/port/mbport.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="portserial.c" tooltip="IMS_CONTROLLER/freemodbus/port/portserial.c">
-<persistable path="/IMS_CONTROLLER/freemodbus/port/portserial.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="frequency.c" tooltip="IMS_CONTROLLER/devices/frequency.c">
+<persistable path="/IMS_CONTROLLER/devices/frequency.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="porttimer.c" tooltip="IMS_CONTROLLER/freemodbus/port/porttimer.c">
-<persistable path="/IMS_CONTROLLER/freemodbus/port/porttimer.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="rtc.c" tooltip="IMS_CONTROLLER/devices/rtc.c">
+<persistable path="/IMS_CONTROLLER/devices/rtc.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx.h" tooltip="IMS_CONTROLLER/cmsis_boot/stm32f4xx.h">
-<persistable path="/IMS_CONTROLLER/cmsis_boot/stm32f4xx.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core_cm4_simd.h" tooltip="IMS_CONTROLLER/cmsis/core_cm4_simd.h">
+<persistable path="/IMS_CONTROLLER/cmsis/core_cm4_simd.h"/>
+</file>
+<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor" name="" tooltip="">
+<persistable>
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</persistable>
+</file>
+<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor" name="" tooltip="">
+<persistable>
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</persistable>
+</file>
+<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor" name="" tooltip="">
+<persistable>
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</persistable>
+</file>
+<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor" name="" tooltip="">
+<persistable>
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</persistable>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ADS1220.c" tooltip="IMS_CONTROLLER/devices/ADS1220.c">
+<persistable path="/IMS_CONTROLLER/devices/ADS1220.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" tooltip="IMS_CONTROLLER/cmsis_boot/startup/startup_stm32f4xx.c">
 <persistable path="/IMS_CONTROLLER/cmsis_boot/startup/startup_stm32f4xx.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_gpio.h" tooltip="IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_gpio.h">
-<persistable path="/IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_gpio.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="protocol.h" tooltip="IMS_CONTROLLER/freemodbus/protocol.h">
+<persistable path="/IMS_CONTROLLER/freemodbus/protocol.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_rcc.h" tooltip="IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_rcc.h">
-<persistable path="/IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_rcc.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mbport.h" tooltip="IMS_CONTROLLER/freemodbus/include/mbport.h">
+<persistable path="/IMS_CONTROLLER/freemodbus/include/mbport.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.c" tooltip="IMS_CONTROLLER/cmsis_boot/system_stm32f4xx.c">
-<persistable path="/IMS_CONTROLLER/cmsis_boot/system_stm32f4xx.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="portevent.c" tooltip="IMS_CONTROLLER/freemodbus/port/portevent.c">
+<persistable path="/IMS_CONTROLLER/freemodbus/port/portevent.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="controller.h" tooltip="IMS_CONTROLLER/devices/controller.h">
-<persistable path="/IMS_CONTROLLER/devices/controller.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_conf.h" tooltip="IMS_CONTROLLER/cmsis_boot/stm32f4xx_conf.h">
-<persistable path="/IMS_CONTROLLER/cmsis_boot/stm32f4xx_conf.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="IMS_CONTROLLER/main.c">
-<persistable path="/IMS_CONTROLLER/main.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_adc.h" tooltip="stm32f2_level_gage_test/cmsis_lib/include/stm32f4xx_adc.h">
-<persistable path="/stm32f2_level_gage_test/cmsis_lib/include/stm32f4xx_adc.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_adc.c" tooltip="stm32f2_level_gage_test/cmsis_lib/source/stm32f4xx_adc.c">
-<persistable path="/stm32f2_level_gage_test/cmsis_lib/source/stm32f4xx_adc.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pwm.h" tooltip="stm32f2_level_gage_test/devices/pwm.h">
-<persistable path="/stm32f2_level_gage_test/devices/pwm.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="usbd_ioreq.h" tooltip="IMS_CONTROLLER/usblib/usbd_ioreq.h">
+<persistable path="/IMS_CONTROLLER/usblib/usbd_ioreq.h"/>
 </file>
 </mruList>
 </workbench>

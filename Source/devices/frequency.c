@@ -154,8 +154,8 @@ void FrequencyMeasureInit(void)
 	vSemaphoreCreateBinary( xFrequencySemaphore[0] );
 	vSemaphoreCreateBinary( xFrequencySemaphore[1] );
 
-	xTaskCreate(FrequencyCH1Measure_Task,(signed char*)"Freq CH1",64,NULL, tskIDLE_PRIORITY + 2, NULL);
-	xTaskCreate(FrequencyCH2Measure_Task,(signed char*)"Freq CH2",64,NULL, tskIDLE_PRIORITY + 2, NULL);
+	xTaskCreate(FrequencyCH1Measure_Task,(signed char*)"Freq CH1",128,NULL, tskIDLE_PRIORITY + 2, NULL);
+	xTaskCreate(FrequencyCH2Measure_Task,(signed char*)"Freq CH2",128,NULL, tskIDLE_PRIORITY + 2, NULL);
 }
 
 portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
