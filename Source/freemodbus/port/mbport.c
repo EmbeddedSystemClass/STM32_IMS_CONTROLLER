@@ -18,7 +18,7 @@ void EXIT_CRITICAL_SECTION(void)
 //u16 *usRegHoldingBuf=usRegInputBuf;
 
 u8 REG_INPUT_START=1,REG_HOLDING_START=1;
-u8 REG_INPUT_NREGS=20,REG_HOLDING_NREGS=20;
+u8 REG_INPUT_NREGS=50,REG_HOLDING_NREGS=80;
 u8 usRegInputStart=1,usRegHoldingStart=1;
 
 
@@ -45,6 +45,15 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
     	((float*)usRegInputBuf)[11]=stMeasureData.current[7];
     	((float*)usRegInputBuf)[12]=stMeasureData.current[5];
     	((float*)usRegInputBuf)[13]=stMeasureData.current[4];
+
+    	((uint32_t*)usRegInputBuf)[14]=stMeasureData.current_raw[2];
+    	((uint32_t*)usRegInputBuf)[15]=stMeasureData.current_raw[3];
+    	((uint32_t*)usRegInputBuf)[16]=stMeasureData.current_raw[1];
+    	((uint32_t*)usRegInputBuf)[17]=stMeasureData.current_raw[0];
+    	((uint32_t*)usRegInputBuf)[18]=stMeasureData.current_raw[6];
+    	((uint32_t*)usRegInputBuf)[19]=stMeasureData.current_raw[7];
+    	((uint32_t*)usRegInputBuf)[20]=stMeasureData.current_raw[5];
+    	((uint32_t*)usRegInputBuf)[21]=stMeasureData.current_raw[4];
     }
     xSemaphoreGive( xMeasureDataMutex );
 
@@ -148,6 +157,46 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 			     usRegHoldingBuf[REG_RTC_YEAR]  				= RTC_DateStructure.RTC_Year;
 			     usRegHoldingBuf[REG_RTC_DAY_OF_WEEK]  			= RTC_DateStructure.RTC_WeekDay;
 			     *(uint32_t*)(&usRegHoldingBuf[REG_TCXO_FREQ])	= stSettings.TCXO_frequency;
+
+			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR0_CODE_PNT0])	= stSettings.CurChannelCalibrate[0].code_pnt0;
+			     *(float*)(&usRegHoldingBuf[REG_CUR0_MA_PNT0])	= stSettings.CurChannelCalibrate[0].current_ma_pnt0;
+			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR0_CODE_PNT1])	= stSettings.CurChannelCalibrate[0].code_pnt1;
+			     *(float*)(&usRegHoldingBuf[REG_CUR0_MA_PNT1])	= stSettings.CurChannelCalibrate[0].current_ma_pnt1;
+
+			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR1_CODE_PNT0])	= stSettings.CurChannelCalibrate[1].code_pnt0;
+			     *(float*)(&usRegHoldingBuf[REG_CUR1_MA_PNT0])	= stSettings.CurChannelCalibrate[1].current_ma_pnt0;
+			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR1_CODE_PNT1])	= stSettings.CurChannelCalibrate[1].code_pnt1;
+			     *(float*)(&usRegHoldingBuf[REG_CUR1_MA_PNT1])	= stSettings.CurChannelCalibrate[1].current_ma_pnt1;
+
+			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR2_CODE_PNT0])	= stSettings.CurChannelCalibrate[2].code_pnt0;
+			     *(float*)(&usRegHoldingBuf[REG_CUR2_MA_PNT0])	= stSettings.CurChannelCalibrate[2].current_ma_pnt0;
+			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR2_CODE_PNT1])	= stSettings.CurChannelCalibrate[2].code_pnt1;
+			     *(float*)(&usRegHoldingBuf[REG_CUR2_MA_PNT1])	= stSettings.CurChannelCalibrate[2].current_ma_pnt1;
+
+			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR3_CODE_PNT0])	= stSettings.CurChannelCalibrate[3].code_pnt0;
+			     *(float*)(&usRegHoldingBuf[REG_CUR3_MA_PNT0])	= stSettings.CurChannelCalibrate[3].current_ma_pnt0;
+			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR3_CODE_PNT1])	= stSettings.CurChannelCalibrate[3].code_pnt1;
+			     *(float*)(&usRegHoldingBuf[REG_CUR3_MA_PNT1])	= stSettings.CurChannelCalibrate[3].current_ma_pnt1;
+
+			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR4_CODE_PNT0])	= stSettings.CurChannelCalibrate[4].code_pnt0;
+			     *(float*)(&usRegHoldingBuf[REG_CUR4_MA_PNT0])	= stSettings.CurChannelCalibrate[4].current_ma_pnt0;
+			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR4_CODE_PNT1])	= stSettings.CurChannelCalibrate[4].code_pnt1;
+			     *(float*)(&usRegHoldingBuf[REG_CUR4_MA_PNT1])	= stSettings.CurChannelCalibrate[4].current_ma_pnt1;
+
+			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR5_CODE_PNT0])	= stSettings.CurChannelCalibrate[5].code_pnt0;
+			     *(float*)(&usRegHoldingBuf[REG_CUR5_MA_PNT0])	= stSettings.CurChannelCalibrate[5].current_ma_pnt0;
+			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR5_CODE_PNT1])	= stSettings.CurChannelCalibrate[5].code_pnt1;
+			     *(float*)(&usRegHoldingBuf[REG_CUR5_MA_PNT1])	= stSettings.CurChannelCalibrate[5].current_ma_pnt1;
+
+			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR6_CODE_PNT0])	= stSettings.CurChannelCalibrate[6].code_pnt0;
+			     *(float*)(&usRegHoldingBuf[REG_CUR6_MA_PNT0])	= stSettings.CurChannelCalibrate[6].current_ma_pnt0;
+			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR6_CODE_PNT1])	= stSettings.CurChannelCalibrate[6].code_pnt1;
+			     *(float*)(&usRegHoldingBuf[REG_CUR6_MA_PNT1])	= stSettings.CurChannelCalibrate[6].current_ma_pnt1;
+
+			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR7_CODE_PNT0])	= stSettings.CurChannelCalibrate[7].code_pnt0;
+			     *(float*)(&usRegHoldingBuf[REG_CUR7_MA_PNT0])	= stSettings.CurChannelCalibrate[7].current_ma_pnt0;
+			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR7_CODE_PNT1])	= stSettings.CurChannelCalibrate[7].code_pnt1;
+			     *(float*)(&usRegHoldingBuf[REG_CUR7_MA_PNT1])	= stSettings.CurChannelCalibrate[7].current_ma_pnt1;
 
 
 				while( usNRegs > 0 )

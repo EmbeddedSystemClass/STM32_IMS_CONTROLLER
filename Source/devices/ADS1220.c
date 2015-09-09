@@ -26,9 +26,10 @@ static void ADC_Current2_Task(void *pvParameters);
 
 static void	ADC_SPI_config(void);
 float PT100_Code_To_Temperature(int32_t adc_code);
-float Code_To_Current(uint32_t adc_code);
+float Code_To_Current(uint8_t channel_num,uint32_t adc_code);
 
 xSemaphoreHandle xADC_SPI_Mutex;
+extern stControllerSettings stSettings;
 
 uint8_t ADS1220_init(void)//
 {
@@ -379,6 +380,7 @@ static void ADC_Current1_Task(void *pvParameters)
 			Cur1_ADC_code=Cur1_ADC_code<<8;
 			Cur1_ADC_code|=ADC_SPI_read ();
 
+			stMeasureData.current_raw[channel_count]=Cur1_ADC_code;
 			stMeasureData.current[channel_count]=(float)Cur1_ADC_code;//Code_To_Current(Cur1_ADC_code);
 			ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;
 	    }
@@ -476,8 +478,9 @@ static void ADC_Current2_Task(void *pvParameters)
 			Cur2_ADC_code|=ADC_SPI_read ();
 			Cur2_ADC_code=Cur2_ADC_code<<8;
 			Cur2_ADC_code|=ADC_SPI_read ();
+			stMeasureData.current_raw[channel_count+4]=Cur2_ADC_code;
 
-			stMeasureData.current[channel_count+4]=Code_To_Current(Cur2_ADC_code);
+			//stMeasureData.current[channel_count+4]=Code_To_Current(Cur2_ADC_code);
 			ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS4;
 	    }
 	    xSemaphoreGive( xADC_SPI_Mutex );
@@ -499,15 +502,6 @@ static void ADC_Current2_Task(void *pvParameters)
 
 float PT100_Code_To_Temperature(int32_t adc_code)
 {
-//	int32_t code_temp_0, code_temp_200;
-//	float result_temp=0;
-//
-//	code_temp_0  =(int32_t)(((float)(ADC_MAX)/VOLTAGE_REF)*CURRENT_SOURCE*TEMP_0_RES*ADC_GAIN);
-//	code_temp_200=(int32_t)(((float)(ADC_MAX)/VOLTAGE_REF)*CURRENT_SOURCE*TEMP_200_RES*ADC_GAIN);
-//
-//	result_temp=(float)(((float)(adc_code-code_temp_0))*(TEMP_200-TEMP_0)/(code_temp_200-code_temp_0)+TEMP_0);
-//	return result_temp;
-
 	float aResistance=((float)adc_code/ADC_MAX*VOLTAGE_REF)/CURRENT_SOURCE/ADC_GAIN;
 	return (-TEMP_0_RES * 3.9083E-3 + sqrtf (TEMP_0_RES * TEMP_0_RES * + 3.9083E-3 * 3.9083E-3 - 4 * TEMP_0_RES * -5.775E-7 * (TEMP_0_RES - aResistance)))/(2 * TEMP_0_RES * -5.775E-7);
 }
@@ -517,9 +511,13 @@ float PT100_Code_To_Temperature(int32_t adc_code)
 #define CUR_CODE_MAX	8388607
 #define CUR_SHUNT_VAL	120
 
-float Code_To_Current(uint32_t adc_code)
+float Code_To_Current(uint8_t channel_num,uint32_t adc_code)
 {
-	float voltage=0.0;
-	voltage=(float)(adc_code-CUR_CODE_MIN)*(CUR_VOLTAGE_REF-0)/(CUR_CODE_MAX-CUR_CODE_MIN)+0;
-	return (voltage/CUR_SHUNT_VAL)*1000;
+	//float voltage=0.0;
+	//voltage=(float)(adc_code-CUR_CODE_MIN)*(CUR_VOLTAGE_REF-0)/(CUR_CODE_MAX-CUR_CODE_MIN)+0;
+	//return (voltage/CUR_SHUNT_VAL)*1000;
+
+	return (float)(adc_code-stSettings.CurChannelCalibrate[channel_num].code_pnt0)*(stSettings.CurChannelCalibrate[channel_num].current_ma_pnt1-stSettings.CurChannelCalibrate[channel_num].current_ma_pnt0)/(stSettings.CurChannelCalibrate[channel_num].code_pnt1-stSettings.CurChannelCalibrate[channel_num].code_pnt0)+stSettings.CurChannelCalibrate[channel_num].current_ma_pnt0;
 }
+
+

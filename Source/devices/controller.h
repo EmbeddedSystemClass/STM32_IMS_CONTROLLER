@@ -35,9 +35,9 @@ typedef enum
 typedef struct
 {
 	float code_pnt0;
-	float ma_pnt0;
+	float current_ma_pnt0;
 	float code_pnt1;
-	float ma_pnt1;
+	float current_ma_pnt1;
 }stCurChannelCalibrate;
 
 typedef struct
@@ -53,6 +53,7 @@ typedef struct
 	float frequency[FREQ_CHN_NUM];
 	uint64_t pulse_counter[PULSE_COUNT_CHN_NUM];
 	float rtd[RTD_CHN_NUM];
+	float current_raw[CURRENT_CHN_NUM];
 	float current[CURRENT_CHN_NUM];
 }stControllerMeasureData;
 
