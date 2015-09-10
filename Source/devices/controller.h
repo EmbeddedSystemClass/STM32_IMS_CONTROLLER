@@ -24,6 +24,12 @@ typedef enum
 #define TCXO_FREQ_MAX		20001000
 #define TCXO_FREQ_DEFAULT	20000000
 
+#define REG_CUR_CODE_MIN	0
+#define REG_CUR_CODE_MAX	0x7FFFFF
+
+#define REG_CUR_MA_MIN		 0.0
+#define REG_CUR_MA_MAX		20.0
+
 #define FREQ_CHN_NUM		2
 #define PULSE_COUNT_CHN_NUM	2
 #define RTD_CHN_NUM			2
@@ -34,9 +40,9 @@ typedef enum
 
 typedef struct
 {
-	float code_pnt0;
+	uint32_t code_pnt0;
 	float current_ma_pnt0;
-	float code_pnt1;
+	uint32_t code_pnt1;
 	float current_ma_pnt1;
 }stCurChannelCalibrate;
 

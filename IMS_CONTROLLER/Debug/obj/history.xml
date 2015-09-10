@@ -64,8 +64,8 @@
       <target file="mbascii.o" lastModified="14faba5b2ff">
          <source file="..\..\..\Source\freemodbus\ascii\mbascii.c" lastModified="14c26d2e219"/>
       </target>
-      <target file="mbport.o" lastModified="14fb1b4e590">
-         <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14fb1b4d93c"/>
+      <target file="mbport.o" lastModified="14fb6a35d27">
+         <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14fb6a35259"/>
       </target>
       <target file="portserial.o" lastModified="14fac30b3d6">
          <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14fac30ab1b"/>
@@ -100,8 +100,8 @@
       <target file="croutine.o" lastModified="14faba5a534">
          <source file="..\..\..\Source\FreeRTOS\Source\croutine.c" lastModified="14af2c4eed0"/>
       </target>
-      <target file="controller.o" lastModified="14facc7d9be">
-         <source file="..\..\..\Source\devices\controller.c" lastModified="14facc781ea"/>
+      <target file="controller.o" lastModified="14fb634da62">
+         <source file="..\..\..\Source\devices\controller.c" lastModified="14fb5cddecb"/>
       </target>
       <target file="mbrtu.o" lastModified="14faba59a47">
          <source file="..\..\..\Source\freemodbus\rtu\mbrtu.c" lastModified="14c31767da1"/>
@@ -109,11 +109,11 @@
       <target file="list.o" lastModified="14faba59ad3">
          <source file="..\..\..\Source\FreeRTOS\Source\list.c" lastModified="14af2c506ae"/>
       </target>
+      <target file="ADS1220.o" lastModified="14fb6a3fd30">
+         <source file="..\..\..\Source\devices\ADS1220.c" lastModified="14fb6a3f243"/>
+      </target>
       <target file="port.o" lastModified="14faba59f29">
          <source file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\port.c" lastModified="14af2c51989"/>
-      </target>
-      <target file="ADS1220.o" lastModified="14fb14e2b87">
-         <source file="..\..\..\Source\devices\ADS1220.c" lastModified="14fb14e20aa"/>
       </target>
       <target file="usb_dcd.o" lastModified="14faba5af27">
          <source file="..\..\..\usblib\usb_dcd.c" lastModified="13349a79f90"/>
@@ -136,10 +136,10 @@
       <target file="rtc.o" lastModified="14faba586ce">
          <source file="..\..\..\Source\devices\rtc.c" lastModified="14c73f81bdb"/>
       </target>
-      <target file="mbfuncfile.o" lastModified="14facc2923e">
+      <target file="mbfuncfile.o" lastModified="14fb634cf07">
          <source file="..\..\..\Source\freemodbus\functions\mbfuncfile.c" lastModified="14c93df4bb9"/>
       </target>
-      <target file="fram_i2c.o" lastModified="14facc2982a">
+      <target file="fram_i2c.o" lastModified="14fb634d409">
          <source file="..\..\..\Source\devices\fram_i2c.c" lastModified="14f92f694e7"/>
       </target>
       <target file="heap_2.o" lastModified="14faba5b39b">
@@ -157,19 +157,19 @@
       <target file="stm32f4xx_syscfg.o" lastModified="14faba579fd">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_syscfg.c" lastModified="14125d878f6"/>
       </target>
-      <target file="frequency.o" lastModified="14facc29c60">
+      <target file="frequency.o" lastModified="14fb634d948">
          <source file="..\..\..\Source\devices\frequency.c" lastModified="14fac360bb2"/>
       </target>
       <target file="stm32f4xx_spi.o" lastModified="14faba5a65d">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="14c313944a8"/>
       </target>
-      <target file="protocol.o" lastModified="14fac38f9c1">
-         <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14fac38ef32"/>
+      <target file="protocol.o" lastModified="14fb5cf2fa6">
+         <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14fb5cf24b9"/>
       </target>
-      <target file="main.o" lastModified="14facc2903a">
+      <target file="main.o" lastModified="14fb634cdcf">
          <source file="..\..\..\main.c" lastModified="14c6f3c6520"/>
       </target>
-      <target file="log.o" lastModified="14facc2958a">
+      <target file="log.o" lastModified="14fb634d0fb">
          <source file="..\..\..\Source\devices\log.c" lastModified="14cbcc75065"/>
       </target>
       <target file="system_stm32f4xx.o" lastModified="14faba59bdd">
