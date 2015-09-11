@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
    <processor signature="4.7.2 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -mthumb -Wall -g -nostartfiles -Map=IMS_CONTROLLER.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\IMS_CONTROLLER -TC:\CooCox\CoIDE\configuration\ProgramData\IMS_CONTROLLER/link.ld -g -LC:\Program Files\CooCox\CoIDE\gcc\Sourcery G++ Lite\arm-none-eabi\lib\armv7e-m\softfp -lc -LC:\Program Files\CooCox\CoIDE\gcc\Sourcery G++ Lite\arm-none-eabi\lib\armv7e-m\softfp -lm">
-      <target file="IMS_CONTROLLER.elf" lastModified="14fb6a4005c">
+      <target file="IMS_CONTROLLER.elf" lastModified="14fbb85de8c">
          <source file="C:\Program Files\CooCox\CoIDE\gcc\Sourcery G++ Lite\arm-none-eabi\lib\armv7e-m\softfp\libc.a" lastModified="14faba43cba"/>
          <source file="C:\Program Files\CooCox\CoIDE\gcc\Sourcery G++ Lite\arm-none-eabi\lib\armv7e-m\softfp\libm.a" lastModified="14faba464a5"/>
          <source file="..\obj\stm32f4xx_syscfg.o" lastModified="14faba579fd"/>
@@ -52,7 +52,7 @@
          <source file="..\obj\stm32f4xx_spi.o" lastModified="14faba5a65d"/>
          <source file="..\obj\mbfunccoils.o" lastModified="14faba5a737"/>
          <source file="..\obj\event_groups.o" lastModified="14faba5a802"/>
-         <source file="..\obj\ADS1220.o" lastModified="14fb6a3fd30"/>
+         <source file="..\obj\ADS1220.o" lastModified="14fbb85db31"/>
          <source file="..\obj\stm32f4xx_i2c.o" lastModified="14faba5ab3f"/>
          <source file="..\obj\frequency.o" lastModified="14fb634d948"/>
          <source file="..\obj\stm32f4xx_exti.o" lastModified="14faba5ad90"/>

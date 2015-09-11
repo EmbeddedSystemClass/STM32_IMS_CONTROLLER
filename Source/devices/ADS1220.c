@@ -513,11 +513,7 @@ float PT100_Code_To_Temperature(int32_t adc_code)
 
 float Code_To_Current(uint8_t channel_num,uint32_t adc_code)
 {
-	//float voltage=0.0;
-	//voltage=(float)(adc_code-CUR_CODE_MIN)*(CUR_VOLTAGE_REF-0)/(CUR_CODE_MAX-CUR_CODE_MIN)+0;
-	//return (voltage/CUR_SHUNT_VAL)*1000;
-
-	return (float)((int32_t)adc_code-stSettings.CurChannelCalibrate[channel_num].code_pnt0)*(stSettings.CurChannelCalibrate[channel_num].current_ma_pnt1-stSettings.CurChannelCalibrate[channel_num].current_ma_pnt0)/(stSettings.CurChannelCalibrate[channel_num].code_pnt1-stSettings.CurChannelCalibrate[channel_num].code_pnt0)+stSettings.CurChannelCalibrate[channel_num].current_ma_pnt0;
+	return (((float)adc_code-stSettings.CurChannelCalibrate[channel_num].code_pnt0)*(stSettings.CurChannelCalibrate[channel_num].current_ma_pnt1-stSettings.CurChannelCalibrate[channel_num].current_ma_pnt0)/((float)stSettings.CurChannelCalibrate[channel_num].code_pnt1-stSettings.CurChannelCalibrate[channel_num].code_pnt0)+stSettings.CurChannelCalibrate[channel_num].current_ma_pnt0);
 }
 
 

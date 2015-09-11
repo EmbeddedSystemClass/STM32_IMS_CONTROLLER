@@ -109,8 +109,8 @@
       <target file="list.o" lastModified="14faba59ad3">
          <source file="..\..\..\Source\FreeRTOS\Source\list.c" lastModified="14af2c506ae"/>
       </target>
-      <target file="ADS1220.o" lastModified="14fb6a3fd30">
-         <source file="..\..\..\Source\devices\ADS1220.c" lastModified="14fb6a3f243"/>
+      <target file="ADS1220.o" lastModified="14fbb85db31">
+         <source file="..\..\..\Source\devices\ADS1220.c" lastModified="14fbb85bbd1"/>
       </target>
       <target file="port.o" lastModified="14faba59f29">
          <source file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\port.c" lastModified="14af2c51989"/>
