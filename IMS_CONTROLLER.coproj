@@ -7,14 +7,13 @@
         <Option name="OptimizationLevel" value="0"/>
         <Option name="UseFPU" value="0"/>
         <Option name="UserEditCompiler" value=""/>
-        <Option name="FPU" value="1"/>
+        <Option name="FPU" value="0"/>
         <Includepaths>
           <Includepath path="."/>
         </Includepaths>
         <DefinedSymbols>
           <Define name="USE_STDPERIPH_DRIVER"/>
           <Define name="__ASSEMBLY__"/>
-          <Define name="__FPU_USED"/>
           <Define name="STM32F407VG"/>
           <Define name="STM32F4XX"/>
         </DefinedSymbols>
@@ -27,8 +26,8 @@
         <Option name="IsNewStartupCode" value="1"/>
         <Option name="Library" value="Not use C Library"/>
         <LinkedLibraries>
-          <Libset dir="c:\program files\coocox\coide\gcc\sourcery g++ lite\arm-none-eabi\lib\armv7e-m\softfp\" libs="c"/>
-          <Libset dir="c:\program files\coocox\coide\gcc\sourcery g++ lite\arm-none-eabi\lib\armv7e-m\softfp\" libs="m"/>
+          <Libset dir="c:\program files\coocox\coide\gcc\sourcery g++ lite\arm-none-eabi\lib\thumb2\" libs="m"/>
+          <Libset dir="c:\program files\coocox\coide\gcc\sourcery g++ lite\arm-none-eabi\lib\thumb2\" libs="c"/>
         </LinkedLibraries>
         <MemoryAreas debugInFlashNotRAM="1">
           <Memory name="IROM1" type="ReadOnly" size="0x00100000" startValue="0x08000000"/>

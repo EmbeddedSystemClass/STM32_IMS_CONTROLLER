@@ -50,5 +50,29 @@ uint8_t Controller_RestoreSettings(void)
 		stSettings.TCXO_frequency=TCXO_FREQ_DEFAULT;
 	}
 
+	uint8_t i=0;
+	for(i=0;i<CURRENT_CHN_NUM;i++)
+	{
+		if((stSettings.CurChannelCalibrate[i].code_pnt0<REG_CUR_CODE_MIN) || (stSettings.CurChannelCalibrate[i].code_pnt0>REG_CUR_CODE_MAX))
+		{
+			stSettings.CurChannelCalibrate[i].code_pnt0=REG_CUR_CODE_DEFAULT;
+		}
+
+		if((stSettings.CurChannelCalibrate[i].code_pnt1<REG_CUR_CODE_MIN) || (stSettings.CurChannelCalibrate[i].code_pnt1>REG_CUR_CODE_MAX))
+		{
+			stSettings.CurChannelCalibrate[i].code_pnt1=REG_CUR_CODE_DEFAULT;
+		}
+
+		if((stSettings.CurChannelCalibrate[i].current_ma_pnt0<REG_CUR_MA_MIN) || (stSettings.CurChannelCalibrate[i].current_ma_pnt0>REG_CUR_MA_MAX))
+		{
+			stSettings.CurChannelCalibrate[i].current_ma_pnt0=REG_CUR_MA_DEFAULT;
+		}
+
+		if((stSettings.CurChannelCalibrate[i].current_ma_pnt1<REG_CUR_MA_MIN) || (stSettings.CurChannelCalibrate[i].current_ma_pnt1>REG_CUR_MA_MAX))
+		{
+			stSettings.CurChannelCalibrate[i].current_ma_pnt1=REG_CUR_MA_DEFAULT;
+		}
+	}
+
 	return 0;
 }

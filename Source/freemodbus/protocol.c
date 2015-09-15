@@ -62,7 +62,6 @@ static void Modbus_RS485_Task(void *pvParameters)
     for( ;; )
     {
         eMBPoll(&stContext_RS485);
-
         vTaskDelay(10);
         Watchdog_IncrementCouter(RS485_TASK);
     }
