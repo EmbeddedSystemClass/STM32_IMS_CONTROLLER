@@ -36,13 +36,19 @@ c:/stm32/arm_eabi/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2\libgcc.a(_arm_fixuns
 Allocating common symbols
 Common symbol       size              file
 
+SDIO_CmdInitStructure
+                    0x14              ..\obj\sdio_sd.o
 APP_Tx_Buffer       0x80              ..\obj\usbd_cdc_vcp.o
 log_buf             0x80              ..\obj\log.o
 stContext_RS232     0x174             ..\obj\protocol.o
 stContext_RS485     0x174             ..\obj\protocol.o
 stSettings          0x84              ..\obj\controller.o
+SDCardInfo          0x58              ..\obj\sdio_sd.o
+SDIO_InitStructure  0x18              ..\obj\sdio_sd.o
 usbd_cdc_OtherCfgDesc
                     0x43              ..\obj\usbd_cdc_core.o
+SDIO_DataInitStructure
+                    0x18              ..\obj\sdio_sd.o
 APP_tx_ptr_tail     0x4               ..\obj\usbd_cdc_vcp.o
 USB_Rx_Buffer       0x40              ..\obj\usbd_cdc_core.o
 xMeasureDataMutex   0x4               ..\obj\controller.o
@@ -55,6 +61,7 @@ xFrequencySemaphore
                     0x8               ..\obj\frequency.o
 xADC_SPI_Mutex      0x4               ..\obj\ADS1220.o
 APP_Rx_Buffer       0x800             ..\obj\usbd_cdc_core.o
+NVIC_InitStructure  0x4               ..\obj\low_level_sdio.o
 stMeasureData       0x60              ..\obj\controller.o
 xSettingsMutex      0x4               ..\obj\controller.o
 task_watches        0x50              ..\obj\watchdog.o
@@ -105,8 +112,107 @@ Discarded input sections
                 0x00000000       0xc0 ..\obj\usb_core.o
  .text.USB_OTG_SetEPStatus
                 0x00000000      0x13c ..\obj\usb_core.o
+ .text          0x00000000        0x0 ..\obj\low_level_sdio.o
+ .data          0x00000000        0x0 ..\obj\low_level_sdio.o
+ .bss           0x00000000        0x0 ..\obj\low_level_sdio.o
+ .text.SD_LowLevel_DeInit
+                0x00000000       0xc8 ..\obj\low_level_sdio.o
+ .text.SD_LowLevel_Init
+                0x00000000       0xf8 ..\obj\low_level_sdio.o
+ .text.SD_LowLevel_DMA_TxConfig
+                0x00000000       0xb8 ..\obj\low_level_sdio.o
+ .text.SD_LowLevel_DMA_RxConfig
+                0x00000000       0xb8 ..\obj\low_level_sdio.o
+ .debug_info    0x00000000      0x532 ..\obj\low_level_sdio.o
+ .debug_abbrev  0x00000000      0x12a ..\obj\low_level_sdio.o
+ .debug_loc     0x00000000       0xe4 ..\obj\low_level_sdio.o
+ .debug_aranges
+                0x00000000       0x38 ..\obj\low_level_sdio.o
+ .debug_ranges  0x00000000       0x28 ..\obj\low_level_sdio.o
+ .debug_line    0x00000000      0x285 ..\obj\low_level_sdio.o
+ .debug_str     0x00000000      0x505 ..\obj\low_level_sdio.o
+ .comment       0x00000000       0x31 ..\obj\low_level_sdio.o
+ .ARM.attributes
+                0x00000000       0x33 ..\obj\low_level_sdio.o
+ .debug_frame   0x00000000       0x90 ..\obj\low_level_sdio.o
+ COMMON         0x00000000        0x4 ..\obj\low_level_sdio.o
  .text          0x00000000        0x0 ..\obj\mbport.o
  .bss           0x00000000        0x0 ..\obj\mbport.o
+ .text          0x00000000        0x0 ..\obj\stm32f4xx_sdio.o
+ .data          0x00000000        0x0 ..\obj\stm32f4xx_sdio.o
+ .bss           0x00000000        0x0 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_DeInit
+                0x00000000       0x20 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_Init
+                0x00000000       0x60 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_StructInit
+                0x00000000       0x44 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_ClockCmd
+                0x00000000       0x20 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_SetPowerState
+                0x00000000       0x1c ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_GetPowerState
+                0x00000000       0x18 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_SendCommand
+                0x00000000       0x58 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_CmdStructInit
+                0x00000000       0x3c ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_GetCommandResponse
+                0x00000000       0x18 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_GetResponse
+                0x00000000       0x2c ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_DataConfig
+                0x00000000       0x5c ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_DataStructInit
+                0x00000000       0x44 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_GetDataCounter
+                0x00000000       0x14 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_ReadData
+                0x00000000       0x18 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_WriteData
+                0x00000000       0x20 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_GetFIFOCount
+                0x00000000       0x14 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_StartSDIOReadWait
+                0x00000000       0x20 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_StopSDIOReadWait
+                0x00000000       0x20 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_SetSDIOReadWaitMode
+                0x00000000       0x1c ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_SetSDIOOperation
+                0x00000000       0x20 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_SendSDIOSuspendCmd
+                0x00000000       0x20 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_CommandCompletionCmd
+                0x00000000       0x20 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_CEATAITCmd
+                0x00000000       0x2c ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_SendCEATACmd
+                0x00000000       0x20 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_DMACmd
+                0x00000000       0x20 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_ITConfig
+                0x00000000       0x40 ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_GetFlagStatus
+                0x00000000       0x3c ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_ClearFlag
+                0x00000000       0x1c ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_GetITStatus
+                0x00000000       0x3c ..\obj\stm32f4xx_sdio.o
+ .text.SDIO_ClearITPendingBit
+                0x00000000       0x1c ..\obj\stm32f4xx_sdio.o
+ .debug_info    0x00000000      0x8bb ..\obj\stm32f4xx_sdio.o
+ .debug_abbrev  0x00000000      0x179 ..\obj\stm32f4xx_sdio.o
+ .debug_loc     0x00000000      0x648 ..\obj\stm32f4xx_sdio.o
+ .debug_aranges
+                0x00000000      0x108 ..\obj\stm32f4xx_sdio.o
+ .debug_ranges  0x00000000       0xf8 ..\obj\stm32f4xx_sdio.o
+ .debug_line    0x00000000      0x428 ..\obj\stm32f4xx_sdio.o
+ .debug_str     0x00000000      0x5bf ..\obj\stm32f4xx_sdio.o
+ .comment       0x00000000       0x31 ..\obj\stm32f4xx_sdio.o
+ .ARM.attributes
+                0x00000000       0x33 ..\obj\stm32f4xx_sdio.o
+ .debug_frame   0x00000000      0x344 ..\obj\stm32f4xx_sdio.o
  .text          0x00000000        0x0 ..\obj\mb.o
  .bss           0x00000000        0x0 ..\obj\mb.o
  .text.eMBRegisterCB
@@ -200,6 +306,90 @@ Discarded input sections
                 0x00000000       0x3c ..\obj\stm32f4xx_pwr.o
  .text.PWR_ClearFlag
                 0x00000000       0x28 ..\obj\stm32f4xx_pwr.o
+ .text          0x00000000        0x0 ..\obj\sdio_sd.o
+ .data          0x00000000        0x0 ..\obj\sdio_sd.o
+ .bss           0x00000000       0x48 ..\obj\sdio_sd.o
+ .text.SD_DeInit
+                0x00000000        0xc ..\obj\sdio_sd.o
+ .text.SD_Init  0x00000000       0xc8 ..\obj\sdio_sd.o
+ .text.SD_GetStatus
+                0x00000000       0x3c ..\obj\sdio_sd.o
+ .text.SD_GetState
+                0x00000000       0x4c ..\obj\sdio_sd.o
+ .text.SD_Detect
+                0x00000000       0x1c ..\obj\sdio_sd.o
+ .text.SD_PowerON
+                0x00000000      0x288 ..\obj\sdio_sd.o
+ .text.SD_PowerOFF
+                0x00000000       0x20 ..\obj\sdio_sd.o
+ .text.SD_InitializeCards
+                0x00000000      0x1c4 ..\obj\sdio_sd.o
+ .text.SD_GetCardInfo
+                0x00000000      0x654 ..\obj\sdio_sd.o
+ .text.SD_GetCardStatus
+                0x00000000      0x14c ..\obj\sdio_sd.o
+ .text.SD_EnableWideBusOperation
+                0x00000000       0xf8 ..\obj\sdio_sd.o
+ .text.SD_SelectDeselect
+                0x00000000       0x58 ..\obj\sdio_sd.o
+ .text.SD_ReadBlock
+                0x00000000      0x148 ..\obj\sdio_sd.o
+ .text.SD_ReadMultiBlocks
+                0x00000000      0x158 ..\obj\sdio_sd.o
+ .text.SD_WaitReadOperation
+                0x00000000       0xc4 ..\obj\sdio_sd.o
+ .text.SD_WriteBlock
+                0x00000000      0x148 ..\obj\sdio_sd.o
+ .text.SD_WriteMultiBlocks
+                0x00000000      0x1e4 ..\obj\sdio_sd.o
+ .text.SD_WaitWriteOperation
+                0x00000000       0xc4 ..\obj\sdio_sd.o
+ .text.SD_GetTransferState
+                0x00000000       0x28 ..\obj\sdio_sd.o
+ .text.SD_StopTransfer
+                0x00000000       0x58 ..\obj\sdio_sd.o
+ .text.SD_Erase
+                0x00000000      0x1e0 ..\obj\sdio_sd.o
+ .text.SD_SendStatus
+                0x00000000       0x88 ..\obj\sdio_sd.o
+ .text.SD_SendSDStatus
+                0x00000000      0x260 ..\obj\sdio_sd.o
+ .text.SD_ProcessIRQSrc
+                0x00000000       0xe8 ..\obj\sdio_sd.o
+ .text.SD_ProcessDMAIRQ
+                0x00000000       0x30 ..\obj\sdio_sd.o
+ .text.CmdError
+                0x00000000       0x54 ..\obj\sdio_sd.o
+ .text.CmdResp7Error
+                0x00000000       0x88 ..\obj\sdio_sd.o
+ .text.CmdResp1Error
+                0x00000000      0x1d8 ..\obj\sdio_sd.o
+ .text.CmdResp3Error
+                0x00000000       0x58 ..\obj\sdio_sd.o
+ .text.CmdResp2Error
+                0x00000000       0x74 ..\obj\sdio_sd.o
+ .text.CmdResp6Error
+                0x00000000       0xe4 ..\obj\sdio_sd.o
+ .text.SDEnWideBus
+                0x00000000      0x1b8 ..\obj\sdio_sd.o
+ .text.IsCardProgramming
+                0x00000000      0x230 ..\obj\sdio_sd.o
+ .text.FindSCR  0x00000000      0x264 ..\obj\sdio_sd.o
+ .text.convert_from_bytes_to_power_of_two
+                0x00000000       0x38 ..\obj\sdio_sd.o
+ .debug_info    0x00000000     0x1432 ..\obj\sdio_sd.o
+ .debug_abbrev  0x00000000      0x1eb ..\obj\sdio_sd.o
+ .debug_loc     0x00000000      0x778 ..\obj\sdio_sd.o
+ .debug_aranges
+                0x00000000      0x130 ..\obj\sdio_sd.o
+ .debug_ranges  0x00000000      0x120 ..\obj\sdio_sd.o
+ .debug_line    0x00000000      0x93a ..\obj\sdio_sd.o
+ .debug_str     0x00000000      0xe4b ..\obj\sdio_sd.o
+ .comment       0x00000000       0x31 ..\obj\sdio_sd.o
+ .ARM.attributes
+                0x00000000       0x33 ..\obj\sdio_sd.o
+ .debug_frame   0x00000000      0x454 ..\obj\sdio_sd.o
+ COMMON         0x00000000       0xa0 ..\obj\sdio_sd.o
  .text          0x00000000        0x0 ..\obj\rtc.o
  .data          0x00000000        0x0 ..\obj\rtc.o
  .bss           0x00000000        0x0 ..\obj\rtc.o
@@ -210,6 +400,33 @@ Discarded input sections
                 0x00000000       0xd4 ..\obj\mbutils.o
  .text.xMBUtilGetBits
                 0x00000000       0x80 ..\obj\mbutils.o
+ .text          0x00000000        0x0 ..\obj\diskio.o
+ .data          0x00000000        0x0 ..\obj\diskio.o
+ .bss           0x00000000        0x0 ..\obj\diskio.o
+ .text.disk_initialize
+                0x00000000       0x5c ..\obj\diskio.o
+ .text.disk_status
+                0x00000000       0x28 ..\obj\diskio.o
+ .text.disk_read
+                0x00000000       0x5c ..\obj\diskio.o
+ .text.disk_write
+                0x00000000       0x5c ..\obj\diskio.o
+ .text.get_fattime
+                0x00000000       0x14 ..\obj\diskio.o
+ .text.disk_ioctl
+                0x00000000       0x60 ..\obj\diskio.o
+ .debug_info    0x00000000      0x6a3 ..\obj\diskio.o
+ .debug_abbrev  0x00000000      0x14d ..\obj\diskio.o
+ .debug_loc     0x00000000      0x144 ..\obj\diskio.o
+ .debug_aranges
+                0x00000000       0x48 ..\obj\diskio.o
+ .debug_ranges  0x00000000       0x38 ..\obj\diskio.o
+ .debug_line    0x00000000      0x303 ..\obj\diskio.o
+ .debug_str     0x00000000      0xab4 ..\obj\diskio.o
+ .comment       0x00000000       0x31 ..\obj\diskio.o
+ .ARM.attributes
+                0x00000000       0x33 ..\obj\diskio.o
+ .debug_frame   0x00000000       0xc0 ..\obj\diskio.o
  .text          0x00000000        0x0 ..\obj\startup_stm32f4xx.o
  .data          0x00000000        0x0 ..\obj\startup_stm32f4xx.o
  .bss           0x00000000        0x0 ..\obj\startup_stm32f4xx.o
@@ -506,6 +723,58 @@ Discarded input sections
  .ARM.attributes
                 0x00000000       0x33 ..\obj\syscalls.o
  .debug_frame   0x00000000      0x108 ..\obj\syscalls.o
+ .text          0x00000000        0x0 ..\obj\stm32f4xx_dma.o
+ .data          0x00000000        0x0 ..\obj\stm32f4xx_dma.o
+ .bss           0x00000000        0x0 ..\obj\stm32f4xx_dma.o
+ .text.DMA_DeInit
+                0x00000000      0x1b4 ..\obj\stm32f4xx_dma.o
+ .text.DMA_Init
+                0x00000000       0xb0 ..\obj\stm32f4xx_dma.o
+ .text.DMA_StructInit
+                0x00000000       0x8c ..\obj\stm32f4xx_dma.o
+ .text.DMA_Cmd  0x00000000       0x38 ..\obj\stm32f4xx_dma.o
+ .text.DMA_PeriphIncOffsetSizeConfig
+                0x00000000       0x34 ..\obj\stm32f4xx_dma.o
+ .text.DMA_FlowControllerConfig
+                0x00000000       0x34 ..\obj\stm32f4xx_dma.o
+ .text.DMA_SetCurrDataCounter
+                0x00000000       0x1c ..\obj\stm32f4xx_dma.o
+ .text.DMA_GetCurrDataCounter
+                0x00000000       0x1c ..\obj\stm32f4xx_dma.o
+ .text.DMA_DoubleBufferModeConfig
+                0x00000000       0x3c ..\obj\stm32f4xx_dma.o
+ .text.DMA_DoubleBufferModeCmd
+                0x00000000       0x38 ..\obj\stm32f4xx_dma.o
+ .text.DMA_MemoryTargetConfig
+                0x00000000       0x2c ..\obj\stm32f4xx_dma.o
+ .text.DMA_GetCurrentMemoryTarget
+                0x00000000       0x38 ..\obj\stm32f4xx_dma.o
+ .text.DMA_GetCmdStatus
+                0x00000000       0x38 ..\obj\stm32f4xx_dma.o
+ .text.DMA_GetFIFOStatus
+                0x00000000       0x28 ..\obj\stm32f4xx_dma.o
+ .text.DMA_GetFlagStatus
+                0x00000000       0x80 ..\obj\stm32f4xx_dma.o
+ .text.DMA_ClearFlag
+                0x00000000       0x5c ..\obj\stm32f4xx_dma.o
+ .text.DMA_ITConfig
+                0x00000000       0x74 ..\obj\stm32f4xx_dma.o
+ .text.DMA_GetITStatus
+                0x00000000       0xbc ..\obj\stm32f4xx_dma.o
+ .text.DMA_ClearITPendingBit
+                0x00000000       0x5c ..\obj\stm32f4xx_dma.o
+ .debug_info    0x00000000      0x7af ..\obj\stm32f4xx_dma.o
+ .debug_abbrev  0x00000000      0x157 ..\obj\stm32f4xx_dma.o
+ .debug_loc     0x00000000      0x428 ..\obj\stm32f4xx_dma.o
+ .debug_aranges
+                0x00000000       0xb0 ..\obj\stm32f4xx_dma.o
+ .debug_ranges  0x00000000       0xa0 ..\obj\stm32f4xx_dma.o
+ .debug_line    0x00000000      0x3c0 ..\obj\stm32f4xx_dma.o
+ .debug_str     0x00000000      0x4c0 ..\obj\stm32f4xx_dma.o
+ .comment       0x00000000       0x31 ..\obj\stm32f4xx_dma.o
+ .ARM.attributes
+                0x00000000       0x33 ..\obj\stm32f4xx_dma.o
+ .debug_frame   0x00000000      0x224 ..\obj\stm32f4xx_dma.o
  .text          0x00000000        0x0 ..\obj\usb_bsp.o
  .data          0x00000000        0x0 ..\obj\usb_bsp.o
  .bss           0x00000000        0x0 ..\obj\usb_bsp.o
@@ -543,6 +812,83 @@ Discarded input sections
  .text          0x00000000        0x0 ..\obj\usbd_cdc_core.o
  .text.GetCDC_DataInPacketSize
                 0x00000000       0x14 ..\obj\usbd_cdc_core.o
+ .text          0x00000000        0x0 ..\obj\ff.o
+ .data          0x00000000        0x0 ..\obj\ff.o
+ .bss           0x00000000        0x8 ..\obj\ff.o
+ .text.mem_cpy  0x00000000       0x50 ..\obj\ff.o
+ .text.mem_set  0x00000000       0x44 ..\obj\ff.o
+ .text.mem_cmp  0x00000000       0x70 ..\obj\ff.o
+ .text.chk_chr  0x00000000       0x38 ..\obj\ff.o
+ .text.move_window
+                0x00000000       0xd4 ..\obj\ff.o
+ .text.sync     0x00000000      0x180 ..\obj\ff.o
+ .text.clust2sect
+                0x00000000       0x44 ..\obj\ff.o
+ .text.get_fat  0x00000000      0x19c ..\obj\ff.o
+ .text.put_fat  0x00000000      0x254 ..\obj\ff.o
+ .text.remove_chain
+                0x00000000       0xb0 ..\obj\ff.o
+ .text.create_chain
+                0x00000000      0x12c ..\obj\ff.o
+ .text.dir_sdi  0x00000000      0x118 ..\obj\ff.o
+ .text.dir_next
+                0x00000000      0x1dc ..\obj\ff.o
+ .text.dir_find
+                0x00000000       0xa4 ..\obj\ff.o
+ .text.dir_read
+                0x00000000       0xa4 ..\obj\ff.o
+ .text.dir_register
+                0x00000000       0xbc ..\obj\ff.o
+ .text.dir_remove
+                0x00000000       0x58 ..\obj\ff.o
+ .rodata        0x00000000       0x10 ..\obj\ff.o
+ .text.create_name
+                0x00000000      0x25c ..\obj\ff.o
+ .text.get_fileinfo
+                0x00000000      0x150 ..\obj\ff.o
+ .text.follow_path
+                0x00000000      0x114 ..\obj\ff.o
+ .text.check_fs
+                0x00000000       0xdc ..\obj\ff.o
+ .text.chk_mounted
+                0x00000000      0x5b8 ..\obj\ff.o
+ .text.validate
+                0x00000000       0x54 ..\obj\ff.o
+ .text.f_mount  0x00000000       0x5c ..\obj\ff.o
+ .text.f_open   0x00000000      0x350 ..\obj\ff.o
+ .text.f_read   0x00000000      0x2f8 ..\obj\ff.o
+ .text.f_write  0x00000000      0x354 ..\obj\ff.o
+ .text.f_sync   0x00000000      0x1c0 ..\obj\ff.o
+ .text.f_close  0x00000000       0x2c ..\obj\ff.o
+ .text.f_lseek  0x00000000      0x2e4 ..\obj\ff.o
+ .text.f_opendir
+                0x00000000       0xe4 ..\obj\ff.o
+ .text.f_readdir
+                0x00000000       0x9c ..\obj\ff.o
+ .text.f_stat   0x00000000       0x78 ..\obj\ff.o
+ .text.f_getfree
+                0x00000000      0x1d8 ..\obj\ff.o
+ .text.f_truncate
+                0x00000000      0x128 ..\obj\ff.o
+ .text.f_unlink
+                0x00000000      0x1a4 ..\obj\ff.o
+ .text.f_mkdir  0x00000000      0x364 ..\obj\ff.o
+ .text.f_chmod  0x00000000       0xbc ..\obj\ff.o
+ .text.f_utime  0x00000000       0xcc ..\obj\ff.o
+ .text.f_rename
+                0x00000000      0x254 ..\obj\ff.o
+ .debug_info    0x00000000     0x1700 ..\obj\ff.o
+ .debug_abbrev  0x00000000      0x1bb ..\obj\ff.o
+ .debug_loc     0x00000000      0x8d0 ..\obj\ff.o
+ .debug_aranges
+                0x00000000      0x158 ..\obj\ff.o
+ .debug_ranges  0x00000000      0x148 ..\obj\ff.o
+ .debug_line    0x00000000      0xc0b ..\obj\ff.o
+ .debug_str     0x00000000      0x547 ..\obj\ff.o
+ .comment       0x00000000       0x31 ..\obj\ff.o
+ .ARM.attributes
+                0x00000000       0x33 ..\obj\ff.o
+ .debug_frame   0x00000000      0x4f4 ..\obj\ff.o
  .text          0x00000000        0x0 ..\obj\croutine.o
  .data          0x00000000        0x0 ..\obj\croutine.o
  .bss           0x00000000       0x80 ..\obj\croutine.o
@@ -2401,7 +2747,9 @@ Linker script and memory map
 LOAD C:\Program Files\CooCox\CoIDE\gcc\Sourcery G++ Lite\arm-none-eabi\lib\thumb2\libc.a
 LOAD ..\obj\stm32f4xx_syscfg.o
 LOAD ..\obj\usb_core.o
+LOAD ..\obj\low_level_sdio.o
 LOAD ..\obj\mbport.o
+LOAD ..\obj\stm32f4xx_sdio.o
 LOAD ..\obj\mb.o
 LOAD ..\obj\protocol.o
 LOAD ..\obj\mbfuncdisc.o
@@ -2410,8 +2758,10 @@ LOAD ..\obj\portevent.o
 LOAD ..\obj\mbfuncother.o
 LOAD ..\obj\stm32f4xx_usart.o
 LOAD ..\obj\stm32f4xx_pwr.o
+LOAD ..\obj\sdio_sd.o
 LOAD ..\obj\rtc.o
 LOAD ..\obj\mbutils.o
+LOAD ..\obj\diskio.o
 LOAD ..\obj\startup_stm32f4xx.o
 LOAD ..\obj\stm32f4xx_iwdg.o
 LOAD ..\obj\mbfuncholding.o
@@ -2436,6 +2786,7 @@ LOAD ..\obj\mbrtu.o
 LOAD ..\obj\list.o
 LOAD ..\obj\system_stm32f4xx.o
 LOAD ..\obj\syscalls.o
+LOAD ..\obj\stm32f4xx_dma.o
 LOAD ..\obj\usb_bsp.o
 LOAD ..\obj\usbd_req.o
 LOAD ..\obj\port.o
@@ -2443,6 +2794,7 @@ LOAD ..\obj\queue.o
 LOAD ..\obj\usb_dcd_int.o
 LOAD ..\obj\portserial.o
 LOAD ..\obj\usbd_cdc_core.o
+LOAD ..\obj\ff.o
 LOAD ..\obj\croutine.o
 LOAD ..\obj\stm32f4xx_spi.o
 LOAD ..\obj\mbfunccoils.o
