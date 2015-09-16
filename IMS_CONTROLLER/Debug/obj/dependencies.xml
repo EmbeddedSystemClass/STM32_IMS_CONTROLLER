@@ -450,13 +450,6 @@
          <include file="..\..\..\usblib\usbd_desc.h"/>
          <include file="..\..\..\usblib\usb_dcd_int.h"/>
       </source>
-      <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14fd0c5715f">
-         <include file="..\..\..\Source\freemodbus\include\mb.h"/>
-         <include file="..\..\..\Source\devices\fram_i2c.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h"/>
-         <include file="..\..\..\Source\devices\controller.h"/>
-         <include file="..\..\..\Source\devices\log.h"/>
-      </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\list.h" lastModified="14af2c4f9bf">
       </source>
       <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="13cedd0ed70">
@@ -997,13 +990,6 @@
          <include file="..\..\..\usblib\usbd_usr.h"/>
          <include file="..\..\..\usblib\usbd_desc.h"/>
          <include file="..\..\..\usblib\usb_dcd_int.h"/>
-      </source>
-      <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14fd0c5715f">
-         <include file="..\..\..\Source\freemodbus\include\mb.h"/>
-         <include file="..\..\..\Source\devices\fram_i2c.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h"/>
-         <include file="..\..\..\Source\devices\controller.h"/>
-         <include file="..\..\..\Source\devices\log.h"/>
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\list.h" lastModified="14af2c4f9bf">
       </source>

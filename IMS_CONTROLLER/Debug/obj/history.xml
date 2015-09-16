@@ -67,8 +67,8 @@
       <target file="mbascii.o" lastModified="14fd4f8b437">
          <source file="..\..\..\Source\freemodbus\ascii\mbascii.c" lastModified="14c26d2e219"/>
       </target>
-      <target file="mbport.o" lastModified="14fd4f85241">
-         <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14fd0c5715f"/>
+      <target file="mbport.o" lastModified="14fd60373c1">
+         <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14fd60343f6"/>
       </target>
       <target file="portserial.o" lastModified="14fd4f89d25">
          <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14fac30ab1b"/>
