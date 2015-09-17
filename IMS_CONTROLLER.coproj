@@ -103,14 +103,14 @@
     <File name="cmsis_lib/source/stm32f4xx_spi.c" path="cmsis_lib/source/stm32f4xx_spi.c" type="1"/>
     <File name="cmsis/core_cmFunc.h" path="cmsis/core_cmFunc.h" type="1"/>
     <File name="freemodbus/functions/mbfuncdiag.c" path="Source/freemodbus/functions/mbfuncdiag.c" type="1"/>
-    <File name="freemodbus/include/mbconfig.h" path="Source/freemodbus/include/mbconfig.h" type="1"/>
     <File name="freemodbus/rtu/mbcrc.h" path="Source/freemodbus/rtu/mbcrc.h" type="1"/>
+    <File name="freemodbus/include/mbconfig.h" path="Source/freemodbus/include/mbconfig.h" type="1"/>
     <File name="usblib/usbd_desc.h" path="usblib/usbd_desc.h" type="1"/>
     <File name="freemodbus/include/mbfunc.h" path="Source/freemodbus/include/mbfunc.h" type="1"/>
     <File name="FatFS/inc/integer.h" path="FatFS/inc/integer.h" type="1"/>
     <File name="FreeRTOS/Source/portable/MemMang/heap_2.c" path="Source/FreeRTOS/Source/portable/MemMang/heap_2.c" type="1"/>
-    <File name="devices/log.h" path="Source/devices/log.h" type="1"/>
     <File name="devices" path="" type="2"/>
+    <File name="devices/log.h" path="Source/devices/log.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_iwdg.c" path="cmsis_lib/source/stm32f4xx_iwdg.c" type="1"/>
     <File name="devices/watchdog.h" path="Source/devices/watchdog.h" type="1"/>
     <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
@@ -125,29 +125,29 @@
     <File name="usblib/usbd_ioreq.c" path="usblib/usbd_ioreq.c" type="1"/>
     <File name="freemodbus/protocol.h" path="Source/freemodbus/protocol.h" type="1"/>
     <File name="usblib/usb_bsp.h" path="usblib/usb_bsp.h" type="1"/>
-    <File name="freemodbus/rtu/mbcrc.c" path="Source/freemodbus/rtu/mbcrc.c" type="1"/>
-    <File name="FatFS/inc" path="" type="2"/>
     <File name="usblib/usbd_cdc_core.h" path="usblib/usbd_cdc_core.h" type="1"/>
+    <File name="FatFS/inc" path="" type="2"/>
+    <File name="freemodbus/rtu/mbcrc.c" path="Source/freemodbus/rtu/mbcrc.c" type="1"/>
     <File name="usblib/usb_dcd.h" path="usblib/usb_dcd.h" type="1"/>
     <File name="FreeRTOS/Source/list.c" path="Source/FreeRTOS/Source/list.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_rtc.c" path="cmsis_lib/source/stm32f4xx_rtc.c" type="1"/>
-    <File name="stdio/printf.c" path="stdio/printf.c" type="1"/>
     <File name="FreeRTOS/Source/timers.c" path="Source/FreeRTOS/Source/timers.c" type="1"/>
-    <File name="devices/ADS1220.c" path="Source/devices/ADS1220.c" type="1"/>
-    <File name="cmsis_lib/include/stm32f4xx_rcc.h" path="cmsis_lib/include/stm32f4xx_rcc.h" type="1"/>
+    <File name="stdio/printf.c" path="stdio/printf.c" type="1"/>
     <File name="freemodbus/port/mbport.c" path="Source/freemodbus/port/mbport.c" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_rcc.h" path="cmsis_lib/include/stm32f4xx_rcc.h" type="1"/>
     <File name="FreeRTOS/Source/include" path="" type="2"/>
+    <File name="devices/ADS1220.c" path="Source/devices/ADS1220.c" type="1"/>
     <File name="usblib/usb_bsp_template.c_D" path="usblib/usb_bsp_template.c_D" type="1"/>
-    <File name="usblib/usbd_conf_template.h" path="usblib/usbd_conf_template.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_syscfg.c" path="cmsis_lib/source/stm32f4xx_syscfg.c" type="1"/>
+    <File name="usblib/usbd_conf_template.h" path="usblib/usbd_conf_template.h" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_pwr.h" path="cmsis_lib/include/stm32f4xx_pwr.h" type="1"/>
     <File name="FreeRTOS/Source/include/task.h" path="Source/FreeRTOS/Source/include/task.h" type="1"/>
     <File name="cmsis_boot/startup/startup_stm32f4xx.c" path="cmsis_boot/startup/startup_stm32f4xx.c" type="1"/>
     <File name="stdio" path="" type="2"/>
     <File name="cmsis_lib/source/stm32f4xx_rcc.c" path="cmsis_lib/source/stm32f4xx_rcc.c" type="1"/>
     <File name="usblib/usbd_cdc_vcp.h" path="usblib/usbd_cdc_vcp.h" type="1"/>
-    <File name="cmsis/core_cmInstr.h" path="cmsis/core_cmInstr.h" type="1"/>
     <File name="usblib/usbd_desc.c" path="usblib/usbd_desc.c" type="1"/>
+    <File name="cmsis/core_cmInstr.h" path="cmsis/core_cmInstr.h" type="1"/>
     <File name="devices/controller.h" path="Source/devices/controller.h" type="1"/>
     <File name="usblib/usb_regs.h" path="usblib/usb_regs.h" type="1"/>
     <File name="freemodbus/rtu" path="" type="2"/>
@@ -157,22 +157,22 @@
     <File name="FatFS" path="" type="2"/>
     <File name="FreeRTOS/Source/include/semphr.h" path="Source/FreeRTOS/Source/include/semphr.h" type="1"/>
     <File name="cmsis_boot/system_stm32f4xx.c" path="cmsis_boot/system_stm32f4xx.c" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_spi.h" path="cmsis_lib/include/stm32f4xx_spi.h" type="1"/>
     <File name="FreeRTOS/Source/include/deprecated_definitions.h" path="Source/FreeRTOS/Source/include/deprecated_definitions.h" type="1"/>
     <File name="devices/rtc.c" path="Source/devices/rtc.c" type="1"/>
-    <File name="cmsis_lib/include/stm32f4xx_spi.h" path="cmsis_lib/include/stm32f4xx_spi.h" type="1"/>
-    <File name="usblib/usb_core.h" path="usblib/usb_core.h" type="1"/>
     <File name="freemodbus" path="" type="2"/>
+    <File name="usblib/usb_core.h" path="usblib/usb_core.h" type="1"/>
     <File name="devices/sdio_sd.c" path="Source/devices/sdio_sd.c" type="1"/>
     <File name="cmsis" path="" type="2"/>
-    <File name="usblib/usb_conf_template.h" path="usblib/usb_conf_template.h" type="1"/>
     <File name="devices/frequency.c" path="Source/devices/frequency.c" type="1"/>
-    <File name="freemodbus/functions/mbfuncholding.c" path="Source/freemodbus/functions/mbfuncholding.c" type="1"/>
+    <File name="usblib/usb_conf_template.h" path="usblib/usb_conf_template.h" type="1"/>
     <File name="cmsis_lib" path="" type="2"/>
+    <File name="freemodbus/functions/mbfuncholding.c" path="Source/freemodbus/functions/mbfuncholding.c" type="1"/>
     <File name="freemodbus/include/mb.h" path="Source/freemodbus/include/mb.h" type="1"/>
     <File name="devices/power_detector.h" path="Source/devices/power_detector.h" type="1"/>
     <File name="FreeRTOS/Source/include/event_groups.h" path="Source/FreeRTOS/Source/include/event_groups.h" type="1"/>
-    <File name="cmsis_lib/include/stm32f4xx_rtc.h" path="cmsis_lib/include/stm32f4xx_rtc.h" type="1"/>
     <File name="usblib/usbd_def.h" path="usblib/usbd_def.h" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_rtc.h" path="cmsis_lib/include/stm32f4xx_rtc.h" type="1"/>
     <File name="usblib/usbd_cdc_vcp.c" path="usblib/usbd_cdc_vcp.c" type="1"/>
     <File name="devices/rtc.h" path="Source/devices/rtc.h" type="1"/>
     <File name="cmsis_lib/include/misc.h" path="cmsis_lib/include/misc.h" type="1"/>
@@ -196,8 +196,8 @@
     <File name="FreeRTOS/Source/include/croutine.h" path="Source/FreeRTOS/Source/include/croutine.h" type="1"/>
     <File name="usblib/usb_dcd_int.c" path="usblib/usb_dcd_int.c" type="1"/>
     <File name="cmsis_boot" path="" type="2"/>
-    <File name="cmsis_lib/include/stm32f4xx_syscfg.h" path="cmsis_lib/include/stm32f4xx_syscfg.h" type="1"/>
     <File name="FreeRTOS/Source/include/mpu_wrappers.h" path="Source/FreeRTOS/Source/include/mpu_wrappers.h" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_syscfg.h" path="cmsis_lib/include/stm32f4xx_syscfg.h" type="1"/>
     <File name="freemodbus/port/porttimer.c" path="Source/freemodbus/port/porttimer.c" type="1"/>
     <File name="FreeRTOS/Source/include/timers.h" path="Source/FreeRTOS/Source/include/timers.h" type="1"/>
     <File name="devices/controller.c" path="Source/devices/controller.c" type="1"/>
@@ -207,15 +207,15 @@
     <File name="FatFS/inc/diskio.h" path="FatFS/inc/diskio.h" type="1"/>
     <File name="devices/low_level_sdio.h" path="Source/devices/low_level_sdio.h" type="1"/>
     <File name="FatFS/src" path="" type="2"/>
-    <File name="cmsis_lib/source/misc.c" path="cmsis_lib/source/misc.c" type="1"/>
     <File name="usblib/usb_hcd.c_D" path="usblib/usb_hcd.c_D" type="1"/>
+    <File name="cmsis_lib/source/misc.c" path="cmsis_lib/source/misc.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_tim.h" path="cmsis_lib/include/stm32f4xx_tim.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_i2c.c" path="cmsis_lib/source/stm32f4xx_i2c.c" type="1"/>
-    <File name="freemodbus/port/portevent.c" path="Source/freemodbus/port/portevent.c" type="1"/>
     <File name="cmsis_lib/source" path="" type="2"/>
+    <File name="freemodbus/port/portevent.c" path="Source/freemodbus/port/portevent.c" type="1"/>
     <File name="FreeRTOS/Source/portable/GCC" path="" type="2"/>
-    <File name="freemodbus/ascii" path="" type="2"/>
     <File name="FreeRTOS/Source/FreeRTOSConfig.h" path="Source/FreeRTOS/Source/FreeRTOSConfig.h" type="1"/>
+    <File name="freemodbus/ascii" path="" type="2"/>
     <File name="freemodbus/functions/mbfuncinput.c" path="Source/freemodbus/functions/mbfuncinput.c" type="1"/>
     <File name="freemodbus/functions/mbutils.c" path="Source/freemodbus/functions/mbutils.c" type="1"/>
     <File name="freemodbus/functions/mbfuncother.c" path="Source/freemodbus/functions/mbfuncother.c" type="1"/>
@@ -223,10 +223,10 @@
     <File name="cmsis_boot/system_stm32f4xx.h" path="cmsis_boot/system_stm32f4xx.h" type="1"/>
     <File name="usblib/usb_hcd.h_D" path="usblib/usb_hcd.h_D" type="1"/>
     <File name="freemodbus/port" path="" type="2"/>
-    <File name="FreeRTOS/Source/portable/GCC/ARM_CM3/port.c" path="Source/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c" type="1"/>
     <File name="devices/frequency.h" path="Source/devices/frequency.h" type="1"/>
-    <File name="freemodbus/include/mbport.h" path="Source/freemodbus/include/mbport.h" type="1"/>
+    <File name="FreeRTOS/Source/portable/GCC/ARM_CM3/port.c" path="Source/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c" type="1"/>
     <File name="FreeRTOS/Source" path="" type="2"/>
+    <File name="freemodbus/include/mbport.h" path="Source/freemodbus/include/mbport.h" type="1"/>
     <File name="devices/power_detector.c" path="Source/devices/power_detector.c" type="1"/>
     <File name="freemodbus/functions/mbfunccoils.c" path="Source/freemodbus/functions/mbfunccoils.c" type="1"/>
     <File name="usblib/usbd_cdc_core.c" path="usblib/usbd_cdc_core.c" type="1"/>
@@ -234,16 +234,16 @@
     <File name="usblib/usbd_req.h" path="usblib/usbd_req.h" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_iwdg.h" path="cmsis_lib/include/stm32f4xx_iwdg.h" type="1"/>
     <File name="usblib/usbd_core.h" path="usblib/usbd_core.h" type="1"/>
-    <File name="cmsis_lib/include/stm32f4xx_sdio.h" path="cmsis_lib/include/stm32f4xx_sdio.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_sdio.c" path="cmsis_lib/source/stm32f4xx_sdio.c" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_sdio.h" path="cmsis_lib/include/stm32f4xx_sdio.h" type="1"/>
     <File name="FreeRTOS/Source/include/queue.h" path="Source/FreeRTOS/Source/include/queue.h" type="1"/>
     <File name="freemodbus/rtu/mbrtu.h" path="Source/freemodbus/rtu/mbrtu.h" type="1"/>
     <File name="usblib/_desc.txt" path="usblib/_desc.txt" type="1"/>
+    <File name="usblib/usbd_usr.c" path="usblib/usbd_usr.c" type="1"/>
     <File name="FreeRTOS/Source/include/stdint.readme" path="Source/FreeRTOS/Source/include/stdint.readme" type="1"/>
     <File name="usblib/usb_core.c" path="usblib/usb_core.c" type="1"/>
-    <File name="usblib/usbd_usr.c" path="usblib/usbd_usr.c" type="1"/>
-    <File name="cmsis_lib/include/stm32f4xx_exti.h" path="cmsis_lib/include/stm32f4xx_exti.h" type="1"/>
     <File name="devices/watchdog.c" path="Source/devices/watchdog.c" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_exti.h" path="cmsis_lib/include/stm32f4xx_exti.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_exti.c" path="cmsis_lib/source/stm32f4xx_exti.c" type="1"/>
     <File name="FreeRTOS/Source/include/list.h" path="Source/FreeRTOS/Source/include/list.h" type="1"/>
     <File name="usblib/usbd_ioreq.h" path="usblib/usbd_ioreq.h" type="1"/>
@@ -252,15 +252,15 @@
     <File name="FatFS/src/ff.c" path="FatFS/src/ff.c" type="1"/>
     <File name="freemodbus/functions/mbfuncdisc.c" path="Source/freemodbus/functions/mbfuncdisc.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_dma.h" path="cmsis_lib/include/stm32f4xx_dma.h" type="1"/>
-    <File name="cmsis_lib/source/stm32f4xx_tim.c" path="cmsis_lib/source/stm32f4xx_tim.c" type="1"/>
     <File name="devices/ADS1220.h" path="Source/devices/ADS1220.h" type="1"/>
-    <File name="FreeRTOS/Source/include/FreeRTOS.h" path="Source/FreeRTOS/Source/include/FreeRTOS.h" type="1"/>
+    <File name="cmsis_lib/source/stm32f4xx_tim.c" path="cmsis_lib/source/stm32f4xx_tim.c" type="1"/>
     <File name="freemodbus/rtu/mbrtu.c" path="Source/freemodbus/rtu/mbrtu.c" type="1"/>
+    <File name="FreeRTOS/Source/include/FreeRTOS.h" path="Source/FreeRTOS/Source/include/FreeRTOS.h" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_gpio.h" path="cmsis_lib/include/stm32f4xx_gpio.h" type="1"/>
     <File name="usblib/usbd_req.c" path="usblib/usbd_req.c" type="1"/>
     <File name="syscalls" path="" type="2"/>
-    <File name="freemodbus/include/mbutils.h" path="Source/freemodbus/include/mbutils.h" type="1"/>
     <File name="FreeRTOS/Source/include/StackMacros.h" path="Source/FreeRTOS/Source/include/StackMacros.h" type="1"/>
+    <File name="freemodbus/include/mbutils.h" path="Source/freemodbus/include/mbutils.h" type="1"/>
     <File name="usblib/usb_defines.h" path="usblib/usb_defines.h" type="1"/>
     <File name="FreeRTOS/Source/event_groups.c" path="Source/FreeRTOS/Source/event_groups.c" type="1"/>
     <File name="freemodbus/include/mbproto.h" path="Source/freemodbus/include/mbproto.h" type="1"/>

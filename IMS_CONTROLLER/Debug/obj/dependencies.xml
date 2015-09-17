@@ -486,9 +486,6 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
          <include file="..\..\..\cmsis_lib\include\misc.h"/>
       </source>
-      <source file="..\..\..\Source\devices\sdio_sd.c" lastModified="14fd0db7d4a">
-         <include file="..\..\..\Source\devices\sdio_sd.h"/>
-      </source>
       <source file="..\..\..\Source\FreeRTOS\Source\FreeRTOSConfig.h" lastModified="14fd08ce2fa">
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_iwdg.c" lastModified="14835c96d0b">
@@ -597,16 +594,6 @@
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_tim.c" lastModified="1483603f646">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
-      </source>
-      <source file="..\..\..\Source\devices\controller.c" lastModified="14fd09ad1fe">
-         <include file="..\..\..\Source\devices\controller.h"/>
-         <include file="..\..\..\Source\freemodbus\protocol.h"/>
-         <include file="..\..\..\Source\devices\frequency.h"/>
-         <include file="..\..\..\Source\devices\ADS1220.h"/>
-         <include file="..\..\..\Source\devices\rtc.h"/>
-         <include file="..\..\..\Source\devices\fram_i2c.h"/>
-         <include file="..\..\..\Source\devices\log.h"/>
-         <include file="..\..\..\Source\devices\watchdog.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_rtc.c" lastModified="14c3138e1d7">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h"/>
@@ -991,6 +978,13 @@
          <include file="..\..\..\usblib\usbd_desc.h"/>
          <include file="..\..\..\usblib\usb_dcd_int.h"/>
       </source>
+      <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14fd60343f6">
+         <include file="..\..\..\Source\freemodbus\include\mb.h"/>
+         <include file="..\..\..\Source\devices\fram_i2c.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h"/>
+         <include file="..\..\..\Source\devices\controller.h"/>
+         <include file="..\..\..\Source\devices\log.h"/>
+      </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\list.h" lastModified="14af2c4f9bf">
       </source>
       <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="13cedd0ed70">
@@ -1048,7 +1042,7 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
          <include file="..\..\..\cmsis_lib\include\misc.h"/>
       </source>
-      <source file="..\..\..\Source\devices\sdio_sd.c" lastModified="14fd0db7d4a">
+      <source file="..\..\..\Source\devices\sdio_sd.c" lastModified="14fda311aa0">
          <include file="..\..\..\Source\devices\sdio_sd.h"/>
       </source>
       <source file="..\..\..\cmsis_boot\stm32f4xx.h" lastModified="1414ea875f5">
@@ -1126,7 +1120,7 @@
       </source>
       <source file="..\..\..\cmsis_boot\system_stm32f4xx.h" lastModified="13cedd0ed70">
       </source>
-      <source file="..\..\..\FatFS\src\diskio.c" lastModified="14fd4f93f51">
+      <source file="..\..\..\FatFS\src\diskio.c" lastModified="14fda65f0a0">
          <include file="..\..\..\FatFS\inc\diskio.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\FatFS\inc\ffconf.h"/>
@@ -1242,16 +1236,6 @@
          <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\semphr.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h"/>
-      </source>
-      <source file="..\..\..\Source\devices\controller.c" lastModified="14fd09ad1fe">
-         <include file="..\..\..\Source\devices\controller.h"/>
-         <include file="..\..\..\Source\freemodbus\protocol.h"/>
-         <include file="..\..\..\Source\devices\frequency.h"/>
-         <include file="..\..\..\Source\devices\ADS1220.h"/>
-         <include file="..\..\..\Source\devices\rtc.h"/>
-         <include file="..\..\..\Source\devices\fram_i2c.h"/>
-         <include file="..\..\..\Source\devices\log.h"/>
-         <include file="..\..\..\Source\devices\watchdog.h"/>
       </source>
       <source file="..\..\..\cmsis\core_cmFunc.h" lastModified="14125d7ed9e">
       </source>

@@ -26,27 +26,38 @@ DSTATUS disk_initialize (
 	BYTE drv				/* Physical drive nmuber (0..) */
 )
 {
-  NVIC_InitTypeDef NVIC_InitStructure;
+//  NVIC_InitTypeDef NVIC_InitStructure;
   SD_Error res = SD_OK;
 
-  /* Configure the NVIC Preemption Priority Bits */
-  NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
+//  /* Configure the NVIC Preemption Priority Bits */
+//  NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
 
-  NVIC_InitStructure.NVIC_IRQChannel = SDIO_IRQn;
-  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-  NVIC_Init(&NVIC_InitStructure); 
+	NVIC_EnableIRQ(SDIO_IRQn);
+	NVIC_SetPriority (SDIO_IRQn, 0);
+	NVIC_EnableIRQ(SD_SDIO_DMA_IRQn);
+	NVIC_SetPriority (SD_SDIO_DMA_IRQn, 0);
 
   res =  SD_Init(); 
 
   if(res == SD_OK)
   {
-    res = (SD_Error)0x0;
+		NVIC_EnableIRQ(SDIO_IRQn);
+		NVIC_SetPriority (SDIO_IRQn, 0);
+		NVIC_EnableIRQ(SD_SDIO_DMA_IRQn);
+		NVIC_SetPriority (SD_SDIO_DMA_IRQn, 0);
+		res = (SD_Error)0x0;
   }
   return ((DSTATUS)res);
 }
 
+ void SDIO_IRQHandler(void)
+ {
+   SD_ProcessIRQSrc();
+ }
+ void SD_SDIO_DMA_IRQHANDLER(void)
+ {
+   SD_ProcessDMAIRQ();
+ }
 
 
 /*-----------------------------------------------------------------------*/

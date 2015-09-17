@@ -339,6 +339,8 @@
   */
 #define SDIO_SEND_IF_COND               ((uint32_t)0x00000008)
 
+
+//#define SD_POLLING_MODE
 /**
   * @}
   */ 
