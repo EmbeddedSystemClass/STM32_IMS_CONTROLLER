@@ -10,6 +10,7 @@
 #include "ff.h"
 #include "diskio.h"
 #include <stdio.h>
+#include "wiznet.h"
 
 
 
@@ -48,38 +49,40 @@ void ControllerInit(void)
 	FrequencyMeasureInit();
 	ADS1220_init();
 
-	if(disk_initialize(0)==0)
-	{
-		  if (f_mount(0, &fs) == FR_OK)
-		  {
-			  res = f_open( &fsrc , "0:/test.txt" ,  FA_OPEN_EXISTING|FA_WRITE);
-			  if (res==FR_OK)
-			  {
-//			      uint8_t read_stat=0;
-			      uint8_t buf[64];
-//				  read_stat=f_read(&fsrc, &buf[0], sizeof(buf), &br);
-			      uint32_t i=0;
-			      for(i=0;i<100000;i++)
-			      {
-					  sprintf(buf,"%d\n",i);
-					  f_write(&fsrc,buf,strlen(buf),&br);
-			      }
-			      f_close(&fsrc);
-			  }
-			  else
-			  {
-
-			  }
-		  }
-		  else
-		  {
-
-		  }
-	}
-	else
-	{
-
-	}
+	spiW5500_init();
+//
+//	if(disk_initialize(0)==0)
+//	{
+//		  if (f_mount(0, &fs) == FR_OK)
+//		  {
+//			  res = f_open( &fsrc , "0:/test.txt" ,  FA_OPEN_EXISTING|FA_WRITE);
+//			  if (res==FR_OK)
+//			  {
+////			      uint8_t read_stat=0;
+//			      uint8_t buf[64];
+////				  read_stat=f_read(&fsrc, &buf[0], sizeof(buf), &br);
+//			      uint32_t i=0;
+//			      for(i=0;i<100000;i++)
+//			      {
+//					  sprintf(buf,"%d\n",i);
+//					  f_write(&fsrc,buf,strlen(buf),&br);
+//			      }
+//			      f_close(&fsrc);
+//			  }
+//			  else
+//			  {
+//
+//			  }
+//		  }
+//		  else
+//		  {
+//
+//		  }
+//	}
+//	else
+//	{
+//
+//	}
 
 	//Log_Init();
 }

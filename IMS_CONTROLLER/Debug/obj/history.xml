@@ -1,209 +1,223 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
-   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -DSTM32F407VG -DSTM32F4XX -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\FatFS -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_boot -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC\ARM_CM3 -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\devices -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\rtu -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\FatFS\inc -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\usblib -ID:\PROJECTS\GIT_REPOSITORY\STM32 -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\ascii">
-      <target file="syscalls.o" lastModified="14fd4f88fa8">
-         <source file="..\..\..\syscalls\syscalls.c" lastModified="14c274ebca4"/>
-      </target>
-      <target file="usbd_usr.o" lastModified="14fd4f85a7e">
-         <source file="..\..\..\usblib\usbd_usr.c" lastModified="13ced9e2d40"/>
-      </target>
-      <target file="misc.o" lastModified="14fd4f8af74">
-         <source file="..\..\..\cmsis_lib\source\misc.c" lastModified="14835c29268"/>
-      </target>
-      <target file="watchdog.o" lastModified="14fd4f8777c">
-         <source file="..\..\..\Source\devices\watchdog.c" lastModified="14cbca3e30f"/>
-      </target>
-      <target file="queue.o" lastModified="14fd4f899ba">
-         <source file="..\..\..\Source\FreeRTOS\Source\queue.c" lastModified="14af2c587b1"/>
-      </target>
-      <target file="usbd_ioreq.o" lastModified="14fd4f8b37c">
-         <source file="..\..\..\usblib\usbd_ioreq.c" lastModified="13349a797c0"/>
-      </target>
-      <target file="mb.o" lastModified="14fd4f8553f">
-         <source file="..\..\..\Source\freemodbus\mb.c" lastModified="14f982c17ef"/>
-      </target>
-      <target file="usbd_req.o" lastModified="14fd4f8971a">
-         <source file="..\..\..\usblib\usbd_req.c" lastModified="13349a797c0"/>
-      </target>
-      <target file="diskio.o" lastModified="14fda65f9a8">
-         <source file="..\..\..\FatFS\src\diskio.c" lastModified="14fda65f0a0"/>
-      </target>
-      <target file="stm32f4xx_tim.o" lastModified="14fd4f8b6d7">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_tim.c" lastModified="1483603f646"/>
-      </target>
-      <target file="timers.o" lastModified="14fd4f87039">
-         <source file="..\..\..\Source\FreeRTOS\Source\timers.c" lastModified="14af2c59580"/>
-      </target>
-      <target file="usbd_cdc_core.o" lastModified="14fd4f8a023">
-         <source file="..\..\..\usblib\usbd_cdc_core.c" lastModified="14f92360d00"/>
-      </target>
-      <target file="mbfunccoils.o" lastModified="14fd4f8a4b6">
-         <source file="..\..\..\Source\freemodbus\functions\mbfunccoils.c" lastModified="14c22879fc3"/>
-      </target>
-      <target file="stm32f4xx_iwdg.o" lastModified="14fd4f86721">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_iwdg.c" lastModified="14835c96d0b"/>
-      </target>
-      <target file="tasks.o" lastModified="14fd4f87b07">
-         <source file="..\..\..\Source\FreeRTOS\Source\tasks.c" lastModified="14af2c59338"/>
-      </target>
-      <target file="usbd_desc.o" lastModified="14fd4f87c6e">
-         <source file="..\..\..\usblib\usbd_desc.c" lastModified="13a790f9fb0"/>
-      </target>
-      <target file="stm32f4xx_exti.o" lastModified="14fd4f8ae6b">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="142a2fcbff3"/>
-      </target>
-      <target file="stm32f4xx_gpio.o" lastModified="14fd4f883e0">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="14835b06da1"/>
-      </target>
-      <target file="porttimer.o" lastModified="14fd4f88586">
-         <source file="..\..\..\Source\freemodbus\port\porttimer.c" lastModified="14f9821c599"/>
-      </target>
-      <target file="usb_bsp.o" lastModified="14fd4f8940d">
-         <source file="..\..\..\usblib\usb_bsp.c" lastModified="14ae28a4dc7"/>
-      </target>
-      <target file="mbutils.o" lastModified="14fd4f86481">
-         <source file="..\..\..\Source\freemodbus\functions\mbutils.c" lastModified="14c22662822"/>
-      </target>
-      <target file="mbascii.o" lastModified="14fd4f8b437">
-         <source file="..\..\..\Source\freemodbus\ascii\mbascii.c" lastModified="14c26d2e219"/>
-      </target>
-      <target file="mbport.o" lastModified="14fd60373c1">
-         <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14fd60343f6"/>
-      </target>
-      <target file="portserial.o" lastModified="14fd4f89d25">
-         <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14fac30ab1b"/>
-      </target>
-      <target file="usbd_core.o" lastModified="14fd4f869d0">
-         <source file="..\..\..\usblib\usbd_core.c" lastModified="13349a797c0"/>
-      </target>
-      <target file="mbfuncother.o" lastModified="14fd4f85c82">
-         <source file="..\..\..\Source\freemodbus\functions\mbfuncother.c" lastModified="14c226627f3"/>
-      </target>
-      <target file="mbfuncinput.o" lastModified="14fd4f87450">
-         <source file="..\..\..\Source\freemodbus\functions\mbfuncinput.c" lastModified="14c2274fd02"/>
-      </target>
-      <target file="stm32f4xx_usart.o" lastModified="14fd4f85dda">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_usart.c" lastModified="149183b5cb1"/>
-      </target>
-      <target file="mbfuncholding.o" lastModified="14fd4f86869">
-         <source file="..\..\..\Source\freemodbus\functions\mbfuncholding.c" lastModified="14c22b6ab09"/>
-      </target>
-      <target file="event_groups.o" lastModified="14fd4f8a562">
-         <source file="..\..\..\Source\FreeRTOS\Source\event_groups.c" lastModified="14af2c4f0cc"/>
-      </target>
-      <target file="stm32f4xx_rtc.o" lastModified="14fd4f8b243">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rtc.c" lastModified="14c3138e1d7"/>
-      </target>
-      <target file="stm32f4xx_rcc.o" lastModified="14fd4f86d6a">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="14835c0baaa"/>
-      </target>
-      <target file="stm32f4xx_pwr.o" lastModified="14fd4f85ef3">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_pwr.c" lastModified="14149991717"/>
-      </target>
-      <target file="croutine.o" lastModified="14fd4f8a301">
-         <source file="..\..\..\Source\FreeRTOS\Source\croutine.c" lastModified="14af2c4eed0"/>
-      </target>
-      <target file="controller.o" lastModified="14fda88995e">
-         <source file="..\..\..\Source\devices\controller.c" lastModified="14fda8888f3"/>
-      </target>
-      <target file="mbrtu.o" lastModified="14fd4f88a49">
-         <source file="..\..\..\Source\freemodbus\rtu\mbrtu.c" lastModified="14c31767da1"/>
-      </target>
-      <target file="list.o" lastModified="14fd4f88c8b">
-         <source file="..\..\..\Source\FreeRTOS\Source\list.c" lastModified="14af2c506ae"/>
-      </target>
-      <target file="port.o" lastModified="14fd4f89872">
-         <source file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\port.c" lastModified="14af2c51989"/>
-      </target>
-      <target file="ADS1220.o" lastModified="14fd4f8a8ed">
-         <source file="..\..\..\Source\devices\ADS1220.c" lastModified="14fbb85bbd1"/>
-      </target>
-      <target file="low_level_sdio.o" lastModified="14fd520ff76">
-         <source file="..\..\..\Source\devices\low_level_sdio.c" lastModified="14fd51bc3fc"/>
-      </target>
-      <target file="startup_stm32f4xx.o" lastModified="14fd4f86617">
-         <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="13cedd0ed70"/>
-      </target>
-      <target file="usbd_cdc_vcp.o" lastModified="14fd4f886de">
+   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -DSTM32F407VG -DSTM32F4XX -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Ethernet\W5500 -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\FatFS -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_boot -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC\ARM_CM3 -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\devices -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\rtu -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\FatFS\inc -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\usblib -ID:\PROJECTS\GIT_REPOSITORY\STM32 -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Ethernet -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\ascii">
+      <target file="usbd_cdc_vcp.o" lastModified="14fe0165df6">
          <source file="..\..\..\usblib\usbd_cdc_vcp.c" lastModified="14fac188dd4"/>
       </target>
-      <target file="usb_dcd.o" lastModified="14fd4f8b08e">
-         <source file="..\..\..\usblib\usb_dcd.c" lastModified="13349a79f90"/>
-      </target>
-      <target file="portevent.o" lastModified="14fd4f85b69">
-         <source file="..\..\..\Source\freemodbus\port\portevent.c" lastModified="14fa6d4a5f5"/>
-      </target>
-      <target file="power_detector.o" lastModified="14fd4f8b764">
-         <source file="..\..\..\Source\devices\power_detector.c" lastModified="14c2bcc22eb"/>
-      </target>
-      <target file="stm32f4xx_dma.o" lastModified="14fd4f8919c">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_dma.c" lastModified="14fd0dda3b5"/>
-      </target>
-      <target file="printf.o" lastModified="14fd4f875d6">
-         <source file="..\..\..\stdio\printf.c" lastModified="14c274eee15"/>
-      </target>
-      <target file="rtc.o" lastModified="14fd4f862eb">
-         <source file="..\..\..\Source\devices\rtc.c" lastModified="14c73f81bdb"/>
-      </target>
-      <target file="mbfuncfile.o" lastModified="14fd4f86f2f">
-         <source file="..\..\..\Source\freemodbus\functions\mbfuncfile.c" lastModified="14c93df4bb9"/>
-      </target>
-      <target file="fram_i2c.o" lastModified="14fd4f8818e">
-         <source file="..\..\..\Source\devices\fram_i2c.c" lastModified="14f92f694e7"/>
-      </target>
-      <target file="stm32f4xx_sdio.o" lastModified="14fd4f8537a">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_sdio.c" lastModified="14fd0de5429"/>
-      </target>
-      <target file="sdio_sd.o" lastModified="14fda31280d">
+      <target file="sdio_sd.o" lastModified="14fe0164379">
          <source file="..\..\..\Source\devices\sdio_sd.c" lastModified="14fda311aa0"/>
       </target>
-      <target file="usb_core.o" lastModified="14fd4f84fff">
-         <source file="..\..\..\usblib\usb_core.c" lastModified="13349a79f90"/>
+      <target file="portevent.o" lastModified="14fe0163f62">
+         <source file="..\..\..\Source\freemodbus\port\portevent.c" lastModified="14fa6d4a5f5"/>
       </target>
-      <target file="heap_2.o" lastModified="14fd4f8b4d3">
-         <source file="..\..\..\Source\FreeRTOS\Source\portable\MemMang\heap_2.c" lastModified="14af2c557af"/>
+      <target file="stm32f4xx_usart.o" lastModified="14fe0164108">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_usart.c" lastModified="149183b5cb1"/>
       </target>
-      <target file="stm32f4xx_syscfg.o" lastModified="14fd4f84ca4">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_syscfg.c" lastModified="14125d878f6"/>
+      <target file="wiznet.o" lastModified="14fe03cfb47">
+         <source file="..\..\..\Source\devices\wiznet.c" lastModified="14fe03c9113"/>
       </target>
-      <target file="mbfuncdisc.o" lastModified="14fd4f85917">
-         <source file="..\..\..\Source\freemodbus\functions\mbfuncdisc.c" lastModified="14c2274fab0"/>
+      <target file="misc.o" lastModified="14fe016769f">
+         <source file="..\..\..\cmsis_lib\source\misc.c" lastModified="14835c29268"/>
       </target>
-      <target file="stm32f4xx_i2c.o" lastModified="14fd4f8aac1">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_i2c.c" lastModified="14c78dc4795"/>
+      <target file="usbd_req.o" lastModified="14fe01665e5">
+         <source file="..\..\..\usblib\usbd_req.c" lastModified="13349a797c0"/>
       </target>
-      <target file="frequency.o" lastModified="14fd4f8ad52">
-         <source file="..\..\..\Source\devices\frequency.c" lastModified="14fd05ad9f5"/>
+      <target file="mbfuncother.o" lastModified="14fe016401e">
+         <source file="..\..\..\Source\freemodbus\functions\mbfuncother.c" lastModified="14c226627f3"/>
       </target>
-      <target file="stm32f4xx_spi.o" lastModified="14fd4f8a3fb">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="14c313944a8"/>
+      <target file="socket.o" lastModified="14fe0162c86">
+         <source file="..\..\..\Ethernet\socket.c" lastModified="148358a1190"/>
       </target>
-      <target file="protocol.o" lastModified="14fd4f8580d">
-         <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14fd09aae69"/>
+      <target file="stm32f4xx_gpio.o" lastModified="14fe0165c12">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="14835b06da1"/>
       </target>
-      <target file="ff.o" lastModified="14fd4f8a265">
-         <source file="..\..\..\FatFS\src\ff.c" lastModified="13c0e59aec0"/>
+      <target file="mbfuncinput.o" lastModified="14fe016526d">
+         <source file="..\..\..\Source\freemodbus\functions\mbfuncinput.c" lastModified="14c2274fd02"/>
       </target>
-      <target file="main.o" lastModified="14fd4f86af9">
-         <source file="..\..\..\main.c" lastModified="14c6f3c6520"/>
+      <target file="usbd_desc.o" lastModified="14fe0165868">
+         <source file="..\..\..\usblib\usbd_desc.c" lastModified="13a790f9fb0"/>
       </target>
-      <target file="log.o" lastModified="14fd4f872e8">
-         <source file="..\..\..\Source\devices\log.c" lastModified="14cbcc75065"/>
+      <target file="usbd_cdc_core.o" lastModified="14fe0166b35">
+         <source file="..\..\..\usblib\usbd_cdc_core.c" lastModified="14f92360d00"/>
       </target>
-      <target file="mbcrc.o" lastModified="14fd4f86bd4">
-         <source file="..\..\..\Source\freemodbus\rtu\mbcrc.c" lastModified="14c2274fcc4"/>
+      <target file="mbascii.o" lastModified="14fe0167ac5">
+         <source file="..\..\..\Source\freemodbus\ascii\mbascii.c" lastModified="14c26d2e219"/>
       </target>
-      <target file="system_stm32f4xx.o" lastModified="14fd4f88e31">
-         <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="14f92a0c783"/>
+      <target file="low_level_sdio.o" lastModified="14fe0162f84">
+         <source file="..\..\..\Source\devices\low_level_sdio.c" lastModified="14fd51bc3fc"/>
       </target>
-      <target file="usb_dcd_int.o" lastModified="14fd4f89ac4">
+      <target file="stm32f4xx_iwdg.o" lastModified="14fe01646f4">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_iwdg.c" lastModified="14835c96d0b"/>
+      </target>
+      <target file="mbport.o" lastModified="14fee7acc03">
+         <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14fee7aac46"/>
+      </target>
+      <target file="usb_dcd_int.o" lastModified="14fe0166856">
          <source file="..\..\..\usblib\usb_dcd_int.c" lastModified="14a158363ff"/>
       </target>
+      <target file="stm32f4xx_sdio.o" lastModified="14fe016339a">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_sdio.c" lastModified="14fd0de5429"/>
+      </target>
+      <target file="mbfuncdiag.o" lastModified="14fe0165617">
+         <source file="..\..\..\Source\freemodbus\functions\mbfuncdiag.c" lastModified="10f5ec0d910"/>
+      </target>
+      <target file="stm32f4xx_syscfg.o" lastModified="14fe0162d32">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_syscfg.c" lastModified="14125d878f6"/>
+      </target>
+      <target file="log.o" lastModified="14fe01650a8">
+         <source file="..\..\..\Source\devices\log.c" lastModified="14cbcc75065"/>
+      </target>
+      <target file="wizchip_conf.o" lastModified="14fe01651b2">
+         <source file="..\..\..\Ethernet\wizchip_conf.c" lastModified="148358a1190"/>
+      </target>
+      <target file="printf.o" lastModified="14fe0165367">
+         <source file="..\..\..\stdio\printf.c" lastModified="14c274eee15"/>
+      </target>
+      <target file="stm32f4xx_i2c.o" lastModified="14fe01673c0">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_i2c.c" lastModified="14c78dc4795"/>
+      </target>
+      <target file="list.o" lastModified="14fe01660a6">
+         <source file="..\..\..\Source\FreeRTOS\Source\list.c" lastModified="14af2c506ae"/>
+      </target>
+      <target file="stm32f4xx_pwr.o" lastModified="14fe01641c3">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_pwr.c" lastModified="14149991717"/>
+      </target>
+      <target file="ADS1220.o" lastModified="14fe01672b7">
+         <source file="..\..\..\Source\devices\ADS1220.c" lastModified="14fbb85bbd1"/>
+      </target>
+      <target file="rtc.o" lastModified="14fe0164434">
+         <source file="..\..\..\Source\devices\rtc.c" lastModified="14c73f81bdb"/>
+      </target>
+      <target file="stm32f4xx_rtc.o" lastModified="14fe01678c2">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rtc.c" lastModified="14c3138e1d7"/>
+      </target>
+      <target file="heap_2.o" lastModified="14fe0167bb0">
+         <source file="..\..\..\Source\FreeRTOS\Source\portable\MemMang\heap_2.c" lastModified="14af2c557af"/>
+      </target>
+      <target file="fram_i2c.o" lastModified="14fe0165b37">
+         <source file="..\..\..\Source\devices\fram_i2c.c" lastModified="14f92f694e7"/>
+      </target>
+      <target file="mbfunccoils.o" lastModified="14fe0166f6b">
+         <source file="..\..\..\Source\freemodbus\functions\mbfunccoils.c" lastModified="14c22879fc3"/>
+      </target>
+      <target file="ff.o" lastModified="14fe0166d0a">
+         <source file="..\..\..\FatFS\src\ff.c" lastModified="13c0e59aec0"/>
+      </target>
+      <target file="usb_dcd.o" lastModified="14fe0167779">
+         <source file="..\..\..\usblib\usb_dcd.c" lastModified="13349a79f90"/>
+      </target>
+      <target file="stm32f4xx_tim.o" lastModified="14fe0167e8e">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_tim.c" lastModified="1483603f646"/>
+      </target>
+      <target file="mbutils.o" lastModified="14fe016450f">
+         <source file="..\..\..\Source\freemodbus\functions\mbutils.c" lastModified="14c22662822"/>
+      </target>
+      <target file="syscalls.o" lastModified="14fe01662c9">
+         <source file="..\..\..\syscalls\syscalls.c" lastModified="14c274ebca4"/>
+      </target>
+      <target file="frequency.o" lastModified="14fe0167557">
+         <source file="..\..\..\Source\devices\frequency.c" lastModified="14fd05ad9f5"/>
+      </target>
+      <target file="usbd_ioreq.o" lastModified="14fe016796d">
+         <source file="..\..\..\usblib\usbd_ioreq.c" lastModified="13349a797c0"/>
+      </target>
+      <target file="startup_stm32f4xx.o" lastModified="14fe0164657">
+         <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="13cedd0ed70"/>
+      </target>
+      <target file="croutine.o" lastModified="14fe0166da6">
+         <source file="..\..\..\Source\FreeRTOS\Source\croutine.c" lastModified="14af2c4eed0"/>
+      </target>
+      <target file="timers.o" lastModified="14fe0164e18">
+         <source file="..\..\..\Source\FreeRTOS\Source\timers.c" lastModified="14af2c59580"/>
+      </target>
+      <target file="mbrtu.o" lastModified="14fe0166019">
+         <source file="..\..\..\Source\freemodbus\rtu\mbrtu.c" lastModified="14c31767da1"/>
+      </target>
+      <target file="porttimer.o" lastModified="14fe0165d0c">
+         <source file="..\..\..\Source\freemodbus\port\porttimer.c" lastModified="14f9821c599"/>
+      </target>
+      <target file="event_groups.o" lastModified="14fe0167026">
+         <source file="..\..\..\Source\FreeRTOS\Source\event_groups.c" lastModified="14af2c4f0cc"/>
+      </target>
+      <target file="mb.o" lastModified="14fe016387c">
+         <source file="..\..\..\Source\freemodbus\mb.c" lastModified="14f982c17ef"/>
+      </target>
+      <target file="stm32f4xx_exti.o" lastModified="14fe0167602">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="142a2fcbff3"/>
+      </target>
+      <target file="power_detector.o" lastModified="14fe0167f0b">
+         <source file="..\..\..\Source\devices\power_detector.c" lastModified="14c2bcc22eb"/>
+      </target>
+      <target file="w5500.o" lastModified="14fe0165413">
+         <source file="..\..\..\Ethernet\W5500\w5500.c" lastModified="148358a1190"/>
+      </target>
+      <target file="usb_bsp.o" lastModified="14fe01664eb">
+         <source file="..\..\..\usblib\usb_bsp.c" lastModified="14ae28a4dc7"/>
+      </target>
+      <target file="usbd_usr.o" lastModified="14fe0163ec6">
+         <source file="..\..\..\usblib\usbd_usr.c" lastModified="13ced9e2d40"/>
+      </target>
+      <target file="port.o" lastModified="14fe0166672">
+         <source file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\port.c" lastModified="14af2c51989"/>
+      </target>
+      <target file="mbfuncdisc.o" lastModified="14fe0163d6e">
+         <source file="..\..\..\Source\freemodbus\functions\mbfuncdisc.c" lastModified="14c2274fab0"/>
+      </target>
+      <target file="queue.o" lastModified="14fe016675c">
+         <source file="..\..\..\Source\FreeRTOS\Source\queue.c" lastModified="14af2c587b1"/>
+      </target>
+      <target file="protocol.o" lastModified="14fe0163aed">
+         <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14fd09aae69"/>
+      </target>
+      <target file="usb_core.o" lastModified="14fe0162ec8">
+         <source file="..\..\..\usblib\usb_core.c" lastModified="13349a79f90"/>
+      </target>
+      <target file="tasks.o" lastModified="14fe01657bc">
+         <source file="..\..\..\Source\FreeRTOS\Source\tasks.c" lastModified="14af2c59338"/>
+      </target>
+      <target file="diskio.o" lastModified="14fe01645ea">
+         <source file="..\..\..\FatFS\src\diskio.c" lastModified="14fda65f0a0"/>
+      </target>
+      <target file="mbfuncholding.o" lastModified="14fe01647bf">
+         <source file="..\..\..\Source\freemodbus\functions\mbfuncholding.c" lastModified="14c22b6ab09"/>
+      </target>
+      <target file="system_stm32f4xx.o" lastModified="14fe0166161">
+         <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="14f92a0c783"/>
+      </target>
+      <target file="controller.o" lastModified="14fee7acced">
+         <source file="..\..\..\Source\devices\controller.c" lastModified="14fee7988a6"/>
+      </target>
+      <target file="stm32f4xx_spi.o" lastModified="14fe0166e81">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="14c313944a8"/>
+      </target>
+      <target file="stm32f4xx_dma.o" lastModified="14fe0166401">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_dma.c" lastModified="14fd0dda3b5"/>
+      </target>
+      <target file="mbfuncfile.o" lastModified="14fe0164cfe">
+         <source file="..\..\..\Source\freemodbus\functions\mbfuncfile.c" lastModified="14c93df4bb9"/>
+      </target>
+      <target file="watchdog.o" lastModified="14fe016552c">
+         <source file="..\..\..\Source\devices\watchdog.c" lastModified="14cbca3e30f"/>
+      </target>
+      <target file="stm32f4xx_rcc.o" lastModified="14fe0164c14">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="14835c0baaa"/>
+      </target>
+      <target file="main.o" lastModified="14fe0164955">
+         <source file="..\..\..\main.c" lastModified="14c6f3c6520"/>
+      </target>
+      <target file="mbcrc.o" lastModified="14fe01649d2">
+         <source file="..\..\..\Source\freemodbus\rtu\mbcrc.c" lastModified="14c2274fcc4"/>
+      </target>
+      <target file="usbd_core.o" lastModified="14fe01648a9">
+         <source file="..\..\..\usblib\usbd_core.c" lastModified="13349a797c0"/>
+      </target>
+      <target file="portserial.o" lastModified="14fe0166a6a">
+         <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14fac30ab1b"/>
+      </target>
+   </processor>
+   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -DSTM32F407VG -DSTM32F4XX -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\FatFS -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_boot -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC\ARM_CM3 -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\devices -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\rtu -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\FatFS\inc -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\usblib -ID:\PROJECTS\GIT_REPOSITORY\STM32 -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\ascii">
       <target file="syscall.o" lastModified="14fd4fa2868">
          <source file="..\..\..\FatFS\src\option\syscall.c" lastModified="14fd4fa1250"/>
-      </target>
-      <target file="mbfuncdiag.o" lastModified="14fd4f87857">
-         <source file="..\..\..\Source\freemodbus\functions\mbfuncdiag.c" lastModified="10f5ec0d910"/>
       </target>
    </processor>
    <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F405RG -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_boot -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC\ARM_CM3 -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\devices -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\rtu -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib\include -ID:\PROJECTS\GIT_REPOSITORY\STM32 -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\ascii">
