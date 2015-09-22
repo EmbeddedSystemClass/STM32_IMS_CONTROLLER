@@ -2,7 +2,7 @@
 #define WATCHDOG_H
 #include "stm32f4xx.h"
 
-#define TASK_NUM	10
+#define TASK_NUM	11
 
 enum
 {
@@ -16,6 +16,7 @@ enum
 	ADS1220_CURRENT1_TASK,
 	ADS1220_CURRENT2_TASK,
 	LOG_TASK,
+	CALC_TASK
 };
 
 #ifndef TRUE
