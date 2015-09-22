@@ -31,7 +31,7 @@ float Code_To_Current(uint8_t channel_num,uint32_t adc_code);
 xSemaphoreHandle xADC_SPI_Mutex;
 extern stControllerSettings stSettings;
 
-uint8_t ADS1220_init(void)//
+uint8_t ADS1220_Init(void)//
 {
 	ADC_SPI_config();
 
@@ -505,11 +505,6 @@ float PT100_Code_To_Temperature(int32_t adc_code)
 	float aResistance=((float)adc_code/ADC_MAX*VOLTAGE_REF)/CURRENT_SOURCE/ADC_GAIN;
 	return (-TEMP_0_RES * 3.9083E-3 + sqrtf (TEMP_0_RES * TEMP_0_RES * + 3.9083E-3 * 3.9083E-3 - 4 * TEMP_0_RES * -5.775E-7 * (TEMP_0_RES - aResistance)))/(2 * TEMP_0_RES * -5.775E-7);
 }
-
-#define CUR_VOLTAGE_REF	2.500
-#define CUR_CODE_MIN	0
-#define CUR_CODE_MAX	8388607
-#define CUR_SHUNT_VAL	120
 
 float Code_To_Current(uint8_t channel_num,uint32_t adc_code)
 {

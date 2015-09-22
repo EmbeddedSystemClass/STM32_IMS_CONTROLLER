@@ -73,7 +73,6 @@ static void Log_Task(void *pvParameters)
 	{
 		vTaskDelay(LOG_PERIOD);
 
-
 		Watchdog_SetTaskStatus(LOG_TASK,TASK_ACTIVE);
 		buf=log_buf;
 		RTC_GetDate(RTC_Format_BIN, &RTC_DateStructure);
