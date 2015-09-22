@@ -1139,6 +1139,17 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h"/>
          <include file="..\..\..\Source\devices\controller.h"/>
       </source>
+      <source file="..\..\..\Source\devices\fram_i2c.c" lastModified="14ff459505c">
+         <include file="..\..\..\Source\devices\fram_i2c.h"/>
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h"/>
+         <include file="..\..\..\cmsis_lib\include\misc.h"/>
+         <include file="..\..\..\Source\freemodbus\rtu\mbcrc.h"/>
+         <include file="..\..\..\Source\devices\controller.h"/>
+         <include file="..\..\..\cmsis\core_cmFunc.h"/>
+      </source>
       <source file="..\..\..\Source\devices\watchdog.h" lastModified="14f876d76ad">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
@@ -1208,8 +1219,25 @@
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM3\portmacro.h" lastModified="14af2c519ed">
       </source>
+      <source file="..\..\..\Source\devices\ADS1220.h" lastModified="14ff4566114">
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
       <source file="..\..\..\usblib\usbd_usr.h" lastModified="13349a797c0">
          <include file="..\..\..\usblib\usbd_core.h"/>
+      </source>
+      <source file="..\..\..\Source\devices\ADS1220.c" lastModified="14ff45bd6c9">
+         <include file="..\..\..\Source\devices\ADS1220.h"/>
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_spi.h"/>
+         <include file="..\..\..\cmsis_lib\include\misc.h"/>
+         <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
+         <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
+         <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
+         <include file="..\..\..\Source\FreeRTOS\Source\include\semphr.h"/>
+         <include file="..\..\..\Source\devices\watchdog.h"/>
+         <include file="..\..\..\Source\devices\controller.h"/>
       </source>
       <source file="..\..\..\usblib\usb_dcd.h" lastModified="13349a79f90">
          <include file="..\..\..\usblib\usb_core.h"/>
@@ -1229,6 +1257,11 @@
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_dma.c" lastModified="14fd0dda3b5">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_dma.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
+      </source>
+      <source file="..\..\..\Source\devices\log.c" lastModified="14ff45d6170">
+         <include file="..\..\..\Source\devices\log.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h"/>
+         <include file="..\..\..\Source\devices\watchdog.h"/>
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\task.h" lastModified="14af2c130a3">
          <include file="..\..\..\Source\FreeRTOS\Source\include\list.h"/>
@@ -1356,13 +1389,13 @@
       </source>
       <source file="..\..\..\Source\FreeRTOS\Source\include\list.h" lastModified="14af2c4f9bf">
       </source>
-      <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="13cedd0ed70">
-      </source>
       <source file="..\..\..\Source\FreeRTOS\Source\queue.c" lastModified="14af2c58f81">
          <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\croutine.h"/>
+      </source>
+      <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="13cedd0ed70">
       </source>
       <source file="..\..\..\usblib\usb_core.h" lastModified="13349a79f90">
          <include file="..\..\..\usblib\usb_conf.h"/>

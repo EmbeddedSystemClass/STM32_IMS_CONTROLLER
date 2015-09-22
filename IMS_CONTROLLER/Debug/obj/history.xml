@@ -184,8 +184,8 @@
       <target file="system_stm32f4xx.o" lastModified="14fe0166161">
          <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="14f92a0c783"/>
       </target>
-      <target file="controller.o" lastModified="14ff46162b5">
-         <source file="..\..\..\Source\devices\controller.c" lastModified="14ff4614634"/>
+      <target file="controller.o" lastModified="14ff4944b1d">
+         <source file="..\..\..\Source\devices\controller.c" lastModified="14ff49441d6"/>
       </target>
       <target file="stm32f4xx_spi.o" lastModified="14fe0166e81">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="14c313944a8"/>

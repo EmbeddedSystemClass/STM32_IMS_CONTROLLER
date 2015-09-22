@@ -32,7 +32,7 @@ void ControllerInit(void)
 	xSettingsMutex=xSemaphoreCreateMutex() ;
 
 
-	//Watchdog_Init();
+	Watchdog_Init();
 	Power_Detector_Init();
 	FRAM_I2C_Init();
 	Controller_RestoreSettings();
