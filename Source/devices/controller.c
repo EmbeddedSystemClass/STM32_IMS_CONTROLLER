@@ -11,6 +11,7 @@
 //#include "diskio.h"
 #include <stdio.h>
 #include "power_detector.h"
+#include "calc.h"
 //#include "wiznet.h"
 
 
@@ -41,6 +42,7 @@ void ControllerInit(void)
 	Protocol_Init();
 	FrequencyMeasureInit();
 	ADS1220_Init();
+	Calc_Init();
 
 	//Log_Init();
 }
