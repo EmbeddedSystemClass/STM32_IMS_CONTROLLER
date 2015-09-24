@@ -47,7 +47,7 @@
 #define ADC_REG_CONFIG_CUR_02	0x60//0x10
 #define ADC_REG_CONFIG_CUR_03	0x00
 
-#define ADC_MEASURE_DELAY	100
+#define ADC_MEASURE_DELAY	50	//5sps на канал
 
 
 

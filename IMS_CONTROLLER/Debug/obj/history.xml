@@ -95,7 +95,7 @@
       <target file="stm32f4xx_pwr.o" lastModified="14ffe30b1aa">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_pwr.c" lastModified="14149991717"/>
       </target>
-      <target file="ADS1220.o" lastModified="14ffe310345">
+      <target file="ADS1220.o" lastModified="14ffe88709e">
          <source file="..\..\..\Source\devices\ADS1220.c" lastModified="14ff45bcb11"/>
       </target>
       <target file="rtc.o" lastModified="14ffe30b350">
@@ -128,8 +128,8 @@
       <target file="syscalls.o" lastModified="14ffe30eaac">
          <source file="..\..\..\syscalls\syscalls.c" lastModified="14c274ebca4"/>
       </target>
-      <target file="frequency.o" lastModified="14ffe3109cc">
-         <source file="..\..\..\Source\devices\frequency.c" lastModified="14ff8b52d9d"/>
+      <target file="frequency.o" lastModified="14ffe887428">
+         <source file="..\..\..\Source\devices\frequency.c" lastModified="14ffe8860fe"/>
       </target>
       <target file="usbd_ioreq.o" lastModified="14ffe31120a">
          <source file="..\..\..\usblib\usbd_ioreq.c" lastModified="13349a797c0"/>
@@ -200,7 +200,7 @@
       <target file="system_stm32f4xx.o" lastModified="14ffe30e9e1">
          <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="14ffdd99763"/>
       </target>
-      <target file="controller.o" lastModified="14ffe371c7c">
+      <target file="controller.o" lastModified="14ffe887716">
          <source file="..\..\..\Source\devices\controller.c" lastModified="14ffe3710b5"/>
       </target>
       <target file="stm32f4xx_spi.o" lastModified="14ffe30fc01">

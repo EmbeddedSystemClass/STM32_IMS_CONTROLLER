@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
    <processor signature="4.7.2 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wall -g -nostartfiles -Map=IMS_CONTROLLER.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\IMS_CONTROLLER -TC:\CooCox\CoIDE\configuration\ProgramData\IMS_CONTROLLER/arm-gcc-link.ld -g -LC:\Program Files\GNU Tools ARM Embedded\4.9 2015q2\arm-none-eabi\lib\armv7e-m\fpu -lc -LC:\Program Files\GNU Tools ARM Embedded\4.9 2015q2\arm-none-eabi\lib\armv7e-m\fpu -lg -LC:\Program Files\GNU Tools ARM Embedded\4.9 2015q2\arm-none-eabi\lib\armv7e-m\fpu -lm">
-      <target file="IMS_CONTROLLER.elf" lastModified="14ffe372391">
+      <target file="IMS_CONTROLLER.elf" lastModified="14ffe887cb3">
          <source file="C:\Program Files\GNU Tools ARM Embedded\4.9 2015q2\arm-none-eabi\lib\armv7e-m\fpu\libc.a" lastModified="14dd9819610"/>
          <source file="C:\Program Files\GNU Tools ARM Embedded\4.9 2015q2\arm-none-eabi\lib\armv7e-m\fpu\libg.a" lastModified="14dd9819610"/>
          <source file="C:\Program Files\GNU Tools ARM Embedded\4.9 2015q2\arm-none-eabi\lib\armv7e-m\fpu\libm.a" lastModified="14dd9819610"/>
@@ -64,9 +64,9 @@
          <source file="..\obj\stm32f4xx_spi.o" lastModified="14ffe30fc01"/>
          <source file="..\obj\mbfunccoils.o" lastModified="14ffe30fd0b"/>
          <source file="..\obj\event_groups.o" lastModified="14ffe30fe14"/>
-         <source file="..\obj\ADS1220.o" lastModified="14ffe310345"/>
+         <source file="..\obj\ADS1220.o" lastModified="14ffe88709e"/>
          <source file="..\obj\stm32f4xx_i2c.o" lastModified="14ffe310623"/>
-         <source file="..\obj\frequency.o" lastModified="14ffe3109cc"/>
+         <source file="..\obj\frequency.o" lastModified="14ffe887428"/>
          <source file="..\obj\stm32f4xx_exti.o" lastModified="14ffe310b53"/>
          <source file="..\obj\misc.o" lastModified="14ffe310d76"/>
          <source file="..\obj\usb_dcd.o" lastModified="14ffe310ece"/>
@@ -74,7 +74,7 @@
          <source file="..\obj\usbd_ioreq.o" lastModified="14ffe31120a"/>
          <source file="..\obj\mbascii.o" lastModified="14ffe3112e5"/>
          <source file="..\obj\heap_2.o" lastModified="14ffe3113bf"/>
-         <source file="..\obj\controller.o" lastModified="14ffe371c7c"/>
+         <source file="..\obj\controller.o" lastModified="14ffe887716"/>
          <source file="..\obj\stm32f4xx_tim.o" lastModified="14ffe3116ec"/>
          <source file="..\obj\power_detector.o" lastModified="14ffe3117a7"/>
       </target>
