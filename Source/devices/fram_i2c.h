@@ -5,14 +5,6 @@
 #include "stm32f4xx_rtc.h"
 #include "controller.h"
 
-//typedef struct
-//{
-//	stControllerMeasureData stData;
-//	RTC_DateTypeDef RTC_DateStructure;
-//	RTC_TimeTypeDef RTC_TimeStructure;
-//}stLogEntry;
-
-
 #define FRAM_SETTINGS_ADDR					0x0
 #define FRAM_SETTINGS_CRC_ADDR				0x90
 #define FRAM_LOG_CURRENT_ENTRY_ADDR			0x28

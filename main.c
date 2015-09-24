@@ -9,7 +9,6 @@
 #include "controller.h"
 
 
-
 int main(void)
 {
 	SystemInit();

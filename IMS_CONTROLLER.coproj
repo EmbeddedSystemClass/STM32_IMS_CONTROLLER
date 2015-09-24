@@ -7,7 +7,7 @@
         <Option name="OptimizationLevel" value="0"/>
         <Option name="UseFPU" value="0"/>
         <Option name="UserEditCompiler" value=""/>
-        <Option name="FPU" value="0"/>
+        <Option name="FPU" value="2"/>
         <Includepaths>
           <Includepath path="."/>
         </Includepaths>
@@ -16,6 +16,10 @@
           <Define name="__ASSEMBLY__"/>
           <Define name="STM32F407VG"/>
           <Define name="STM32F4XX"/>
+          <Define name="__FPU_PRESENT"/>
+          <Define name="__FPU_USED"/>
+          <Define name="__FPU_USED = 1"/>
+          <Define name="__VFP_FP__"/>
         </DefinedSymbols>
       </Compile>
       <Link useDefault="0">
@@ -25,9 +29,11 @@
         <Option name="LTO" value="0"/>
         <Option name="IsNewStartupCode" value="1"/>
         <Option name="Library" value="Not use C Library"/>
+        <Option name="UserEditLinker" value="--entry=main; "/>
         <LinkedLibraries>
-          <Libset dir="c:\program files\coocox\coide\gcc\sourcery g++ lite\arm-none-eabi\lib\thumb2\" libs="m"/>
-          <Libset dir="c:\program files\coocox\coide\gcc\sourcery g++ lite\arm-none-eabi\lib\thumb2\" libs="c"/>
+          <Libset dir="c:\program files\gnu tools arm embedded\4.9 2015q2\arm-none-eabi\lib\armv7e-m\fpu\" libs="c"/>
+          <Libset dir="c:\program files\gnu tools arm embedded\4.9 2015q2\arm-none-eabi\lib\armv7e-m\fpu\" libs="g"/>
+          <Libset dir="c:\program files\gnu tools arm embedded\4.9 2015q2\arm-none-eabi\lib\armv7e-m\fpu\" libs="m"/>
         </LinkedLibraries>
         <MemoryAreas debugInFlashNotRAM="1">
           <Memory name="IROM1" type="ReadOnly" size="0x00100000" startValue="0x08000000"/>
@@ -35,7 +41,7 @@
           <Memory name="IROM2" type="ReadOnly" size="" startValue=""/>
           <Memory name="IRAM2" type="ReadWrite" size="0x00010000" startValue="0x10000000"/>
         </MemoryAreas>
-        <LocateLinkFile path="c:/coocox/coide/configuration/programdata/ims_controller/link.ld" type="0"/>
+        <LocateLinkFile path="c:/coocox/coide/configuration/programdata/ims_controller/arm-gcc-link.ld" type="0"/>
       </Link>
       <Output>
         <Option name="OutputFileType" value="0"/>
@@ -108,6 +114,7 @@
     <File name="FreeRTOS/Source/portable" path="" type="2"/>
     <File name="FreeRTOS/Source/croutine.c" path="Source/FreeRTOS/Source/croutine.c" type="1"/>
     <File name="freemodbus/protocol.h" path="Source/freemodbus/protocol.h" type="1"/>
+    <File name="FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c" path="Source/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c" type="1"/>
     <File name="usblib/usbd_cdc_core.h" path="usblib/usbd_cdc_core.h" type="1"/>
     <File name="usblib/usb_dcd.h" path="usblib/usb_dcd.h" type="1"/>
     <File name="stdio/printf.c" path="stdio/printf.c" type="1"/>
@@ -136,7 +143,6 @@
     <File name="usblib/usbd_def.h" path="usblib/usbd_def.h" type="1"/>
     <File name="usblib/usbd_cdc_vcp.c" path="usblib/usbd_cdc_vcp.c" type="1"/>
     <File name="cmsis_lib/include/misc.h" path="cmsis_lib/include/misc.h" type="1"/>
-    <File name="FreeRTOS/Source/portable/GCC/ARM_CM3" path="" type="2"/>
     <File name="Ethernet/Readme.txt" path="Ethernet/Readme.txt" type="1"/>
     <File name="devices/sdio_sd.h" path="Source/devices/sdio_sd.h" type="1"/>
     <File name="devices/low_level_sdio.c" path="Source/devices/low_level_sdio.c" type="1"/>
@@ -193,8 +199,10 @@
     <File name="freemodbus/rtu/mbcrc.h" path="Source/freemodbus/rtu/mbcrc.h" type="1"/>
     <File name="freemodbus/include/mbfunc.h" path="Source/freemodbus/include/mbfunc.h" type="1"/>
     <File name="FatFS/inc/integer.h" path="FatFS/inc/integer.h" type="1"/>
+    <File name="FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h" path="Source/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h" type="1"/>
     <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
     <File name="devices/watchdog.h" path="Source/devices/watchdog.h" type="1"/>
+    <File name="FreeRTOS/Source/portable/GCC/ARM_CM4F" path="" type="2"/>
     <File name="usblib/usb_otg.c_D" path="usblib/usb_otg.c_D" type="1"/>
     <File name="devices/fram_i2c.c" path="Source/devices/fram_i2c.c" type="1"/>
     <File name="usblib" path="" type="2"/>
@@ -233,7 +241,6 @@
     <File name="freemodbus/mb.c" path="Source/freemodbus/mb.c" type="1"/>
     <File name="FreeRTOS/Source/queue.c" path="Source/FreeRTOS/Source/queue.c" type="1"/>
     <File name="usblib/usb_conf.h" path="usblib/usb_conf.h" type="1"/>
-    <File name="FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" path="Source/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" type="1"/>
     <File name="FreeRTOS/Source/include/croutine.h" path="Source/FreeRTOS/Source/include/croutine.h" type="1"/>
     <File name="usblib/usb_dcd_int.c" path="usblib/usb_dcd_int.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_syscfg.h" path="cmsis_lib/include/stm32f4xx_syscfg.h" type="1"/>
@@ -254,7 +261,6 @@
     <File name="Ethernet/socket.h" path="Ethernet/socket.h" type="1"/>
     <File name="cmsis_boot/stm32f4xx_conf.h" path="cmsis_boot/stm32f4xx_conf.h" type="1"/>
     <File name="usblib/usb_hcd.h_D" path="usblib/usb_hcd.h_D" type="1"/>
-    <File name="FreeRTOS/Source/portable/GCC/ARM_CM3/port.c" path="Source/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c" type="1"/>
     <File name="freemodbus/include/mbport.h" path="Source/freemodbus/include/mbport.h" type="1"/>
     <File name="devices/power_detector.c" path="Source/devices/power_detector.c" type="1"/>
     <File name="calculation/calc.c" path="Source/calculation/calc.c" type="1"/>

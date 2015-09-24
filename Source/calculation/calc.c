@@ -11,6 +11,8 @@
 #include "queue.h"
 #include "semphr.h"
 
+#include <math.h>
+
 #define CALC_PERIOD	1000
 #define CALC_STACK_SIZE	256
 
@@ -28,7 +30,7 @@ void Calc_Init(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 
-	RCC_APB2PeriphClockCmd(HT_GPIO_RCC, ENABLE);
+	RCC_AHB1PeriphClockCmd(HT_GPIO_RCC, ENABLE);
 
 	GPIO_InitStructure.GPIO_Pin   = HT_PIN;
     GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_OUT;
@@ -50,6 +52,11 @@ static void Calc_Task(void *pvParameters)
 	    xSemaphoreTake( xMeasureDataMutex, portMAX_DELAY );
 	    {
 	    	//чтение из структуры результатов измерений
+
+	    	float x=0.789, y=0;
+
+	    	y=sinf(x);
+	    	x=0;
 	    }
 	    xSemaphoreGive( xMeasureDataMutex );
 
