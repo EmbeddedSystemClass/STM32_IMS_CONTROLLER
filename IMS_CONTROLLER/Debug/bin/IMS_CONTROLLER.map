@@ -3325,66 +3325,66 @@ OUTPUT(IMS_CONTROLLER.elf elf32-littlearm)
  .debug_ranges  0x00001720      0x2e8 ..\obj\stm32f4xx_tim.o
  .debug_ranges  0x00001a08       0x20 ..\obj\power_detector.o
 
-.debug_line     0x00000000     0xe6d9
+.debug_line     0x00000000     0xe6da
  .debug_line    0x00000000      0x6fd ..\obj\usb_core.o
  .debug_line    0x000006fd      0x7af ..\obj\mbport.o
  .debug_line    0x00000eac      0x3c5 ..\obj\calc.o
  .debug_line    0x00001271      0x376 ..\obj\mb.o
  .debug_line    0x000015e7      0x484 ..\obj\stm32f4xx_sdio.o
- .debug_line    0x00001a6b      0x3a3 ..\obj\protocol.o
- .debug_line    0x00001e0e      0x235 ..\obj\mbfuncdisc.o
- .debug_line    0x00002043      0x1d6 ..\obj\usbd_usr.o
- .debug_line    0x00002219      0x294 ..\obj\portevent.o
- .debug_line    0x000024ad      0x2a5 ..\obj\mbfuncother.o
- .debug_line    0x00002752      0x4e2 ..\obj\stm32f4xx_usart.o
- .debug_line    0x00002c34      0x2e7 ..\obj\stm32f4xx_pwr.o
- .debug_line    0x00002f1b      0x246 ..\obj\rtc.o
- .debug_line    0x00003161      0x980 ..\obj\sdio_sd.o
- .debug_line    0x00003ae1      0x2af ..\obj\mbutils.o
- .debug_line    0x00003d90      0x368 ..\obj\diskio.o
- .debug_line    0x000040f8       0xb0 ..\obj\startup_stm32f4xx.o
- .debug_line    0x000041a8      0x241 ..\obj\stm32f4xx_iwdg.o
- .debug_line    0x000043e9      0x2d0 ..\obj\mbfuncholding.o
- .debug_line    0x000046b9      0x31e ..\obj\usbd_core.o
- .debug_line    0x000049d7      0x2fc ..\obj\main.o
- .debug_line    0x00004cd3      0x1a8 ..\obj\mbcrc.o
- .debug_line    0x00004e7b      0x5e1 ..\obj\stm32f4xx_rcc.o
- .debug_line    0x0000545c      0x26d ..\obj\mbfuncfile.o
- .debug_line    0x000056c9      0x39b ..\obj\log.o
- .debug_line    0x00005a64      0x22b ..\obj\mbfuncinput.o
- .debug_line    0x00005c8f      0x374 ..\obj\printf.o
- .debug_line    0x00006003      0x281 ..\obj\watchdog.o
- .debug_line    0x00006284      0xc2f ..\obj\tasks.o
- .debug_line    0x00006eb3      0x21c ..\obj\usbd_desc.o
- .debug_line    0x000070cf      0x51c ..\obj\fram_i2c.o
- .debug_line    0x000075eb      0x383 ..\obj\stm32f4xx_gpio.o
- .debug_line    0x0000796e      0x489 ..\obj\porttimer.o
- .debug_line    0x00007df7      0x246 ..\obj\usbd_cdc_vcp.o
- .debug_line    0x0000803d      0x28a ..\obj\list.o
- .debug_line    0x000082c7      0x2da ..\obj\mbrtu.o
- .debug_line    0x000085a1      0x213 ..\obj\system_stm32f4xx.o
- .debug_line    0x000087b4      0x41c ..\obj\stm32f4xx_dma.o
- .debug_line    0x00008bd0      0x2d4 ..\obj\usb_bsp.o
- .debug_line    0x00008ea4      0x3e0 ..\obj\usbd_req.o
- .debug_line    0x00009284      0x86f ..\obj\queue.o
- .debug_line    0x00009af3      0x386 ..\obj\port.o
- .debug_line    0x00009e79      0x3bc ..\obj\usb_dcd_int.o
- .debug_line    0x0000a235      0x642 ..\obj\portserial.o
- .debug_line    0x0000a877      0x2bf ..\obj\usbd_cdc_core.o
- .debug_line    0x0000ab36      0x492 ..\obj\stm32f4xx_spi.o
- .debug_line    0x0000afc8      0x2a2 ..\obj\mbfunccoils.o
- .debug_line    0x0000b26a      0x53c ..\obj\ADS1220.o
- .debug_line    0x0000b7a6      0x51b ..\obj\stm32f4xx_i2c.o
- .debug_line    0x0000bcc1      0x452 ..\obj\frequency.o
- .debug_line    0x0000c113      0x2e5 ..\obj\stm32f4xx_exti.o
- .debug_line    0x0000c3f8      0x285 ..\obj\misc.o
- .debug_line    0x0000c67d      0x348 ..\obj\usb_dcd.o
- .debug_line    0x0000c9c5      0x864 ..\obj\stm32f4xx_rtc.o
- .debug_line    0x0000d229      0x232 ..\obj\usbd_ioreq.o
- .debug_line    0x0000d45b      0x2d6 ..\obj\heap_2.o
- .debug_line    0x0000d731      0x255 ..\obj\controller.o
- .debug_line    0x0000d986      0xaaa ..\obj\stm32f4xx_tim.o
- .debug_line    0x0000e430      0x2a9 ..\obj\power_detector.o
+ .debug_line    0x00001a6b      0x3a4 ..\obj\protocol.o
+ .debug_line    0x00001e0f      0x235 ..\obj\mbfuncdisc.o
+ .debug_line    0x00002044      0x1d6 ..\obj\usbd_usr.o
+ .debug_line    0x0000221a      0x294 ..\obj\portevent.o
+ .debug_line    0x000024ae      0x2a5 ..\obj\mbfuncother.o
+ .debug_line    0x00002753      0x4e2 ..\obj\stm32f4xx_usart.o
+ .debug_line    0x00002c35      0x2e7 ..\obj\stm32f4xx_pwr.o
+ .debug_line    0x00002f1c      0x246 ..\obj\rtc.o
+ .debug_line    0x00003162      0x980 ..\obj\sdio_sd.o
+ .debug_line    0x00003ae2      0x2af ..\obj\mbutils.o
+ .debug_line    0x00003d91      0x368 ..\obj\diskio.o
+ .debug_line    0x000040f9       0xb0 ..\obj\startup_stm32f4xx.o
+ .debug_line    0x000041a9      0x241 ..\obj\stm32f4xx_iwdg.o
+ .debug_line    0x000043ea      0x2d0 ..\obj\mbfuncholding.o
+ .debug_line    0x000046ba      0x31e ..\obj\usbd_core.o
+ .debug_line    0x000049d8      0x2fc ..\obj\main.o
+ .debug_line    0x00004cd4      0x1a8 ..\obj\mbcrc.o
+ .debug_line    0x00004e7c      0x5e1 ..\obj\stm32f4xx_rcc.o
+ .debug_line    0x0000545d      0x26d ..\obj\mbfuncfile.o
+ .debug_line    0x000056ca      0x39b ..\obj\log.o
+ .debug_line    0x00005a65      0x22b ..\obj\mbfuncinput.o
+ .debug_line    0x00005c90      0x374 ..\obj\printf.o
+ .debug_line    0x00006004      0x281 ..\obj\watchdog.o
+ .debug_line    0x00006285      0xc2f ..\obj\tasks.o
+ .debug_line    0x00006eb4      0x21c ..\obj\usbd_desc.o
+ .debug_line    0x000070d0      0x51c ..\obj\fram_i2c.o
+ .debug_line    0x000075ec      0x383 ..\obj\stm32f4xx_gpio.o
+ .debug_line    0x0000796f      0x489 ..\obj\porttimer.o
+ .debug_line    0x00007df8      0x246 ..\obj\usbd_cdc_vcp.o
+ .debug_line    0x0000803e      0x28a ..\obj\list.o
+ .debug_line    0x000082c8      0x2da ..\obj\mbrtu.o
+ .debug_line    0x000085a2      0x213 ..\obj\system_stm32f4xx.o
+ .debug_line    0x000087b5      0x41c ..\obj\stm32f4xx_dma.o
+ .debug_line    0x00008bd1      0x2d4 ..\obj\usb_bsp.o
+ .debug_line    0x00008ea5      0x3e0 ..\obj\usbd_req.o
+ .debug_line    0x00009285      0x86f ..\obj\queue.o
+ .debug_line    0x00009af4      0x386 ..\obj\port.o
+ .debug_line    0x00009e7a      0x3bc ..\obj\usb_dcd_int.o
+ .debug_line    0x0000a236      0x642 ..\obj\portserial.o
+ .debug_line    0x0000a878      0x2bf ..\obj\usbd_cdc_core.o
+ .debug_line    0x0000ab37      0x492 ..\obj\stm32f4xx_spi.o
+ .debug_line    0x0000afc9      0x2a2 ..\obj\mbfunccoils.o
+ .debug_line    0x0000b26b      0x53c ..\obj\ADS1220.o
+ .debug_line    0x0000b7a7      0x51b ..\obj\stm32f4xx_i2c.o
+ .debug_line    0x0000bcc2      0x452 ..\obj\frequency.o
+ .debug_line    0x0000c114      0x2e5 ..\obj\stm32f4xx_exti.o
+ .debug_line    0x0000c3f9      0x285 ..\obj\misc.o
+ .debug_line    0x0000c67e      0x348 ..\obj\usb_dcd.o
+ .debug_line    0x0000c9c6      0x864 ..\obj\stm32f4xx_rtc.o
+ .debug_line    0x0000d22a      0x232 ..\obj\usbd_ioreq.o
+ .debug_line    0x0000d45c      0x2d6 ..\obj\heap_2.o
+ .debug_line    0x0000d732      0x255 ..\obj\controller.o
+ .debug_line    0x0000d987      0xaaa ..\obj\stm32f4xx_tim.o
+ .debug_line    0x0000e431      0x2a9 ..\obj\power_detector.o
 
 .debug_str      0x00000000     0xa490
  .debug_str     0x00000000     0x136c ..\obj\usb_core.o

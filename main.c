@@ -16,8 +16,6 @@ int main(void)
     vTaskStartScheduler();
     while(1);
 }
-
-
 //---------------------------------------------------------------------------------------
 
 void vApplicationTickHook( void )

@@ -352,7 +352,6 @@ static stMBContext *stUSB_CDC_Context;
 uint8_t temp_char;
 static void USB_CDC_Task(void *pvParameters);
 
-//stMBEvent stUSB_CDC_Send_Event;
 
 BOOL
 USB_CDC_SerialPutByte( CHAR ucByte )
@@ -360,11 +359,6 @@ USB_CDC_SerialPutByte( CHAR ucByte )
 
 	VCP_DataTx(&ucByte,1);
 	xMBPortEventPost(&stUSB_CDC_Context->stEvent,EV_FRAME_SENT);
-	//uint16_t delay=10000;
-
-	//while (delay--);
-
-	//stUSB_CDC_Context->pxMBFrameCBTransmitterEmpty(&stUSB_CDC_Context->stRTUContext,&stUSB_CDC_Context->stCommunication,&stUSB_CDC_Context->stEvent);
 
 	return TRUE;
 }

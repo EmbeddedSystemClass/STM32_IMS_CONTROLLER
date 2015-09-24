@@ -19,6 +19,14 @@
 #include "stm32f4xx_usart.h"
 #include "misc.h"
 
+#define MODBUS_RS232_DEV_ADDR	0x0A
+#define MODBUS_RS485_DEV_ADDR	0x0A
+#define MODBUS_USB_DEV_ADDR	    0x0A
+
+#define MODBUS_TASK_STACK_SIZE	512
+#define MODBUS_BAUDRATE			57600
+#define MODBUS_POLL_TIME		10
+
 extern struct task_watch task_watches[];
 
 static void Modbus_RS485_Task(void *pvParameters);
@@ -44,13 +52,13 @@ void Protocol_Init(void)
 	USB_CDC_SerialContextInit(&stContext_USB_CDC);
 	USB_CDC_TimerContextInit(&stContext_USB_CDC);
 
-	eStatus = eMBInit(&stContext_RS485, MB_RTU, 0x0A, 0, 57600, 0 );
-	eStatus = eMBInit(&stContext_RS232, MB_RTU, 0x0A, 0, 57600, 0 );
-	eStatus = eMBInit(&stContext_USB_CDC, MB_RTU, 0x0A, 0, 57600, 0 );
+	eStatus = eMBInit(&stContext_RS485, MB_RTU, MODBUS_RS485_DEV_ADDR, 0, MODBUS_BAUDRATE, 0 );
+	eStatus = eMBInit(&stContext_RS232, MB_RTU, MODBUS_RS232_DEV_ADDR, 0, MODBUS_BAUDRATE, 0 );
+	eStatus = eMBInit(&stContext_USB_CDC, MB_RTU, MODBUS_USB_DEV_ADDR, 0, MODBUS_BAUDRATE, 0 );
 
-	xTaskCreate(Modbus_RS485_Task,(signed char*)"Modbus RS485",512,NULL, tskIDLE_PRIORITY + 1, NULL);
-	xTaskCreate(Modbus_RS232_Task,(signed char*)"Modbus RS232",512,NULL, tskIDLE_PRIORITY + 1, NULL);
-	xTaskCreate(Modbus_USB_CDC_Task,(signed char*)"Modbus USB",512,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(Modbus_RS485_Task,(signed char*)"Modbus RS485",MODBUS_TASK_STACK_SIZE,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(Modbus_RS232_Task,(signed char*)"Modbus RS232",MODBUS_TASK_STACK_SIZE,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(Modbus_USB_CDC_Task,(signed char*)"Modbus USB",MODBUS_TASK_STACK_SIZE,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 
 
@@ -62,7 +70,7 @@ static void Modbus_RS485_Task(void *pvParameters)
     for( ;; )
     {
         eMBPoll(&stContext_RS485);
-        vTaskDelay(10);
+        vTaskDelay(MODBUS_POLL_TIME);
         Watchdog_IncrementCouter(RS485_TASK);
     }
 }
@@ -74,8 +82,7 @@ static void Modbus_RS232_Task(void *pvParameters)
     for( ;; )
     {
         eMBPoll(&stContext_RS232);
-
-        vTaskDelay(10);
+        vTaskDelay(MODBUS_POLL_TIME);
         Watchdog_IncrementCouter(RS232_TASK);
     }
 
@@ -88,8 +95,7 @@ static void Modbus_USB_CDC_Task(void *pvParameters)
     for( ;; )
     {
         eMBPoll(&stContext_USB_CDC);
-
-        vTaskDelay(10);
+        vTaskDelay(MODBUS_POLL_TIME);
         Watchdog_IncrementCouter(USB_TASK);
     }
 
