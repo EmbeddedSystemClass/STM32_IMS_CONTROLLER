@@ -63,30 +63,6 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
 
     xSemaphoreTake( xMeasureDataMutex, portMAX_DELAY );
     {
-//    	((float*)usRegInputBuf)[0]=stMeasureData.frequency[0];
-//    	((float*)usRegInputBuf)[1]=stMeasureData.frequency[1];
-//    	((uint32_t*)usRegInputBuf)[2]=(uint32_t)stMeasureData.pulse_counter[0];
-//    	((uint32_t*)usRegInputBuf)[3]=(uint32_t)stMeasureData.pulse_counter[1];
-//    	((float*)usRegInputBuf)[4]=stMeasureData.rtd[0];
-//    	((float*)usRegInputBuf)[5]=stMeasureData.rtd[1];
-//    	((float*)usRegInputBuf)[6]=stMeasureData.current[CURRENT_CHANNEL_0];
-//    	((float*)usRegInputBuf)[7]=stMeasureData.current[CURRENT_CHANNEL_1];
-//    	((float*)usRegInputBuf)[8]=stMeasureData.current[CURRENT_CHANNEL_2];
-//    	((float*)usRegInputBuf)[9]=stMeasureData.current[CURRENT_CHANNEL_3];
-//    	((float*)usRegInputBuf)[10]=stMeasureData.current[CURRENT_CHANNEL_4];
-//    	((float*)usRegInputBuf)[11]=stMeasureData.current[CURRENT_CHANNEL_5];
-//    	((float*)usRegInputBuf)[12]=stMeasureData.current[CURRENT_CHANNEL_6];
-//    	((float*)usRegInputBuf)[13]=stMeasureData.current[CURRENT_CHANNEL_7];
-//
-//    	((uint32_t*)usRegInputBuf)[14]=stMeasureData.current_raw[CURRENT_CHANNEL_0];
-//    	((uint32_t*)usRegInputBuf)[15]=stMeasureData.current_raw[CURRENT_CHANNEL_1];
-//    	((uint32_t*)usRegInputBuf)[16]=stMeasureData.current_raw[CURRENT_CHANNEL_2];
-//    	((uint32_t*)usRegInputBuf)[17]=stMeasureData.current_raw[CURRENT_CHANNEL_3];
-//    	((uint32_t*)usRegInputBuf)[18]=stMeasureData.current_raw[CURRENT_CHANNEL_4];
-//    	((uint32_t*)usRegInputBuf)[19]=stMeasureData.current_raw[CURRENT_CHANNEL_5];
-//    	((uint32_t*)usRegInputBuf)[20]=stMeasureData.current_raw[CURRENT_CHANNEL_6];
-//    	((uint32_t*)usRegInputBuf)[21]=stMeasureData.current_raw[CURRENT_CHANNEL_7];
-
     	*((float*)&usRegInputBuf[REG_FREQUENCY_0])=stMeasureData.frequency[0];
     	*((float*)&usRegInputBuf[REG_FREQUENCY_1])=stMeasureData.frequency[1];
     	*((uint32_t*)&usRegInputBuf[REG_PULSE_COUNTER_0])=(uint32_t)stMeasureData.pulse_counter[0];
