@@ -1,0 +1,3 @@
+13:33:52.625 [Worker-38] INFO  org.coocox.codb.common.log.ProcessTimeLog - 47`505`freshExamplesByCompId`2172
+13:33:52.625 [Worker-39] INFO  org.coocox.codb.common.log.ProcessTimeLog - 47`505`freshExamplesByCompId`1078
+13:34:24.296 [Worker-38] INFO  org.coocox.codb.common.log.ProcessTimeLog - 47`506`freshExamplesByCompId`593
