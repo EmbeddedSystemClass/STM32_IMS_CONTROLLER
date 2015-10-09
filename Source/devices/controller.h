@@ -59,7 +59,7 @@ typedef struct
 	float frequency[FREQ_CHN_NUM];
 	uint64_t pulse_counter[PULSE_COUNT_CHN_NUM];
 	float rtd[RTD_CHN_NUM];
-	float current_raw[CURRENT_CHN_NUM];
+	uint32_t current_raw[CURRENT_CHN_NUM];
 	float current[CURRENT_CHN_NUM];
 }stControllerMeasureData;
 
