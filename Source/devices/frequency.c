@@ -50,6 +50,16 @@
 #define FREQ_MEASURE_TIME					250
 #define FREQ_TCXO_MULTIPLIER				3
 
+#define FREQ_COUNT_PP_OD_SELECT_PORT				GPIOA
+#define FREQ_COUNT_1_PP_OD_SELECT_PIN				GPIO_Pin_4
+#define FREQ_COUNT_2_PP_OD_SELECT_PIN				GPIO_Pin_3
+
+#define FREQ_COUNT_1_PP	FREQ_COUNT_PP_OD_SELECT_PORT->BSRRL|=FREQ_COUNT_1_PP_OD_SELECT_PIN
+#define FREQ_COUNT_1_OD	FREQ_COUNT_PP_OD_SELECT_PORT->BSRRH|=FREQ_COUNT_1_PP_OD_SELECT_PIN
+
+#define FREQ_COUNT_2_PP	FREQ_COUNT_PP_OD_SELECT_PORT->BSRRL|=FREQ_COUNT_2_PP_OD_SELECT_PIN
+#define FREQ_COUNT_2_OD	FREQ_COUNT_PP_OD_SELECT_PORT->BSRRH|=FREQ_COUNT_2_PP_OD_SELECT_PIN
+
 typedef struct
 {
 	uint32_t	capture_1;
@@ -151,6 +161,17 @@ void FrequencyMeasureInit(void)
 	TIM_ETRClockMode2Config(FREQ_COUNT_2_TIM, TIM_ExtTRGPSC_OFF, TIM_ExtTRGPolarity_NonInverted, 0x00);
 	TIM_Cmd(FREQ_COUNT_2_TIM, ENABLE);
 
+	GPIO_InitStructure.GPIO_Pin = FREQ_COUNT_1_PP_OD_SELECT_PIN | FREQ_COUNT_2_PP_OD_SELECT_PIN;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+	GPIO_Init(FREQ_COUNT_PP_OD_SELECT_PORT, &GPIO_InitStructure);
+
+	FREQ_COUNT_1_PP;//FREQ_COUNT_1_OD; //
+	FREQ_COUNT_2_OD;//FREQ_COUNT_2_OD;
+
+
 	vSemaphoreCreateBinary( xFrequencySemaphore[0] );
 	vSemaphoreCreateBinary( xFrequencySemaphore[1] );
 
@@ -217,9 +238,10 @@ static void FrequencyCH1Measure_Task(void *pvParameters)
 				 sum_tick_impulse=(FREQ_CAPTURE_TIM_PERIOD-FrequencyData[0].capture_1)+FrequencyData[0].capture_2;
 			 }
 
+
 			 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 			 {
-			     frequency= (float)stSettings.TCXO_frequency*FREQ_TCXO_MULTIPLIER*FrequencyData[0].impulse_count/sum_tick_impulse;
+				 frequency= sum_tick_impulse ? (float)stSettings.TCXO_frequency*FREQ_TCXO_MULTIPLIER*FrequencyData[0].impulse_count/sum_tick_impulse : 0;
 			 }
 			 xSemaphoreGive( xSettingsMutex );
 
@@ -266,12 +288,12 @@ static void FrequencyCH2Measure_Task(void *pvParameters)
 			 }
 			 else
 			 {
-				 sum_tick_impulse=(FREQ_CAPTURE_TIM_PERIOD-FrequencyData[1].capture_1)+FrequencyData[1].capture_2;
+				 sum_tick_impulse= (FREQ_CAPTURE_TIM_PERIOD-FrequencyData[1].capture_1)+FrequencyData[1].capture_2;
 			 }
 
 			 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 			 {
-			     frequency= (float)stSettings.TCXO_frequency*FREQ_TCXO_MULTIPLIER*FrequencyData[1].impulse_count/sum_tick_impulse;
+			     frequency= sum_tick_impulse ? (float)stSettings.TCXO_frequency*FREQ_TCXO_MULTIPLIER*FrequencyData[1].impulse_count/sum_tick_impulse : 0;
 			 }
 			 xSemaphoreGive( xSettingsMutex );
 

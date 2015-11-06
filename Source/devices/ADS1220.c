@@ -27,6 +27,7 @@ static void ADC_Current2_Task(void *pvParameters);
 static void	ADC_SPI_config(void);
 float PT100_Code_To_Temperature(int32_t adc_code);
 float Code_To_Current(uint8_t channel_num,uint32_t adc_code);
+float Current_to_Value(uint8_t channel_num,float current);
 
 xSemaphoreHandle xADC_SPI_Mutex;
 extern stControllerSettings stSettings;
@@ -382,6 +383,8 @@ static void ADC_Current1_Task(void *pvParameters)
 
 			stMeasureData.current_raw[channel_count]=Cur1_ADC_code;
 			stMeasureData.current[channel_count]=Code_To_Current(channel_count,Cur1_ADC_code);
+			stSettings.CurChannelCalibrate[channel_count].value=Current_to_Value(channel_count,stMeasureData.current[channel_count]);
+
 			ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS3;
 	    }
 	    xSemaphoreGive( xADC_SPI_Mutex );
@@ -481,6 +484,7 @@ static void ADC_Current2_Task(void *pvParameters)
 			stMeasureData.current_raw[channel_count+4]=Cur2_ADC_code;
 
 			stMeasureData.current[channel_count+4]=Code_To_Current(channel_count+4,Cur2_ADC_code);
+			stSettings.CurChannelCalibrate[channel_count+4].value=Current_to_Value(channel_count+4,stMeasureData.current[channel_count+4]);
 			ADC_SPI_GPIO_CS->BSRRL|=ADC_SPI_CS4;
 	    }
 	    xSemaphoreGive( xADC_SPI_Mutex );
@@ -508,7 +512,21 @@ float PT100_Code_To_Temperature(int32_t adc_code)
 
 float Code_To_Current(uint8_t channel_num,uint32_t adc_code)
 {
-	return (((float)adc_code-stSettings.CurChannelCalibrate[channel_num].code_pnt0)*(stSettings.CurChannelCalibrate[channel_num].current_ma_pnt1-stSettings.CurChannelCalibrate[channel_num].current_ma_pnt0)/((float)stSettings.CurChannelCalibrate[channel_num].code_pnt1-stSettings.CurChannelCalibrate[channel_num].code_pnt0)+stSettings.CurChannelCalibrate[channel_num].current_ma_pnt0);
+	if (((float)stSettings.CurChannelCalibrate[channel_num].code_pnt1-stSettings.CurChannelCalibrate[channel_num].code_pnt0)==0){
+			return(0);
+	}
+	else{
+		return ( ((float)adc_code-stSettings.CurChannelCalibrate[channel_num].code_pnt0)*(stSettings.CurChannelCalibrate[channel_num].current_20ma-stSettings.CurChannelCalibrate[channel_num].current_4ma)/((float)stSettings.CurChannelCalibrate[channel_num].code_pnt1-stSettings.CurChannelCalibrate[channel_num].code_pnt0)+stSettings.CurChannelCalibrate[channel_num].current_4ma );
+	}
 }
 
+float Current_to_Value(uint8_t channel_num,float current)
+{
+	if ((stSettings.CurChannelCalibrate[channel_num].current_20ma-stSettings.CurChannelCalibrate[channel_num].current_4ma)==0){
+			return(0);
+	}
+	else{
+		return ( (current-stSettings.CurChannelCalibrate[channel_num].current_4ma)*(stSettings.CurChannelCalibrate[channel_num].full-stSettings.CurChannelCalibrate[channel_num].zero)/((float)stSettings.CurChannelCalibrate[channel_num].current_20ma-stSettings.CurChannelCalibrate[channel_num].current_4ma)+stSettings.CurChannelCalibrate[channel_num].zero );
+	}
+}
 

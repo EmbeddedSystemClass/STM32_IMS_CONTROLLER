@@ -21,6 +21,7 @@ int main(void)
 void vApplicationTickHook( void )
 {
 	portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
+    my_counter++;
 }
 /*-----------------------------------------------------------*/
 

@@ -1,234 +1,1037 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
-   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -DSTM32F407VG -DSTM32F4XX -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\FatFS -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_boot -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC\ARM_CM3 -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\devices -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\rtu -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\FatFS\inc -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\usblib -ID:\PROJECTS\GIT_REPOSITORY\STM32 -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\ascii">
-      <target file="syscall.o" lastModified="14fd4fa2868">
-         <source file="..\..\..\FatFS\src\option\syscall.c" lastModified="14fd4fa1250"/>
+   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wall -ffunction-sections -g -O0 -c -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -DSTM32F407VG -DSTM32F4XX -D__FPU_PRESENT -D__FPU_USED -D__FPU_USED = 1 -D__VFP_FP__ -DARM_MATH_CM4 -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC\ARM_CM4F -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\Ethernet\W5500 -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\Source -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\Source\FreeRTOS -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\Source\freemodbus -I..\..\..\..\..\Temp\IMS_PO -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\include -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\cmsis -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\cmsis_boot -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\Source\freemodbus\rtu -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\Source\calculation -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\Source\devices -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\Source\freemodbus\ascii -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\DSP -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\Ethernet -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\Source\freemodbus\include -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\usblib -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\FatFS\inc -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\DSP\Include -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\FatFS -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\cmsis_lib\include -I..\..\..\..\..\Temp\IMS_PO\STM32_IMS_CONTROLLER\cmsis_lib">
+      <target file="arm_shift_q31.o" lastModified="150cdb0c3e4">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_shift_q31.c" lastModified="1501ed14a60"/>
       </target>
-   </processor>
-   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F405RG -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_boot -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC\ARM_CM3 -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\devices -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\rtu -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib\include -ID:\PROJECTS\GIT_REPOSITORY\STM32 -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\ascii">
-      <target file="backup_sram.o" lastModified="14c78f4e864">
-         <source file="..\..\..\Source\devices\backup_sram.c" lastModified="14c222f1f25"/>
-      </target>
-      <target file="ADS1120.o" lastModified="14c6f3cbab3">
-         <source file="..\..\..\Source\devices\ADS1120.c" lastModified="14c6f2125d9"/>
-      </target>
-   </processor>
-   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wall -ffunction-sections -g -O0 -c -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -DSTM32F407VG -DSTM32F4XX -D__FPU_PRESENT -D__FPU_USED -D__FPU_USED = 1 -D__VFP_FP__ -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\FatFS -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Ethernet\W5500 -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_boot -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\devices -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\rtu -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\calculation -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\FatFS\inc -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\cmsis_lib\include -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\FreeRTOS\Source\portable\GCC\ARM_CM4F -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\usblib -ID:\PROJECTS\GIT_REPOSITORY\STM32 -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Ethernet -ID:\PROJECTS\GIT_REPOSITORY\STM32\STM32_IMS_CONTROLLER\Source\freemodbus\ascii">
-      <target file="usbd_cdc_vcp.o" lastModified="14ffe30e3c6">
-         <source file="..\..\..\usblib\usbd_cdc_vcp.c" lastModified="14fac188dd4"/>
-      </target>
-      <target file="sdio_sd.o" lastModified="14ffe30b6f9">
-         <source file="..\..\..\Source\devices\sdio_sd.c" lastModified="14fda311aa0"/>
-      </target>
-      <target file="portevent.o" lastModified="14ffe30ac4b">
-         <source file="..\..\..\Source\freemodbus\port\portevent.c" lastModified="14fa6d4a5f5"/>
-      </target>
-      <target file="stm32f4xx_usart.o" lastModified="14ffe30b014">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_usart.c" lastModified="149183b5cb1"/>
-      </target>
-      <target file="wiznet.o" lastModified="1504bc6abcd">
-         <source file="..\..\..\Source\devices\wiznet.c" lastModified="14fe03c9113"/>
-      </target>
-      <target file="misc.o" lastModified="14ffe310d76">
-         <source file="..\..\..\cmsis_lib\source\misc.c" lastModified="14835c29268"/>
-      </target>
-      <target file="usbd_req.o" lastModified="14ffe30ee65">
-         <source file="..\..\..\usblib\usbd_req.c" lastModified="13349a797c0"/>
-      </target>
-      <target file="mbfuncother.o" lastModified="14ffe30ae00">
-         <source file="..\..\..\Source\freemodbus\functions\mbfuncother.c" lastModified="14c226627f3"/>
-      </target>
-      <target file="socket.o" lastModified="14ffe309086">
-         <source file="..\..\..\Ethernet\socket.c" lastModified="148358a1190"/>
-      </target>
-      <target file="stm32f4xx_gpio.o" lastModified="14ffe30e00d">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="14835b06da1"/>
-      </target>
-      <target file="mbfuncinput.o" lastModified="14ffe30cec7">
-         <source file="..\..\..\Source\freemodbus\functions\mbfuncinput.c" lastModified="14c2274fd02"/>
-      </target>
-      <target file="usbd_desc.o" lastModified="14ffe30d86c">
-         <source file="..\..\..\usblib\usbd_desc.c" lastModified="13a790f9fb0"/>
-      </target>
-      <target file="usbd_cdc_core.o" lastModified="14ffe30f77d">
-         <source file="..\..\..\usblib\usbd_cdc_core.c" lastModified="14f92360d00"/>
-      </target>
-      <target file="mbascii.o" lastModified="14ffe3112e5">
-         <source file="..\..\..\Source\freemodbus\ascii\mbascii.c" lastModified="14c26d2e219"/>
-      </target>
-      <target file="low_level_sdio.o" lastModified="14ffe30978a">
-         <source file="..\..\..\Source\devices\low_level_sdio.c" lastModified="14fd51bc3fc"/>
-      </target>
-      <target file="stm32f4xx_iwdg.o" lastModified="14ffe30bc1a">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_iwdg.c" lastModified="14835c96d0b"/>
-      </target>
-      <target file="mbport.o" lastModified="1504c58dcca">
-         <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="14fff9890cd"/>
-      </target>
-      <target file="usb_dcd_int.o" lastModified="14ffe30f22e">
-         <source file="..\..\..\usblib\usb_dcd_int.c" lastModified="14a158363ff"/>
-      </target>
-      <target file="stm32f4xx_sdio.o" lastModified="14ffe30a239">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_sdio.c" lastModified="14fd0de5429"/>
-      </target>
-      <target file="mbfuncdiag.o" lastModified="14ffe30d58d">
-         <source file="..\..\..\Source\freemodbus\functions\mbfuncdiag.c" lastModified="10f5ec0d910"/>
-      </target>
-      <target file="stm32f4xx_syscfg.o" lastModified="14ffe3092c8">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_syscfg.c" lastModified="14125d878f6"/>
-      </target>
-      <target file="log.o" lastModified="1504c58e20a">
-         <source file="..\..\..\Source\devices\log.c" lastModified="14ff45d6170"/>
-      </target>
-      <target file="wizchip_conf.o" lastModified="14ffe30cd02">
-         <source file="..\..\..\Ethernet\wizchip_conf.c" lastModified="148358a1190"/>
-      </target>
-      <target file="printf.o" lastModified="14ffe30d000">
-         <source file="..\..\..\stdio\printf.c" lastModified="14c274eee15"/>
-      </target>
-      <target file="stm32f4xx_i2c.o" lastModified="14ffe310623">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_i2c.c" lastModified="14c78dc4795"/>
-      </target>
-      <target file="list.o" lastModified="1504bc6b90c">
-         <source file="..\..\..\Source\FreeRTOS\Source\list.c" lastModified="14af2c506ae"/>
-      </target>
-      <target file="stm32f4xx_pwr.o" lastModified="14ffe30b1aa">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_pwr.c" lastModified="14149991717"/>
-      </target>
-      <target file="ADS1220.o" lastModified="1504c58ea95">
-         <source file="..\..\..\Source\devices\ADS1220.c" lastModified="14ff45bcb11"/>
-      </target>
-      <target file="rtc.o" lastModified="14ffe30b350">
-         <source file="..\..\..\Source\devices\rtc.c" lastModified="14c73f81bdb"/>
-      </target>
-      <target file="stm32f4xx_rtc.o" lastModified="14ffe311100">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rtc.c" lastModified="14c3138e1d7"/>
-      </target>
-      <target file="heap_2.o" lastModified="1504bc6c9f4">
-         <source file="..\..\..\Source\FreeRTOS\Source\portable\MemMang\heap_2.c" lastModified="14af2c557af"/>
-      </target>
-      <target file="fram_i2c.o" lastModified="1504c58e621">
-         <source file="..\..\..\Source\devices\fram_i2c.c" lastModified="14ff459505c"/>
-      </target>
-      <target file="mbfunccoils.o" lastModified="14ffe30fd0b">
-         <source file="..\..\..\Source\freemodbus\functions\mbfunccoils.c" lastModified="14c22879fc3"/>
-      </target>
-      <target file="ff.o" lastModified="14ffe30f9cf">
-         <source file="..\..\..\FatFS\src\ff.c" lastModified="13c0e59aec0"/>
-      </target>
-      <target file="usb_dcd.o" lastModified="14ffe310ece">
-         <source file="..\..\..\usblib\usb_dcd.c" lastModified="13349a79f90"/>
-      </target>
-      <target file="stm32f4xx_tim.o" lastModified="14ffe3116ec">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_tim.c" lastModified="1483603f646"/>
-      </target>
-      <target file="mbutils.o" lastModified="14ffe30b92c">
-         <source file="..\..\..\Source\freemodbus\functions\mbutils.c" lastModified="14c22662822"/>
-      </target>
-      <target file="syscalls.o" lastModified="14ffe30eaac">
-         <source file="..\..\..\syscalls\syscalls.c" lastModified="14c274ebca4"/>
-      </target>
-      <target file="frequency.o" lastModified="1504c58ed35">
-         <source file="..\..\..\Source\devices\frequency.c" lastModified="14ffe8860fe"/>
-      </target>
-      <target file="usbd_ioreq.o" lastModified="14ffe31120a">
-         <source file="..\..\..\usblib\usbd_ioreq.c" lastModified="13349a797c0"/>
-      </target>
-      <target file="startup_stm32f4xx.o" lastModified="14ffe30bb2f">
-         <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="13cedd0ed70"/>
-      </target>
-      <target file="croutine.o" lastModified="1504bc6bf84">
-         <source file="..\..\..\Source\FreeRTOS\Source\croutine.c" lastModified="14af2c4eed0"/>
-      </target>
-      <target file="timers.o" lastModified="1504bc6ae4e">
-         <source file="..\..\..\Source\FreeRTOS\Source\timers.c" lastModified="14af2c59580"/>
-      </target>
-      <target file="mbrtu.o" lastModified="14ffe30e7ed">
-         <source file="..\..\..\Source\freemodbus\rtu\mbrtu.c" lastModified="14c31767da1"/>
-      </target>
-      <target file="porttimer.o" lastModified="14ffe30e26e">
-         <source file="..\..\..\Source\freemodbus\port\porttimer.c" lastModified="14f9821c599"/>
-      </target>
-      <target file="event_groups.o" lastModified="1504bc6c253">
-         <source file="..\..\..\Source\FreeRTOS\Source\event_groups.c" lastModified="14af2c4f0cc"/>
-      </target>
-      <target file="mb.o" lastModified="14ffe309f99">
-         <source file="..\..\..\Source\freemodbus\mb.c" lastModified="14f982c17ef"/>
-      </target>
-      <target file="stm32f4xx_exti.o" lastModified="14ffe310b53">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="142a2fcbff3"/>
-      </target>
-      <target file="power_detector.o" lastModified="14ffe3117a7">
-         <source file="..\..\..\Source\devices\power_detector.c" lastModified="14c2bcc22eb"/>
-      </target>
-      <target file="w5500.o" lastModified="14ffe30d1d4">
-         <source file="..\..\..\Ethernet\W5500\w5500.c" lastModified="148358a1190"/>
-      </target>
-      <target file="calc.o" lastModified="1504c58de9f">
-         <source file="..\..\..\Source\calculation\calc.c" lastModified="14ffe33c2a3"/>
-      </target>
-      <target file="usb_bsp.o" lastModified="14ffe30ed0d">
-         <source file="..\..\..\usblib\usb_bsp.c" lastModified="14ae28a4dc7"/>
-      </target>
-      <target file="usbd_usr.o" lastModified="14ffe30aa67">
+      <target file="usbd_usr.o" lastModified="150cdb093b3">
          <source file="..\..\..\usblib\usbd_usr.c" lastModified="13ced9e2d40"/>
       </target>
-      <target file="port.o" lastModified="1504bc6bb4e">
-         <source file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM4F\port.c" lastModified="14af2c51f61"/>
+      <target file="arm_fir_decimate_init_f32.o" lastModified="150cdb16297">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_decimate_init_f32.c" lastModified="1501ed132f0"/>
       </target>
-      <target file="mbfuncdisc.o" lastModified="14ffe30a8a1">
-         <source file="..\..\..\Source\freemodbus\functions\mbfuncdisc.c" lastModified="14c2274fab0"/>
+      <target file="arm_min_q15.o" lastModified="150cdb0e695">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_min_q15.c" lastModified="1501ed13ac0"/>
       </target>
-      <target file="queue.o" lastModified="1504bc6ba83">
-         <source file="..\..\..\Source\FreeRTOS\Source\queue.c" lastModified="14af2c587b1"/>
+      <target file="power_detector.o" lastModified="150cdb1dadd">
+         <source file="..\..\..\Source\devices\power_detector.c" lastModified="14c2bcc2770"/>
       </target>
-      <target file="protocol.o" lastModified="1504bc69e8f">
-         <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14fff6bf752"/>
+      <target file="arm_biquad_cascade_df2T_init_f64.o" lastModified="150cdb1adee">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df2T_init_f64.c" lastModified="1501ed13ac0"/>
       </target>
-      <target file="usb_core.o" lastModified="14ffe3095f4">
+      <target file="arm_bitreversal.o" lastModified="150cdb1c62d">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_bitreversal.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_add_q31.o" lastModified="150cdb1a1a1">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_add_q31.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_conv_q7.o" lastModified="150cdb09e2f">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_q7.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_mat_init_f32.o" lastModified="150cdb0dc41">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_init_f32.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_mat_add_q31.o" lastModified="150cdb0cb7a">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_add_q31.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_iir_lattice_init_q31.o" lastModified="150cdb11c46">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_iir_lattice_init_q31.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_fill_q15.o" lastModified="150cdb1ac45">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_fill_q15.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_mat_scale_q15.o" lastModified="150cdb1769d">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_scale_q15.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="mbcrc.o" lastModified="150cdb0ed4a">
+         <source file="..\..\..\Source\freemodbus\rtu\mbcrc.c" lastModified="14c227502a0"/>
+      </target>
+      <target file="arm_biquad_cascade_df2T_init_f32.o" lastModified="150cdb0a6b2">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df2T_init_f32.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_conv_q15.o" lastModified="150cdb0d75e">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_q15.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="mbfuncholding.o" lastModified="150cdb0e781">
+         <source file="..\..\..\Source\freemodbus\functions\mbfuncholding.c" lastModified="14c22b6af20"/>
+      </target>
+      <target file="stm32f4xx_iwdg.o" lastModified="150cdb0dd14">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_iwdg.c" lastModified="14835c97420"/>
+      </target>
+      <target file="arm_conv_partial_fast_opt_q15.o" lastModified="150cdb13319">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_partial_fast_opt_q15.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_iir_lattice_f32.o" lastModified="150cdb119c9">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_iir_lattice_f32.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_std_q15.o" lastModified="150cdb0c9b2">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_std_q15.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="sdio_sd.o" lastModified="150cdb0abbf">
+         <source file="..\..\..\Source\devices\sdio_sd.c" lastModified="14fda311d40"/>
+      </target>
+      <target file="arm_biquad_cascade_df1_fast_q31.o" lastModified="150cdb1c2a5">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_fast_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="stm32f4xx_rtc.o" lastModified="150cdb1be25">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rtc.c" lastModified="14c3138e310"/>
+      </target>
+      <target file="arm_rfft_q15.o" lastModified="150cdb08b9e">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_rfft_q15.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_dot_prod_q7.o" lastModified="150cdb1c70c">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_dot_prod_q7.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_fir_q31.o" lastModified="150cdb19f71">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_conv_fast_opt_q15.o" lastModified="150cdb0b0bd">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_fast_opt_q15.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_correlate_fast_opt_q15.o" lastModified="150cdb0ea77">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_correlate_fast_opt_q15.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_min_q7.o" lastModified="150cdb1ab74">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_min_q7.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_rfft_init_q15.o" lastModified="150cdb0e5b5">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_rfft_init_q15.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_fir_interpolate_init_q15.o" lastModified="150cdb1cd9a">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_interpolate_init_q15.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_cmplx_dot_prod_f32.o" lastModified="150cdb08f40">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_dot_prod_f32.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_correlate_opt_q15.o" lastModified="150cdb18fb2">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_correlate_opt_q15.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_copy_q7.o" lastModified="150cdb1d2ef">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_copy_q7.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_biquad_cascade_df1_f32.o" lastModified="150cdb08e64">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_f32.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_dot_prod_f32.o" lastModified="150cdb0b197">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_dot_prod_f32.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_correlate_q15.o" lastModified="150cdb1ba30">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_correlate_q15.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="usb_dcd_int.o" lastModified="150cdb17a42">
+         <source file="..\..\..\usblib\usb_dcd_int.c" lastModified="14a15836bb0"/>
+      </target>
+      <target file="arm_power_f32.o" lastModified="150cdb11f20">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_power_f32.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_fir_sparse_init_q15.o" lastModified="150cdb1a3ba">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_sparse_init_q15.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_fir_sparse_q15.o" lastModified="150cdb0a101">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_sparse_q15.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_var_q31.o" lastModified="150cdb1cbd9">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_var_q31.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_cfft_radix2_init_q31.o" lastModified="150cdb14b4d">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_cfft_radix2_init_q31.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_dct4_init_q31.o" lastModified="150cdb11177">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_dct4_init_q31.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_mean_q15.o" lastModified="150cdb14a6d">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_mean_q15.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_float_to_q15.o" lastModified="150cdb1521b">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_float_to_q15.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_biquad_cascade_df2T_f64.o" lastModified="150cdb13b15">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df2T_f64.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="log.o" lastModified="150cdb101e9">
+         <source file="..\..\..\Source\devices\log.c" lastModified="14ff45d66b0"/>
+      </target>
+      <target file="arm_scale_f32.o" lastModified="150cdb1a9c4">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_scale_f32.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="mbascii.o" lastModified="150cdb1c450">
+         <source file="..\..\..\Source\freemodbus\ascii\mbascii.c" lastModified="14c26d2e650"/>
+      </target>
+      <target file="arm_q7_to_q31.o" lastModified="150cdb0f857">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_q7_to_q31.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_cfft_radix4_q31.o" lastModified="150cdb0da83">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_cfft_radix4_q31.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="queue.o" lastModified="150cdb175c1">
+         <source file="..\..\..\Source\FreeRTOS\Source\queue.c" lastModified="14af2c58a80"/>
+      </target>
+      <target file="arm_cmplx_mag_q31.o" lastModified="150cdb1885a">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_mag_q31.c" lastModified="1501ed12350"/>
+      </target>
+      <target file="arm_mult_f32.o" lastModified="150cdb1df99">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_mult_f32.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_biquad_cascade_df2T_f32.o" lastModified="150cdb1b3e2">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df2T_f32.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_sin_q31.o" lastModified="150cdb0a004">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FastMathFunctions\arm_sin_q31.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_cfft_radix2_f32.o" lastModified="150cdb18ea9">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_cfft_radix2_f32.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="portevent.o" lastModified="150cdb09497">
+         <source file="..\..\..\Source\freemodbus\port\portevent.c" lastModified="14fa6d4ad40"/>
+      </target>
+      <target file="arm_fir_decimate_init_q15.o" lastModified="150cdb15020">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_decimate_init_q15.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_add_q7.o" lastModified="150cdb06dbe">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_add_q7.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_mat_init_q15.o" lastModified="150cdb0d4bb">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_init_q15.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_copy_q31.o" lastModified="150cdb18d8e">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_copy_q31.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_q31_to_q7.o" lastModified="150cdb077af">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_q31_to_q7.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="stm32f4xx_i2c.o" lastModified="150cdb19cb8">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_i2c.c" lastModified="14c78dc4db0"/>
+      </target>
+      <target file="arm_cmplx_mag_squared_f32.o" lastModified="150cdb13944">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_mag_squared_f32.c" lastModified="1501ed12350"/>
+      </target>
+      <target file="arm_cfft_q31.o" lastModified="150cdb105eb">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_cfft_q31.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_conv_opt_q15.o" lastModified="150cdb0ec58">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_opt_q15.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_max_q31.o" lastModified="150cdb0ad8c">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_max_q31.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_correlate_q7.o" lastModified="150cdb08caa">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_correlate_q7.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="mbfuncdisc.o" lastModified="150cdb089cd">
+         <source file="..\..\..\Source\freemodbus\functions\mbfuncdisc.c" lastModified="14c2274fad0"/>
+      </target>
+      <target file="system_stm32f4xx.o" lastModified="150cdb15903">
+         <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="14ffdd997e0"/>
+      </target>
+      <target file="arm_offset_q31.o" lastModified="150cdb1cf6e">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_offset_q31.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_fir_lattice_q31.o" lastModified="150cdb11e4b">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_lattice_q31.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_mat_cmplx_mult_q31.o" lastModified="150cdb0dfc7">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_cmplx_mult_q31.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_iir_lattice_q15.o" lastModified="150cdb108a9">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_iir_lattice_q15.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_conv_partial_opt_q15.o" lastModified="150cdb07c51">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_partial_opt_q15.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="usbd_cdc_vcp.o" lastModified="150cdb14f1b">
+         <source file="..\..\..\usblib\usbd_cdc_vcp.c" lastModified="14fac1893c0"/>
+      </target>
+      <target file="usbd_req.o" lastModified="150cdb17015">
+         <source file="..\..\..\usblib\usbd_req.c" lastModified="13349a797c0"/>
+      </target>
+      <target file="arm_cmplx_dot_prod_q15.o" lastModified="150cdb08154">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_dot_prod_q15.c" lastModified="1501ed12350"/>
+      </target>
+      <target file="stm32f4xx_syscfg.o" lastModified="150cdb0703d">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_syscfg.c" lastModified="14125d879f0"/>
+      </target>
+      <target file="arm_biquad_cascade_df1_q15.o" lastModified="150cdb0805a">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_q15.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_dot_prod_q15.o" lastModified="150cdb0a1eb">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_dot_prod_q15.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_pid_init_q31.o" lastModified="150cdb075d9">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ControllerFunctions\arm_pid_init_q31.c" lastModified="1501ed12350"/>
+      </target>
+      <target file="arm_dct4_f32.o" lastModified="150cdb106ca">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_dct4_f32.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_biquad_cascade_stereo_df2T_init_f32.o" lastModified="150cdb1264a">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_stereo_df2T_init_f32.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_conv_fast_q31.o" lastModified="150cdb1da1d">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_fast_q31.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_fir_init_f32.o" lastModified="150cdb10b52">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_init_f32.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_sub_q31.o" lastModified="150cdb129de">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_sub_q31.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_fir_interpolate_f32.o" lastModified="150cdb14697">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_interpolate_f32.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_power_q15.o" lastModified="150cdb1140e">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_power_q15.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="porttimer.o" lastModified="150cdb14d46">
+         <source file="..\..\..\Source\freemodbus\port\porttimer.c" lastModified="14f9821cc60"/>
+      </target>
+      <target file="arm_cos_q31.o" lastModified="150cdb1bfd0">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FastMathFunctions\arm_cos_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_const_structs.o" lastModified="150cdb1b66d">
+         <source file="..\..\..\DSP\DSP_Lib\Source\CommonTables\arm_const_structs.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_mat_sub_q31.o" lastModified="150cdb1ce8d">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_sub_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_rms_f32.o" lastModified="150cdb0c7e1">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_rms_f32.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_lms_norm_init_f32.o" lastModified="150cdb152ef">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_lms_norm_init_f32.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="mbfuncfile.o" lastModified="150cdb0f956">
+         <source file="..\..\..\Source\freemodbus\functions\mbfuncfile.c" lastModified="14c93df4fe0"/>
+      </target>
+      <target file="arm_fir_fast_q31.o" lastModified="150cdb181ae">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_fast_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_cmplx_mult_real_q31.o" lastModified="150cdb09146">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_mult_real_q31.c" lastModified="1501ed12350"/>
+      </target>
+      <target file="arm_cmplx_mult_cmplx_f32.o" lastModified="150cdb180b0">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_mult_cmplx_f32.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_sub_q7.o" lastModified="150cdb1d633">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_sub_q7.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_scale_q15.o" lastModified="150cdb19e7f">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_scale_q15.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_mat_trans_f32.o" lastModified="150cdb1793a">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_trans_f32.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_sqrt_q15.o" lastModified="150cdb161bb">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FastMathFunctions\arm_sqrt_q15.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_negate_q7.o" lastModified="150cdb0cf23">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_negate_q7.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_mat_mult_f32.o" lastModified="150cdb1dcf1">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_mult_f32.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_abs_q31.o" lastModified="150cdb12728">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_abs_q31.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="mbfuncdiag.o" lastModified="150cdb11b52">
+         <source file="..\..\..\Source\freemodbus\functions\mbfuncdiag.c" lastModified="10f5ec0d910"/>
+      </target>
+      <target file="mbport.o" lastModified="150cdb07946">
+         <source file="..\..\..\Source\freemodbus\port\mbport.c" lastModified="15041ccce54"/>
+      </target>
+      <target file="event_groups.o" lastModified="150cdb19396">
+         <source file="..\..\..\Source\FreeRTOS\Source\event_groups.c" lastModified="14af2c4f610"/>
+      </target>
+      <target file="arm_mult_q15.o" lastModified="150cdb1d55c">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_mult_q15.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="syscalls.o" lastModified="150cdb15a02">
+         <source file="..\..\..\syscalls\syscalls.c" lastModified="14c274ebd70"/>
+      </target>
+      <target file="arm_cfft_radix2_q15.o" lastModified="150cdb182c9">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_cfft_radix2_q15.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_biquad_cascade_df1_init_f32.o" lastModified="150cdb0d1c8">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_init_f32.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="protocol.o" lastModified="150cdb087b3">
+         <source file="..\..\..\Source\freemodbus\protocol.c" lastModified="14fff6bf7b0"/>
+      </target>
+      <target file="arm_min_q31.o" lastModified="150cdb141ed">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_min_q31.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_cmplx_mag_squared_q15.o" lastModified="150cdb12f39">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_mag_squared_q15.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_shift_q7.o" lastModified="150cdb11ac4">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_shift_q7.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_lms_init_f32.o" lastModified="150cdb0b6d4">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_lms_init_f32.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="stm32f4xx_rcc.o" lastModified="150cdb0f26e">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="14835c0c190"/>
+      </target>
+      <target file="arm_mat_scale_q31.o" lastModified="150cdb1dbb8">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_scale_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_fill_q31.o" lastModified="150cdb09b4c">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_fill_q31.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_conv_q31.o" lastModified="150cdb13035">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_q31.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_fir_sparse_init_q7.o" lastModified="150cdb0f77c">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_sparse_init_q7.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_q7_to_float.o" lastModified="150cdb0e85f">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_q7_to_float.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_std_q31.o" lastModified="150cdb122eb">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_std_q31.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_rfft_q31.o" lastModified="150cdb0ee5e">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_rfft_q31.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="usb_bsp.o" lastModified="150cdb16b94">
+         <source file="..\..\..\usblib\usb_bsp.c" lastModified="14ae28a5420"/>
+      </target>
+      <target file="usb_core.o" lastModified="150cdb07199">
          <source file="..\..\..\usblib\usb_core.c" lastModified="13349a79f90"/>
       </target>
-      <target file="tasks.o" lastModified="1504bc6b533">
-         <source file="..\..\..\Source\FreeRTOS\Source\tasks.c" lastModified="14af2c59338"/>
+      <target file="arm_mean_q7.o" lastModified="150cdb1bcc0">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_mean_q7.c" lastModified="1501ed14290"/>
       </target>
-      <target file="diskio.o" lastModified="14ffe30ba84">
-         <source file="..\..\..\FatFS\src\diskio.c" lastModified="14fda65f0a0"/>
+      <target file="arm_fir_decimate_fast_q15.o" lastModified="150cdb08246">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_decimate_fast_q15.c" lastModified="1501ed132f0"/>
       </target>
-      <target file="mbfuncholding.o" lastModified="14ffe30bd33">
-         <source file="..\..\..\Source\freemodbus\functions\mbfuncholding.c" lastModified="14c22b6ab09"/>
+      <target file="arm_rfft_init_q31.o" lastModified="150cdb140bb">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_rfft_init_q31.c" lastModified="1501ed15230"/>
       </target>
-      <target file="system_stm32f4xx.o" lastModified="14ffe30e9e1">
-         <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="14ffdd99763"/>
+      <target file="wizchip_conf.o" lastModified="150cdb10416">
+         <source file="..\..\..\Ethernet\wizchip_conf.c" lastModified="148358a1190"/>
       </target>
-      <target file="controller.o" lastModified="1504c58ee10">
-         <source file="..\..\..\Source\devices\controller.c" lastModified="14fff6e3367"/>
+      <target file="arm_fir_interpolate_init_q31.o" lastModified="150cdb0c137">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_interpolate_init_q31.c" lastModified="1501ed132f0"/>
       </target>
-      <target file="stm32f4xx_spi.o" lastModified="14ffe30fc01">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="14c313944a8"/>
+      <target file="watchdog.o" lastModified="150cdb11890">
+         <source file="..\..\..\Source\devices\watchdog.c" lastModified="14cbca3e580"/>
       </target>
-      <target file="stm32f4xx_dma.o" lastModified="14ffe30ebe4">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_dma.c" lastModified="14fd0dda3b5"/>
+      <target file="arm_conv_partial_fast_q15.o" lastModified="150cdb0e403">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_partial_fast_q15.c" lastModified="1501ed132f0"/>
       </target>
-      <target file="mbfuncfile.o" lastModified="1504c58e0a2">
-         <source file="..\..\..\Source\freemodbus\functions\mbfuncfile.c" lastModified="14c93df4bb9"/>
+      <target file="arm_dct4_q15.o" lastModified="150cdb0fb31">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_dct4_q15.c" lastModified="1501ed14a60"/>
       </target>
-      <target file="watchdog.o" lastModified="1504bc6b2c2">
-         <source file="..\..\..\Source\devices\watchdog.c" lastModified="14cbca3e30f"/>
+      <target file="diskio.o" lastModified="150cdb0d0d6">
+         <source file="..\..\..\FatFS\src\diskio.c" lastModified="14fda65f0b0"/>
       </target>
-      <target file="stm32f4xx_rcc.o" lastModified="14ffe30c4e4">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="14835c0baaa"/>
+      <target file="ff.o" lastModified="150cdb18671">
+         <source file="..\..\..\FatFS\src\ff.c" lastModified="13c0e59aec0"/>
       </target>
-      <target file="main.o" lastModified="1504c58df99">
-         <source file="..\..\..\main.c" lastModified="1504c56bcc8"/>
+      <target file="stm32f4xx_dma.o" lastModified="150cdb160d3">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_dma.c" lastModified="14fd0dda9c0"/>
       </target>
-      <target file="portserial.o" lastModified="1504bc6be0d">
-         <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="14fff6942e0"/>
+      <target file="arm_correlate_q31.o" lastModified="150cdb0a95b">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_correlate_q31.c" lastModified="1501ed12b20"/>
       </target>
-      <target file="usbd_core.o" lastModified="14ffe30be3d">
+      <target file="arm_fir_init_q15.o" lastModified="150cdb0fdd1">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_init_q15.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_fir_interpolate_q15.o" lastModified="150cdb1380c">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_interpolate_q15.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_cmplx_conj_f32.o" lastModified="150cdb11335">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_conj_f32.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="ADS1220.o" lastModified="150cdb197d9">
+         <source file="..\..\..\Source\devices\ADS1220.c" lastModified="1501377459f"/>
+      </target>
+      <target file="arm_fir_sparse_init_q31.o" lastModified="150cdb08ab5">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_sparse_init_q31.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_sin_cos_q31.o" lastModified="150cdb08450">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ControllerFunctions\arm_sin_cos_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_fir_sparse_q31.o" lastModified="150cdb0fcfd">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_sparse_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_rms_q15.o" lastModified="150cdb0b7b8">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_rms_q15.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_cfft_radix4_init_f32.o" lastModified="150cdb1d218">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_cfft_radix4_init_f32.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_lms_norm_init_q15.o" lastModified="150cdb14996">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_lms_norm_init_q15.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_fir_decimate_f32.o" lastModified="150cdb12d84">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_decimate_f32.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_lms_f32.o" lastModified="150cdb16a2a">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_lms_f32.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_biquad_cascade_df1_32x64_q31.o" lastModified="150cdb0afc9">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_32x64_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_rfft_fast_f32.o" lastModified="150cdb11260">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_rfft_fast_f32.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_mean_q31.o" lastModified="150cdb1b4b6">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_mean_q31.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_fir_lattice_init_f32.o" lastModified="150cdb0ded3">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_lattice_init_f32.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_cmplx_mult_cmplx_q15.o" lastModified="150cdb16ead">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_mult_cmplx_q15.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_float_to_q31.o" lastModified="150cdb1bb08">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_float_to_q31.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_correlate_opt_q7.o" lastModified="150cdb1d72d">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_correlate_opt_q7.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_pid_reset_f32.o" lastModified="150cdb13129">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ControllerFunctions\arm_pid_reset_f32.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_mat_trans_q15.o" lastModified="150cdb1672a">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_trans_q15.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_conv_partial_f32.o" lastModified="150cdb0b8a7">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_partial_f32.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="low_level_sdio.o" lastModified="150cdb0727d">
+         <source file="..\..\..\Source\devices\low_level_sdio.c" lastModified="14fd51bc8a0"/>
+      </target>
+      <target file="arm_mat_mult_q15.o" lastModified="150cdb1ccbf">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_mult_q15.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="usbd_ioreq.o" lastModified="150cdb1bee5">
+         <source file="..\..\..\usblib\usbd_ioreq.c" lastModified="13349a797c0"/>
+      </target>
+      <target file="socket.o" lastModified="150cdb06b5b">
+         <source file="..\..\..\Ethernet\socket.c" lastModified="148358a1190"/>
+      </target>
+      <target file="arm_biquad_cascade_df1_init_q15.o" lastModified="150cdb0c8b1">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_init_q15.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_mult_q7.o" lastModified="150cdb1a0ac">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_mult_q7.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_fir_decimate_init_q31.o" lastModified="150cdb1b825">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_decimate_init_q31.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_negate_f32.o" lastModified="150cdb16c8c">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_negate_f32.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="port.o" lastModified="150cdb17491">
+         <source file="..\..\..\Source\FreeRTOS\Source\portable\GCC\ARM_CM4F\port.c" lastModified="14af2c524f0"/>
+      </target>
+      <target file="arm_lms_norm_f32.o" lastModified="150cdb12ac1">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_lms_norm_f32.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_mat_init_q31.o" lastModified="150cdb12e5f">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_init_q31.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_add_f32.o" lastModified="150cdb13d82">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_add_f32.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_lms_init_q15.o" lastModified="150cdb0a78f">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_lms_init_q15.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="rtc.o" lastModified="150cdb0aa22">
+         <source file="..\..\..\Source\devices\rtc.c" lastModified="14c73f82300"/>
+      </target>
+      <target file="usbd_core.o" lastModified="150cdb0e96e">
          <source file="..\..\..\usblib\usbd_core.c" lastModified="13349a797c0"/>
       </target>
-      <target file="mbcrc.o" lastModified="14ffe30c06f">
-         <source file="..\..\..\Source\freemodbus\rtu\mbcrc.c" lastModified="14c2274fcc4"/>
+      <target file="arm_mat_add_f32.o" lastModified="150cdb06f8d">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_add_f32.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_iir_lattice_init_f32.o" lastModified="150cdb0ca83">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_iir_lattice_init_f32.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_correlate_fast_q15.o" lastModified="150cdb0a4df">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_correlate_fast_q15.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="mb.o" lastModified="150cdb07d94">
+         <source file="..\..\..\Source\freemodbus\mb.c" lastModified="14f982c1d00"/>
+      </target>
+      <target file="arm_iir_lattice_q31.o" lastModified="150cdb16932">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_iir_lattice_q31.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="usbd_cdc_core.o" lastModified="150cdb184a9">
+         <source file="..\..\..\usblib\usbd_cdc_core.c" lastModified="14f92360d20"/>
+      </target>
+      <target file="mbfunccoils.o" lastModified="150cdb19291">
+         <source file="..\..\..\Source\freemodbus\functions\mbfunccoils.c" lastModified="14c2287a040"/>
+      </target>
+      <target file="arm_cmplx_dot_prod_q31.o" lastModified="150cdb0e1bf">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_dot_prod_q31.c" lastModified="1501ed12350"/>
+      </target>
+      <target file="arm_fir_q7.o" lastModified="150cdb0ef56">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_q7.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_biquad_cascade_df1_q31.o" lastModified="150cdb0e0b2">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_q31.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_fir_f32.o" lastModified="150cdb13c21">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_f32.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_dot_prod_q31.o" lastModified="150cdb0feb4">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_dot_prod_q31.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="mbfuncinput.o" lastModified="150cdb10984">
+         <source file="..\..\..\Source\freemodbus\functions\mbfuncinput.c" lastModified="14c227502a0"/>
+      </target>
+      <target file="arm_offset_q7.o" lastModified="150cdb18a01">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_offset_q7.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="stm32f4xx_exti.o" lastModified="150cdb1a2e5">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="142a2fcc5c0"/>
+      </target>
+      <target file="stm32f4xx_gpio.o" lastModified="150cdb14c36">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="14835b06de0"/>
+      </target>
+      <target file="arm_cmplx_conj_q15.o" lastModified="150cdb104ef">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_conj_q15.c" lastModified="1501ed12350"/>
+      </target>
+      <target file="arm_power_q31.o" lastModified="150cdb17b25">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_power_q31.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_cfft_radix4_init_q15.o" lastModified="150cdb1c0b9">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_cfft_radix4_init_q15.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_fir_decimate_q15.o" lastModified="150cdb12573">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_decimate_q15.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_lms_q15.o" lastModified="150cdb15aec">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_lms_q15.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_mat_mult_fast_q15.o" lastModified="150cdb1712f">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_mult_fast_q15.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_fir_lattice_init_q15.o" lastModified="150cdb0d848">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_lattice_init_q15.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_var_f32.o" lastModified="150cdb173a1">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_var_f32.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_cfft_radix2_init_f32.o" lastModified="150cdb0fa4f">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_cfft_radix2_init_f32.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_dct4_init_f32.o" lastModified="150cdb0bd46">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_dct4_init_f32.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_conv_partial_opt_q7.o" lastModified="150cdb09046">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_partial_opt_q7.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_scale_q31.o" lastModified="150cdb088c8">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_scale_q31.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_fir_init_q7.o" lastModified="150cdb148b8">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_init_q7.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="heap_2.o" lastModified="150cdb1c9fc">
+         <source file="..\..\..\Source\FreeRTOS\Source\portable\MemMang\heap_2.c" lastModified="14af2c55ba0"/>
+      </target>
+      <target file="arm_pid_reset_q15.o" lastModified="150cdb128ea">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ControllerFunctions\arm_pid_reset_q15.c" lastModified="1501ed12350"/>
+      </target>
+      <target file="arm_fill_q7.o" lastModified="150cdb0c2fb">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_fill_q7.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_cfft_radix8_f32.o" lastModified="150cdb1513d">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_cfft_radix8_f32.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_sqrt_q31.o" lastModified="150cdb1c535">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FastMathFunctions\arm_sqrt_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_conv_partial_q15.o" lastModified="150cdb0aed6">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_partial_q15.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="stm32f4xx_tim.o" lastModified="150cdb1d479">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_tim.c" lastModified="1483603fc80"/>
+      </target>
+      <target file="croutine.o" lastModified="150cdb1891a">
+         <source file="..\..\..\Source\FreeRTOS\Source\croutine.c" lastModified="14af2c4f610"/>
+      </target>
+      <target file="list.o" lastModified="150cdb153b0">
+         <source file="..\..\..\Source\FreeRTOS\Source\list.c" lastModified="14af2c50d80"/>
+      </target>
+      <target file="arm_mult_q31.o" lastModified="150cdb0c4bc">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_mult_q31.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_cfft_radix4_f32.o" lastModified="150cdb08363">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_cfft_radix4_f32.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_cfft_radix2_q31.o" lastModified="150cdb06cdd">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_cfft_radix2_q31.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="printf.o" lastModified="150cdb10a81">
+         <source file="..\..\..\stdio\printf.c" lastModified="14c274ef420"/>
+      </target>
+      <target file="calc.o" lastModified="150cdc6b16f">
+         <source file="..\..\..\Source\calculation\calc.c" lastModified="150cdc42119"/>
+      </target>
+      <target file="arm_cmplx_mag_f32.o" lastModified="150cdb12ba4">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_mag_f32.c" lastModified="1501ed12350"/>
+      </target>
+      <target file="arm_negate_q15.o" lastModified="150cdb15cb0">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_negate_q15.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_lms_norm_q15.o" lastModified="150cdb12010">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_lms_norm_q15.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_rfft_fast_init_f32.o" lastModified="150cdb13617">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_rfft_fast_init_f32.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_shift_q15.o" lastModified="150cdb1d13c">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_shift_q15.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_sin_f32.o" lastModified="150cdb1b8fc">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FastMathFunctions\arm_sin_f32.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_conv_opt_q7.o" lastModified="150cdb191b5">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_opt_q7.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="stm32f4xx_usart.o" lastModified="150cdb0a3c8">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_usart.c" lastModified="150428daed7"/>
+      </target>
+      <target file="startup_stm32f4xx.o" lastModified="150cdb0d3c1">
+         <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="13cedd0ed70"/>
+      </target>
+      <target file="arm_cmplx_mag_squared_q31.o" lastModified="150cdb19d9f">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_mag_squared_q31.c" lastModified="1501ed12350"/>
+      </target>
+      <target file="arm_add_q15.o" lastModified="150cdb13705">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_add_q15.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_copy_f32.o" lastModified="150cdb1320e">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_copy_f32.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_cfft_f32.o" lastModified="150cdb0b602">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_cfft_f32.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_iir_lattice_init_q15.o" lastModified="150cdb0c218">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_iir_lattice_init_q15.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_mat_add_q15.o" lastModified="150cdb1dead">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_add_q15.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_max_f32.o" lastModified="150cdb1c93e">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_max_f32.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_fir_sparse_q7.o" lastModified="150cdb0cd5c">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_sparse_q7.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_offset_f32.o" lastModified="150cdb1785c">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_offset_f32.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="stm32f4xx_sdio.o" lastModified="150cdb07e76">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_sdio.c" lastModified="14fd0de55a0"/>
+      </target>
+      <target file="mbfuncother.o" lastModified="150cdb09f07">
+         <source file="..\..\..\Source\freemodbus\functions\mbfuncother.c" lastModified="14c22662dc0"/>
+      </target>
+      <target file="arm_fir_lattice_f32.o" lastModified="150cdb0ce47">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_lattice_f32.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_mat_cmplx_mult_f32.o" lastModified="150cdb08d8e">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_cmplx_mult_f32.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_q31_to_float.o" lastModified="150cdb0736b">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_q31_to_float.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="controller.o" lastModified="150cdb1caec">
+         <source file="..\..\..\Source\devices\controller.c" lastModified="1504cc8db55"/>
+      </target>
+      <target file="arm_q15_to_q7.o" lastModified="150cdb0db6b">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_q15_to_q7.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_biquad_cascade_df1_fast_q15.o" lastModified="150cdb15bd8">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_fast_q15.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_fir_decimate_fast_q31.o" lastModified="150cdb0e2bc">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_decimate_fast_q31.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_fir_q15.o" lastModified="150cdb1351a">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_q15.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_conv_partial_fast_q31.o" lastModified="150cdb13ee7">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_partial_fast_q31.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="portserial.o" lastModified="150cdb17fbf">
+         <source file="..\..\..\Source\freemodbus\port\portserial.c" lastModified="150428d5752"/>
+      </target>
+      <target file="arm_dct4_q31.o" lastModified="150cdb1574a">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_dct4_q31.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="usb_dcd.o" lastModified="150cdb1a8ee">
+         <source file="..\..\..\usblib\usb_dcd.c" lastModified="13349a79f90"/>
+      </target>
+      <target file="usbd_desc.o" lastModified="150cdb12c85">
+         <source file="..\..\..\usblib\usbd_desc.c" lastModified="13a790f9fb0"/>
+      </target>
+      <target file="arm_fir_init_q31.o" lastModified="150cdb15d85">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_init_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_fir_interpolate_q31.o" lastModified="150cdb1a4aa">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_interpolate_q31.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_pid_init_f32.o" lastModified="150cdb198d2">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ControllerFunctions\arm_pid_init_f32.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_power_q7.o" lastModified="150cdb17c09">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_power_q7.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="frequency.o" lastModified="150cdc83658">
+         <source file="..\..\..\Source\devices\frequency.c" lastModified="150cdc821df"/>
+      </target>
+      <target file="mbrtu.o" lastModified="150cdb15580">
+         <source file="..\..\..\Source\freemodbus\rtu\mbrtu.c" lastModified="14c31768080"/>
+      </target>
+      <target file="arm_sub_f32.o" lastModified="150cdb0d922">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_sub_f32.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_rms_q31.o" lastModified="150cdb11708">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_rms_q31.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_lms_norm_init_q31.o" lastModified="150cdb1b09e">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_lms_norm_init_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_cos_f32.o" lastModified="150cdb16824">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FastMathFunctions\arm_cos_f32.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_mat_sub_f32.o" lastModified="150cdb1777a">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_sub_f32.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_var_q15.o" lastModified="150cdb16379">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_var_q15.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_cfft_radix2_init_q15.o" lastModified="150cdb0f35a">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_cfft_radix2_init_q15.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_mat_inverse_f64.o" lastModified="150cdb16db0">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_inverse_f64.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_cmplx_mult_cmplx_q31.o" lastModified="150cdb1d81f">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_mult_cmplx_q31.c" lastModified="1501ed12350"/>
+      </target>
+      <target file="arm_dct4_init_q15.o" lastModified="150cdb0b40f">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_dct4_init_q15.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_mat_trans_q31.o" lastModified="150cdb1d053">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_trans_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="misc.o" lastModified="150cdb1a622">
+         <source file="..\..\..\cmsis_lib\source\misc.c" lastModified="14835c29650"/>
+      </target>
+      <target file="arm_cmplx_mult_real_f32.o" lastModified="150cdb1afb4">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_mult_real_f32.c" lastModified="1501ed12350"/>
+      </target>
+      <target file="arm_conv_partial_q7.o" lastModified="150cdb147a4">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_partial_q7.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_mat_mult_q31.o" lastModified="150cdb0be21">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_mult_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_mat_inverse_f32.o" lastModified="150cdb06a5f">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_inverse_f32.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_q7_to_q15.o" lastModified="150cdb09d20">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_q7_to_q15.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_cfft_radix4_q15.o" lastModified="150cdb074cc">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_cfft_radix4_q15.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_biquad_cascade_df1_init_q31.o" lastModified="150cdb120f3">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_init_q31.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_cmplx_mag_q15.o" lastModified="150cdb121ec">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_mag_q15.c" lastModified="1501ed12350"/>
+      </target>
+      <target file="arm_abs_f32.o" lastModified="150cdb0d5d6">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_abs_f32.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_float_to_q7.o" lastModified="150cdb076bf">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_float_to_q7.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_sin_q15.o" lastModified="150cdb1aed3">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FastMathFunctions\arm_sin_q15.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="stm32f4xx_spi.o" lastModified="150cdb190bd">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="14c313948a0"/>
+      </target>
+      <target file="arm_min_f32.o" lastModified="150cdb0f6ad">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_min_f32.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="mbutils.o" lastModified="150cdb0c6bc">
+         <source file="..\..\..\Source\freemodbus\functions\mbutils.c" lastModified="14c22662dc0"/>
+      </target>
+      <target file="arm_q15_to_float.o" lastModified="150cdb0a2c2">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_q15_to_float.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_lms_init_q31.o" lastModified="150cdb10797">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_lms_init_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_copy_q15.o" lastModified="150cdb127fb">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_copy_q15.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_abs_q7.o" lastModified="150cdb09304">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_abs_q7.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="fram_i2c.o" lastModified="150cdb14578">
+         <source file="..\..\..\Source\devices\fram_i2c.c" lastModified="14ff45957a0"/>
+      </target>
+      <target file="arm_cfft_q15.o" lastModified="150cdb0a5df">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_cfft_q15.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="w5500.o" lastModified="150cdb11607">
+         <source file="..\..\..\Ethernet\W5500\w5500.c" lastModified="148358a1190"/>
+      </target>
+      <target file="arm_max_q15.o" lastModified="150cdb1bbe3">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_max_q15.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_fill_f32.o" lastModified="150cdb1b58a">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_fill_f32.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_mat_scale_f32.o" lastModified="150cdb183a2">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_scale_f32.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_offset_q15.o" lastModified="150cdb16634">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_offset_q15.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_correlate_fast_q31.o" lastModified="150cdb10331">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_correlate_fast_q31.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_conv_f32.o" lastModified="150cdb0de01">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_f32.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_bitreversal2.o" lastModified="150cdb06bb4">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_bitreversal2.S" lastModified="1501ed14a60"/>
+      </target>
+      <target file="stm32f4xx_pwr.o" lastModified="150cdb0a85d">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_pwr.c" lastModified="14149991840"/>
+      </target>
+      <target file="arm_fir_lattice_q15.o" lastModified="150cdb0c5cd">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_lattice_q15.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_mat_cmplx_mult_q15.o" lastModified="150cdb07f63">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_cmplx_mult_q15.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_std_f32.o" lastModified="150cdb0d313">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_std_f32.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_rfft_f32.o" lastModified="150cdb09c44">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_rfft_f32.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_rfft_init_f32.o" lastModified="150cdb0f5d6">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_rfft_init_f32.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_fir_interpolate_init_f32.o" lastModified="150cdb1ddce">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_interpolate_init_f32.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_q15_to_q31.o" lastModified="150cdb09227">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_q15_to_q31.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_pid_init_q15.o" lastModified="150cdb18be3">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ControllerFunctions\arm_pid_init_q15.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_cmplx_conj_q31.o" lastModified="150cdb16465">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_conj_q31.c" lastModified="1501ed12350"/>
+      </target>
+      <target file="arm_conv_fast_q15.o" lastModified="150cdb17279">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_fast_q15.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_correlate_f32.o" lastModified="150cdb1c862">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_correlate_f32.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_sub_q15.o" lastModified="150cdb0cffb">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_sub_q15.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_cfft_radix4_init_q31.o" lastModified="150cdb0b4e9">
+         <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_cfft_radix4_init_q31.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_biquad_cascade_df1_32x64_init_q31.o" lastModified="150cdb14e1f">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_df1_32x64_init_q31.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_common_tables.o" lastModified="150cdb09a4c">
+         <source file="..\..\..\DSP\DSP_Lib\Source\CommonTables\arm_common_tables.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_fir_sparse_init_f32.o" lastModified="150cdb1ad1b">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_sparse_init_f32.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_lms_q31.o" lastModified="150cdb1c1a8">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_lms_q31.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_cos_q15.o" lastModified="150cdb15831">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FastMathFunctions\arm_cos_q15.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_fir_decimate_q31.o" lastModified="150cdb18b03">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_decimate_q31.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_sin_cos_f32.o" lastModified="150cdb1a805">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ControllerFunctions\arm_sin_cos_f32.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_mat_mult_fast_q31.o" lastModified="150cdb1d902">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_mult_fast_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_fir_sparse_f32.o" lastModified="150cdb0acb2">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_sparse_f32.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="arm_mat_sub_q15.o" lastModified="150cdb1655f">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_sub_q15.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_fir_lattice_init_q31.o" lastModified="150cdb133fe">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_lattice_init_q31.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_scale_q7.o" lastModified="150cdb06ea1">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_scale_q7.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_mean_f32.o" lastModified="150cdb15666">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_mean_f32.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_pid_reset_q31.o" lastModified="150cdb18cb7">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ControllerFunctions\arm_pid_reset_q31.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_fir_fast_q15.o" lastModified="150cdb11d67">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_fast_q15.c" lastModified="1501ed13ac0"/>
+      </target>
+      <target file="arm_cmplx_mult_real_q15.o" lastModified="150cdb1a718">
+         <source file="..\..\..\DSP\DSP_Lib\Source\ComplexMathFunctions\arm_cmplx_mult_real_q15.c" lastModified="1501ed12350"/>
+      </target>
+      <target file="arm_q31_to_q15.o" lastModified="150cdb1b741">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_q31_to_q15.c" lastModified="1501ed15230"/>
+      </target>
+      <target file="arm_conv_partial_q31.o" lastModified="150cdb10c65">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_conv_partial_q31.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="tasks.o" lastModified="150cdb12477">
+         <source file="..\..\..\Source\FreeRTOS\Source\tasks.c" lastModified="14af2c59a20"/>
+      </target>
+      <target file="main.o" lastModified="150cdb0eb42">
+         <source file="..\..\..\main.c" lastModified="1504cc7f41c"/>
+      </target>
+      <target file="arm_biquad_cascade_stereo_df2T_f32.o" lastModified="150cdb17d7a">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_stereo_df2T_f32.c" lastModified="1501ed12b20"/>
+      </target>
+      <target file="arm_max_q7.o" lastModified="150cdb1aa9c">
+         <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_max_q7.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="wiznet.o" lastModified="150cdb0f142">
+         <source file="..\..\..\Source\devices\wiznet.c" lastModified="14fe03c91b0"/>
+      </target>
+      <target file="arm_abs_q15.o" lastModified="150cdb0cc54">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_abs_q15.c" lastModified="1501ed14290"/>
+      </target>
+      <target file="arm_negate_q31.o" lastModified="150cdb1c37b">
+         <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_negate_q31.c" lastModified="1501ed14a60"/>
+      </target>
+      <target file="arm_lms_norm_q31.o" lastModified="150cdb18779">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_lms_norm_q31.c" lastModified="1501ed132f0"/>
+      </target>
+      <target file="timers.o" lastModified="150cdb0fbec">
+         <source file="..\..\..\Source\FreeRTOS\Source\timers.c" lastModified="14af2c59a20"/>
       </target>
    </processor>
 </history>

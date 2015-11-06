@@ -41,6 +41,9 @@ void ControllerInit(void)
 	Protocol_Init();
 	FrequencyMeasureInit();
 	ADS1220_Init();
+
+	fl_led=1;
+	my_counter=0;
 	Calc_Init();
 
 	//Log_Init();
@@ -67,16 +70,19 @@ uint8_t Controller_RestoreSettings(void)
 			stSettings.CurChannelCalibrate[i].code_pnt1=REG_CUR_CODE_DEFAULT;
 		}
 
-		if((stSettings.CurChannelCalibrate[i].current_ma_pnt0<REG_CUR_MA_MIN) || (stSettings.CurChannelCalibrate[i].current_ma_pnt0>REG_CUR_MA_MAX))
+		if((stSettings.CurChannelCalibrate[i].current_4ma<REG_CUR_MA_MIN) || (stSettings.CurChannelCalibrate[i].current_4ma>REG_CUR_MA_MAX))
 		{
-			stSettings.CurChannelCalibrate[i].current_ma_pnt0=REG_CUR_MA_DEFAULT;
+			stSettings.CurChannelCalibrate[i].current_4ma=REG_CUR_4MA_DEFAULT;
 		}
 
-		if((stSettings.CurChannelCalibrate[i].current_ma_pnt1<REG_CUR_MA_MIN) || (stSettings.CurChannelCalibrate[i].current_ma_pnt1>REG_CUR_MA_MAX))
+		if((stSettings.CurChannelCalibrate[i].current_20ma<REG_CUR_MA_MIN) || (stSettings.CurChannelCalibrate[i].current_20ma>REG_CUR_MA_MAX))
 		{
-			stSettings.CurChannelCalibrate[i].current_ma_pnt1=REG_CUR_MA_DEFAULT;
+			stSettings.CurChannelCalibrate[i].current_20ma=REG_CUR_MA_MAX;	//REG_CUR_MA_DEFAULT;
 		}
 	}
+
+	for(i=0;i<PULSE_COUNT_CHN_NUM;i++)	stMeasureData.last_counter[i]=0;
+
 
 	return 0;
 }

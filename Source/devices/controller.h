@@ -30,7 +30,7 @@ typedef enum
 
 #define REG_CUR_MA_MIN		 	0.0
 #define REG_CUR_MA_MAX			20.0
-#define REG_CUR_MA_DEFAULT		0.0
+#define REG_CUR_4MA_DEFAULT		4.0
 
 #define FREQ_CHN_NUM			2
 #define PULSE_COUNT_CHN_NUM		2
@@ -43,9 +43,15 @@ typedef enum
 typedef struct
 {
 	uint32_t code_pnt0;
-	float current_ma_pnt0;
+//	float current_ma_pnt0;
+	float current_4ma;
 	uint32_t code_pnt1;
-	float current_ma_pnt1;
+//	float current_ma_pnt1;
+	float current_20ma;
+
+	float zero;
+	float full;
+	float value;
 }stCurChannelCalibrate;
 
 typedef struct
@@ -57,10 +63,15 @@ typedef struct
 typedef struct
 {
 	float frequency[FREQ_CHN_NUM];
+	uint64_t last_counter[PULSE_COUNT_CHN_NUM];
 	uint64_t pulse_counter[PULSE_COUNT_CHN_NUM];
+
 	float rtd[RTD_CHN_NUM];
-	uint32_t current_raw[CURRENT_CHN_NUM];
+	float current_raw[CURRENT_CHN_NUM];
 	float current[CURRENT_CHN_NUM];
+	float test_var;
+
+
 }stControllerMeasureData;
 
 //typedef struct
@@ -74,6 +85,9 @@ extern xSemaphoreHandle xSettingsMutex;
 extern stControllerSettings stSettings;
 extern const stControllerSettings stSettingsDefault;
 extern stControllerMeasureData stMeasureData;
+
+short fl_led;
+uint32_t	my_counter;
 
 void ControllerInit(void);
 

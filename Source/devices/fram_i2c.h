@@ -6,7 +6,10 @@
 #include "controller.h"
 
 #define FRAM_SETTINGS_ADDR					0x0
-#define FRAM_SETTINGS_CRC_ADDR				0x90
+#define FRAM_SETTINGS_CRC_ADDR				0x100
+
+#define FRAM_DATA_ADDR						0x110
+
 #define FRAM_LOG_CURRENT_ENTRY_ADDR			0x28
 #define FRAM_LOG_BASE_ADDR					0x30
 #define FRAM_LOG_LEN						100

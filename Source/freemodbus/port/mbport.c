@@ -23,34 +23,47 @@ void EXIT_CRITICAL_SECTION(void)
 #define CURRENT_CHANNEL_6	5
 #define CURRENT_CHANNEL_7	4
 
-#define REG_FREQUENCY_0			0
-#define REG_FREQUENCY_1			2
-#define REG_PULSE_COUNTER_0		4
-#define REG_PULSE_COUNTER_1		6
-#define REG_RTD_0				8
-#define REG_RTD_1				10
+#define REG_PULSE_COUNTER_0		0
+#define REG_PULSE_COUNTER_1		2
 
-#define REG_CURRENT_0			12
-#define REG_CURRENT_1			14
-#define REG_CURRENT_2			16
-#define REG_CURRENT_3			18
-#define REG_CURRENT_4			20
-#define REG_CURRENT_5			22
-#define REG_CURRENT_6			24
-#define REG_CURRENT_7			26
+#define REG_CURRENT_RAW_0		4
+#define REG_CURRENT_RAW_1		6
+#define REG_CURRENT_RAW_2		8
+#define REG_CURRENT_RAW_3		10
+#define REG_CURRENT_RAW_4		12
+#define REG_CURRENT_RAW_5		14
+#define REG_CURRENT_RAW_6		16
+#define REG_CURRENT_RAW_7		18
 
-#define REG_CURRENT_RAW_0		28
-#define REG_CURRENT_RAW_1		30
-#define REG_CURRENT_RAW_2		32
-#define REG_CURRENT_RAW_3		34
-#define REG_CURRENT_RAW_4		36
-#define REG_CURRENT_RAW_5		38
-#define REG_CURRENT_RAW_6		40
-#define REG_CURRENT_RAW_7		42
+#define REG_FREQUENCY_0			20
+#define REG_FREQUENCY_1			22
+#define REG_RTD_0				24
+#define REG_RTD_1				26
 
+#define REG_CURRENT_0			28
+#define REG_CURRENT_1			30
+#define REG_CURRENT_2			32
+#define REG_CURRENT_3			34
+#define REG_CURRENT_4			36
+#define REG_CURRENT_5			38
+#define REG_CURRENT_6			40
+#define REG_CURRENT_7			42
+
+
+#define REG_VAL_0				44
+#define REG_VAL_1				46
+#define REG_VAL_2				48
+#define REG_VAL_3				50
+#define REG_VAL_4				52
+#define REG_VAL_5				54
+#define REG_VAL_6				56
+#define REG_VAL_7				58
+
+
+#define REG_TEST				60
 
 u8 REG_INPUT_START=1,REG_HOLDING_START=1;
-u8 REG_INPUT_NREGS=50,REG_HOLDING_NREGS=80;
+u8 REG_INPUT_NREGS=100,REG_HOLDING_NREGS=80;
 u8 usRegInputStart=1,usRegHoldingStart=1;
 
 
@@ -58,15 +71,25 @@ eMBErrorCode
 eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
 {
 	eMBErrorCode    eStatus = MB_ENOERR;
-	int             iRegIndex;
+	int             iRegIndex, j;
 	u16 usRegInputBuf[REG_INPUT_NREGS];
 
     xSemaphoreTake( xMeasureDataMutex, portMAX_DELAY );
     {
-    	*((float*)&usRegInputBuf[REG_FREQUENCY_0])=stMeasureData.frequency[0];
-    	*((float*)&usRegInputBuf[REG_FREQUENCY_1])=stMeasureData.frequency[1];
     	*((uint32_t*)&usRegInputBuf[REG_PULSE_COUNTER_0])=(uint32_t)stMeasureData.pulse_counter[0];
     	*((uint32_t*)&usRegInputBuf[REG_PULSE_COUNTER_1])=(uint32_t)stMeasureData.pulse_counter[1];
+
+    	*((uint32_t*)&usRegInputBuf[REG_CURRENT_RAW_0])=stMeasureData.current_raw[CURRENT_CHANNEL_0];
+    	*((uint32_t*)&usRegInputBuf[REG_CURRENT_RAW_1])=stMeasureData.current_raw[CURRENT_CHANNEL_1];
+    	*((uint32_t*)&usRegInputBuf[REG_CURRENT_RAW_2])=stMeasureData.current_raw[CURRENT_CHANNEL_2];
+    	*((uint32_t*)&usRegInputBuf[REG_CURRENT_RAW_3])=stMeasureData.current_raw[CURRENT_CHANNEL_3];
+    	*((uint32_t*)&usRegInputBuf[REG_CURRENT_RAW_4])=stMeasureData.current_raw[CURRENT_CHANNEL_4];
+    	*((uint32_t*)&usRegInputBuf[REG_CURRENT_RAW_5])=stMeasureData.current_raw[CURRENT_CHANNEL_5];
+    	*((uint32_t*)&usRegInputBuf[REG_CURRENT_RAW_6])=stMeasureData.current_raw[CURRENT_CHANNEL_6];
+    	*((uint32_t*)&usRegInputBuf[REG_CURRENT_RAW_7])=stMeasureData.current_raw[CURRENT_CHANNEL_7];
+
+    	*((float*)&usRegInputBuf[REG_FREQUENCY_0])=stMeasureData.frequency[0];
+    	*((float*)&usRegInputBuf[REG_FREQUENCY_1])=stMeasureData.frequency[1];
     	*((float*)&usRegInputBuf[REG_RTD_0])=stMeasureData.rtd[0];
     	*((float*)&usRegInputBuf[REG_RTD_1])=stMeasureData.rtd[1];
     	*((float*)&usRegInputBuf[REG_CURRENT_0])=stMeasureData.current[CURRENT_CHANNEL_0];
@@ -78,14 +101,10 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
     	*((float*)&usRegInputBuf[REG_CURRENT_6])=stMeasureData.current[CURRENT_CHANNEL_6];
     	*((float*)&usRegInputBuf[REG_CURRENT_7])=stMeasureData.current[CURRENT_CHANNEL_7];
 
-    	*((uint32_t*)&usRegInputBuf[REG_CURRENT_RAW_0])=stMeasureData.current_raw[CURRENT_CHANNEL_0];
-    	*((uint32_t*)&usRegInputBuf[REG_CURRENT_RAW_1])=stMeasureData.current_raw[CURRENT_CHANNEL_1];
-    	*((uint32_t*)&usRegInputBuf[REG_CURRENT_RAW_2])=stMeasureData.current_raw[CURRENT_CHANNEL_2];
-    	*((uint32_t*)&usRegInputBuf[REG_CURRENT_RAW_3])=stMeasureData.current_raw[CURRENT_CHANNEL_3];
-    	*((uint32_t*)&usRegInputBuf[REG_CURRENT_RAW_4])=stMeasureData.current_raw[CURRENT_CHANNEL_4];
-    	*((uint32_t*)&usRegInputBuf[REG_CURRENT_RAW_5])=stMeasureData.current_raw[CURRENT_CHANNEL_5];
-    	*((uint32_t*)&usRegInputBuf[REG_CURRENT_RAW_6])=stMeasureData.current_raw[CURRENT_CHANNEL_6];
-    	*((uint32_t*)&usRegInputBuf[REG_CURRENT_RAW_7])=stMeasureData.current_raw[CURRENT_CHANNEL_7];
+    	for (j = 0; j < CURRENT_CHN_NUM; ++j) {
+        	*((float*)&usRegInputBuf[REG_VAL_0+j*2])=stSettings.CurChannelCalibrate[REG_VAL_0+j*2].value;
+		}
+    	*((float*)&usRegInputBuf[REG_TEST])=stMeasureData.test_var;
     }
     xSemaphoreGive( xMeasureDataMutex );
 
@@ -191,44 +210,46 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 			     *(uint32_t*)(&usRegHoldingBuf[REG_TCXO_FREQ])	= stSettings.TCXO_frequency;
 
 			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR0_CODE_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_0].code_pnt0;
-			     *(float*)(&usRegHoldingBuf[REG_CUR0_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_0].current_ma_pnt0;
+//			     *(float*)(&usRegHoldingBuf[REG_CUR0_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_0].current_ma_pnt0;
+			     *(float*)(&usRegHoldingBuf[REG_CUR0_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_0].current_4ma;
 			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR0_CODE_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_0].code_pnt1;
-			     *(float*)(&usRegHoldingBuf[REG_CUR0_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_0].current_ma_pnt1;
+//			     *(float*)(&usRegHoldingBuf[REG_CUR0_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_0].current_ma_pnt1;
+			     *(float*)(&usRegHoldingBuf[REG_CUR0_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_0].current_20ma;
 
 			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR1_CODE_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_1].code_pnt0;
-			     *(float*)(&usRegHoldingBuf[REG_CUR1_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_1].current_ma_pnt0;
+			     *(float*)(&usRegHoldingBuf[REG_CUR1_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_1].current_4ma;
 			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR1_CODE_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_1].code_pnt1;
-			     *(float*)(&usRegHoldingBuf[REG_CUR1_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_1].current_ma_pnt1;
+			     *(float*)(&usRegHoldingBuf[REG_CUR1_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_1].current_20ma;
 
 			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR2_CODE_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_2].code_pnt0;
-			     *(float*)(&usRegHoldingBuf[REG_CUR2_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_2].current_ma_pnt0;
+			     *(float*)(&usRegHoldingBuf[REG_CUR2_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_2].current_4ma;
 			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR2_CODE_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_2].code_pnt1;
-			     *(float*)(&usRegHoldingBuf[REG_CUR2_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_2].current_ma_pnt1;
+			     *(float*)(&usRegHoldingBuf[REG_CUR2_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_2].current_20ma;
 
 			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR3_CODE_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_3].code_pnt0;
-			     *(float*)(&usRegHoldingBuf[REG_CUR3_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_3].current_ma_pnt0;
+			     *(float*)(&usRegHoldingBuf[REG_CUR3_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_3].current_4ma;
 			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR3_CODE_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_3].code_pnt1;
-			     *(float*)(&usRegHoldingBuf[REG_CUR3_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_3].current_ma_pnt1;
+			     *(float*)(&usRegHoldingBuf[REG_CUR3_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_3].current_20ma;
 
 			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR4_CODE_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_4].code_pnt0;
-			     *(float*)(&usRegHoldingBuf[REG_CUR4_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_4].current_ma_pnt0;
+			     *(float*)(&usRegHoldingBuf[REG_CUR4_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_4].current_4ma;
 			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR4_CODE_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_4].code_pnt1;
-			     *(float*)(&usRegHoldingBuf[REG_CUR4_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_4].current_ma_pnt1;
+			     *(float*)(&usRegHoldingBuf[REG_CUR4_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_4].current_20ma;
 
 			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR5_CODE_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_5].code_pnt0;
-			     *(float*)(&usRegHoldingBuf[REG_CUR5_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_5].current_ma_pnt0;
+			     *(float*)(&usRegHoldingBuf[REG_CUR5_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_5].current_4ma;
 			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR5_CODE_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_5].code_pnt1;
-			     *(float*)(&usRegHoldingBuf[REG_CUR5_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_5].current_ma_pnt1;
+			     *(float*)(&usRegHoldingBuf[REG_CUR5_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_5].current_20ma;
 
 			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR6_CODE_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_6].code_pnt0;
-			     *(float*)(&usRegHoldingBuf[REG_CUR6_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_6].current_ma_pnt0;
+			     *(float*)(&usRegHoldingBuf[REG_CUR6_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_6].current_4ma;
 			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR6_CODE_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_6].code_pnt1;
-			     *(float*)(&usRegHoldingBuf[REG_CUR6_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_6].current_ma_pnt1;
+			     *(float*)(&usRegHoldingBuf[REG_CUR6_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_6].current_20ma;
 
 			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR7_CODE_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_7].code_pnt0;
-			     *(float*)(&usRegHoldingBuf[REG_CUR7_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_7].current_ma_pnt0;
+			     *(float*)(&usRegHoldingBuf[REG_CUR7_MA_PNT0])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_7].current_4ma;
 			     *(uint32_t*)(&usRegHoldingBuf[REG_CUR7_CODE_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_7].code_pnt1;
-			     *(float*)(&usRegHoldingBuf[REG_CUR7_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_7].current_ma_pnt1;
+			     *(float*)(&usRegHoldingBuf[REG_CUR7_MA_PNT1])	= stSettings.CurChannelCalibrate[CURRENT_CHANNEL_7].current_20ma;
 
 
 				while( usNRegs > 0 )
@@ -449,7 +470,7 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 								{
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
-									     stSettings.CurChannelCalibrate[CURRENT_CHANNEL_0].current_ma_pnt0=temp;
+									     stSettings.CurChannelCalibrate[CURRENT_CHANNEL_0].current_4ma=temp;
 									     stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
@@ -504,7 +525,7 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 								{
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
-									     stSettings.CurChannelCalibrate[CURRENT_CHANNEL_0].current_ma_pnt1=temp;
+									     stSettings.CurChannelCalibrate[CURRENT_CHANNEL_0].current_20ma=temp;
 									     stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
@@ -558,7 +579,7 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 								{
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
-										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_1].current_ma_pnt0=temp;
+										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_1].current_4ma=temp;
 										 stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
@@ -613,7 +634,8 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 								{
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
-										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_1].current_ma_pnt1=temp;
+//										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_1].current_ma_pnt1=temp;
+										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_1].current_20ma=temp;
 										 stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
@@ -667,7 +689,8 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 								{
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
-										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_2].current_ma_pnt0=temp;
+//										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_2].current_ma_pnt0=temp;
+										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_2].current_4ma=temp;
 										 stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
@@ -722,7 +745,8 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 								{
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
-										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_2].current_ma_pnt1=temp;
+//										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_2].current_ma_pnt1=temp;
+										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_2].current_20ma=temp;
 										 stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
@@ -776,7 +800,8 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 								{
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
-										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_3].current_ma_pnt0=temp;
+//										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_3].current_ma_pnt0=temp;
+										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_3].current_4ma=temp;
 										 stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
@@ -831,7 +856,7 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 								{
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
-										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_3].current_ma_pnt1=temp;
+										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_3].current_20ma=temp;
 										 stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
@@ -885,7 +910,7 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 								{
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
-										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_4].current_ma_pnt0=temp;
+										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_4].current_4ma=temp;
 										 stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
@@ -940,7 +965,7 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 								{
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
-										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_4].current_ma_pnt1=temp;
+										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_4].current_20ma=temp;
 										 stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
@@ -994,7 +1019,7 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 								{
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
-										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_5].current_ma_pnt0=temp;
+										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_5].current_4ma=temp;
 										 stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
@@ -1049,7 +1074,7 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 								{
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
-										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_5].current_ma_pnt1=temp;
+										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_5].current_20ma=temp;
 										 stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
@@ -1103,7 +1128,7 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 								{
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
-										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_6].current_ma_pnt0=temp;
+										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_6].current_4ma=temp;
 										 stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
@@ -1158,7 +1183,7 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 								{
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
-										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_6].current_ma_pnt1=temp;
+										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_6].current_20ma=temp;
 										 stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
@@ -1212,7 +1237,7 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 								{
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
-										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_7].current_ma_pnt0=temp;
+										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_7].current_4ma=temp;
 										 stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
@@ -1267,7 +1292,7 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegi
 								{
 									 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 									 {
-										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_7].current_ma_pnt1=temp;
+										 stSettings.CurChannelCalibrate[CURRENT_CHANNEL_7].current_20ma=temp;
 										 stSettingsCopy=stSettings;
 									 }
 									 xSemaphoreGive( xSettingsMutex );
