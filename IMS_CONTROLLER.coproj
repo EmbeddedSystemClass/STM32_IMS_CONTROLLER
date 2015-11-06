@@ -112,10 +112,12 @@
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_conv_q31.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_conv_q31.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/TransformFunctions/arm_cfft_radix2_f32.c" path="DSP/DSP_Lib/Source/TransformFunctions/arm_cfft_radix2_f32.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/ComplexMathFunctions/arm_cmplx_mult_cmplx_q31.c" path="DSP/DSP_Lib/Source/ComplexMathFunctions/arm_cmplx_mult_cmplx_q31.c" type="1"/>
+    <File name="freemodbus/port/user_mb_app_m.c" path="Source/freemodbus/port/user_mb_app_m.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_fir_q7.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_fir_q7.c" type="1"/>
     <File name="usblib/usbd_cdc_core.h" path="usblib/usbd_cdc_core.h" type="1"/>
     <File name="DSP/DSP_Lib/Source/ComplexMathFunctions/arm_cmplx_mult_cmplx_q15.c" path="DSP/DSP_Lib/Source/ComplexMathFunctions/arm_cmplx_mult_cmplx_q15.c" type="1"/>
     <File name="FreeRTOS/Source/include" path="" type="2"/>
+    <File name="freemodbus/functions/mbfuncinput_m.c" path="Source/freemodbus/functions/mbfuncinput_m.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/StatisticsFunctions/arm_mean_f32.c" path="DSP/DSP_Lib/Source/StatisticsFunctions/arm_mean_f32.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/BasicMathFunctions/arm_sub_q31.c" path="DSP/DSP_Lib/Source/BasicMathFunctions/arm_sub_q31.c" type="1"/>
     <File name="usblib/usb_bsp_template.c_D" path="usblib/usb_bsp_template.c_D" type="1"/>
@@ -145,8 +147,8 @@
     <File name="DSP/DSP_Lib/Source/ControllerFunctions/arm_sin_cos_f32.c" path="DSP/DSP_Lib/Source/ControllerFunctions/arm_sin_cos_f32.c" type="1"/>
     <File name="usblib/usbd_cdc_vcp.c" path="usblib/usbd_cdc_vcp.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/StatisticsFunctions/arm_max_q7.c" path="DSP/DSP_Lib/Source/StatisticsFunctions/arm_max_q7.c" type="1"/>
-    <File name="DSP/DSP_Lib/Source/SupportFunctions/arm_q31_to_q7.c" path="DSP/DSP_Lib/Source/SupportFunctions/arm_q31_to_q7.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/StatisticsFunctions/arm_min_q15.c" path="DSP/DSP_Lib/Source/StatisticsFunctions/arm_min_q15.c" type="1"/>
+    <File name="DSP/DSP_Lib/Source/SupportFunctions/arm_q31_to_q7.c" path="DSP/DSP_Lib/Source/SupportFunctions/arm_q31_to_q7.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_gpio.c" path="cmsis_lib/source/stm32f4xx_gpio.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_dma.c" path="cmsis_lib/source/stm32f4xx_dma.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_fir_q31.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_fir_q31.c" type="1"/>
@@ -204,6 +206,7 @@
     <File name="DSP/DSP_Lib/Source/SupportFunctions/arm_copy_f32.c" path="DSP/DSP_Lib/Source/SupportFunctions/arm_copy_f32.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/StatisticsFunctions/arm_min_q31.c" path="DSP/DSP_Lib/Source/StatisticsFunctions/arm_min_q31.c" type="1"/>
     <File name="freemodbus/rtu/mbcrc.h" path="Source/freemodbus/rtu/mbcrc.h" type="1"/>
+    <File name="freemodbus/port/user_mb_app.h" path="Source/freemodbus/port/user_mb_app.h" type="1"/>
     <File name="freemodbus/include/mbfunc.h" path="Source/freemodbus/include/mbfunc.h" type="1"/>
     <File name="DSP/DSP_Lib/Source/SupportFunctions/arm_fill_q31.c" path="DSP/DSP_Lib/Source/SupportFunctions/arm_fill_q31.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_conv_partial_q31.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_conv_partial_q31.c" type="1"/>
@@ -258,6 +261,7 @@
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_lms_init_q15.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_lms_init_q15.c" type="1"/>
     <File name="DSP/Include/core_cmInstr.h" path="DSP/Include/core_cmInstr.h" type="1"/>
     <File name="DSP/DSP_Lib/Source/StatisticsFunctions/arm_mean_q15.c" path="DSP/DSP_Lib/Source/StatisticsFunctions/arm_mean_q15.c" type="1"/>
+    <File name="freemodbus/port/portserial_m.c" path="Source/freemodbus/port/portserial_m.c" type="1"/>
     <File name="freemodbus/include/mb.h" path="Source/freemodbus/include/mb.h" type="1"/>
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_conv_fast_q31.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_conv_fast_q31.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/TransformFunctions/arm_rfft_init_f32.c" path="DSP/DSP_Lib/Source/TransformFunctions/arm_rfft_init_f32.c" type="1"/>
@@ -274,6 +278,7 @@
     <File name="DSP/DSP_Lib/Source/BasicMathFunctions/arm_dot_prod_f32.c" path="DSP/DSP_Lib/Source/BasicMathFunctions/arm_dot_prod_f32.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_syscfg.h" path="cmsis_lib/include/stm32f4xx_syscfg.h" type="1"/>
     <File name="freemodbus/port/porttimer.c" path="Source/freemodbus/port/porttimer.c" type="1"/>
+    <File name="freemodbus/mb_m.c" path="Source/freemodbus/mb_m.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/ControllerFunctions/arm_pid_reset_q31.c" path="DSP/DSP_Lib/Source/ControllerFunctions/arm_pid_reset_q31.c" type="1"/>
     <File name="freemodbus/functions" path="" type="2"/>
     <File name="cmsis_boot/startup" path="" type="2"/>
@@ -289,8 +294,8 @@
     <File name="cmsis_lib/source/stm32f4xx_i2c.c" path="cmsis_lib/source/stm32f4xx_i2c.c" type="1"/>
     <File name="freemodbus/port/portevent.c" path="Source/freemodbus/port/portevent.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/BasicMathFunctions/arm_abs_q15.c" path="DSP/DSP_Lib/Source/BasicMathFunctions/arm_abs_q15.c" type="1"/>
-    <File name="DSP/DSP_Lib/Source/TransformFunctions/arm_dct4_init_q15.c" path="DSP/DSP_Lib/Source/TransformFunctions/arm_dct4_init_q15.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_fir_decimate_q31.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_fir_decimate_q31.c" type="1"/>
+    <File name="DSP/DSP_Lib/Source/TransformFunctions/arm_dct4_init_q15.c" path="DSP/DSP_Lib/Source/TransformFunctions/arm_dct4_init_q15.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/FastMathFunctions/arm_sin_f32.c" path="DSP/DSP_Lib/Source/FastMathFunctions/arm_sin_f32.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/StatisticsFunctions/arm_rms_f32.c" path="DSP/DSP_Lib/Source/StatisticsFunctions/arm_rms_f32.c" type="1"/>
     <File name="freemodbus/functions/mbfuncother.c" path="Source/freemodbus/functions/mbfuncother.c" type="1"/>
@@ -424,11 +429,13 @@
     <File name="DSP/DSP_Lib/Source/ControllerFunctions/arm_sin_cos_q31.c" path="DSP/DSP_Lib/Source/ControllerFunctions/arm_sin_cos_q31.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/BasicMathFunctions/arm_sub_q15.c" path="DSP/DSP_Lib/Source/BasicMathFunctions/arm_sub_q15.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/BasicMathFunctions/arm_dot_prod_q31.c" path="DSP/DSP_Lib/Source/BasicMathFunctions/arm_dot_prod_q31.c" type="1"/>
+    <File name="freemodbus/port/portevent_m.c" path="Source/freemodbus/port/portevent_m.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_correlate_fast_q15.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_correlate_fast_q15.c" type="1"/>
     <File name="devices/low_level_sdio.h" path="Source/devices/low_level_sdio.h" type="1"/>
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_fir_q15.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_fir_q15.c" type="1"/>
     <File name="usblib/usb_hcd.c_D" path="usblib/usb_hcd.c_D" type="1"/>
     <File name="DSP/DSP_Lib/Source/ControllerFunctions" path="" type="2"/>
+    <File name="freemodbus/port/porttimer_m.c" path="Source/freemodbus/port/porttimer_m.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/BasicMathFunctions/arm_abs_q31.c" path="DSP/DSP_Lib/Source/BasicMathFunctions/arm_abs_q31.c" type="1"/>
     <File name="FreeRTOS/Source/portable/GCC" path="" type="2"/>
     <File name="DSP/DSP_Lib/Source" path="" type="2"/>
@@ -478,9 +485,9 @@
     <File name="DSP/DSP_Lib/Source/MatrixFunctions/arm_mat_scale_q31.c" path="DSP/DSP_Lib/Source/MatrixFunctions/arm_mat_scale_q31.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/MatrixFunctions/arm_mat_mult_fast_q15.c" path="DSP/DSP_Lib/Source/MatrixFunctions/arm_mat_mult_fast_q15.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_fir_sparse_q7.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_fir_sparse_q7.c" type="1"/>
-    <File name="DSP/DSP_Lib/Source/StatisticsFunctions/arm_min_q7.c" path="DSP/DSP_Lib/Source/StatisticsFunctions/arm_min_q7.c" type="1"/>
-    <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_biquad_cascade_df1_32x64_init_q31.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_biquad_cascade_df1_32x64_init_q31.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_iir_lattice_q15.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_iir_lattice_q15.c" type="1"/>
+    <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_biquad_cascade_df1_32x64_init_q31.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_biquad_cascade_df1_32x64_init_q31.c" type="1"/>
+    <File name="DSP/DSP_Lib/Source/StatisticsFunctions/arm_min_q7.c" path="DSP/DSP_Lib/Source/StatisticsFunctions/arm_min_q7.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_biquad_cascade_df1_32x64_q31.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_biquad_cascade_df1_32x64_q31.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/BasicMathFunctions/arm_abs_f32.c" path="DSP/DSP_Lib/Source/BasicMathFunctions/arm_abs_f32.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_conv_partial_f32.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_conv_partial_f32.c" type="1"/>
@@ -497,7 +504,6 @@
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_correlate_fast_opt_q15.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_correlate_fast_opt_q15.c" type="1"/>
     <File name="usblib/usb_otg.c_D" path="usblib/usb_otg.c_D" type="1"/>
     <File name="usblib" path="" type="2"/>
-    <File name="freemodbus/ascii/mbascii.c" path="Source/freemodbus/ascii/mbascii.c" type="1"/>
     <File name="usblib/usb_otg.h_D" path="usblib/usb_otg.h_D" type="1"/>
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_fir_interpolate_init_q31.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_fir_interpolate_init_q31.c" type="1"/>
     <File name="usblib/usb_bsp.h" path="usblib/usb_bsp.h" type="1"/>
@@ -547,12 +553,13 @@
     <File name="DSP/DSP_Lib/Source/BasicMathFunctions/arm_add_f32.c" path="DSP/DSP_Lib/Source/BasicMathFunctions/arm_add_f32.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/TransformFunctions/arm_cfft_radix4_q15.c" path="DSP/DSP_Lib/Source/TransformFunctions/arm_cfft_radix4_q15.c" type="1"/>
     <File name="FatFS/src" path="" type="2"/>
+    <File name="freemodbus/include/mb_m.h" path="Source/freemodbus/include/mb_m.h" type="1"/>
     <File name="DSP/DSP_Lib/Source/CommonTables" path="" type="2"/>
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_lms_norm_init_q31.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_lms_norm_init_q31.c" type="1"/>
     <File name="cmsis_lib/source" path="" type="2"/>
     <File name="DSP/DSP_Lib/Source/StatisticsFunctions/arm_std_f32.c" path="DSP/DSP_Lib/Source/StatisticsFunctions/arm_std_f32.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_fir_fast_q15.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_fir_fast_q15.c" type="1"/>
-    <File name="freemodbus/ascii" path="" type="2"/>
+    <File name="freemodbus/rtu/mbrtu_m.c" path="Source/freemodbus/rtu/mbrtu_m.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/BasicMathFunctions/arm_dot_prod_q15.c" path="DSP/DSP_Lib/Source/BasicMathFunctions/arm_dot_prod_q15.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_fir_fast_q31.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_fir_fast_q31.c" type="1"/>
     <File name="freemodbus/include/mbport.h" path="Source/freemodbus/include/mbport.h" type="1"/>
@@ -567,7 +574,6 @@
     <File name="DSP/Include" path="" type="2"/>
     <File name="DSP/DSP_Lib/Source/FilteringFunctions/arm_iir_lattice_init_q31.c" path="DSP/DSP_Lib/Source/FilteringFunctions/arm_iir_lattice_init_q31.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/SupportFunctions/arm_q15_to_q7.c" path="DSP/DSP_Lib/Source/SupportFunctions/arm_q15_to_q7.c" type="1"/>
-    <File name="freemodbus/ascii/mbascii.h" path="Source/freemodbus/ascii/mbascii.h" type="1"/>
     <File name="DSP/DSP_Lib/Source/MatrixFunctions/arm_mat_sub_f32.c" path="DSP/DSP_Lib/Source/MatrixFunctions/arm_mat_sub_f32.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/TransformFunctions/arm_cfft_radix2_q31.c" path="DSP/DSP_Lib/Source/TransformFunctions/arm_cfft_radix2_q31.c" type="1"/>
     <File name="DSP/DSP_Lib/Source/SupportFunctions/arm_fill_q15.c" path="DSP/DSP_Lib/Source/SupportFunctions/arm_fill_q15.c" type="1"/>
