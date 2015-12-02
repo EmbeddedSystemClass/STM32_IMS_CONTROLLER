@@ -16,8 +16,8 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/IMS_CONTROLLER/main.c"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="C:\Temp\IMS_PO\STM32_IMS_CONTROLLER\main.c"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 <attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 </marker>
 </breakpoint>
 <breakpoint enabled="true" persistant="true" registered="true">
@@ -36,8 +36,8 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_usart.c"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="C:\Temp\IMS_PO\STM32_IMS_CONTROLLER\cmsis_lib\source\stm32f4xx_usart.c"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 <attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 </marker>
 </breakpoint>
 </breakpoints>

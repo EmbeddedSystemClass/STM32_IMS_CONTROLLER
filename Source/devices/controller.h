@@ -60,6 +60,45 @@ typedef struct
 	stCurChannelCalibrate CurChannelCalibrate[CURRENT_CHN_NUM];
 }stControllerSettings;
 
+//---------------------------------------
+#define KFACTOR_POINT_NUM	10
+
+typedef enum
+{
+	SENSOR_TYPE_PRESSURE_ABS=0,
+	SENSOR_TYPE_PRESSURE_OVER,
+	SENSOR_TYPE_TEMPERATURE,
+	SENSOR_TYPE_IMPULSE,
+}enSensorType;
+
+typedef struct
+{
+	uint32_t code;
+	float    value;
+}stCalibr;
+
+typedef struct
+{
+	uint32_t frequency;
+	float	 value;
+}stKfactor;
+
+typedef struct
+{
+	uint8_t 		channel_num;
+	enSensorType 	sensor_type;
+	stCalibr		calibr_low;
+	stCalibr		calibr_hi;
+	float 			threshold_low;
+	float			threshold_hi;
+	uint8_t 		fix_flag;
+	uint32_t		fix_val;
+	stKfactor		Kfactor[KFACTOR_POINT_NUM];
+
+
+}stSensor;
+//---------------------------------------
+
 typedef struct
 {
 	float frequency[FREQ_CHN_NUM];
