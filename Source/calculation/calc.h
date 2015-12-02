@@ -3,8 +3,6 @@
 
 #include "stm32f4xx.h"
 
-
-
 void Calc_Init(void);
 
 #endif

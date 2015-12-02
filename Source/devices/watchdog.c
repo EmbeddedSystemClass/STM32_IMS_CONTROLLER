@@ -25,7 +25,7 @@ void Watchdog_Init(void)
 
 	  IWDG_SetPrescaler(IWDG_Prescaler_256);
 
-	  IWDG_SetReload(LSI_FREQ/64);
+	  IWDG_SetReload(625);
 
 	  /* Reload IWDG counter */
 	  IWDG_ReloadCounter();
@@ -33,7 +33,7 @@ void Watchdog_Init(void)
 	  /* Enable IWDG (the LSI oscillator will be enabled by hardware) */
 	  IWDG_Enable();
 
-	  xTaskCreate(Watchdog_Task,(signed char*)"INIT",128,NULL, tskIDLE_PRIORITY + 1, NULL);
+	  xTaskCreate(Watchdog_Task,(signed char*)"INIT",256,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 
 void Watchdog_SetTaskStatus(uint8_t task,uint8_t status)

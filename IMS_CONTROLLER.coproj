@@ -22,6 +22,7 @@
           <Define name="__VFP_FP__"/>
           <Define name="ARM_MATH_CM4"/>
           <Define name="__TARGET_FPU_VFP"/>
+          <Define name="HSE_VALUE=20000000"/>
         </DefinedSymbols>
       </Compile>
       <Link useDefault="0">
