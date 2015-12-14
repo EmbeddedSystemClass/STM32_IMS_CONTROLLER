@@ -104,7 +104,7 @@ void FrequencyMeasureInit(void)
 	EXTI_InitTypeDef   EXTI_InitStructure;
 	TIM_TimeBaseInitTypeDef TIM_InitStructure;
 
-	RCC_AHB1PeriphClockCmd(RCC_FREQ_CAPTURE_GPIO_PORT | RCC_FREQ_COUNT_1_GPIO_PORT/* | RCC_FREQ_COUNT_2_GPIO_PORT*/, ENABLE);
+	RCC_AHB1PeriphClockCmd(/*RCC_FREQ_CAPTURE_GPIO_PORT |*/ RCC_FREQ_COUNT_1_GPIO_PORT/* | RCC_FREQ_COUNT_2_GPIO_PORT*/, ENABLE);
 
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
 	  /* Enable SYSCFG clock */
@@ -112,7 +112,7 @@ void FrequencyMeasureInit(void)
 
 //	RCC_APB1PeriphClockCmd(RCC_FREQ_CAPTURE_TIM, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_FREQ_COUNT_1_TIM, ENABLE);
-	RCC_APB2PeriphClockCmd(RCC_FREQ_COUNT_2_TIM, ENABLE);
+//	RCC_APB2PeriphClockCmd(RCC_FREQ_COUNT_2_TIM, ENABLE);
 
 //	TIM_InitStructure.TIM_Period = FREQ_CAPTURE_TIM_PERIOD;
 //	TIM_InitStructure.TIM_Prescaler = 0;
@@ -183,7 +183,16 @@ void FrequencyMeasureInit(void)
 
 	TIM_TimeBaseInit(FREQ_COUNT_1_TIM, &TIM_InitStructure);
 	TIM_ETRClockMode2Config(FREQ_COUNT_1_TIM, TIM_ExtTRGPSC_OFF, TIM_ExtTRGPolarity_NonInverted, 0x00);
-	TIM_Cmd(FREQ_COUNT_1_TIM, ENABLE);
+
+
+    NVIC_InitStructure.NVIC_IRQChannel =  TIM8_UP_TIM13_IRQn  ;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+
+    TIM_Cmd(FREQ_COUNT_1_TIM, ENABLE);
+    TIM_ITConfig(TIM8, TIM_IT_Update, ENABLE);
 
 //	TIM_TimeBaseInit(FREQ_COUNT_2_TIM, &TIM_InitStructure);
 //	TIM_ETRClockMode2Config(FREQ_COUNT_2_TIM, TIM_ExtTRGPSC_OFF, TIM_ExtTRGPolarity_NonInverted, 0x00);
@@ -411,4 +420,12 @@ void EXTI9_5_IRQHandler(void)
 
     EXTI_ClearITPendingBit(IMPULSE_SENSOR_2_2_EXTI);
   }
+}
+
+void  TIM8_UP_TIM13_IRQHandler(void)
+{
+    if (TIM_GetITStatus(TIM8, TIM_IT_Update) != RESET)
+    {
+    	TIM_ClearITPendingBit(TIM8, TIM_IT_Update);
+    }
 }
