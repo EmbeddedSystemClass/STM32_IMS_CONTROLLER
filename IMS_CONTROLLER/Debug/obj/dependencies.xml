@@ -4702,7 +4702,7 @@
       </source>
       <source file="..\..\..\Source\devices\frequency.h" lastModified="14c8d9163d0">
       </source>
-      <source file="..\..\..\Source\devices\frequency.c" lastModified="151a085505b">
+      <source file="..\..\..\Source\devices\frequency.c" lastModified="151a0f88cd8">
          <include file="..\..\..\Source\devices\frequency.h"/>
          <include file="..\..\..\Source\devices\controller.h"/>
          <include file="..\..\..\Source\devices\watchdog.h"/>
