@@ -748,8 +748,8 @@
       <target file="arm_q31_to_float.o" lastModified="1519f7e6961">
          <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_q31_to_float.c" lastModified="1501ed15230"/>
       </target>
-      <target file="controller.o" lastModified="1519f81197d">
-         <source file="..\..\..\Source\devices\controller.c" lastModified="151630a2aad"/>
+      <target file="controller.o" lastModified="151a5f812a5">
+         <source file="..\..\..\Source\devices\controller.c" lastModified="151a5f7fc3f"/>
       </target>
       <target file="arm_q15_to_q7.o" lastModified="1519f7f3329">
          <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_q15_to_q7.c" lastModified="1501ed15230"/>
@@ -790,8 +790,8 @@
       <target file="arm_power_q7.o" lastModified="1519f80971e">
          <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_power_q7.c" lastModified="1501ed14a60"/>
       </target>
-      <target file="frequency.o" lastModified="151a5cf1ee2">
-         <source file="..\..\..\Source\devices\frequency.c" lastModified="151a5cf088b"/>
+      <target file="frequency.o" lastModified="151a5f3d179">
+         <source file="..\..\..\Source\devices\frequency.c" lastModified="151a5f3afa9"/>
       </target>
       <target file="mbrtu.o" lastModified="1519f804c69">
          <source file="..\..\..\Source\freemodbus\rtu\mbrtu.c" lastModified="14c31768080"/>

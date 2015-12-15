@@ -100,6 +100,10 @@ void FrequencyMeasureInit(void)
 
 	RCC_APB2PeriphClockCmd(RCC_FREQ_COUNT_1_TIM, ENABLE);
 
+
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM11, ENABLE);
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM14, ENABLE);
+
 	GPIO_InitStructure.GPIO_Pin = FREQ_COUNT_1_GPIO_PINS;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
@@ -150,7 +154,7 @@ void FrequencyMeasureInit(void)
 
     EXTI_InitStructure.EXTI_Line = IMPULSE_SENSOR_1_1_EXTI  | IMPULSE_SENSOR_2_1_EXTI ;
     EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
+    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
     EXTI_InitStructure.EXTI_LineCmd = ENABLE;
     EXTI_Init(&EXTI_InitStructure);
 
@@ -205,6 +209,8 @@ void FrequencyMeasureInit(void)
    // TIM_Cmd(TIM14, ENABLE);
     TIM_ITConfig(TIM14, TIM_IT_Update, ENABLE);
 
+    ImpulseLine1_StartMeasure();
+
     //---------------------------------
 }
 
@@ -254,7 +260,7 @@ enum
 	IMPULSE_SENSOR_2_2_EVENT
 };
 
-#define SENSOR_EVENT_LEVEL	1
+#define SENSOR_EVENT_LEVEL	0
 
 uint8_t line_1_event, line_2_event;
 
