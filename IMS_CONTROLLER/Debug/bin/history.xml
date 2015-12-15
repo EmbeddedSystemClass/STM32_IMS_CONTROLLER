@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
    <processor signature="4.7.2 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wall -g -nostartfiles -Map=IMS_CONTROLLER.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\IMS_CONTROLLER -TC:\CooCox\CoIDE\configuration\ProgramData\IMS_CONTROLLER/arm-gcc-link.ld -g -LC:\Program Files\GNU Tools ARM Embedded\4.9 2015q2\arm-none-eabi\lib\armv7e-m\fpu -lc -LC:\Program Files\GNU Tools ARM Embedded\4.9 2015q2\arm-none-eabi\lib\armv7e-m\fpu -lm -LC:\Program Files\GNU Tools ARM Embedded\4.9 2015q2\arm-none-eabi\lib\armv7e-m\fpu -lg">
-      <target file="IMS_CONTROLLER.elf" lastModified="151a0f8abda">
+      <target file="IMS_CONTROLLER.elf" lastModified="151a5445dc3">
          <source file="C:\Program Files\GNU Tools ARM Embedded\4.9 2015q2\arm-none-eabi\lib\armv7e-m\fpu\libc.a" lastModified="14dd9819610"/>
          <source file="C:\Program Files\GNU Tools ARM Embedded\4.9 2015q2\arm-none-eabi\lib\armv7e-m\fpu\libm.a" lastModified="14dd9819610"/>
          <source file="C:\Program Files\GNU Tools ARM Embedded\4.9 2015q2\arm-none-eabi\lib\armv7e-m\fpu\libg.a" lastModified="14dd9819610"/>
@@ -276,7 +276,7 @@
          <source file="..\obj\event_groups.o" lastModified="1519f80c10d"/>
          <source file="..\obj\ADS1220.o" lastModified="1519f80c449"/>
          <source file="..\obj\arm_pid_init_f32.o" lastModified="1519f80c65c"/>
-         <source file="..\obj\frequency.o" lastModified="151a0f8a0ed"/>
+         <source file="..\obj\frequency.o" lastModified="151a54448d4"/>
          <source file="..\obj\stm32f4xx_i2c.o" lastModified="1519f80cad1"/>
          <source file="..\obj\arm_cmplx_mag_squared_q31.o" lastModified="1519f80cc48"/>
          <source file="..\obj\arm_scale_q15.o" lastModified="1519f80cdde"/>

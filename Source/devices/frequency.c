@@ -96,6 +96,9 @@
 //static void FrequencyCH1Measure_Task(void *pvParameters);
 //static void FrequencyCH2Measure_Task(void *pvParameters);
 
+
+uint64_t reload_counter=0;
+
 void FrequencyMeasureInit(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -215,8 +218,29 @@ void FrequencyMeasureInit(void)
     //---------------------------------
 }
 
+typedef struct
+{
+	uint64_t start_value;
+	uint64_t stop_value;
+}stImpulseCounter;
 
+stImpulseCounter Line1_ImpulseCounter, Line2_ImpulseCounter;
 uint32_t  exti_base_addr = (uint32_t)EXTI_BASE;
+
+void ImpulseLine1_StartMeasure(void)
+{
+	*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_1_1_EXTI;
+	*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_1_2_EXTI;
+}
+
+void ImpulseLine2_StartMeasure(void)
+{
+	*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_2_1_EXTI;
+	*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_2_2_EXTI;
+}
+
+
+
 
 enum
 {
@@ -226,7 +250,10 @@ enum
 	IMPULSE_SENSOR_2_2_EVENT
 };
 
-uint8_t sensor_event;
+#define SENSOR_EVENT_LEVEL	1
+
+uint8_t line_1_event, line_2_event;
+
 
 void EXTI4_IRQHandler(void)
 {
@@ -236,7 +263,7 @@ void EXTI4_IRQHandler(void)
 	    TIM_Cmd(TIM11, ENABLE);
 		EXTI_ClearITPendingBit(IMPULSE_SENSOR_1_1_EXTI);
 		*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_1_1_EXTI;
-		sensor_event=IMPULSE_SENSOR_1_1_EVENT;
+		line_1_event=IMPULSE_SENSOR_1_1_EVENT;
   }
 }
 
@@ -250,7 +277,7 @@ void EXTI9_5_IRQHandler(void)
 	  	TIM_Cmd(TIM11, ENABLE);
 		EXTI_ClearITPendingBit(IMPULSE_SENSOR_1_2_EXTI);
 		*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_1_2_EXTI;
-		sensor_event=IMPULSE_SENSOR_1_2_EVENT;
+		line_1_event=IMPULSE_SENSOR_1_2_EVENT;
   }
 
   if(EXTI_GetITStatus(IMPULSE_SENSOR_2_1_EXTI) != RESET)
@@ -259,7 +286,7 @@ void EXTI9_5_IRQHandler(void)
 	    TIM_Cmd(TIM14, ENABLE);
 		EXTI_ClearITPendingBit(IMPULSE_SENSOR_2_1_EXTI);
 		*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_2_1_EXTI;
-		sensor_event=IMPULSE_SENSOR_2_1_EVENT;
+		line_2_event=IMPULSE_SENSOR_2_1_EVENT;
   }
 
   if(EXTI_GetITStatus(IMPULSE_SENSOR_2_2_EXTI) != RESET)
@@ -268,34 +295,81 @@ void EXTI9_5_IRQHandler(void)
 	    TIM_Cmd(TIM14, ENABLE);
 		EXTI_ClearITPendingBit(IMPULSE_SENSOR_2_2_EXTI);
 		*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_2_2_EXTI;
-		sensor_event=IMPULSE_SENSOR_2_2_EVENT;
+		line_2_event=IMPULSE_SENSOR_2_2_EVENT;
   }
 }
 
-void  TIM8_UP_TIM13_IRQHandler(void)
+
+void  TIM8_UP_TIM13_IRQHandler(void)//counter
 {
     if (TIM_GetITStatus(TIM8, TIM_IT_Update) != RESET)
     {
-
+    	reload_counter++;
     	TIM_ClearITPendingBit(TIM8, TIM_IT_Update);
     }
 }
 
 
-void  TIM1_TRG_COM_TIM11_IRQHandler(void)
+void  TIM1_TRG_COM_TIM11_IRQHandler(void)//delay_1
 {
     if (TIM_GetITStatus(TIM11, TIM_IT_Update) != RESET)
     {
-
+    	TIM_Cmd(TIM11, DISABLE);
+    	if(line_1_event==IMPULSE_SENSOR_1_1_EVENT)
+    	{
+    		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_1_1)==SENSOR_EVENT_LEVEL)//level ok
+    		{
+				Line1_ImpulseCounter.start_value=reload_counter+TIM8->CNT;
+				*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_1_2_EXTI;
+    		}
+    		else
+    		{
+    			*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_1_1_EXTI;
+    		}
+    	}
+    	else if(line_1_event==IMPULSE_SENSOR_1_2_EVENT)
+    	{
+    		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_1_2)==SENSOR_EVENT_LEVEL)//level ok
+    		{
+    			Line1_ImpulseCounter.stop_value=reload_counter+TIM8->CNT;
+    		}
+    		else
+    		{
+    			*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_1_2_EXTI;
+    		}
+    	}
     	TIM_ClearITPendingBit(TIM11, TIM_IT_Update);
     }
 }
 
-void  TIM8_TRG_COM_TIM14_IRQHandler(void)
+void  TIM8_TRG_COM_TIM14_IRQHandler(void)//delay_2
 {
     if (TIM_GetITStatus(TIM14, TIM_IT_Update) != RESET)
     {
-
+    	TIM_Cmd(TIM14, DISABLE);
+    	if(line_2_event==IMPULSE_SENSOR_2_1_EVENT)
+    	{
+    		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_1_2)==SENSOR_EVENT_LEVEL)//level ok
+    		{
+				Line2_ImpulseCounter.start_value=reload_counter+TIM8->CNT;
+				*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_2_2_EXTI;
+    		}
+    		else
+    		{
+    			*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_2_1_EXTI;
+    		}
+    	}
+    	else if(line_2_event==IMPULSE_SENSOR_2_2_EVENT)
+    	{
+    		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_2_2)==SENSOR_EVENT_LEVEL)//level ok
+    		{
+    			Line2_ImpulseCounter.stop_value=reload_counter+TIM8->CNT;
+    		}
+    		else
+    		{
+    			*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_2_2_EXTI;
+    		}
+    	}
     	TIM_ClearITPendingBit(TIM14, TIM_IT_Update);
     }
 }

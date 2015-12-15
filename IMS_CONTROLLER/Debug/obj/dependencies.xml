@@ -4702,18 +4702,6 @@
       </source>
       <source file="..\..\..\Source\devices\frequency.h" lastModified="14c8d9163d0">
       </source>
-      <source file="..\..\..\Source\devices\frequency.c" lastModified="151a0f88cd8">
-         <include file="..\..\..\Source\devices\frequency.h"/>
-         <include file="..\..\..\Source\devices\controller.h"/>
-         <include file="..\..\..\Source\devices\watchdog.h"/>
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_exti.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_syscfg.h"/>
-         <include file="..\..\..\cmsis_lib\include\misc.h"/>
-      </source>
       <source file="..\..\..\DSP\DSP_Lib\Source\FastMathFunctions\arm_cos_q15.c" lastModified="1501ed14290">
          <include file="..\..\..\DSP\Include\arm_math.h"/>
          <include file="..\..\..\DSP\Include\arm_common_tables.h"/>
