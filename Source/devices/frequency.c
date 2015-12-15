@@ -127,8 +127,10 @@ void FrequencyMeasureInit(void)
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
 
+    TIM_ClearITPendingBit(TIM8, TIM_IT_Update);
     TIM_Cmd(FREQ_COUNT_1_TIM, ENABLE);
     TIM_ITConfig(TIM8, TIM_IT_Update, ENABLE);
+
 //-------------------
 	GPIO_InitStructure.GPIO_Pin = FREQ_COUNT_1_PP_OD_SELECT_PIN | FREQ_COUNT_2_PP_OD_SELECT_PIN;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
@@ -204,9 +206,11 @@ void FrequencyMeasureInit(void)
     NVIC_Init(&NVIC_InitStructure);
 
    // TIM_Cmd(TIM11, ENABLE);
+    TIM_ClearITPendingBit(TIM11, TIM_IT_Update);
     TIM_ITConfig(TIM11, TIM_IT_Update, ENABLE);
 
    // TIM_Cmd(TIM14, ENABLE);
+    TIM_ClearITPendingBit(TIM14, TIM_IT_Update);
     TIM_ITConfig(TIM14, TIM_IT_Update, ENABLE);
 
     ImpulseLine1_StartMeasure();

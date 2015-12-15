@@ -940,7 +940,7 @@
       </source>
       <source file="..\..\..\Source\devices\frequency.h" lastModified="151a5e35b3d">
       </source>
-      <source file="..\..\..\Source\devices\frequency.c" lastModified="151a5f3afa9">
+      <source file="..\..\..\Source\devices\frequency.c" lastModified="151a60822d4">
          <include file="..\..\..\Source\devices\frequency.h"/>
          <include file="..\..\..\Source\devices\controller.h"/>
          <include file="..\..\..\Source\devices\watchdog.h"/>

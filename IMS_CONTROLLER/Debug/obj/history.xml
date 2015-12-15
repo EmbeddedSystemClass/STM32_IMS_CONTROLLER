@@ -790,8 +790,8 @@
       <target file="arm_power_q7.o" lastModified="1519f80971e">
          <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_power_q7.c" lastModified="1501ed14a60"/>
       </target>
-      <target file="frequency.o" lastModified="151a5f3d179">
-         <source file="..\..\..\Source\devices\frequency.c" lastModified="151a5f3afa9"/>
+      <target file="frequency.o" lastModified="151a6084437">
+         <source file="..\..\..\Source\devices\frequency.c" lastModified="151a60822d4"/>
       </target>
       <target file="mbrtu.o" lastModified="1519f804c69">
          <source file="..\..\..\Source\freemodbus\rtu\mbrtu.c" lastModified="14c31768080"/>
