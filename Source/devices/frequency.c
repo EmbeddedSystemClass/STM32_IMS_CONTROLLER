@@ -81,21 +81,7 @@
 #define IMPULSE_SENSOR_2_2_EXTI 			EXTI_Line9
 
 
-//typedef struct
-//{
-//	uint32_t	capture_1;
-//	uint32_t	capture_2;
-//	uint32_t impulse_count;
-//}stFrequencyData;
-
-
-
-//xSemaphoreHandle xFrequencySemaphore[2];
-//static volatile stFrequencyData FrequencyData[2];
-
-//static void FrequencyCH1Measure_Task(void *pvParameters);
-//static void FrequencyCH2Measure_Task(void *pvParameters);
-
+void Impulse_SetAntiBounceDelay(uint16_t time_us);
 
 uint64_t reload_counter=0;
 
@@ -189,13 +175,17 @@ void FrequencyMeasureInit(void)
     //---------------------------------
 
 	TIM_TimeBaseStructInit(&TIM_InitStructure);
-	TIM_InitStructure.TIM_Prescaler = 0;
+	TIM_InitStructure.TIM_Prescaler = 60;
 	TIM_InitStructure.TIM_CounterMode = TIM_CounterMode_Up;
 	TIM_InitStructure.TIM_Period= 0xFFFF;
 	TIM_InitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
 
 	TIM_TimeBaseInit(TIM11, &TIM_InitStructure);
+
+	TIM_InitStructure.TIM_Prescaler = 30;
+
 	TIM_TimeBaseInit(TIM14, &TIM_InitStructure);
+	Impulse_SetAntiBounceDelay(500);
 
     NVIC_InitStructure.NVIC_IRQChannel =  TIM1_TRG_COM_TIM11_IRQn  ;
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
@@ -240,7 +230,21 @@ void ImpulseLine2_StartMeasure(void)
 }
 
 
+void Impulse_SetAntiBounceDelay(uint16_t time_us)
+{
+	if(time_us==0)
+	{
+		time_us=1;
+	}
 
+	if(time_us>1000)
+	{
+		time_us=1000;
+	}
+
+	TIM_SetAutoreload(TIM11,time_us);
+	TIM_SetAutoreload(TIM14,time_us);
+}
 
 enum
 {
