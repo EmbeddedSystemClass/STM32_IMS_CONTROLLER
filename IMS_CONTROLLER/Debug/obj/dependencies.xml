@@ -938,19 +938,7 @@
       <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_negate_q7.c" lastModified="1501ed14a60">
          <include file="..\..\..\DSP\Include\arm_math.h"/>
       </source>
-      <source file="..\..\..\Source\devices\frequency.h" lastModified="151a5e35b3d">
-      </source>
-      <source file="..\..\..\Source\devices\frequency.c" lastModified="151a60822d4">
-         <include file="..\..\..\Source\devices\frequency.h"/>
-         <include file="..\..\..\Source\devices\controller.h"/>
-         <include file="..\..\..\Source\devices\watchdog.h"/>
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_exti.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_syscfg.h"/>
-         <include file="..\..\..\cmsis_lib\include\misc.h"/>
+      <source file="..\..\..\Source\devices\frequency.h" lastModified="151b511b2fd">
       </source>
       <source file="..\..\..\DSP\DSP_Lib\Source\FastMathFunctions\arm_cos_q15.c" lastModified="1501ed14290">
          <include file="..\..\..\DSP\Include\arm_math.h"/>
@@ -1432,7 +1420,7 @@
       <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_rfft_init_f32.c" lastModified="1501ed15230">
          <include file="..\..\..\DSP\Include\arm_math.h"/>
       </source>
-      <source file="..\..\..\Source\devices\controller.h" lastModified="1519f7e339b">
+      <source file="..\..\..\Source\devices\controller.h" lastModified="151b5019561">
          <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
@@ -1462,7 +1450,7 @@
       <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_power_q15.c" lastModified="1501ed14a60">
          <include file="..\..\..\DSP\Include\arm_math.h"/>
       </source>
-      <source file="..\..\..\Source\devices\controller.c" lastModified="151a5f80027">
+      <source file="..\..\..\Source\devices\controller.c" lastModified="151a9aa6b7a">
          <include file="..\..\..\Source\devices\controller.h"/>
          <include file="..\..\..\Source\freemodbus\protocol.h"/>
          <include file="..\..\..\Source\devices\frequency.h"/>

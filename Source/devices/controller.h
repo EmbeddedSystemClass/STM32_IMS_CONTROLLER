@@ -60,12 +60,19 @@ typedef struct
 	stCurChannelCalibrate CurChannelCalibrate[CURRENT_CHN_NUM];
 }stControllerSettings;
 
+enum
+{
+	MEASURE_FINISHED=0,
+	MEASURE_STARTED,
+	MEASURE_IN_PROCESS,
+};
 
 typedef struct
 {
 	float frequency[FREQ_CHN_NUM];
 	uint64_t last_counter[PULSE_COUNT_CHN_NUM];
 	uint64_t pulse_counter[PULSE_COUNT_CHN_NUM];
+	uint8_t  pulse_line_measure_state[PULSE_COUNT_CHN_NUM];
 
 	float rtd[RTD_CHN_NUM];
 	float current_raw[CURRENT_CHN_NUM];

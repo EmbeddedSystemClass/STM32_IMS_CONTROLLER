@@ -14,25 +14,65 @@
 <part id="1"/>
 <part id="2"/>
 <part id="3"/>
+<part id="4"/>
+<part id="5"/>
+<part id="6"/>
+<part id="7"/>
+<part id="8"/>
+<part id="9"/>
+<part id="10"/>
+<part id="11"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="controller.c" partName="controller.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/devices/controller.c" title="controller.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/devices/controller.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/devices/controller.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="733" selectionTopPixel="720"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="851" selectionTopPixel="333"/>
 </editor>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="frequency.c" partName="frequency.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/devices/frequency.c" title="frequency.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/devices/frequency.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/devices/frequency.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="16431" selectionTopPixel="6693"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10267" selectionTopPixel="4652"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" partName="startup_stm32f4xx.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/cmsis_boot/startup/startup_stm32f4xx.c" title="startup_stm32f4xx.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/cmsis_boot/startup/startup_stm32f4xx.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="24" selectionOffset="11285" selectionTopPixel="3434"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="porttimer.c" partName="porttimer.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/freemodbus/port/porttimer.c" title="porttimer.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/freemodbus/port/porttimer.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/freemodbus/port/porttimer.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="3826"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/main.c" title="main.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/main.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="211" selectionTopPixel="0"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_exti.c" partName="stm32f4xx_exti.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_exti.c" title="stm32f4xx_exti.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_exti.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_exti.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6472" selectionTopPixel="2192"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_gpio.h" partName="stm32f4xx_gpio.h" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_gpio.h" title="stm32f4xx_gpio.h" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_gpio.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_gpio.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="16654" selectionTopPixel="6291"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_gpio.c" partName="stm32f4xx_gpio.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_gpio.c" title="stm32f4xx_gpio.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_gpio.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_gpio.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="21" selectionOffset="11700" selectionTopPixel="4879"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.c" partName="system_stm32f4xx.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/cmsis_boot/system_stm32f4xx.c" title="system_stm32f4xx.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/cmsis_boot/system_stm32f4xx.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/cmsis_boot/system_stm32f4xx.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="840"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_tim.c" partName="stm32f4xx_tim.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_tim.c" title="stm32f4xx_tim.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_tim.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_tim.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="17" selectionOffset="16889" selectionTopPixel="6962"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_tim.h" partName="stm32f4xx_tim.h" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_tim.h" title="stm32f4xx_tim.h" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_tim.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_tim.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="44618" selectionTopPixel="17300"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="frequency.h" partName="frequency.h" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/devices/frequency.h" title="frequency.h" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/devices/frequency.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/devices/frequency.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="25" selectionOffset="83" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_rcc.h" partName="stm32f4xx_rcc.h" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_rcc.h" title="stm32f4xx_rcc.h" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_rcc.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_rcc.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="20" selectionOffset="15131" selectionTopPixel="5122"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="calc.c" partName="calc.c" path="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/calculation/calc.c" title="calc.c" tooltip="D:/PROJECTS/GIT_REPOSITORY/STM32/STM32_IMS_CONTROLLER/Source/calculation/calc.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/calculation/calc.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2953" selectionTopPixel="1445"/>
 </editor>
 </editors>
 <views>
@@ -45,10 +85,11 @@
 <viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="0">
 <expanded>
 <element path="/IMS_CONTROLLER"/>
-<element path="/IMS_CONTROLLER/freemodbus"/>
-<element path="/IMS_CONTROLLER/freemodbus/include"/>
-<element path="/IMS_CONTROLLER/freemodbus/port"/>
+<element path="/IMS_CONTROLLER/devices"/>
 </expanded>
+<selection>
+<element path="/IMS_CONTROLLER/devices/controller.c"/>
+</selection>
 </viewState>
 </view>
 <view id="org.coocox.codebugger.trace.ui.traceview" partName="Semihosting">
@@ -59,6 +100,14 @@
 </view>
 <view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
+</view>
+<view id="org.coocox.coassistant.view.CoAssistantView_debug" partName="Peripherals">
+<viewState horizontalPosition="0" verticalPosition="15">
+<selection>
+<element name="TIM8"/>
+</selection>
+<registerValues baseAddress="Base Address: 0x40010400" description="Description:  TIM8 Break interrupt and TIM12 global&#x0A;        interrupt"/>
+</viewState>
 </view>
 <view id="org.eclipse.debug.ui.VariableView" partName="Variables"/>
 </views>
@@ -187,14 +236,15 @@
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <hide_toolbar_item_id id="org.coocox.builder.ui.build"/>
 <hide_toolbar_item_id id="org.coocox.welcome.ui.action.welcome"/>
-<hide_toolbar_item_id id="org.coocox.component.ui.ShowRepositoryAction"/>
 <hide_toolbar_item_id id="org.coocox.codebugger.configuration.coideProgramDownloadAction"/>
+<hide_toolbar_item_id id="org.coocox.component.ui.ShowRepositoryAction"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.debug.ui.DebugView"/>
 <view id="org.coocox.codebugger.trace.ui.traceview"/>
 <view id="org.eclipse.debug.ui.VariableView"/>
 <view id="org.eclipse.debug.ui.ExpressionView"/>
 <view id="org.coocox.builder.ui.views.ProjectView"/>
+<view id="org.coocox.coassistant.view.CoAssistantView_debug"/>
 <fastViewBars/>
 <viewLayoutRec closeable="false" id="org.eclipse.debug.ui.DebugView"/>
 <layout>
@@ -239,12 +289,14 @@
 </folder>
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@cb436a" ratio="0.75" ratioLeft="954" ratioRight="318" relationship="2" relative="org.eclipse.ui.internal.ViewStack@b6efd6">
-<folder appearance="2" expanded="2">
+<folder activePageID="org.coocox.coassistant.view.CoAssistantView_debug" appearance="2" expanded="2">
+<page content="org.coocox.coassistant.view.CoAssistantView_debug" label="Peripherals"/>
 <page content="org.eclipse.cdt.dsf.debug.ui.disassembly.view" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
-<page content="org.coocox.coassistant.view.CoAssistantView_debug" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.29979035" ratioLeft="286" ratioRight="668" relationship="2" relative="org.eclipse.ui.internal.ViewStack@b6efd6"/>
@@ -256,160 +308,162 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/devices/frequency.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/cmsis_boot/system_stm32f4xx.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/calculation/calc.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/devices/controller.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/calculation/calc.c"/>
 </editors>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="4124" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position/>
-</item>
-<item historyLabel="main.c" index="1">
-<position/>
+<position info="not_deleted" x="11826" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="10598" y="0"/>
+<position info="not_deleted" x="12270" y="0"/>
 </item>
-<item historyLabel="startup_stm32f4xx.c" index="2">
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="12328" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="5150" y="0"/>
+</item>
+<item historyLabel="startup_stm32f4xx.c" index="1">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
+<item historyLabel="main.c" index="3">
 <position info="not_deleted" x="211" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16009" y="0"/>
+<position info="not_deleted" x="11465" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16326" y="0"/>
+<position info="not_deleted" x="11496" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="15909" y="0"/>
+<position info="not_deleted" x="11553" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16326" y="0"/>
+<position info="not_deleted" x="11665" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16200" y="0"/>
+<position info="not_deleted" x="11729" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="15911" y="0"/>
+<position info="not_deleted" x="12270" y="0"/>
 </item>
-<item historyLabel="system_stm32f4xx.c" index="3">
-<position info="not_deleted" x="8990" y="0"/>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="12328" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="11465" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="11496" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="11913" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="11975" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="12087" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="12270" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="12328" y="0"/>
+</item>
+<item historyLabel="port.c" index="4">
+<position/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="11465" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="11665" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="11465" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="11496" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="11913" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="11975" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="12087" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="11803" y="0"/>
+</item>
+<item historyLabel="port.c" index="4">
+<position info="not_deleted" x="17343" y="0"/>
+</item>
+<item historyLabel="controller.c" index="5">
+<position info="not_deleted" x="895" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="7517" y="0"/>
+</item>
+<item historyLabel="controller.c" index="5">
+<position info="not_deleted" x="851" y="0"/>
+</item>
+<item historyLabel="startup_stm32f4xx.c" index="1">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="main.c" index="3">
 <position info="not_deleted" x="211" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16074" y="0"/>
+<position info="not_deleted" x="11465" y="0"/>
+</item>
+<item historyLabel="calc.c" index="2">
+<position info="not_deleted" x="2953" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="15911" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="211" y="0"/>
+<position info="not_deleted" x="11465" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="15911" y="0"/>
+<position info="not_deleted" x="11496" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="264" y="950"/>
+<position info="not_deleted" x="11553" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="766" y="0"/>
-</item>
-<item historyLabel="startup_stm32f4xx.c" index="2">
-<position info="not_deleted" x="11285" y="24"/>
+<position info="not_deleted" x="11665" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="766" y="0"/>
+<position info="not_deleted" x="11729" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16429" y="0"/>
+<position info="not_deleted" x="12270" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="7745" y="0"/>
+<position info="not_deleted" x="12328" y="0"/>
 </item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="211" y="0"/>
+<item historyLabel="calc.c" index="6">
+<position info="not_deleted" x="2875" y="0"/>
 </item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16494" y="0"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="4266" y="0"/>
+<item historyLabel="calc.c" index="6">
+<position info="not_deleted" x="2953" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16494" y="0"/>
-</item>
-<item historyLabel="startup_stm32f4xx.c" index="2">
-<position info="not_deleted" x="11285" y="24"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="211" y="0"/>
+<position info="not_deleted" x="11465" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16551" y="0"/>
+<position info="not_deleted" x="12087" y="0"/>
 </item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="211" y="0"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16551" y="0"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="211" y="0"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16551" y="0"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="4245" y="0"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="1691" y="20"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="3943" y="0"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="1745" y="26"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="6539" y="0"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16551" y="0"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16494" y="0"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16551" y="0"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16431" y="0"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16494" y="0"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16431" y="0"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16494" y="0"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16431" y="0"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16494" y="0"/>
+<item historyLabel="controller.c" index="5">
+<position info="not_deleted" x="851" y="0"/>
 </item>
 <item active="true" historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="16431" y="0"/>
+<position info="not_deleted" x="12087" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -418,49 +472,41 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="IMS_CONTROLLER/main.c">
-<persistable path="/IMS_CONTROLLER/main.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="calc.c" tooltip="IMS_CONTROLLER/calculation/calc.c">
+<persistable path="/IMS_CONTROLLER/calculation/calc.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" tooltip="IMS_CONTROLLER/cmsis_boot/startup/startup_stm32f4xx.c">
 <persistable path="/IMS_CONTROLLER/cmsis_boot/startup/startup_stm32f4xx.c"/>
 </file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="IMS_CONTROLLER/main.c">
+<persistable path="/IMS_CONTROLLER/main.c"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_rcc.h" tooltip="IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_rcc.h">
 <persistable path="/IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_rcc.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_exti.h" tooltip="IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_exti.h">
-<persistable path="/IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_exti.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="frequency.h" tooltip="IMS_CONTROLLER/devices/frequency.h">
+<persistable path="/IMS_CONTROLLER/devices/frequency.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx.h" tooltip="IMS_CONTROLLER/cmsis_boot/stm32f4xx.h">
-<persistable path="/IMS_CONTROLLER/cmsis_boot/stm32f4xx.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_tim.h" tooltip="IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_tim.h">
+<persistable path="/IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_tim.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_syscfg.h" tooltip="IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_syscfg.h">
-<persistable path="/IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_syscfg.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_tim.c" tooltip="IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_tim.c">
+<persistable path="/IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_tim.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_syscfg.c" tooltip="IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_syscfg.c">
-<persistable path="/IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_syscfg.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.c" tooltip="IMS_CONTROLLER/cmsis_boot/system_stm32f4xx.c">
+<persistable path="/IMS_CONTROLLER/cmsis_boot/system_stm32f4xx.c"/>
 </file>
-<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
-<persistable>
-<subPage/>
-</persistable>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_gpio.c" tooltip="IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_gpio.c">
+<persistable path="/IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_gpio.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_gpio.h" tooltip="IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_gpio.h">
 <persistable path="/IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_gpio.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core_cmInstr.h" tooltip="pilorama/cmsis/core_cmInstr.h">
-<persistable path="/pilorama/cmsis/core_cmInstr.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx.h" tooltip="IMS_CONTROLLER/cmsis_boot/stm32f4xx.h">
+<persistable path="/IMS_CONTROLLER/cmsis_boot/stm32f4xx.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core_cmFunc.h" tooltip="pilorama/cmsis/core_cmFunc.h">
-<persistable path="/pilorama/cmsis/core_cmFunc.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tasks.c" tooltip="pilorama/FreeRTOSV7.1.0/Source/tasks.c">
-<persistable path="/pilorama/FreeRTOSV7.1.0/Source/tasks.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core_cm4_simd.h" tooltip="pilorama/cmsis/core_cm4_simd.h">
-<persistable path="/pilorama/cmsis/core_cm4_simd.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core_cm3.c" tooltip="pilorama/cmsis/core_cm3.c">
-<persistable path="/pilorama/cmsis/core_cm3.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_exti.c" tooltip="IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_exti.c">
+<persistable path="/IMS_CONTROLLER/cmsis_lib/source/stm32f4xx_exti.c"/>
 </file>
 </mruList>
 </workbench>

@@ -38,7 +38,7 @@ void ControllerInit(void)
 	Controller_RestoreSettings();
 	//RTC_Clock_Init();
 
-	//Protocol_Init();
+	Protocol_Init();
 	FrequencyMeasureInit();
 	ADS1220_Init();
 
