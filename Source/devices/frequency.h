@@ -1,6 +1,7 @@
 #ifndef FREQUENCY_H
 #define FREQUENCY_H
 
+#include "stm32f4xx.h"
 void FrequencyMeasureInit(void);
 void ImpulseLine1_StartMeasure(void);
 void ImpulseLine2_StartMeasure(void);

@@ -72,6 +72,7 @@ typedef struct
 	float frequency[FREQ_CHN_NUM];
 	uint64_t last_counter[PULSE_COUNT_CHN_NUM];
 	uint64_t pulse_counter[PULSE_COUNT_CHN_NUM];
+	uint64_t fast_tim_value[PULSE_COUNT_CHN_NUM];
 	uint8_t  pulse_line_measure_state[PULSE_COUNT_CHN_NUM];
 
 	float rtd[RTD_CHN_NUM];
