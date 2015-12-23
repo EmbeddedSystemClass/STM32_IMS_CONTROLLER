@@ -253,7 +253,6 @@ void FrequencyMeasureInit(void)
 	GPIO_Init(IMPULSE_FAST_GPIO_PORT, &GPIO_InitStructure);
 
 	GPIO_PinAFConfig(IMPULSE_FAST_GPIO_PORT, IMPULSE_FAST_GPIO_PINSOURCE_1, IMPULSE_FAST_GPIO_AF );
-//	GPIO_PinAFConfig(IMPULSE_FAST_GPIO_PORT, IMPULSE_FAST_GPIO_PINSOURCE_2, IMPULSE_FAST_GPIO_AF );
 
 	TIM_ICInitStructure.TIM_Channel = IMPULSE_FAST_CHN_1;
 	TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
@@ -262,22 +261,7 @@ void FrequencyMeasureInit(void)
 	TIM_ICInitStructure.TIM_ICFilter = IMPULSE_FAST_IC_FILTER;
 	TIM_ICInit(IMPULSE_FAST_TIM, &TIM_ICInitStructure);
 
-//	TIM_ICInitStructure.TIM_Channel = IMPULSE_FAST_CHN_2;
-//	TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
-//	TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
-//	TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
-//	TIM_ICInitStructure.TIM_ICFilter = IMPULSE_FAST_IC_FILTER;
-//	TIM_ICInit(IMPULSE_FAST_TIM, &TIM_ICInitStructure);
-
 	TIM_ARRPreloadConfig(IMPULSE_FAST_TIM, ENABLE);
-
-//	NVIC_EnableIRQ(IMPULSE_FAST_TIM_IRQn);
-//	NVIC_PriorityGroupConfig( NVIC_PriorityGroup_4 );
-//	NVIC_InitStructure.NVIC_IRQChannel = IMPULSE_FAST_TIM_IRQn;
-//	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
-//	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
-//	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-//	NVIC_Init(&NVIC_InitStructure);
 
 	TIM_ITConfig(IMPULSE_FAST_TIM, IMPULSE_FAST_IT_1 /*| IMPULSE_FAST_IT_2*/, ENABLE);
 	TIM_ClearFlag(IMPULSE_FAST_TIM , IMPULSE_FAST_IT_1 /*| IMPULSE_FAST_IT_2*/ );
@@ -425,19 +409,19 @@ void  TIM1_TRG_COM_TIM11_IRQHandler(void)//delay_1
     	}
     	else if(line_1_event==IMPULSE_SENSOR_1_2_EVENT)
     	{
-    		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_1_2)==(!SENSOR_EVENT_LEVEL))//level ok
+    		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_1_2)==SENSOR_EVENT_LEVEL)//level ok
     		{
-    			Line1_ImpulseCounter.stop_value=reload_counter+IMPULSE_COUNT_1_TIM->CNT;
+    			//Line1_ImpulseCounter.stop_value=reload_counter+IMPULSE_COUNT_1_TIM->CNT;
     			Line1_SensorTimer.stop_value=reload_fast_tim+IMPULSE_FAST_TIM->CNT;
 
-    			if(Line1_ImpulseCounter.stop_value>=Line1_ImpulseCounter.start_value)
-    			{
-    				stMeasureData.pulse_counter[0]=Line1_ImpulseCounter.stop_value-Line1_ImpulseCounter.start_value;
-    			}
-    			else
-    			{
-    				stMeasureData.pulse_counter[0]=Line1_ImpulseCounter.start_value-Line1_ImpulseCounter.stop_value;
-    			}
+//    			if(Line1_ImpulseCounter.stop_value>=Line1_ImpulseCounter.start_value)
+//    			{
+//    				stMeasureData.pulse_counter[0]=Line1_ImpulseCounter.stop_value-Line1_ImpulseCounter.start_value;
+//    			}
+//    			else
+//    			{
+//    				stMeasureData.pulse_counter[0]=Line1_ImpulseCounter.start_value-Line1_ImpulseCounter.stop_value;
+//    			}
 
     			if(Line1_SensorTimer.stop_value>=Line1_SensorTimer.start_value)
     			{
@@ -481,19 +465,19 @@ void  TIM8_TRG_COM_TIM14_IRQHandler(void)//delay_2
     	}
     	else if(line_2_event==IMPULSE_SENSOR_2_2_EVENT)
     	{
-    		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_2_2)==(!SENSOR_EVENT_LEVEL))//level ok
+    		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_2_2)==SENSOR_EVENT_LEVEL)//level ok
     		{
-    			Line2_ImpulseCounter.stop_value=reload_counter+IMPULSE_COUNT_1_TIM->CNT;
+ //   			Line2_ImpulseCounter.stop_value=reload_counter+IMPULSE_COUNT_1_TIM->CNT;
     			Line2_SensorTimer.stop_value=reload_fast_tim+IMPULSE_FAST_TIM->CNT;
 
-    			if(Line2_ImpulseCounter.stop_value>=Line2_ImpulseCounter.start_value)
-    			{
-    				stMeasureData.pulse_counter[1]=Line2_ImpulseCounter.stop_value-Line2_ImpulseCounter.start_value;
-    			}
-    			else
-    			{
-    				stMeasureData.pulse_counter[1]=Line2_ImpulseCounter.start_value-Line2_ImpulseCounter.stop_value;
-    			}
+//    			if(Line2_ImpulseCounter.stop_value>=Line2_ImpulseCounter.start_value)
+//    			{
+//    				stMeasureData.pulse_counter[1]=Line2_ImpulseCounter.stop_value-Line2_ImpulseCounter.start_value;
+//    			}
+//    			else
+//    			{
+//    				stMeasureData.pulse_counter[1]=Line2_ImpulseCounter.start_value-Line2_ImpulseCounter.stop_value;
+//    			}
 
     			if(Line2_SensorTimer.stop_value>=Line2_SensorTimer.start_value)
     			{
@@ -534,6 +518,7 @@ void  IMPULSE_FAST_TIM_IRQHandler(void)//fast timer
     	else if(line_1_event==IMPULSE_SENSOR_1_2_EVENT)
     	{
     		Line1_ImpulseTimer.stop_value=IMPULSE_FAST_TIM->IMPULSE_FAST_REG_1;
+    		Line1_ImpulseCounter.stop_value=reload_counter+IMPULSE_COUNT_1_TIM->CNT;
     		line_1_event=IMPULSE_SENSOR_EVENT_NONE;
     		stMeasureData.pulse_line_measure_state[0]=MEASURE_FINISHED;
 
@@ -545,6 +530,15 @@ void  IMPULSE_FAST_TIM_IRQHandler(void)//fast timer
 			{
 				stMeasureData.impulse_tim_value[0]=Line1_ImpulseTimer.start_value-Line1_ImpulseTimer.stop_value;
 			}
+
+			if(Line1_ImpulseCounter.stop_value>=Line1_ImpulseCounter.start_value)
+			{
+				stMeasureData.pulse_counter[0]=Line1_ImpulseCounter.stop_value-Line1_ImpulseCounter.start_value;
+			}
+			else
+			{
+				stMeasureData.pulse_counter[0]=Line1_ImpulseCounter.start_value-Line1_ImpulseCounter.stop_value;
+			}
     	}
 
     	if(line_2_event==IMPULSE_SENSOR_2_1_EVENT)
@@ -555,6 +549,7 @@ void  IMPULSE_FAST_TIM_IRQHandler(void)//fast timer
     	else if(line_2_event==IMPULSE_SENSOR_2_2_EVENT)
     	{
     		Line2_ImpulseTimer.stop_value=IMPULSE_FAST_TIM->IMPULSE_FAST_REG_1;
+    		Line2_ImpulseCounter.stop_value=reload_counter+IMPULSE_COUNT_1_TIM->CNT;
     		line_2_event=IMPULSE_SENSOR_EVENT_NONE;
 			stMeasureData.pulse_line_measure_state[1]=MEASURE_FINISHED;
 
@@ -565,6 +560,15 @@ void  IMPULSE_FAST_TIM_IRQHandler(void)//fast timer
 			else
 			{
 				stMeasureData.impulse_tim_value[1]=Line2_ImpulseTimer.start_value-Line2_ImpulseTimer.stop_value;
+			}
+
+			if(Line2_ImpulseCounter.stop_value>=Line2_ImpulseCounter.start_value)
+			{
+				stMeasureData.pulse_counter[1]=Line2_ImpulseCounter.stop_value-Line2_ImpulseCounter.start_value;
+			}
+			else
+			{
+				stMeasureData.pulse_counter[1]=Line2_ImpulseCounter.start_value-Line2_ImpulseCounter.stop_value;
 			}
     	}
 
