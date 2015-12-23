@@ -20,9 +20,6 @@
 #define IMPULSE_COUNT_1_GPIO_PINSOURCE			GPIO_PinSource0
 #define IMPULSE_COUNT_1_TIM_PERIOD				(65535)
 
-//#define IMPULSE_MEASURE_TIME					250
-//#define IMPULSE_TCXO_MULTIPLIER				3
-
 #define IMPULSE_COUNT_PP_OD_SELECT_PORT	  	GPIOA
 #define IMPULSE_COUNT_1_PP_OD_SELECT_PIN	GPIO_Pin_4
 #define IMPULSE_COUNT_2_PP_OD_SELECT_PIN	GPIO_Pin_3
@@ -60,13 +57,34 @@
 #define	RCC_IMPULSE_FAST_GPIO_PORT			RCC_AHB1Periph_GPIOA
 #define IMPULSE_FAST_GPIO_PORT				GPIOA
 #define IMPULSE_FAST_TIM_IRQn				TIM2_IRQn
-#define IMPULSE_FAST_GPIO_PINS				GPIO_Pin_1 | GPIO_Pin_2
+#define IMPULSE_FAST_GPIO_PINS				GPIO_Pin_1 /*| GPIO_Pin_2*/
 #define IMPULSE_FAST_GPIO_PINSOURCE_1		GPIO_PinSource1
 #define IMPULSE_FAST_GPIO_PINSOURCE_2		GPIO_PinSource2
 #define IMPULSE_FAST_TIM_IRQHandler 		TIM2_IRQHandler
-#define IMPULSE_FAST_TIM_PERIOD				(0xFFFF)
+#define IMPULSE_FAST_TIM_PERIOD				(0xFFFFFFFF)
+#define IMPULSE_FAST_TIM_FREQ				30000000
+
+
+//#define IMPULSE_FAST_TIMER_TICK_FREQUENCY	19999592//20000000///12000000
+#define IMPULSE_FAST_PERIOD_0_HZ			1000
+#define IMPULSE_FAST_IC_FILTER				5
+#define IMPULSE_FAST_CHN_1					TIM_Channel_2
+#define IMPULSE_FAST_CHN_2					TIM_Channel_3
+#define IMPULSE_FAST_IT_1					TIM_IT_CC2
+#define IMPULSE_FAST_IT_2					TIM_IT_CC3
+#define IMPULSE_FAST_REG_1					CCR2
+#define IMPULSE_FAST_REG_2					CCR3
 
 #define SENSOR_EVENT_LEVEL					0
+
+enum
+{
+	IMPULSE_SENSOR_1_1_EVENT=0,
+	IMPULSE_SENSOR_1_2_EVENT,
+	IMPULSE_SENSOR_2_1_EVENT,
+	IMPULSE_SENSOR_2_2_EVENT,
+	IMPULSE_SENSOR_EVENT_NONE,
+};
 
 typedef struct
 {
@@ -75,7 +93,7 @@ typedef struct
 }stImpulseCounter;
 
 uint64_t reload_counter=0, reload_fast_tim=0;
-stImpulseCounter Line1_ImpulseCounter, Line2_ImpulseCounter, Line1_FastTimer, Line2_FastTimer;
+stImpulseCounter Line1_ImpulseCounter, Line2_ImpulseCounter, Line1_SensorTimer, Line2_SensorTimer, Line1_ImpulseTimer, Line2_ImpulseTimer;
 uint32_t  exti_base_addr = (uint32_t)EXTI_BASE+EXTI_Mode_Interrupt;
 uint8_t line_1_event, line_2_event;
 
@@ -212,7 +230,7 @@ void FrequencyMeasureInit(void)
 	TIM_TimeBaseStructInit(&TIM_InitStructure);
 	TIM_InitStructure.TIM_Prescaler = 0;
 	TIM_InitStructure.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_InitStructure.TIM_Period= 0xFFFF;
+	TIM_InitStructure.TIM_Period= IMPULSE_FAST_TIM_PERIOD;
 	TIM_InitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
 
 	TIM_TimeBaseInit(IMPULSE_FAST_TIM, &TIM_InitStructure);
@@ -225,11 +243,52 @@ void FrequencyMeasureInit(void)
 
     TIM_ClearITPendingBit(IMPULSE_FAST_TIM, TIM_IT_Update);
     TIM_ITConfig(IMPULSE_FAST_TIM, TIM_IT_Update, ENABLE);
-    TIM_Cmd(IMPULSE_FAST_TIM, ENABLE);
 
+//--
+	GPIO_InitStructure.GPIO_Pin = IMPULSE_FAST_GPIO_PINS;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+	GPIO_Init(IMPULSE_FAST_GPIO_PORT, &GPIO_InitStructure);
+
+	GPIO_PinAFConfig(IMPULSE_FAST_GPIO_PORT, IMPULSE_FAST_GPIO_PINSOURCE_1, IMPULSE_FAST_GPIO_AF );
+//	GPIO_PinAFConfig(IMPULSE_FAST_GPIO_PORT, IMPULSE_FAST_GPIO_PINSOURCE_2, IMPULSE_FAST_GPIO_AF );
+
+	TIM_ICInitStructure.TIM_Channel = IMPULSE_FAST_CHN_1;
+	TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
+	TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
+	TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
+	TIM_ICInitStructure.TIM_ICFilter = IMPULSE_FAST_IC_FILTER;
+	TIM_ICInit(IMPULSE_FAST_TIM, &TIM_ICInitStructure);
+
+//	TIM_ICInitStructure.TIM_Channel = IMPULSE_FAST_CHN_2;
+//	TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
+//	TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
+//	TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
+//	TIM_ICInitStructure.TIM_ICFilter = IMPULSE_FAST_IC_FILTER;
+//	TIM_ICInit(IMPULSE_FAST_TIM, &TIM_ICInitStructure);
+
+	TIM_ARRPreloadConfig(IMPULSE_FAST_TIM, ENABLE);
+
+//	NVIC_EnableIRQ(IMPULSE_FAST_TIM_IRQn);
+//	NVIC_PriorityGroupConfig( NVIC_PriorityGroup_4 );
+//	NVIC_InitStructure.NVIC_IRQChannel = IMPULSE_FAST_TIM_IRQn;
+//	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
+//	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+//	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+//	NVIC_Init(&NVIC_InitStructure);
+
+	TIM_ITConfig(IMPULSE_FAST_TIM, IMPULSE_FAST_IT_1 /*| IMPULSE_FAST_IT_2*/, ENABLE);
+	TIM_ClearFlag(IMPULSE_FAST_TIM , IMPULSE_FAST_IT_1 /*| IMPULSE_FAST_IT_2*/ );
+
+
+	 TIM_Cmd(IMPULSE_FAST_TIM, ENABLE);
 //---------------------------------
     stMeasureData.pulse_line_measure_state[0]=MEASURE_UNCERTAIN;
     stMeasureData.pulse_line_measure_state[1]=MEASURE_UNCERTAIN;
+    line_1_event=IMPULSE_SENSOR_EVENT_NONE;
+    line_2_event=IMPULSE_SENSOR_EVENT_NONE;
 
     Impulse_SetAntiBounceDelay(1);
     ImpulseLine1_StartMeasure();//test measure
@@ -287,13 +346,7 @@ void Impulse_SetAntiBounceDelay(uint16_t time_us)
 	TIM_SetAutoreload(LINE2_ANTIBOUNCE_TIMER,time_us);
 }
 
-enum
-{
-	IMPULSE_SENSOR_1_1_EVENT=0,
-	IMPULSE_SENSOR_1_2_EVENT,
-	IMPULSE_SENSOR_2_1_EVENT,
-	IMPULSE_SENSOR_2_2_EVENT
-};
+
 
 
 void EXTI4_IRQHandler(void)
@@ -360,8 +413,9 @@ void  TIM1_TRG_COM_TIM11_IRQHandler(void)//delay_1
     		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_1_1)==SENSOR_EVENT_LEVEL)//level ok
     		{
 				Line1_ImpulseCounter.start_value=reload_counter+IMPULSE_COUNT_1_TIM->CNT;
-				Line1_FastTimer.start_value=reload_fast_tim+IMPULSE_FAST_TIM->CNT;
+				Line1_SensorTimer.start_value=reload_fast_tim+IMPULSE_FAST_TIM->CNT;
 				*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_1_2_EXTI;
+				TIM_ITConfig(IMPULSE_FAST_TIM, IMPULSE_FAST_IT_1, ENABLE);
 				 stMeasureData.pulse_line_measure_state[0]=MEASURE_IN_PROCESS;
     		}
     		else
@@ -374,7 +428,7 @@ void  TIM1_TRG_COM_TIM11_IRQHandler(void)//delay_1
     		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_1_2)==(!SENSOR_EVENT_LEVEL))//level ok
     		{
     			Line1_ImpulseCounter.stop_value=reload_counter+IMPULSE_COUNT_1_TIM->CNT;
-    			Line1_FastTimer.stop_value=reload_fast_tim+IMPULSE_FAST_TIM->CNT;
+    			Line1_SensorTimer.stop_value=reload_fast_tim+IMPULSE_FAST_TIM->CNT;
 
     			if(Line1_ImpulseCounter.stop_value>=Line1_ImpulseCounter.start_value)
     			{
@@ -385,15 +439,16 @@ void  TIM1_TRG_COM_TIM11_IRQHandler(void)//delay_1
     				stMeasureData.pulse_counter[0]=Line1_ImpulseCounter.start_value-Line1_ImpulseCounter.stop_value;
     			}
 
-    			if(Line1_FastTimer.stop_value>=Line1_FastTimer.start_value)
+    			if(Line1_SensorTimer.stop_value>=Line1_SensorTimer.start_value)
     			{
-    				stMeasureData.fast_tim_value[0]=Line1_FastTimer.stop_value-Line1_FastTimer.start_value;
+    				stMeasureData.sensor_tim_value[0]=Line1_SensorTimer.stop_value-Line1_SensorTimer.start_value;
     			}
     			else
     			{
-    				stMeasureData.fast_tim_value[0]=Line1_FastTimer.start_value-Line1_FastTimer.stop_value;
+    				stMeasureData.sensor_tim_value[0]=Line1_SensorTimer.start_value-Line1_SensorTimer.stop_value;
     			}
-    			stMeasureData.pulse_line_measure_state[0]=MEASURE_FINISHED;
+    			TIM_ITConfig(IMPULSE_FAST_TIM, IMPULSE_FAST_IT_1, ENABLE);
+
     		}
     		else
     		{
@@ -414,8 +469,9 @@ void  TIM8_TRG_COM_TIM14_IRQHandler(void)//delay_2
     		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_1_2)==SENSOR_EVENT_LEVEL)//level ok
     		{
 				Line2_ImpulseCounter.start_value=reload_counter+IMPULSE_COUNT_1_TIM->CNT;
-				Line2_FastTimer.start_value=reload_fast_tim+IMPULSE_FAST_TIM->CNT;
+				Line2_SensorTimer.start_value=reload_fast_tim+IMPULSE_FAST_TIM->CNT;
 				*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_2_2_EXTI;
+				TIM_ITConfig(IMPULSE_FAST_TIM, IMPULSE_FAST_IT_1, ENABLE);
 				stMeasureData.pulse_line_measure_state[1]=MEASURE_IN_PROCESS;
     		}
     		else
@@ -428,7 +484,7 @@ void  TIM8_TRG_COM_TIM14_IRQHandler(void)//delay_2
     		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_2_2)==(!SENSOR_EVENT_LEVEL))//level ok
     		{
     			Line2_ImpulseCounter.stop_value=reload_counter+IMPULSE_COUNT_1_TIM->CNT;
-    			Line2_FastTimer.stop_value=reload_fast_tim+IMPULSE_FAST_TIM->CNT;
+    			Line2_SensorTimer.stop_value=reload_fast_tim+IMPULSE_FAST_TIM->CNT;
 
     			if(Line2_ImpulseCounter.stop_value>=Line2_ImpulseCounter.start_value)
     			{
@@ -439,17 +495,15 @@ void  TIM8_TRG_COM_TIM14_IRQHandler(void)//delay_2
     				stMeasureData.pulse_counter[1]=Line2_ImpulseCounter.start_value-Line2_ImpulseCounter.stop_value;
     			}
 
-    			if(Line2_FastTimer.stop_value>=Line2_FastTimer.start_value)
+    			if(Line2_SensorTimer.stop_value>=Line2_SensorTimer.start_value)
     			{
-    				stMeasureData.fast_tim_value[1]=Line2_FastTimer.stop_value-Line2_FastTimer.start_value;
+    				stMeasureData.sensor_tim_value[1]=Line2_SensorTimer.stop_value-Line2_SensorTimer.start_value;
     			}
     			else
     			{
-    				stMeasureData.fast_tim_value[1]=Line2_FastTimer.start_value-Line2_FastTimer.stop_value;
+    				stMeasureData.sensor_tim_value[1]=Line2_SensorTimer.start_value-Line2_SensorTimer.stop_value;
     			}
-
-
-    			stMeasureData.pulse_line_measure_state[1]=MEASURE_FINISHED;
+    			TIM_ITConfig(IMPULSE_FAST_TIM, IMPULSE_FAST_IT_1, ENABLE);
     		}
     		else
     		{
@@ -465,7 +519,57 @@ void  IMPULSE_FAST_TIM_IRQHandler(void)//fast timer
 {
     if (TIM_GetITStatus(IMPULSE_FAST_TIM, TIM_IT_Update) != RESET)
     {
-    	reload_fast_tim+=0x10000;
+    	reload_fast_tim+=(IMPULSE_FAST_TIM_PERIOD+1);
     	TIM_ClearITPendingBit(IMPULSE_FAST_TIM, TIM_IT_Update);
+    }
+
+    if (TIM_GetITStatus(IMPULSE_FAST_TIM, IMPULSE_FAST_IT_1) != RESET)
+    {
+    	//reload_fast_tim+=(IMPULSE_FAST_TIM_PERIOD+1);
+    	if(line_1_event==IMPULSE_SENSOR_1_1_EVENT)
+    	{
+    		Line1_ImpulseTimer.start_value=IMPULSE_FAST_TIM->IMPULSE_FAST_REG_1;
+    		line_1_event=IMPULSE_SENSOR_EVENT_NONE;
+    	}
+    	else if(line_1_event==IMPULSE_SENSOR_1_2_EVENT)
+    	{
+    		Line1_ImpulseTimer.stop_value=IMPULSE_FAST_TIM->IMPULSE_FAST_REG_1;
+    		line_1_event=IMPULSE_SENSOR_EVENT_NONE;
+    		stMeasureData.pulse_line_measure_state[0]=MEASURE_FINISHED;
+
+			if(Line1_ImpulseTimer.stop_value>=Line1_ImpulseTimer.start_value)
+			{
+				stMeasureData.impulse_tim_value[0]=Line1_ImpulseTimer.stop_value-Line1_ImpulseTimer.start_value;
+			}
+			else
+			{
+				stMeasureData.impulse_tim_value[0]=Line1_ImpulseTimer.start_value-Line1_ImpulseTimer.stop_value;
+			}
+    	}
+
+    	if(line_2_event==IMPULSE_SENSOR_2_1_EVENT)
+    	{
+    		Line2_ImpulseTimer.start_value=IMPULSE_FAST_TIM->IMPULSE_FAST_REG_1;
+    		line_2_event=IMPULSE_SENSOR_EVENT_NONE;
+    	}
+    	else if(line_2_event==IMPULSE_SENSOR_2_2_EVENT)
+    	{
+    		Line2_ImpulseTimer.stop_value=IMPULSE_FAST_TIM->IMPULSE_FAST_REG_1;
+    		line_2_event=IMPULSE_SENSOR_EVENT_NONE;
+			stMeasureData.pulse_line_measure_state[1]=MEASURE_FINISHED;
+
+			if(Line2_ImpulseTimer.stop_value>=Line2_ImpulseTimer.start_value)
+			{
+				stMeasureData.impulse_tim_value[1]=Line2_ImpulseTimer.stop_value-Line2_ImpulseTimer.start_value;
+			}
+			else
+			{
+				stMeasureData.impulse_tim_value[1]=Line2_ImpulseTimer.start_value-Line2_ImpulseTimer.stop_value;
+			}
+    	}
+
+
+    	TIM_ITConfig(IMPULSE_FAST_TIM, IMPULSE_FAST_IT_1, DISABLE);
+    	TIM_ClearITPendingBit(IMPULSE_FAST_TIM, IMPULSE_FAST_IT_1);
     }
 }

@@ -941,7 +941,7 @@
       <source file="..\..\..\Source\devices\frequency.h" lastModified="151b5821540">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\Source\devices\frequency.c" lastModified="151c54d9de8">
+      <source file="..\..\..\Source\devices\frequency.c" lastModified="151cf67f7ec">
          <include file="..\..\..\Source\devices\frequency.h"/>
          <include file="..\..\..\Source\devices\controller.h"/>
          <include file="..\..\..\Source\devices\watchdog.h"/>
@@ -1433,7 +1433,7 @@
       <source file="..\..\..\DSP\DSP_Lib\Source\TransformFunctions\arm_rfft_init_f32.c" lastModified="1501ed15230">
          <include file="..\..\..\DSP\Include\arm_math.h"/>
       </source>
-      <source file="..\..\..\Source\devices\controller.h" lastModified="151c49eaacc">
+      <source file="..\..\..\Source\devices\controller.h" lastModified="151cf5b6859">
          <include file="..\..\..\Source\FreeRTOS\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\task.h"/>
          <include file="..\..\..\Source\FreeRTOS\Source\include\queue.h"/>
