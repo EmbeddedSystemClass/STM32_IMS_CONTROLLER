@@ -97,7 +97,7 @@ stImpulseCounter Line1_ImpulseCounter, Line2_ImpulseCounter, Line1_SensorTimer, 
 uint32_t  exti_base_addr = (uint32_t)EXTI_BASE+EXTI_Mode_Interrupt;
 uint8_t line_1_event, line_2_event;
 
-void FrequencyMeasureInit(void)
+void ImpulseMeasureInit(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 	TIM_ICInitTypeDef TIM_ICInitStructure;
@@ -329,8 +329,6 @@ void Impulse_SetAntiBounceDelay(uint16_t time_us)
 	TIM_SetAutoreload(LINE1_ANTIBOUNCE_TIMER,time_us);
 	TIM_SetAutoreload(LINE2_ANTIBOUNCE_TIMER,time_us);
 }
-
-
 
 
 void EXTI4_IRQHandler(void)

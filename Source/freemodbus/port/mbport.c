@@ -62,6 +62,17 @@ void EXIT_CRITICAL_SECTION(void)
 
 #define REG_TEST				60
 
+#define REG_PULSE_COUNTER_CH1		62
+#define REG_SENSOR_TIM_VALUE_CH1	66
+#define REG_IMPULSE_TIM_VALUE_CH1	70
+#define REG_PULSE_LINE_MEASURE_STATE_CH1 74
+
+#define REG_PULSE_COUNTER_CH2		78
+#define REG_SENSOR_TIM_VALUE_CH2	82
+#define REG_IMPULSE_TIM_VALUE_CH2	86
+#define REG_PULSE_LINE_MEASURE_STATE_CH2 90
+
+
 u8 REG_INPUT_START=1,REG_HOLDING_START=1;
 u8 REG_INPUT_NREGS=100,REG_HOLDING_NREGS=80;
 u8 usRegInputStart=1,usRegHoldingStart=1;
@@ -105,6 +116,16 @@ eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs )
         	*((float*)&usRegInputBuf[REG_VAL_0+j*2])=stSettings.CurChannelCalibrate[REG_VAL_0+j*2].value;
 		}
     	*((float*)&usRegInputBuf[REG_TEST])=stMeasureData.test_var;
+
+    	*((uint64_t*)&usRegInputBuf[REG_PULSE_COUNTER_CH1])=stMeasureData.pulse_counter[0];
+    	*((uint64_t*)&usRegInputBuf[REG_SENSOR_TIM_VALUE_CH1])=stMeasureData.sensor_tim_value[0];
+    	*((uint64_t*)&usRegInputBuf[REG_IMPULSE_TIM_VALUE_CH1])=stMeasureData.impulse_tim_value[0];
+    	*((uint16_t*)&usRegInputBuf[REG_PULSE_LINE_MEASURE_STATE_CH1])=(uint16_t)stMeasureData.pulse_line_measure_state[0];
+
+    	*((uint64_t*)&usRegInputBuf[REG_PULSE_COUNTER_CH2])=stMeasureData.pulse_counter[1];
+    	*((uint64_t*)&usRegInputBuf[REG_SENSOR_TIM_VALUE_CH2])=stMeasureData.sensor_tim_value[1];
+    	*((uint64_t*)&usRegInputBuf[REG_IMPULSE_TIM_VALUE_CH2])=stMeasureData.impulse_tim_value[1];
+    	*((uint16_t*)&usRegInputBuf[REG_PULSE_LINE_MEASURE_STATE_CH2])=(uint16_t)stMeasureData.pulse_line_measure_state[1];
     }
     xSemaphoreGive( xMeasureDataMutex );
 

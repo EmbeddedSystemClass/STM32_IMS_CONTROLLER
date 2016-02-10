@@ -39,7 +39,7 @@ void ControllerInit(void)
 	//RTC_Clock_Init();
 
 	Protocol_Init();
-	FrequencyMeasureInit();
+	ImpulseMeasureInit();
 	ADS1220_Init();
 
 	fl_led=1;
