@@ -77,6 +77,10 @@
 
 #define SENSOR_EVENT_LEVEL					0
 
+#define FREQ_CAPTURE_PERIOD_0_HZ			1000
+#define FREQ_MEASURE_TIME					250
+#define FREQ_TCXO_MULTIPLIER				3
+
 enum
 {
 	IMPULSE_SENSOR_1_1_EVENT=0,
@@ -96,6 +100,27 @@ uint64_t reload_counter=0, reload_fast_tim=0;
 stImpulseCounter Line1_ImpulseCounter, Line2_ImpulseCounter, Line1_SensorTimer, Line2_SensorTimer, Line1_ImpulseTimer, Line2_ImpulseTimer;
 uint32_t  exti_base_addr = (uint32_t)EXTI_BASE+EXTI_Mode_Interrupt;
 uint8_t line_1_event, line_2_event;
+
+xSemaphoreHandle xFrequencySemaphore;
+typedef enum
+{
+	FREQ_MEASURE_NONE,
+	FREQ_MEASURE_START,
+	FREQ_MEASURE_COMPLETE,
+}enFreqMeasure;
+enFreqMeasure flagFreqMeasure=FREQ_MEASURE_NONE;
+
+typedef struct
+{
+	uint32_t	capture_1;
+	uint32_t	capture_2;
+	uint32_t impulse_count;
+}stFrequencyData;
+
+static volatile stFrequencyData FrequencyData;
+
+
+static void FrequencyCH1Measure_Task(void *pvParameters);
 
 void ImpulseMeasureInit(void)
 {
@@ -244,7 +269,6 @@ void ImpulseMeasureInit(void)
     TIM_ClearITPendingBit(IMPULSE_FAST_TIM, TIM_IT_Update);
     TIM_ITConfig(IMPULSE_FAST_TIM, TIM_IT_Update, ENABLE);
 
-//--
 	GPIO_InitStructure.GPIO_Pin = IMPULSE_FAST_GPIO_PINS;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
@@ -263,11 +287,11 @@ void ImpulseMeasureInit(void)
 
 	TIM_ARRPreloadConfig(IMPULSE_FAST_TIM, ENABLE);
 
-	TIM_ITConfig(IMPULSE_FAST_TIM, IMPULSE_FAST_IT_1 /*| IMPULSE_FAST_IT_2*/, ENABLE);
-	TIM_ClearFlag(IMPULSE_FAST_TIM , IMPULSE_FAST_IT_1 /*| IMPULSE_FAST_IT_2*/ );
+	TIM_ITConfig(IMPULSE_FAST_TIM, IMPULSE_FAST_IT_1, ENABLE);
+	TIM_ClearFlag(IMPULSE_FAST_TIM , IMPULSE_FAST_IT_1);
 
 
-	 TIM_Cmd(IMPULSE_FAST_TIM, ENABLE);
+	TIM_Cmd(IMPULSE_FAST_TIM, ENABLE);
 //---------------------------------
     stMeasureData.pulse_line_measure_state[0]=MEASURE_UNCERTAIN;
     stMeasureData.pulse_line_measure_state[1]=MEASURE_UNCERTAIN;
@@ -276,6 +300,13 @@ void ImpulseMeasureInit(void)
 
     Impulse_SetAntiBounceDelay(1);
     ImpulseLine1_StartMeasure();//test measure
+
+    //------------------------------------
+
+	vSemaphoreCreateBinary( xFrequencySemaphore );
+
+	xTaskCreate(FrequencyCH1Measure_Task,(signed char*)"Freq measure",128,NULL, tskIDLE_PRIORITY + 2, NULL);
+
 }
 
 
@@ -496,6 +527,7 @@ void  TIM8_TRG_COM_TIM14_IRQHandler(void)//delay_2
     }
 }
 
+portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 
 void  IMPULSE_FAST_TIM_IRQHandler(void)//fast timer
 {
@@ -570,8 +602,74 @@ void  IMPULSE_FAST_TIM_IRQHandler(void)//fast timer
 			}
     	}
 
+    	if(flagFreqMeasure==FREQ_MEASURE_START)
+    	{
+			  FrequencyData.capture_1=FrequencyData.capture_2;
+			  FrequencyData.capture_2 =IMPULSE_FAST_TIM->IMPULSE_FAST_REG_1;
+			  FrequencyData.impulse_count=FREQ_COUNT_1_TIM->CNT;
+
+    		  flagFreqMeasure==FREQ_MEASURE_COMPLETE;
+    		  xSemaphoreGiveFromISR( xFrequencySemaphore, &xHigherPriorityTaskWoken );
+			  if( xHigherPriorityTaskWoken == pdTRUE )
+			  {
+				  portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
+			  }
+    	}
 
     	TIM_ITConfig(IMPULSE_FAST_TIM, IMPULSE_FAST_IT_1, DISABLE);
     	TIM_ClearITPendingBit(IMPULSE_FAST_TIM, IMPULSE_FAST_IT_1);
     }
+}
+
+
+static void FrequencyCH1Measure_Task(void *pvParameters)
+{
+	uint32_t sum_tick_impulse=0;
+	float frequency;
+
+ 	for( ;; )
+	{
+ 		vTaskDelay(FREQ_MEASURE_TIME);
+ 		flagFreqMeasure=FREQ_MEASURE_START;
+// 		FREQ_CAPTURE_TIM->SR &= (~FREQ_CAPTURE_IT_1 );
+// 		FREQ_CAPTURE_TIM->DIER |= FREQ_CAPTURE_IT_1;
+
+		if ( xSemaphoreTake( xFrequencySemaphore, ( portTickType ) FREQ_CAPTURE_PERIOD_0_HZ ) == pdTRUE )
+		{
+//			Watchdog_SetTaskStatus(FREQUENCY_CH1_TASK,TASK_ACTIVE);
+			if(FrequencyData.capture_2>FrequencyData.capture_1)
+			 {
+				 sum_tick_impulse=FrequencyData.capture_2-FrequencyData.capture_1;
+			 }
+			 else
+			 {
+				 sum_tick_impulse=(FREQ_CAPTURE_TIM_PERIOD-FrequencyData.capture_1)+FrequencyData.capture_2;
+			 }
+
+			 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
+			 {
+			     frequency= (float)stSettings.TCXO_frequency*FREQ_TCXO_MULTIPLIER*FrequencyData.impulse_count/sum_tick_impulse;
+			 }
+//			 xSemaphoreGive( xSettingsMutex );
+//
+//			 Watchdog_IncrementCouter(FREQUENCY_CH1_TASK);
+//			 Watchdog_SetTaskStatus(FREQUENCY_CH1_TASK,TASK_IDLE);
+		}
+		else
+		{
+//			frequency=0.0;
+//			FrequencyData[0].impulse_count=FREQ_COUNT_1_TIM->CNT;
+//			FREQ_COUNT_1_TIM->CNT=0x0;
+		}
+
+//		Watchdog_SetTaskStatus(FREQUENCY_CH1_TASK,TASK_ACTIVE);
+//	    xSemaphoreTake( xMeasureDataMutex, portMAX_DELAY );
+//	    {
+//	    	stMeasureData.frequency[0]=frequency;
+//	    	stMeasureData.pulse_counter[0]+=FrequencyData[0].impulse_count;
+//	    }
+//	    xSemaphoreGive( xMeasureDataMutex );
+//		Watchdog_IncrementCouter(FREQUENCY_CH1_TASK);
+//		Watchdog_SetTaskStatus(FREQUENCY_CH1_TASK,TASK_IDLE);
+	}
 }
