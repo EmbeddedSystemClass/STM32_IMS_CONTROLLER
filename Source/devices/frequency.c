@@ -19,6 +19,7 @@
 #define IMPULSE_COUNT_1_GPIO_PINS				GPIO_Pin_0
 #define IMPULSE_COUNT_1_GPIO_PINSOURCE			GPIO_PinSource0
 #define IMPULSE_COUNT_1_TIM_PERIOD				(65535)
+#define IMPULSE_COUNT_1_IRQHandler				TIM8_UP_TIM13_IRQHandler
 
 #define IMPULSE_COUNT_PP_OD_SELECT_PORT	  	GPIOA
 #define IMPULSE_COUNT_1_PP_OD_SELECT_PIN	GPIO_Pin_4
@@ -48,8 +49,14 @@
 #define IMPULSE_SENSOR_2_1_EXTI 			EXTI_Line8
 #define IMPULSE_SENSOR_2_2_EXTI 			EXTI_Line9
 
+#define IMPULSE_SENSORS_IRQHandler_1		EXTI4_IRQHandler
+#define IMPULSE_SENSORS_IRQHandler_2		EXTI9_5_IRQHandler
+
 #define LINE1_ANTIBOUNCE_TIMER				TIM11
 #define LINE2_ANTIBOUNCE_TIMER				TIM14
+
+#define LINE1_ANTIBOUNCE_TIMER_IRQHandler 	TIM1_TRG_COM_TIM11_IRQHandler
+#define LINE2_ANTIBOUNCE_TIMER_IRQHandler	TIM8_TRG_COM_TIM14_IRQHandler
 
 #define IMPULSE_FAST_TIM					TIM2
 #define IMPULSE_FAST_GPIO_AF 				GPIO_AF_TIM2
@@ -80,6 +87,7 @@
 #define FREQ_CAPTURE_PERIOD_0_HZ			1000
 #define FREQ_MEASURE_TIME					250
 #define FREQ_TCXO_MULTIPLIER				3
+#define FREQ_CAPTURE_TIM_PERIOD				(0xFFFFFFFF)
 
 enum
 {
@@ -114,7 +122,8 @@ typedef struct
 {
 	uint32_t	capture_1;
 	uint32_t	capture_2;
-	uint32_t impulse_count;
+	uint32_t impulse_count_1;
+	uint32_t impulse_count_2;
 }stFrequencyData;
 
 static volatile stFrequencyData FrequencyData;
@@ -361,8 +370,10 @@ void Impulse_SetAntiBounceDelay(uint16_t time_us)
 	TIM_SetAutoreload(LINE2_ANTIBOUNCE_TIMER,time_us);
 }
 
-
-void EXTI4_IRQHandler(void)
+/*
+ * Impulse sensors IRQs
+ */
+void IMPULSE_SENSORS_IRQHandler_1(void)
 {
   if(EXTI_GetITStatus(IMPULSE_SENSOR_1_1_EXTI) != RESET)
   {
@@ -374,8 +385,7 @@ void EXTI4_IRQHandler(void)
   }
 }
 
-
-void EXTI9_5_IRQHandler(void)
+void IMPULSE_SENSORS_IRQHandler_2(void)
 {
   if(EXTI_GetITStatus(IMPULSE_SENSOR_1_2_EXTI) != RESET)
   {
@@ -405,8 +415,10 @@ void EXTI9_5_IRQHandler(void)
   }
 }
 
-
-void  TIM8_UP_TIM13_IRQHandler(void)//counter
+/*
+ * Impulse counter IRQ
+ */
+void  IMPULSE_COUNT_1_IRQHandler(void)
 {
     if (TIM_GetITStatus(IMPULSE_COUNT_1_TIM, TIM_IT_Update) != RESET)
     {
@@ -415,8 +427,10 @@ void  TIM8_UP_TIM13_IRQHandler(void)//counter
     }
 }
 
-
-void  TIM1_TRG_COM_TIM11_IRQHandler(void)//delay_1
+/*
+ * Antibounce delay IRQs
+ */
+void  LINE1_ANTIBOUNCE_TIMER_IRQHandler(void)//delay_1
 {
     if (TIM_GetITStatus(LINE1_ANTIBOUNCE_TIMER, TIM_IT_Update) != RESET)
     {
@@ -429,7 +443,7 @@ void  TIM1_TRG_COM_TIM11_IRQHandler(void)//delay_1
 				Line1_SensorTimer.start_value=reload_fast_tim+IMPULSE_FAST_TIM->CNT;
 				*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_1_2_EXTI;
 				TIM_ITConfig(IMPULSE_FAST_TIM, IMPULSE_FAST_IT_1, ENABLE);
-				 stMeasureData.pulse_line_measure_state[0]=MEASURE_IN_PROCESS;
+				stMeasureData.pulse_line_measure_state[0]=MEASURE_IN_PROCESS;
     		}
     		else
     		{
@@ -440,17 +454,8 @@ void  TIM1_TRG_COM_TIM11_IRQHandler(void)//delay_1
     	{
     		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_1_2)==SENSOR_EVENT_LEVEL)//level ok
     		{
-    			//Line1_ImpulseCounter.stop_value=reload_counter+IMPULSE_COUNT_1_TIM->CNT;
-    			Line1_SensorTimer.stop_value=reload_fast_tim+IMPULSE_FAST_TIM->CNT;
 
-//    			if(Line1_ImpulseCounter.stop_value>=Line1_ImpulseCounter.start_value)
-//    			{
-//    				stMeasureData.pulse_counter[0]=Line1_ImpulseCounter.stop_value-Line1_ImpulseCounter.start_value;
-//    			}
-//    			else
-//    			{
-//    				stMeasureData.pulse_counter[0]=Line1_ImpulseCounter.start_value-Line1_ImpulseCounter.stop_value;
-//    			}
+    			Line1_SensorTimer.stop_value=reload_fast_tim+IMPULSE_FAST_TIM->CNT;
 
     			if(Line1_SensorTimer.stop_value>=Line1_SensorTimer.start_value)
     			{
@@ -472,7 +477,7 @@ void  TIM1_TRG_COM_TIM11_IRQHandler(void)//delay_1
     }
 }
 
-void  TIM8_TRG_COM_TIM14_IRQHandler(void)//delay_2
+void  LINE2_ANTIBOUNCE_TIMER_IRQHandler(void)//delay_2
 {
     if (TIM_GetITStatus(LINE2_ANTIBOUNCE_TIMER, TIM_IT_Update) != RESET)
     {
@@ -496,17 +501,7 @@ void  TIM8_TRG_COM_TIM14_IRQHandler(void)//delay_2
     	{
     		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_2_2)==SENSOR_EVENT_LEVEL)//level ok
     		{
- //   			Line2_ImpulseCounter.stop_value=reload_counter+IMPULSE_COUNT_1_TIM->CNT;
     			Line2_SensorTimer.stop_value=reload_fast_tim+IMPULSE_FAST_TIM->CNT;
-
-//    			if(Line2_ImpulseCounter.stop_value>=Line2_ImpulseCounter.start_value)
-//    			{
-//    				stMeasureData.pulse_counter[1]=Line2_ImpulseCounter.stop_value-Line2_ImpulseCounter.start_value;
-//    			}
-//    			else
-//    			{
-//    				stMeasureData.pulse_counter[1]=Line2_ImpulseCounter.start_value-Line2_ImpulseCounter.stop_value;
-//    			}
 
     			if(Line2_SensorTimer.stop_value>=Line2_SensorTimer.start_value)
     			{
@@ -527,9 +522,11 @@ void  TIM8_TRG_COM_TIM14_IRQHandler(void)//delay_2
     }
 }
 
+/*
+ * Fast timer interrupt
+ */
 portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
-
-void  IMPULSE_FAST_TIM_IRQHandler(void)//fast timer
+void  IMPULSE_FAST_TIM_IRQHandler(void)
 {
     if (TIM_GetITStatus(IMPULSE_FAST_TIM, TIM_IT_Update) != RESET)
     {
@@ -539,7 +536,6 @@ void  IMPULSE_FAST_TIM_IRQHandler(void)//fast timer
 
     if (TIM_GetITStatus(IMPULSE_FAST_TIM, IMPULSE_FAST_IT_1) != RESET)
     {
-    	//reload_fast_tim+=(IMPULSE_FAST_TIM_PERIOD+1);
     	if(line_1_event==IMPULSE_SENSOR_1_1_EVENT)
     	{
     		Line1_ImpulseTimer.start_value=IMPULSE_FAST_TIM->IMPULSE_FAST_REG_1;
@@ -606,7 +602,8 @@ void  IMPULSE_FAST_TIM_IRQHandler(void)//fast timer
     	{
 			  FrequencyData.capture_1=FrequencyData.capture_2;
 			  FrequencyData.capture_2 =IMPULSE_FAST_TIM->IMPULSE_FAST_REG_1;
-			  FrequencyData.impulse_count=FREQ_COUNT_1_TIM->CNT;
+			  FrequencyData.impulse_count_1=FrequencyData.impulse_count_2;
+			  FrequencyData.impulse_count_2=IMPULSE_COUNT_1_TIM->CNT;
 
     		  flagFreqMeasure==FREQ_MEASURE_COMPLETE;
     		  xSemaphoreGiveFromISR( xFrequencySemaphore, &xHigherPriorityTaskWoken );
@@ -624,7 +621,7 @@ void  IMPULSE_FAST_TIM_IRQHandler(void)//fast timer
 
 static void FrequencyCH1Measure_Task(void *pvParameters)
 {
-	uint32_t sum_tick_impulse=0;
+	uint32_t sum_tick_impulse=0, sum_impulse=0;
 	float frequency;
 
  	for( ;; )
@@ -637,7 +634,7 @@ static void FrequencyCH1Measure_Task(void *pvParameters)
 		if ( xSemaphoreTake( xFrequencySemaphore, ( portTickType ) FREQ_CAPTURE_PERIOD_0_HZ ) == pdTRUE )
 		{
 //			Watchdog_SetTaskStatus(FREQUENCY_CH1_TASK,TASK_ACTIVE);
-			if(FrequencyData.capture_2>FrequencyData.capture_1)
+			 if(FrequencyData.capture_2>FrequencyData.capture_1)
 			 {
 				 sum_tick_impulse=FrequencyData.capture_2-FrequencyData.capture_1;
 			 }
@@ -646,9 +643,19 @@ static void FrequencyCH1Measure_Task(void *pvParameters)
 				 sum_tick_impulse=(FREQ_CAPTURE_TIM_PERIOD-FrequencyData.capture_1)+FrequencyData.capture_2;
 			 }
 
+			 if(FrequencyData.impulse_count_2>FrequencyData.impulse_count_1)
+			 {
+				 sum_impulse=FrequencyData.impulse_count_2-FrequencyData.impulse_count_1;
+			 }
+			 else
+			 {
+				 sum_impulse=(z/*FREQ_CAPTURE_TIM_PERIOD*/-FrequencyData.impulse_count_1)+FrequencyData.impulse_count_2;
+			 }
+
+
 			 xSemaphoreTake( xSettingsMutex, portMAX_DELAY );
 			 {
-			     frequency= (float)stSettings.TCXO_frequency*FREQ_TCXO_MULTIPLIER*FrequencyData.impulse_count/sum_tick_impulse;
+			     frequency= (float)stSettings.TCXO_frequency*FREQ_TCXO_MULTIPLIER*sum_impulse/sum_tick_impulse;
 			 }
 //			 xSemaphoreGive( xSettingsMutex );
 //
@@ -657,7 +664,7 @@ static void FrequencyCH1Measure_Task(void *pvParameters)
 		}
 		else
 		{
-//			frequency=0.0;
+			frequency=0.0;
 //			FrequencyData[0].impulse_count=FREQ_COUNT_1_TIM->CNT;
 //			FREQ_COUNT_1_TIM->CNT=0x0;
 		}
@@ -665,8 +672,8 @@ static void FrequencyCH1Measure_Task(void *pvParameters)
 //		Watchdog_SetTaskStatus(FREQUENCY_CH1_TASK,TASK_ACTIVE);
 //	    xSemaphoreTake( xMeasureDataMutex, portMAX_DELAY );
 //	    {
-//	    	stMeasureData.frequency[0]=frequency;
-//	    	stMeasureData.pulse_counter[0]+=FrequencyData[0].impulse_count;
+	    	stMeasureData.frequency[0]=frequency;
+	    	//stMeasureData.pulse_counter[0]+=FrequencyData[0].impulse_count;
 //	    }
 //	    xSemaphoreGive( xMeasureDataMutex );
 //		Watchdog_IncrementCouter(FREQUENCY_CH1_TASK);
