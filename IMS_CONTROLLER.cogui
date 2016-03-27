@@ -21,8 +21,7 @@
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3255" selectionTopPixel="840"/>
 </editor>
 <editor id="org.coocox.builder.ui.editors.ConfigEditor" name="" partName="Configuration" title="Configuration" tooltip="" workbook="DefaultEditorWorkbook">
-<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">
-<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="0" verticalPosition="0"/>
+<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">&#x0A;<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="0" verticalPosition="0"/>
 </input>
 </editor>
 </editors>
@@ -453,6 +452,9 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_tim.h" tooltip="IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_tim.h">
 <persistable path="/IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_tim.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" tooltip="IMS_CONTROLLER/cmsis_boot/startup/startup_stm32f4xx.c">
+<persistable path="/IMS_CONTROLLER/cmsis_boot/startup/startup_stm32f4xx.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" tooltip="IMS_CONTROLLER/cmsis_boot/startup/startup_stm32f4xx.c">
 <persistable path="/IMS_CONTROLLER/cmsis_boot/startup/startup_stm32f4xx.c"/>

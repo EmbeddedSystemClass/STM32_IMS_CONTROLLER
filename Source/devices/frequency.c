@@ -301,7 +301,8 @@ void ImpulseMeasureInit(void)
 
 
 	TIM_Cmd(IMPULSE_FAST_TIM, ENABLE);
-//---------------------------------
+
+	//---------------------------------
     stMeasureData.pulse_line_measure_state[0]=MEASURE_UNCERTAIN;
     stMeasureData.pulse_line_measure_state[1]=MEASURE_UNCERTAIN;
     line_1_event=IMPULSE_SENSOR_EVENT_NONE;
@@ -309,17 +310,14 @@ void ImpulseMeasureInit(void)
 
     Impulse_SetAntiBounceDelay(1);
     ImpulseLine1_StartMeasure();//test measure
-
     //------------------------------------
 
 	vSemaphoreCreateBinary( xFrequencySemaphore );
-
 	xTaskCreate(FrequencyCH1Measure_Task,(signed char*)"Freq measure",128,NULL, tskIDLE_PRIORITY + 2, NULL);
 
 }
 
-
-void ImpulseLine1_StartMeasure(void)
+void ImpulseLine1_StartMeasure(void)//переделать по обоим датчикам
 {
 	if((stMeasureData.pulse_line_measure_state[0]==MEASURE_FINISHED)||(stMeasureData.pulse_line_measure_state[0]==MEASURE_UNCERTAIN))
 	{
@@ -329,7 +327,7 @@ void ImpulseLine1_StartMeasure(void)
 	}
 }
 
-void ImpulseLine2_StartMeasure(void)
+void ImpulseLine2_StartMeasure(void)//переделать по обоим датчикам
 {
 	if((stMeasureData.pulse_line_measure_state[1]==MEASURE_FINISHED)||(stMeasureData.pulse_line_measure_state[1]==MEASURE_UNCERTAIN))
 	{
@@ -352,7 +350,6 @@ void ImpulseLine2_EmergencyStopMeasure(void)
 	*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_2_2_EXTI;
 	stMeasureData.pulse_line_measure_state[1]=MEASURE_UNCERTAIN;
 }
-
 
 void Impulse_SetAntiBounceDelay(uint16_t time_us)
 {
