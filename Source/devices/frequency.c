@@ -98,6 +98,14 @@ enum
 	IMPULSE_SENSOR_EVENT_NONE,
 };
 
+/*typedef enum
+{
+	MEASURE_DIRECT_1_2=0,
+	MEASURE_DIRECT_2_1,
+}enMeasureDirect;
+
+enMeasureDirect line_1_MeasureDirect,line_2_MeasureDirect;*/
+
 typedef struct
 {
 	uint64_t start_value;
@@ -108,6 +116,8 @@ uint64_t reload_counter=0, reload_fast_tim=0;
 stImpulseCounter Line1_ImpulseCounter, Line2_ImpulseCounter, Line1_SensorTimer, Line2_SensorTimer, Line1_ImpulseTimer, Line2_ImpulseTimer;
 uint32_t  exti_base_addr = (uint32_t)EXTI_BASE+EXTI_Mode_Interrupt;
 uint8_t line_1_event, line_2_event;
+
+
 
 xSemaphoreHandle xFrequencySemaphore;
 typedef enum
@@ -308,6 +318,9 @@ void ImpulseMeasureInit(void)
     line_1_event=IMPULSE_SENSOR_EVENT_NONE;
     line_2_event=IMPULSE_SENSOR_EVENT_NONE;
 
+ /*   line_1_MeasureDirect=MEASURE_DIRECT_1_2;
+    line_2_MeasureDirect=MEASURE_DIRECT_1_2;*/
+
     Impulse_SetAntiBounceDelay(1);
     ImpulseLine1_StartMeasure();//test measure
     //------------------------------------
@@ -322,8 +335,10 @@ void ImpulseLine1_StartMeasure(void)//переделать по обоим датчикам
 	if((stMeasureData.pulse_line_measure_state[0]==MEASURE_FINISHED)||(stMeasureData.pulse_line_measure_state[0]==MEASURE_UNCERTAIN))
 	{
 		*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_1_1_EXTI;
-		*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_1_2_EXTI;
+		//*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_1_2_EXTI;
+		*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_1_2_EXTI;
 		stMeasureData.pulse_line_measure_state[0]=MEASURE_STARTED;
+	    line_1_event=IMPULSE_SENSOR_EVENT_NONE;
 	}
 }
 
@@ -332,8 +347,10 @@ void ImpulseLine2_StartMeasure(void)//переделать по обоим датчикам
 	if((stMeasureData.pulse_line_measure_state[1]==MEASURE_FINISHED)||(stMeasureData.pulse_line_measure_state[1]==MEASURE_UNCERTAIN))
 	{
 		*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_2_1_EXTI;
-		*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_2_2_EXTI;
+		//*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_2_2_EXTI;
+		*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_2_2_EXTI;
 		stMeasureData.pulse_line_measure_state[1]=MEASURE_STARTED;
+	    line_2_event=IMPULSE_SENSOR_EVENT_NONE;
 	}
 }
 

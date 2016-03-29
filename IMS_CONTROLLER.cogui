@@ -18,7 +18,7 @@
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="frequency.c" partName="frequency.c" path="D:/PROJECTS/STM32_IMS_CONTROLLER/Source/devices/frequency.c" title="frequency.c" tooltip="D:/PROJECTS/STM32_IMS_CONTROLLER/Source/devices/frequency.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/devices/frequency.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3255" selectionTopPixel="840"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="16279" selectionTopPixel="7440"/>
 </editor>
 <editor id="org.coocox.builder.ui.editors.ConfigEditor" name="" partName="Configuration" title="Configuration" tooltip="" workbook="DefaultEditorWorkbook">
 <input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">&#x0A;<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="0" verticalPosition="0"/>
