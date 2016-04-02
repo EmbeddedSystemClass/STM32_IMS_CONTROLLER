@@ -18,7 +18,7 @@
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="frequency.c" partName="frequency.c" path="D:/PROJECTS/STM32_IMS_CONTROLLER/Source/devices/frequency.c" title="frequency.c" tooltip="D:/PROJECTS/STM32_IMS_CONTROLLER/Source/devices/frequency.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/IMS_CONTROLLER/devices/frequency.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="16279" selectionTopPixel="7440"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="19463" selectionTopPixel="8337"/>
 </editor>
 <editor id="org.coocox.builder.ui.editors.ConfigEditor" name="" partName="Configuration" title="Configuration" tooltip="" workbook="DefaultEditorWorkbook">
 <input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">&#x0A;<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="0" verticalPosition="0"/>
@@ -245,11 +245,7 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/devices/frequency.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/cmsis_lib/include/stm32f4xx_tim.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/calculation/calc.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/devices/frequency.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/calculation/calc.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/IMS_CONTROLLER/devices/controller.h"/>
@@ -259,31 +255,13 @@
 <org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="0" verticalPosition="0"/>
 </editor>
 </editors>
-<item historyLabel="startup_stm32f4xx.c" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="188" y="0"/>
-</item>
-<item historyLabel="frequency.c" index="0">
-<position info="not_deleted" x="9864" y="0"/>
-</item>
-<item historyLabel="startup_stm32f4xx.c" index="4">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="211" y="0"/>
-</item>
-<item historyLabel="calc.c" index="5">
-<position info="not_deleted" x="2953" y="0"/>
-</item>
 <item historyLabel="frequency.c" index="0">
 <position info="not_deleted" x="20261" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
 <position info="not_deleted" x="9858" y="0"/>
 </item>
-<item historyLabel="stm32f4xx_tim.h" index="2">
+<item historyLabel="stm32f4xx_tim.h" index="1">
 <position info="not_deleted" x="14536" y="12"/>
 </item>
 <item historyLabel="frequency.c" index="0">
@@ -295,10 +273,10 @@
 <item historyLabel="frequency.c" index="0">
 <position info="not_deleted" x="2140" y="20"/>
 </item>
-<item historyLabel="frequency.h" index="6">
+<item historyLabel="frequency.h" index="2">
 <position info="not_deleted" x="334" y="0"/>
 </item>
-<item historyLabel="frequency.h" index="6">
+<item historyLabel="frequency.h" index="2">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
@@ -340,37 +318,37 @@
 <item historyLabel="frequency.c" index="0">
 <position info="not_deleted" x="3892" y="50"/>
 </item>
-<item historyLabel="calc.c" index="7">
+<item historyLabel="calc.c" index="3">
 <position/>
 </item>
 <item historyLabel="frequency.c" index="0">
 <position info="not_deleted" x="2122" y="0"/>
 </item>
-<item historyLabel="controller.h" index="8">
+<item historyLabel="controller.h" index="4">
 <position info="not_deleted" x="1631" y="13"/>
 </item>
 <item historyLabel="frequency.c" index="0">
 <position info="not_deleted" x="2122" y="0"/>
 </item>
-<item historyLabel="mbport.c" index="9">
+<item historyLabel="mbport.c" index="5">
 <position info="not_deleted" x="5067" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
 <position info="not_deleted" x="2122" y="0"/>
 </item>
-<item historyLabel="calc.c" index="7">
+<item historyLabel="calc.c" index="3">
 <position info="not_deleted" x="69" y="22"/>
 </item>
 <item historyLabel="frequency.c" index="0">
 <position info="not_deleted" x="2122" y="0"/>
 </item>
-<item historyLabel="controller.c" index="10">
+<item historyLabel="controller.c" index="6">
 <position info="not_deleted" x="846" y="0"/>
 </item>
 <item historyLabel="frequency.c" index="0">
 <position info="not_deleted" x="3263" y="0"/>
 </item>
-<item historyLabel="Configuration" index="11"/>
+<item historyLabel="Configuration" index="7"/>
 <item historyLabel="frequency.c" index="0">
 <position info="not_deleted" x="3263" y="0"/>
 </item>
@@ -404,8 +382,26 @@
 <item historyLabel="frequency.c" index="0">
 <position info="not_deleted" x="4131" y="0"/>
 </item>
-<item active="true" historyLabel="frequency.c" index="0">
+<item historyLabel="frequency.c" index="0">
 <position info="not_deleted" x="23992" y="120"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="15572" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="3628" y="24"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="12809" y="0"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="13060" y="25"/>
+</item>
+<item historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="19441" y="0"/>
+</item>
+<item active="true" historyLabel="frequency.c" index="0">
+<position info="not_deleted" x="3684" y="24"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>

@@ -115,7 +115,7 @@ typedef struct
 uint64_t reload_counter=0, reload_fast_tim=0;
 stImpulseCounter Line1_ImpulseCounter, Line2_ImpulseCounter, Line1_SensorTimer, Line2_SensorTimer, Line1_ImpulseTimer, Line2_ImpulseTimer;
 uint32_t  exti_base_addr = (uint32_t)EXTI_BASE+EXTI_Mode_Interrupt;
-uint8_t line_1_event, line_2_event;
+uint8_t line_1_event, line_1_event_last, line_2_event, line_2_event_last;
 
 
 
@@ -338,7 +338,9 @@ void ImpulseLine1_StartMeasure(void)//переделать по обоим датчикам
 		//*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_1_2_EXTI;
 		*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_1_2_EXTI;
 		stMeasureData.pulse_line_measure_state[0]=MEASURE_STARTED;
+
 	    line_1_event=IMPULSE_SENSOR_EVENT_NONE;
+	    line_1_event_last=IMPULSE_SENSOR_EVENT_NONE;
 	}
 }
 
@@ -350,7 +352,9 @@ void ImpulseLine2_StartMeasure(void)//переделать по обоим датчикам
 		//*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_2_2_EXTI;
 		*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_2_2_EXTI;
 		stMeasureData.pulse_line_measure_state[1]=MEASURE_STARTED;
+
 	    line_2_event=IMPULSE_SENSOR_EVENT_NONE;
+	    line_2_event_last=IMPULSE_SENSOR_EVENT_NONE;
 	}
 }
 
@@ -395,6 +399,7 @@ void IMPULSE_SENSORS_IRQHandler_1(void)
 	    TIM_Cmd(LINE1_ANTIBOUNCE_TIMER, ENABLE);
 		EXTI_ClearITPendingBit(IMPULSE_SENSOR_1_1_EXTI);
 		*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_1_1_EXTI;
+		line_1_event_last=line_1_event;
 		line_1_event=IMPULSE_SENSOR_1_1_EVENT;
   }
 }
@@ -407,6 +412,7 @@ void IMPULSE_SENSORS_IRQHandler_2(void)
 	  	TIM_Cmd(LINE1_ANTIBOUNCE_TIMER, ENABLE);
 		EXTI_ClearITPendingBit(IMPULSE_SENSOR_1_2_EXTI);
 		*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_1_2_EXTI;
+		line_1_event_last=line_1_event;
 		line_1_event=IMPULSE_SENSOR_1_2_EVENT;
   }
 
@@ -416,6 +422,7 @@ void IMPULSE_SENSORS_IRQHandler_2(void)
 	    TIM_Cmd(LINE2_ANTIBOUNCE_TIMER, ENABLE);
 		EXTI_ClearITPendingBit(IMPULSE_SENSOR_2_1_EXTI);
 		*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_2_1_EXTI;
+		line_2_event_last=line_2_event;
 		line_2_event=IMPULSE_SENSOR_2_1_EVENT;
   }
 
@@ -425,6 +432,7 @@ void IMPULSE_SENSORS_IRQHandler_2(void)
 	    TIM_Cmd(LINE2_ANTIBOUNCE_TIMER, ENABLE);
 		EXTI_ClearITPendingBit(IMPULSE_SENSOR_2_2_EXTI);
 		*(__IO uint32_t *) exti_base_addr &= ~IMPULSE_SENSOR_2_2_EXTI;
+		line_2_event_last=line_2_event;
 		line_2_event=IMPULSE_SENSOR_2_2_EVENT;
   }
 }
@@ -449,7 +457,7 @@ void  LINE1_ANTIBOUNCE_TIMER_IRQHandler(void)//delay_1
     if (TIM_GetITStatus(LINE1_ANTIBOUNCE_TIMER, TIM_IT_Update) != RESET)
     {
     	TIM_Cmd(LINE1_ANTIBOUNCE_TIMER, DISABLE);
-    	if(line_1_event==IMPULSE_SENSOR_1_1_EVENT)
+    	if(/*line_1_event==IMPULSE_SENSOR_1_1_EVENT*/line_1_event_last==IMPULSE_SENSOR_EVENT_NONE)
     	{
     		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_1_1)==SENSOR_EVENT_LEVEL)//level ok
     		{
@@ -464,7 +472,7 @@ void  LINE1_ANTIBOUNCE_TIMER_IRQHandler(void)//delay_1
     			*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_1_1_EXTI;
     		}
     	}
-    	else if(line_1_event==IMPULSE_SENSOR_1_2_EVENT)
+    	else/* if(line_1_event==IMPULSE_SENSOR_1_2_EVENT)*/
     	{
     		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_1_2)==SENSOR_EVENT_LEVEL)//level ok
     		{
@@ -496,7 +504,7 @@ void  LINE2_ANTIBOUNCE_TIMER_IRQHandler(void)//delay_2
     if (TIM_GetITStatus(LINE2_ANTIBOUNCE_TIMER, TIM_IT_Update) != RESET)
     {
     	TIM_Cmd(LINE2_ANTIBOUNCE_TIMER, DISABLE);
-    	if(line_2_event==IMPULSE_SENSOR_2_1_EVENT)
+    	if(/*line_2_event==IMPULSE_SENSOR_2_1_EVENT*/line_2_event_last==IMPULSE_SENSOR_EVENT_NONE)
     	{
     		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_1_2)==SENSOR_EVENT_LEVEL)//level ok
     		{
@@ -511,7 +519,7 @@ void  LINE2_ANTIBOUNCE_TIMER_IRQHandler(void)//delay_2
     			*(__IO uint32_t *) exti_base_addr |= IMPULSE_SENSOR_2_1_EXTI;
     		}
     	}
-    	else if(line_2_event==IMPULSE_SENSOR_2_2_EVENT)
+    	else /*if(line_2_event==IMPULSE_SENSOR_2_2_EVENT)*/
     	{
     		if(GPIO_ReadInputDataBit(IMPULSE_SENSOR_PORT,IMPULSE_SENSOR_2_2)==SENSOR_EVENT_LEVEL)//level ok
     		{
