@@ -671,7 +671,7 @@ static void FrequencyCH1Measure_Task(void *pvParameters)
 			 }
 			 else
 			 {
-				 sum_impulse=(z/*FREQ_CAPTURE_TIM_PERIOD*/-FrequencyData.impulse_count_1)+FrequencyData.impulse_count_2;
+				 sum_impulse=(FREQ_CAPTURE_TIM_PERIOD-FrequencyData.impulse_count_1)+FrequencyData.impulse_count_2;
 			 }
 
 

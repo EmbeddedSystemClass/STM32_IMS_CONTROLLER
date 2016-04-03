@@ -781,8 +781,8 @@
       <target file="arm_power_q7.o" lastModified="15352202c4a">
          <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_power_q7.c" lastModified="153518ff339"/>
       </target>
-      <target file="frequency.o" lastModified="153558faaba">
-         <source file="..\..\..\Source\devices\frequency.c" lastModified="153558fed45"/>
+      <target file="frequency.o" lastModified="153dba6dbbd">
+         <source file="..\..\..\Source\devices\frequency.c" lastModified="153dba6d0b3"/>
       </target>
       <target file="mbrtu.o" lastModified="15352201f01">
          <source file="..\..\..\Source\freemodbus\rtu\mbrtu.c" lastModified="153518ff3b6"/>
@@ -862,11 +862,11 @@
       <target file="arm_min_f32.o" lastModified="153521ffdd3">
          <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_min_f32.c" lastModified="153518ff339"/>
       </target>
-      <target file="mbutils.o" lastModified="153521fef52">
-         <source file="..\..\..\Source\freemodbus\functions\mbutils.c" lastModified="153518ff3a6"/>
-      </target>
       <target file="arm_q15_to_float.o" lastModified="153521fe199">
          <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_q15_to_float.c" lastModified="153518ff339"/>
+      </target>
+      <target file="mbutils.o" lastModified="153521fef52">
+         <source file="..\..\..\Source\freemodbus\functions\mbutils.c" lastModified="153518ff3a6"/>
       </target>
       <target file="arm_lms_init_q31.o" lastModified="153522004be">
          <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_lms_init_q31.c" lastModified="153518ff329"/>
@@ -886,11 +886,11 @@
       <target file="arm_max_q15.o" lastModified="15352204312">
          <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_max_q15.c" lastModified="153518ff339"/>
       </target>
-      <target file="arm_fill_f32.o" lastModified="153522040f0">
-         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_fill_f32.c" lastModified="153518ff339"/>
-      </target>
       <target file="arm_mat_scale_f32.o" lastModified="15352202f08">
          <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_scale_f32.c" lastModified="153518ff339"/>
+      </target>
+      <target file="arm_fill_f32.o" lastModified="153522040f0">
+         <source file="..\..\..\DSP\DSP_Lib\Source\SupportFunctions\arm_fill_f32.c" lastModified="153518ff339"/>
       </target>
       <target file="arm_offset_q15.o" lastModified="153522023c2">
          <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_offset_q15.c" lastModified="153518ff2fb"/>
@@ -955,26 +955,26 @@
       <target file="arm_fir_sparse_init_f32.o" lastModified="15352203edd">
          <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_sparse_init_f32.c" lastModified="153518ff329"/>
       </target>
-      <target file="arm_fir_decimate_q31.o" lastModified="15352203178">
-         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_decimate_q31.c" lastModified="153518ff329"/>
+      <target file="arm_lms_q31.o" lastModified="153522044f9">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_lms_q31.c" lastModified="153518ff329"/>
       </target>
       <target file="arm_cos_q15.o" lastModified="15352201ffb">
          <source file="..\..\..\DSP\DSP_Lib\Source\FastMathFunctions\arm_cos_q15.c" lastModified="153518ff31a"/>
       </target>
-      <target file="arm_lms_q31.o" lastModified="153522044f9">
-         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_lms_q31.c" lastModified="153518ff329"/>
+      <target file="arm_fir_decimate_q31.o" lastModified="15352203178">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_decimate_q31.c" lastModified="153518ff329"/>
       </target>
       <target file="arm_sin_cos_f32.o" lastModified="15352203d09">
          <source file="..\..\..\DSP\DSP_Lib\Source\ControllerFunctions\arm_sin_cos_f32.c" lastModified="153518ff31a"/>
       </target>
-      <target file="arm_mat_mult_fast_q31.o" lastModified="153527b78e8">
-         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_mult_fast_q31.c" lastModified="153518ff339"/>
+      <target file="arm_fir_sparse_f32.o" lastModified="153521fe543">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_sparse_f32.c" lastModified="153518ff329"/>
       </target>
       <target file="arm_mat_sub_q15.o" lastModified="15352202374">
          <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_sub_q15.c" lastModified="153518ff339"/>
       </target>
-      <target file="arm_fir_sparse_f32.o" lastModified="153521fe543">
-         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_sparse_f32.c" lastModified="153518ff329"/>
+      <target file="arm_mat_mult_fast_q31.o" lastModified="153527b78e8">
+         <source file="..\..\..\DSP\DSP_Lib\Source\MatrixFunctions\arm_mat_mult_fast_q31.c" lastModified="153518ff339"/>
       </target>
       <target file="arm_fir_lattice_init_q31.o" lastModified="15352201438">
          <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_fir_lattice_init_q31.c" lastModified="153518ff329"/>
@@ -1003,11 +1003,11 @@
       <target file="tasks.o" lastModified="15352200f1a">
          <source file="..\..\..\Source\FreeRTOS\Source\tasks.c" lastModified="153518ff3a6"/>
       </target>
-      <target file="arm_biquad_cascade_stereo_df2T_f32.o" lastModified="15352202c98">
-         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_stereo_df2T_f32.c" lastModified="153518ff31a"/>
-      </target>
       <target file="main.o" lastModified="153521ffab7">
          <source file="..\..\..\main.c" lastModified="153518ff3c5"/>
+      </target>
+      <target file="arm_biquad_cascade_stereo_df2T_f32.o" lastModified="15352202c98">
+         <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_biquad_cascade_stereo_df2T_f32.c" lastModified="153518ff31a"/>
       </target>
       <target file="arm_max_q7.o" lastModified="15352203df3">
          <source file="..\..\..\DSP\DSP_Lib\Source\StatisticsFunctions\arm_max_q7.c" lastModified="153518ff339"/>
@@ -1018,11 +1018,11 @@
       <target file="arm_negate_q31.o" lastModified="153527b7169">
          <source file="..\..\..\DSP\DSP_Lib\Source\BasicMathFunctions\arm_negate_q31.c" lastModified="153518ff2fb"/>
       </target>
-      <target file="timers.o" lastModified="153521fff9f">
-         <source file="..\..\..\Source\FreeRTOS\Source\timers.c" lastModified="153518ff3a6"/>
-      </target>
       <target file="arm_lms_norm_q31.o" lastModified="1535220305f">
          <source file="..\..\..\DSP\DSP_Lib\Source\FilteringFunctions\arm_lms_norm_q31.c" lastModified="153518ff329"/>
+      </target>
+      <target file="timers.o" lastModified="153521fff9f">
+         <source file="..\..\..\Source\FreeRTOS\Source\timers.c" lastModified="153518ff3a6"/>
       </target>
    </processor>
 </history>
